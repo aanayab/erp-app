@@ -1,5 +1,8 @@
 import { Input, Component, Output, EventEmitter,AfterViewInit,ElementRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Utils } from '../../services/util/utils';
+import { Router} from '@angular/router';
+
 
 @Component({
   selector: 'my-home',
@@ -8,11 +11,21 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class HomeComponent implements AfterViewInit {
 
-  constructor(private elementRef: ElementRef) {}
+  collapsed:boolean = false;
+
+  constructor(private elementRef: ElementRef, private utils:Utils,private router: Router,) {}
   ngAfterViewInit() {
       this.elementRef.nativeElement.ownerDocument
           .body.style.background = 'white';
   }
+
+  ngOnInit() {
+    debugger;
+   this.utils.getSession();
+
+  // this.router.navigate(['/']);
+  }
+
  title: string = "Hola";
 
   @Input() error: string = '';

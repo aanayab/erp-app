@@ -132,3 +132,14 @@ form .pass-link a:hover,
 form .signup-link a:hover{
   text-decoration: underline;
 }
+
+.error {
+  font-size: 15px;
+  font-weight: 50;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  user-select: none;
+  border-radius: 15px 15px 15px 15px;
+  background: linear-gradient(90deg,#000000, #fc0303);
+}

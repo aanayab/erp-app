@@ -1,5 +1,5 @@
 
-:host {
+/* :host {
     display: flex;
     justify-content: center;
     margin: 100px 0px;
@@ -26,4 +26,16 @@
   .button {
     display: flex;
     justify-content: flex-end;
+  } */
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
   }
