@@ -1,0 +1,28 @@
+<div class=" d-flex flex-column min-vh-100">
+  <app-header>
+  </app-header>
+  <mat-drawer-container hasBackdrop="true">
+    <mat-drawer opened="{{!collapsed}}" class="col-2 float-end" #drawer mode="over">
+      <div class="col-12 float-end">
+        <span (click)="drawer.toggle();sidevarChange()" *ngIf="!collapsed" class="float-end material-icons">
+          arrow_back
+        </span>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content class="col-12">
+      <div class="col-12" (click)="drawer.toggle();sidevarChange()">
+        <span *ngIf="collapsed" class="material-icons sidevar">
+          menu
+        </span>
+      </div>
+     
+      <div class="col-12 scrolling" ngbScrollSpy #spy="ngbScrollSpy" [ngClass]="!collapsed ? 'ms-3' : 'ms-3'">
+        <app-messages  class="col-12"></app-messages> 
+      </div>
+
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+  <app-footer class="bg-info text-center text-lg-start mt-auto fixed-bottom">
+  </app-footer>
+</div>

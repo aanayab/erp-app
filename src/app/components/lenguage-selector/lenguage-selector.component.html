@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="col">
+		<div  ngbDropdown class="d-inline-block">
+			<button 
+			 style="color: white;" type="button" class="btn dropdown" id="dropdownBasic1" ngbDropdownToggle>
+			 {{'Language' | translate}}
+			</button>
+			<div  ngbDropdownMenu aria-labelledby="dropdownBasic1">
+				<option *ngFor="let language of translate.getLangs()"  [value]="language"
+				[selected]="language == translate.currentLang" (click)="switchLenguage(language)"
+				 ngbDropdownItem>{{language}}</option>
+			</div>
+		</div>
+	</div>
+<!-- <mat-form-field>
+  <mat-label>Favorite food</mat-label>
+  <mat-select> 
+      <mat-option *ngFor="let food of foods; track food" [value]="food.value">{{food.viewValue}}</mat-option>
+  </mat-select> -->

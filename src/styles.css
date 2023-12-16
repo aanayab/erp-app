@@ -1,0 +1,14 @@
+.hidden-modal {
+    .modal-content {
+        background: transparent !important;
+        border: 0 !important;
+    }
+  }
+
+  .alert-dismissible .btn-close {
+    position: absolute;
+    top: -10px !important;
+    right: 5px;
+    z-index: 2;
+    padding: 1.25rem 1rem;
+}

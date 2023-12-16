@@ -30,44 +30,37 @@ constructor(private router: Router){}
         return;
     }
 
-    static subscribeHandler(){
-        let data :string;
-
-       return    {
-        next: (response: any) => {          
+    subscribeResponseHandler(data:any) :  any{
+     return  {
+        next: (response: any) => {
           if (response.status = 200) {
             var body = response.body;
-            if (body.tipoMensaje = 'S') {        
-             
-            } else {           
-              
+            if (body.tipoMensaje = 'S') {              
+              data = body.result;
+            } else {
+             let mensaje:string = body.mensaje;
+             //mandar alerta de mensaje 
+              console.log(mensaje);
             }
-
+   
           }
-
         },
         error: (e: any) => {
-       
-        
-          console.log(e);
+         
+          // mandar mensaje de error
+          console.log(e.message);
         }
-      }
+     }
+
+      
 
     }
-    static subscribeHandlerLogin(){
-        let data :string;
-
-       return  {
-            next: (response:any) => {
-                debugger;
-                console.log(response)},
-            error: (e: any) => {
-                console.log(e);
-            },
-            complete: () => {console.info('complete')} 
-        }
+  
+    subscribeErrorHandler(e:any){
+      
 
     }
+  
 
      getSession(){
         const session = localStorage.getItem('SESSIONERPAPPTK');

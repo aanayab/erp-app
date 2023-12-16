@@ -1,0 +1,14 @@
+.header{
+ background: linear-gradient(-180deg,#000000, #fc0303);
+ clear:both;
+ position: static;
+
+
+}
+
+.material-icons {
+    font-size: 26px;
+    vertical-align: middle;
+    color: rgb(255, 255, 255);  
+
+  }

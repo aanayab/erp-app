@@ -1,26 +1,42 @@
-import { Input, Component, Output, EventEmitter,AfterViewInit,ElementRef } from '@angular/core';
+import { Input, Component, Output,ChangeDetectionStrategy, EventEmitter,AfterViewInit,ElementRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Utils } from '../../services/util/utils';
 import { Router} from '@angular/router';
+import Swal from 'sweetalert2';
+import { MessageService } from 'src/app/services/message/message.service';
+
+
 
 
 @Component({
   selector: 'my-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements AfterViewInit {
 
-  collapsed:boolean = false;
+  collapsed:boolean = true;
+  constructor(private elementRef: ElementRef, private utils:Utils,private router: Router,private messageService:MessageService) {    
 
-  constructor(private elementRef: ElementRef, private utils:Utils,private router: Router,) {}
+  }
+
+
+  
   ngAfterViewInit() {
       this.elementRef.nativeElement.ownerDocument
           .body.style.background = 'white';
   }
 
+
+
+
+  simpleAlert(){
+    Swal.fire("Herllo");
+
+  }
+
   ngOnInit() {
-    debugger;
    this.utils.getSession();
 
   // this.router.navigate(['/']);
@@ -43,5 +59,8 @@ export class HomeComponent implements AfterViewInit {
     }
   }
 
+  sidevarChange() {
+    this.collapsed = !this.collapsed;
+    }
 
 }
