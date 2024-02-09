@@ -1,0 +1,20 @@
+<div class="col-12 text-center ps-4 pe-4">
+    <div class="col-12 text-center">    
+<mat-accordion>
+    <mat-expansion-panel expanded="true"  (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Self aware panel
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <pre>{{companySrvice.company| json}}</pre>
+      <pre>{{privilegyService.privilegy| json}}</pre>
+      <pre>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam debitis blanditiis nulla impedit vel voluptates aspernatur repellendus magni quas rerum illum temporibus expedita ab atque ex, ducimus dignissimos molestias consequatur?</pre>
+    </mat-expansion-panel>
+  </mat-accordion>
+  </div>
+</div>

@@ -1,5 +1,17 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import Swal from 'sweetalert2';
+
+import { UserBean } from 'src/app/model/userBean';
+import { Utils } from '../../services/util/utils';
+import { Router} from '@angular/router';
+
+import {
+  MatDialog,
+} from '@angular/material/dialog';
+import { UserComponent } from '../user/user-component';
+
+
+
 
 @Component({
   selector: 'app-header',
@@ -9,17 +21,56 @@ import Swal from 'sweetalert2';
 export class HeaderComponent {
 
 
+  userName?:string = this.utils.getUsername();
+  @Input() user?:UserBean;  
+  
+  constructor(public dialog: MatDialog,private router: Router,private utils:Utils){
 
+  }
+
+
+  openDialog(userBean:any): void {
+    this.dialog.open(UserComponent, {
+      data :userBean,
+      width: '550px',
+      enterAnimationDuration: '0ms',
+      exitAnimationDuration: '0ms',
+      position:{top: '45px', right:'0px'}, 
+      disableClose:true
+    });
+  }
+
+
+  validateRoot(){    
+  //  return this.utils.validateRoot();
+    return true;
+  }
+
+
+  logOut(){
+    this.utils.logOut();
+  }
+
+
+
+  ngOnInit() {
+    
+     //this.getUser();
+   }
+ 
 
   simpleAlert(){
+    
+  
     Swal.fire({
       position: 'top-end',
-      title: "<strong>HTML <u>example</u></strong>",
+      title: "<strong>HTml test</strong>",
       icon: "info",
       html: `
       <form>
   <div class="form-row">
     <div class="col-md-12 mb-3">
+    <span>{{userBean | json}}<span>
       <label for="validationServer01">First name</label>
       <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required>
       <div class="valid-feedback">

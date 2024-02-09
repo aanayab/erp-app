@@ -1,0 +1,15 @@
+.mat-tree{
+    background: transparent;
+    color: white;
+}
+
+.mat-tree-node{
+    color: white;
+    min-height: 1.8em !important; 
+      height: 1.8em;   
+}
+
+
+.mat-tree-node :hover{
+    opacity: 0.5;
+}

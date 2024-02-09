@@ -3,8 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { WsAuthenticateService } from '../../services/ws-authenticate/ws-authenticate.service'
 import { Token } from '../../model/token';
-import { Utils } from '../../services/util/utils';
 import { LoadingService } from 'src/app/services/loading/loading.service';
+import { Utils } from '../../services/util/utils';
 
 @Component({
   selector: 'my-login-form',
@@ -20,7 +20,7 @@ export class LoginFormComponent implements AfterViewInit {
 
 
 
-  constructor(private elementRef: ElementRef, private router: Router, private wsAuthenticateService: WsAuthenticateService,private loadingService:LoadingService) { }
+  constructor(private utils:Utils,private elementRef: ElementRef, private router: Router, private wsAuthenticateService: WsAuthenticateService,private loadingService:LoadingService) { }
 
 
   ngAfterViewInit() {
@@ -30,6 +30,9 @@ export class LoginFormComponent implements AfterViewInit {
 
   ngOnInit(){
     localStorage.removeItem("SESSIONERPAPPTK");
+    // localStorage.removeItem('SESSIONERPAPPUSR');
+   // localStorage.removeItem('SESSIONERPAPPAUT');
+    localStorage.removeItem('SESSIONERPAPPUSN');
     }
 
 
@@ -39,12 +42,11 @@ export class LoginFormComponent implements AfterViewInit {
   });
 
   submit() {
-    this.loadingService.setLoading(true);
     this.error = '';
     if (this.form.valid) {
       this.wsAuthenticateService.getToken(this.form.value.username, this.form.value.password)
         .subscribe(
-          this.subscribeHandlerLogin()
+          this.subscribeHandlerLogin(this.form.value.username)
         );
     } else {
       this.error = 'Username or password invalid';
@@ -60,18 +62,24 @@ export class LoginFormComponent implements AfterViewInit {
 
   }
 
-  subscribeHandlerLogin(){
+
+  
+
+  subscribeHandlerLogin(username:string){
     return {
      next: (response: any) => {
       this.loadingService.setLoading(false);
-       if (response.status = 200) {
+       if (response.status == 200) {
          var body = response.body;
-         if (body.tipoMensaje = 'S') {
-           localStorage.setItem('SESSIONERPAPPTK', body.result);
-           this.router.navigate(['/home']);
+         if (body.tipoMensaje == 'S') {
+          
+           localStorage.setItem('SESSIONERPAPPTK', btoa(JSON.stringify(body.result)));
+           localStorage.setItem('SESSIONERPAPPUSN', btoa(JSON.stringify(username)));
+           this.router.navigate(['/']);
          } else {
            this.error = 'Username or password invalid';
            localStorage.removeItem("SESSIONERPAPPTK");
+           localStorage.removeItem('SESSIONERPAPPUSN');
            this.loadingService.setLoading(false);
          }
 
@@ -80,6 +88,7 @@ export class LoginFormComponent implements AfterViewInit {
      error: (e: any) => {
        this.error = 'Username or password invalid';
        localStorage.removeItem("SESSIONERPAPPTK");
+       localStorage.removeItem('SESSIONERPAPPUSN');
        this.loadingService.setLoading(false);
      }
   }

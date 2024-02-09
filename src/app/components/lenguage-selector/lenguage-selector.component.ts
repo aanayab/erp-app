@@ -17,7 +17,7 @@ export class LenguageSelectorComponent {
    }
  
    switchLenguage(lang:string){
-    debugger;
+    
      this.translate.use(lang);
    }
 

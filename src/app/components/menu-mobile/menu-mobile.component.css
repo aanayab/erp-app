@@ -1,0 +1,23 @@
+.mat-toolbar{
+    background: linear-gradient(-180deg,#000000, #fc0303);
+    clear:both;
+    position: relative;
+    color:white;
+    /* height: 36px; */
+   
+}
+.material-icons {
+    font-size: 26px;
+    vertical-align: middle;
+    color: rgb(255, 255, 255);  
+  
+  }
+  .mat-toolbar-row{
+    padding: 0px;
+  }
+
+  
+    .mat-toolbar-row2 :hover {
+   opacity:  0.5 !important;
+}  
+

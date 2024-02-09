@@ -11,7 +11,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import {  MatTreeModule} from '@angular/material/tree';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -26,7 +28,12 @@ const modules = [
   MatSidenavModule,
   MatSelectModule,
   MatFormFieldModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatTreeModule,
+  MatButtonModule,
+  MatIconModule,
+  MatExpansionModule
 ];
 
 @NgModule({
