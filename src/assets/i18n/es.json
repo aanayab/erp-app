@@ -32,7 +32,10 @@
     "support":"Soporte",
     "sysAdmin":"Administrador de sistema",
     "purch":"Compras",
-    "home":"Home"
+    "home":"Home",
+    "COMPANY_ERROR" :"El usuario no está asignado a ninguna empresa.",
+    "PERMISION_ERROR":"El usuario no tiene permisos asignados."
+
     
 
 }

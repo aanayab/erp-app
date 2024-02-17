@@ -1,0 +1,30 @@
+<div class="col-12">
+    <h1 mat-dialog-title style="color: white;" class="text-center"></h1>
+    <div mat-dialog-content>
+    
+      <div class="example-form-fields" >   
+              
+        <p>
+            Start editing to see some magic happen :)
+          </p>
+          
+          <p><strong>{{idleServiceService.idleState}}</strong></p>
+          <p *ngIf="idleServiceService.lastPing"><small>Last keepalive ping <strong>{{idleServiceService.lastPing }}</strong></small></p>
+          <button (click)="component.reset()" *ngIf="idleServiceService.timedOut">Restart</button>
+          <!-- <p *ngIf="idleServiceService.lastPing"><small>
+            Last keepalive ping <strong>{{idleServiceService.lastPing }}</strong></small>
+        </p> -->
+        <!-- <mat-form-field appearance="fill">
+          <mat-label>{{'Company'|translate}}</mat-label>
+          <input [(ngModel)]="userBean!.company"  matInput placeholder="{{'Company'|translate}}" required disabled>
+           <mat-hint>Hint</mat-hint> 
+        </mat-form-field> -->
+    </div>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button style="color: white;" (click)="component.stay()"   mat-dialog-close>Stay</button>
+        <button mat-button style="color: white;" (click)="component.exit()"   mat-dialog-close>Logout</button>
+        <!-- <button mat-button color="warn" (click)="save()" cdkFocusInitial>{{'Save'|translate}}</button> -->
+      </div>
+    </div>
+    

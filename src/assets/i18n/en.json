@@ -32,7 +32,9 @@
     "support":"Support",
     "sysAdmin":"System Administration",
     "purch":"Procuirment",
-    "home":"Home"
+    "home":"Home",
+    "COMPANY_ERROR" :"The user is not assigned to any company.",
+   "PERMISION_ERROR":"The user has no permissions assigned."
 
 
 }

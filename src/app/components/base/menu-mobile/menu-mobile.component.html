@@ -1,0 +1,30 @@
+<div class="d-md-block d-lg-none d-xl-none col-12 text-center">
+
+    <mat-toolbar>
+        <ng-container>
+        <mat-toolbar-row>
+            <div class="col-2">
+                <button (click)="sidevarChange()" mat-icon-button class="material-icons mx-0" style="font-size: 30px;color: white;" aria-hidden="true"
+                    aria-label="Example home icon" fontIcon="home">menu</button>
+            </div>
+            <div class="col-8">
+                <span class="example-spacer"></span>
+                <app-company-selector class="ps-8" *ngIf="user" [userBean]="user" />
+            </div>
+            <!-- <div class="col-2"><app-lenguage-selector /></div> -->
+            <div class="col-2">
+                <button mat-icon-button class="material-icons mx-0" (click)="logOut()" style="font-size: 30px;color: white;"
+                    aria-hidden="true" aria-label="Example home icon" fontIcon="home">logout</button>
+            </div>
+        </mat-toolbar-row>
+    </ng-container>
+        <ng-container *ngIf="collapsed">
+        <mat-toolbar-row class="mat-toolbar-row2" style="height: 35px;" *ngFor="let item of keys; index as i;" >
+            <div (click)="sidevarChange()" routerLink="/home{{item.ruta}}" class="col-12 ps-4 m-0  text-start opacity:  0.5 !important;"  >{{item.keyGroup | translate}}</div>     
+
+        </mat-toolbar-row>
+    </ng-container>
+    </mat-toolbar>
+</div>
+
+<!-- <div class="col-1 text-center pe-3 d-flex flex-row-reverse"></div> -->

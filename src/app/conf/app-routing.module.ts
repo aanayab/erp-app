@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginFormComponent } from '../components/login-form/login-form.component';
-import { HomeComponent } from '../components/home/home.component'
-import { AdminComponent } from '../components/admin/admin/admin.component';
-import { AuditoriaComponent } from '../components/auditoria/auditoria/auditoria.component';
-import { ContabilidadComponent } from '../components/contabilidad/contabilidad/contabilidad.component';
-import { CostSuccComponent } from '../components/cost-succ/cost-succ/cost-succ.component';
-import { CostumersComponent } from '../components/costumers/costumers/costumers.component';
-import { DireccionComponent } from '../components/direccion/direccion/direccion.component';
-import { DoComponent } from '../components/do/do/do.component';
-import { FinanzasComponent } from '../components/finanzas/finanzas/finanzas.component';
-import { GestionComponent } from '../components/gestion/gestion/gestion.component';
-import { HrComponent } from '../components/hr/hr/hr.component';
-import { InventariosComponent } from '../components/inventarios/inventarios/inventarios.component';
-import { MarketingComponent } from '../components/marketing/marketing/marketing.component';
-import { OperacionesComponent } from '../components/operaciones/operaciones/operaciones.component';
-import { ProduccionComponent } from '../components/produccion/produccion/produccion.component';
-import { PuntoVentaComponent } from '../components/puntoVenta/punto-venta/punto-venta.component';
-import { SalesComponent } from '../components/sales/sales/sales.component';
-import { SupportComponent } from '../components/support/support/support.component';
-import { SysAdminComponent } from '../components/sys-admin/sys-admin/sys-admin.component';
-import { ComprasComponent } from '../components/compras/compras/compras.component';
+import { LoginFormComponent } from '../components/modules/login-form/login-form.component';
+import { HomeComponent } from '../components/base/home/home.component'
+import { AdminComponent } from '../components/modules/admin/admin.component';
+import { AuditoriaComponent } from '../components/modules/auditoria/auditoria.component';
+import { ContabilidadComponent } from '../components/modules/contabilidad/contabilidad.component';
+import { CostSuccComponent } from '../components/modules/cost-succ/cost-succ.component';
+import { CostumersComponent } from '../components/modules/costumers/costumers.component';
+import { DireccionComponent } from '../components/modules/direccion/direccion.component';
+import { DoComponent } from '../components/modules/do/do.component';
+import { FinanzasComponent } from '../components/modules/finanzas/finanzas.component';
+import { GestionComponent } from '../components/modules/gestion/gestion.component';
+import { HrComponent } from '../components/modules/hr/hr.component';
+import { InventariosComponent } from '../components/modules/inventarios/inventarios.component';
+import { MarketingComponent } from '../components/modules/marketing/marketing.component';
+import { OperacionesComponent } from '../components/modules/operaciones/operaciones.component';
+import { ProduccionComponent } from '../components/modules/produccion/produccion.component';
+import { PuntoVentaComponent } from '../components/modules/punto-venta/punto-venta.component';
+import { SalesComponent } from '../components/modules/sales/sales.component';
+import { SupportComponent } from '../components/modules/support/support.component';
+import { SysAdminComponent } from '../components/modules/sys-admin/sys-admin.component';
+import { ComprasComponent } from '../components/modules/compras/compras.component';
 import { AppComponent } from '../components/app/app.component';
 
 const routes: Routes = [
