@@ -34,7 +34,20 @@
     "purch":"Procuirment",
     "home":"Home",
     "COMPANY_ERROR" :"The user is not assigned to any company.",
-   "PERMISION_ERROR":"The user has no permissions assigned."
+   "PERMISION_ERROR":"The user has no permissions assigned.",
+   "Community":"Community",
+   "Help":"Help",
+   "Support":"Support" ,
+   "Stay":"Stay",
+   "Logout":"Logout",
+   "Inactivity":"Inactivity",
+   "INACTIVITY_MESSAGE":"We have detected inactivity in the system. Do you want to stay logged in?",
+   "NO_LONGER_IDLE":"No longer idle.",
+   "NOT_STARTED":"Not started.",
+   "TIMED_OUT":"Timed out!",
+   "YOU_HAVE_GONE_IDLE":"You've gone idle!",
+   "YOU_WILL_TIME_OUT":"You will logged out in: {{value1}} seconds!"
+
 
 
 }

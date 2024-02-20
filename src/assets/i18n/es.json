@@ -34,8 +34,19 @@
     "purch":"Compras",
     "home":"Home",
     "COMPANY_ERROR" :"El usuario no está asignado a ninguna empresa.",
-    "PERMISION_ERROR":"El usuario no tiene permisos asignados."
+    "PERMISION_ERROR":"El usuario no tiene permisos asignados.",
+    "Community":"Comunidad",
+    "Help":"Ayuda",
+    "Support":"Soporte" ,
+    "Stay":"Mantener Sesión",
+    "Logout":"Salir",
+    "Inactivity":"Inactividad",
+    "INACTIVITY_MESSAGE":"Hemos detectado inactividad en el sistema. ¿Desea mantener sesión?",
+    "NO_LONGER_IDLE":"Activo.",
+    "NOT_STARTED":"Sin iniciar.",
+    "TIMED_OUT":"Sesión expirada!",
+    "YOU_HAVE_GONE_IDLE":"¡Inactivo!",
+    "YOU_WILL_TIME_OUT":"¡Tu sesión terminará en: {{value1}} segundos!"
 
-    
 
 }

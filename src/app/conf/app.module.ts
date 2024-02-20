@@ -15,7 +15,7 @@ import { FooterComponent } from '../components/base/footer/footer.component';
 import { LoadingComponent } from '../components/base/loading/loading.component';
 import { CompanySelectorComponent } from '../components/base/company-selector/company-selector.component';
 import { LenguageSelectorComponent } from '../components/base/lenguage-selector/lenguage-selector.component';
-import {UserComponent} from '../components/base/user/user-component'
+import {UserInfoComponent} from '../components/base/user-info/user-info-component'
 import { MenuComponent } from '../components/base/menu/menu.component';
 import { MenuMobileComponent } from '../components/base/menu-mobile/menu-mobile.component';
 
@@ -40,7 +40,8 @@ import { SysAdminComponent } from '../components/modules/sys-admin/sys-admin.com
 import { ComprasComponent } from '../components/modules/compras/compras.component';
 import { BreadcrumbComponent } from '../components/base/breadcrumb/breadcrumb.component';
 import { MainComponent } from '../components/modules/main/main.component';
-import { ModalComponent } from '../components/base/modal/modal/modal.component';
+import { IdleModalComponent } from '../components/base/idle-modal/idle-modal.component';
+import { UserComponent } from '../components/modules/sys-admin/users/users.component';
 
 
 import { MaterialModule } from './material.module';
@@ -87,11 +88,11 @@ import { BreadcrumbService } from 'xng-breadcrumb';
 
   })],
   declarations: [ AppComponent ,LoginFormComponent,HomeComponent,HeaderComponent,FooterComponent,LoadingComponent,
-    MessagesComponent,CompanySelectorComponent,LenguageSelectorComponent,UserComponent,MenuComponent,MenuMobileComponent,
+    MessagesComponent,CompanySelectorComponent,LenguageSelectorComponent,UserInfoComponent,MenuComponent,MenuMobileComponent,
     AdminComponent,AuditoriaComponent,ContabilidadComponent,CostSuccComponent,CostumersComponent,DireccionComponent,DoComponent
     ,FinanzasComponent,GestionComponent,HrComponent,InventariosComponent,MarketingComponent,OperacionesComponent
     ,ProduccionComponent,PuntoVentaComponent,SalesComponent,SupportComponent,SysAdminComponent,ComprasComponent,
-    BreadcrumbComponent,MainComponent, ModalComponent],
+    BreadcrumbComponent,MainComponent, IdleModalComponent,UserComponent],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { 

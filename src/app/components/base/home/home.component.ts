@@ -61,7 +61,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   getUser() {
-    this.wsAuthenticateService.getUser(this.utils.getUsername())
+    this.wsAuthenticateService.getUser(this.utils.getUsername(),this.utils)
       .subscribe(this.utils.subscribeHandler(this, this.setUser)
       );
   }

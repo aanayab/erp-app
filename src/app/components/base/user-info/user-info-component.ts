@@ -8,13 +8,13 @@ import { Utils } from 'src/app/core/util/utils';
 
 
 @Component({
-  selector: 'app-user-component',
-  templateUrl: './user-component.html',
-  styleUrls: ['./user-component.css']
+  selector: 'app-user-info-component',
+  templateUrl: './user-info-component.html',
+  styleUrls: ['./user-info-component.css']
 })
-export class UserComponent {  
+export class UserInfoComponent {  
 
-  constructor(public utils:Utils,public dialogRef: MatDialogRef<UserComponent>,@Inject(MAT_DIALOG_DATA) public userBean:UserBean ) {}
+  constructor(public utils:Utils,public dialogRef: MatDialogRef<UserInfoComponent>,@Inject(MAT_DIALOG_DATA) public userBean:UserBean ) {}
 
   
   save(){

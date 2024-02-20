@@ -6,7 +6,7 @@ import { Router} from '@angular/router';
 import {
   MatDialog,
 } from '@angular/material/dialog';
-import { UserComponent } from '../user/user-component';
+import { UserInfoComponent } from '../user-info/user-info-component';
 import { UserLoggedServiceService } from 'src/app/core/services/userLoggedService/user-logged-service.service';
 
 
@@ -30,7 +30,7 @@ export class HeaderComponent {
 
 
   openDialog(userBean:any): void {
-    this.dialog.open(UserComponent, {
+    this.dialog.open(UserInfoComponent, {
       data :userBean,
       width: '550px',
       enterAnimationDuration: '0ms',

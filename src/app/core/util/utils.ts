@@ -6,6 +6,8 @@ import { LoadingService } from 'src/app/core/services/loading/loading.service';
 import { CompanyService } from '../services/company/company.service';
 import { PrivilegyService } from '../services/privilegy/privilegy.service';
 import { UserLoggedServiceService } from '../services/userLoggedService/user-logged-service.service';
+import { WsAuthenticateService } from '../services/ws-authenticate/ws-authenticate.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ export class Utils {
 
 
   constructor(private router: Router, private loadingService: LoadingService, private messageService: MessageService, private companyService: CompanyService, private privilegyService: PrivilegyService,
-    private userLoggedServiceService: UserLoggedServiceService) { }
+    private userLoggedServiceService: UserLoggedServiceService,private wsAuthenticateService:WsAuthenticateService) { }
 
 
 
@@ -33,7 +35,7 @@ export class Utils {
   }
 
 
-  subscribeHandler(component: any, functon: Function): any {
+  subscribeHandler(component: any, functon: Function,funcErr?:Function): any {
     return {
       next: (response: any) => {
 
@@ -44,6 +46,7 @@ export class Utils {
             functon(component, body.result);
           } else {
             this.messageService.showDangerMessage(body.mensaje);
+            funcErr!();
 
           }
         }
@@ -52,9 +55,11 @@ export class Utils {
 
         this.loadingService.setLoading(false);
         this.messageService.showDangerMessage(e.message);
+        funcErr!()
       }
     }
   }
+
   getBearerToken(): HttpHeaders {
     
     // let session = localStorage.getItem('SESSIONERPAPPTK');
@@ -63,6 +68,7 @@ export class Utils {
       // this.router.navigate(['/login']);
       return new HttpHeaders();
     }
+    console.log(session);
     let headers = new HttpHeaders()
       .set("Authorization", 'Bearer ' + session);
 
@@ -74,14 +80,21 @@ export class Utils {
 
   }
 
-
+ setvaliate(component: any, result: string) {  
+  component.userLoggedServiceService.setToken(result);
+}
 
   getSession() {
     //  const session = localStorage.getItem('SESSIONERPAPPTK');
+    debugger;
     const session = this.userLoggedServiceService.getToken();
     if (session == null || session == undefined) {
-      // this.router.navigate(['/login']);
+       this.router.navigate(['/login']);
       return;
+    }else{
+      this.wsAuthenticateService.refesh(this.getUsername(),this).subscribe(
+        this.subscribeHandler(this, this.setvaliate,() =>this.router.navigate(['/login']))
+      );
     }
   }
 
@@ -90,7 +103,7 @@ export class Utils {
      const username = this.userLoggedServiceService.getUserName();
     if (username === undefined) {
       this.messageService.showDangerMessage("USERNAME_ERROR");
-      // this.router.navigate(['/login']);
+       this.router.navigate(['/login']);
       return;
     }
     return username;
@@ -100,7 +113,7 @@ export class Utils {
     
     if (this.companyService.getCompany() === undefined) {
       this.messageService.showDangerMessage("COMPANY_ERROR");
-      // this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
       return;
     }
   }
@@ -108,7 +121,7 @@ export class Utils {
   validatePermissions() {
     if (this.privilegyService.getPrivilegy() === undefined) {
       this.messageService.showDangerMessage("PERMISION_ERROR");
-      // this.router.navigate(['/login']);
+       this.router.navigate(['/login']);
       return;
     }
   }

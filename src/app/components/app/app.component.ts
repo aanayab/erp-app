@@ -4,11 +4,16 @@ import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
 import { IdleServiceService } from 'src/app/core/services/idleService/idle-service.service';
 import { UserLoggedServiceService } from 'src/app/core/services/userLoggedService/user-logged-service.service';
-import { ModalComponent } from '../base/modal/modal/modal.component';
 import { Router } from '@angular/router';
 import { CompanyService } from 'src/app/core/services/company/company.service';
 import { PrivilegyService } from 'src/app/core/services/privilegy/privilegy.service';
 import { LanguageServiceService } from 'src/app/core/services/languageService/language-service.service';
+import { WsAuthenticateService } from 'src/app/core/services/ws-authenticate/ws-authenticate.service';
+import { Utils } from 'src/app/core/util/utils';
+import { IdleModalComponent } from '../base/idle-modal/idle-modal.component';
+import { TranslateService } from '@ngx-translate/core'
+
+
 
 
 
@@ -50,36 +55,37 @@ export class AppComponent {
     private dialog: MatDialog, private idleServiceService: IdleServiceService,
      private userLoggedServiceService: UserLoggedServiceService, private router: Router,
      private companyService:CompanyService,private privilegyService:PrivilegyService
-     ,private languageServiceService:LanguageServiceService) {
+     ,private languageServiceService:LanguageServiceService, private wsAuthenticateService:WsAuthenticateService
+     ,private utils:Utils, private translate:TranslateService) {
 
 
 
-    // sets an idle timeout of 5 seconds, for testing purposes.1800
-    this.idle.setIdle(5);
+    // sets an idle timeout of 5 seconds, for testing purposes.1800:Utils
+    this.idle.setIdle(1800);
     // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.10
-    this.idle.setTimeout(5);
+    this.idle.setTimeout(10);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
-    this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+    // this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
     this.idle.onIdleEnd.subscribe(() => {
-      this.idleServiceService.idleState = 'No longer idle.'
+      this.idleServiceService.idleState = 'NO_LONGER_IDLE'
       console.log(this.idleServiceService.idleState);
       this.reset();
     });
 
     this.idle.onTimeout.subscribe(() => {
       this.dialog.closeAll();
-      this.idleServiceService.idleState = 'Timed out!';
+      this.idleServiceService.idleState = 'TIMED_OUT';
       this.idleServiceService.timedOut = true;
       console.log(this.idleServiceService.idleState);
-      this.router.navigate(['/login']);
+      this.utils.logOut();
       // this.reset();
       // return;
 
     });
 
     this.idle.onIdleStart.subscribe(() => {
-      this.idleServiceService.idleState = 'You\'ve gone idle!'
+      this.idleServiceService.idleState = 'YOU_HAVE_GONE_IDLE'
       console.log(this.idleServiceService.idleState);
       this.openDialog(this);
     });
@@ -87,7 +93,9 @@ export class AppComponent {
 
 
     this.idle.onTimeoutWarning.subscribe((countdown) => {
-      this.idleServiceService.idleState = 'You will time out in ' + countdown + ' seconds!'
+      this.idleServiceService.idleState =   this.translate.instant('YOU_WILL_TIME_OUT', {
+        value1: countdown,
+      });
       console.log(this.idleServiceService.idleState);
     });
     // sets the ping interval to 15 seconds
@@ -115,6 +123,18 @@ export class AppComponent {
   stay() {
     this.dialog.closeAll();
     this.reset();
+    this.refresh();
+  }
+
+  setRefresh(component: any, result: string) {
+    debugger;
+    component.userLoggedServiceService.setToken(result);
+  }
+
+  refresh() {
+    this.wsAuthenticateService.refesh(this.utils.getUsername(),this.utils)
+      .subscribe(this.utils.subscribeHandler(this, this.setRefresh,() =>this.router.navigate(['/login']))
+      );
   }
 
   exit() {
@@ -125,7 +145,7 @@ export class AppComponent {
 
 
   openDialog(component: any): void {
-    this.dialog.open(ModalComponent, {
+    this.dialog.open(IdleModalComponent, {
       data: component,
       enterAnimationDuration: '0ms',
       exitAnimationDuration: '0ms',
