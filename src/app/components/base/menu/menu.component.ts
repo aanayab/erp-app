@@ -11,34 +11,34 @@ import { Router} from '@angular/router';
  * Each node has a name and an optional list of children.
  */
 interface FoodNode {
-  name: string;
+  name: String;
   children?: FoodNode[];
 }
 
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Fruit',
-    children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }],
-  },
-  {
-    name: 'Vegetables',
-    children: [
-      {
-        name: 'Green',
-        children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
-      },
-      {
-        name: 'Orange',
-        children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
-      },
-    ],
-  },
-];
+// const TREE_DATA: FoodNode[] = [
+//   {
+//     name: 'Fruit',
+//     children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }],
+//   },
+//   {
+//     name: 'Vegetables',
+//     children: [
+//       {
+//         name: 'Green',
+//         children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
+//       },
+//       {
+//         name: 'Orange',
+//         children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
+//       },
+//     ],
+//   },
+// ];
 
 /** Flat node with expandable and level information */
 interface ExampleFlatNode {
   expandable: boolean;
-  name: string;
+  name: String;
 
   level: number;
 }
@@ -50,7 +50,7 @@ interface ExampleFlatNode {
 })
 export class MenuComponent {
 
-  @Input() menu: Map<GroupBean, ScreenBean[]> = new Map();
+  @Input() menu: Map<String, ScreenBean[]> = new Map();
   @Input() sidevarChange:any;
   @Input() component:any;
 
@@ -85,21 +85,32 @@ export class MenuComponent {
   }
 
   ngOnInit() {
+    debugger;
     let menu_data: FoodNode[] = [];
     this.menu.forEach((value, key) => {
+      let children: FoodNode[] = [];
       value.forEach(element =>{
-        console.log(element);
+        debugger;
+
+        var name = element.keyScreen + '|' + key.split('|')[1]
+        if(name === key){
+          return;
+        }
+        let foodNode: FoodNode = {
+          name: name + element.rute,
+        };
+        children.push(foodNode);
       });
       let foodNode: FoodNode = {
-        name: key.keyGroup + '|' + key.ruta,
+        name: key,
+        children:children
       };
       menu_data.push(foodNode);
-      console.log(value, key);
     });
 
-  menu_data.forEach((element => {
-    element.children = TREE_DATA;
-  }))
+  // menu_data.forEach((element => {
+  //   // element.children = TREE_DATA;
+  // }))
 
     this.dataSource.data = menu_data;
   }

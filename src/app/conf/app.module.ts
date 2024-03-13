@@ -41,13 +41,16 @@ import { ComprasComponent } from '../components/modules/compras/compras.componen
 import { BreadcrumbComponent } from '../components/base/breadcrumb/breadcrumb.component';
 import { MainComponent } from '../components/modules/main/main.component';
 import { IdleModalComponent } from '../components/base/idle-modal/idle-modal.component';
-import { UserComponent } from '../components/modules/sys-admin/users/users.component';
+import { UserComponent } from '../components/modules/sys-admin/users/users/users.component';
+import { UserFormComponent } from '../components/modules/sys-admin/users/user-form/user-form.component';
+import { UsersTableComponent } from '../components/modules/sys-admin/users/users-table/users-table.component';
+import { UsersHomeComponent } from '../components/modules/sys-admin/users/users-home/users-home.component';
+import { ThemeComponent } from '../components/base/theme/theme-component';
 
 
 import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
-import { Sweetalert2Module } from  './sweetalert2/sweetalert2.module'
 
 
 import { WsAuthenticateService} from '../core/services/ws-authenticate/ws-authenticate.service';
@@ -61,7 +64,6 @@ import { UserLoggedServiceService } from '../core/services/userLoggedService/use
 
 import {  HttpClient, HttpClientModule } from '@angular/common/http';
 import {  Utils } from '../core/util/utils';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgFor } from '@angular/common';
 import { NgbScrollSpyModule } from '@ng-bootstrap/ng-bootstrap';
 import {BreadcrumbModule} from 'xng-breadcrumb';
@@ -70,14 +72,15 @@ import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BreadcrumbService } from 'xng-breadcrumb';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 
 @NgModule({
   providers: [WsAuthenticateService,Utils,LoadingService,WsAdministratorService,BreadcrumbService,CompanyService
     ,PrivilegyService,WsSysAdminService, IdleServiceService, UserLoggedServiceService],
   imports:      [ BrowserModule, ReactiveFormsModule,BreadcrumbModule, RouterModule , MaterialModule,
-     BrowserAnimationsModule, NgbModule, AppRoutingModule,HttpClientModule,Sweetalert2Module,NgFor,
-      NgbAlertModule,NgbScrollSpyModule,FormsModule,NgIdleKeepaliveModule.forRoot(),
+     BrowserAnimationsModule, NgbModule, AppRoutingModule,HttpClientModule,NgFor,ColorPickerModule
+      ,NgbScrollSpyModule,FormsModule,NgIdleKeepaliveModule.forRoot(),
   TranslateModule.forRoot({
     loader: {
       provide: TranslateLoader,
@@ -86,13 +89,15 @@ import { BreadcrumbService } from 'xng-breadcrumb';
     },
     
 
-  })],
+  }),  ReactiveFormsModule,
+],
   declarations: [ AppComponent ,LoginFormComponent,HomeComponent,HeaderComponent,FooterComponent,LoadingComponent,
     MessagesComponent,CompanySelectorComponent,LenguageSelectorComponent,UserInfoComponent,MenuComponent,MenuMobileComponent,
     AdminComponent,AuditoriaComponent,ContabilidadComponent,CostSuccComponent,CostumersComponent,DireccionComponent,DoComponent
     ,FinanzasComponent,GestionComponent,HrComponent,InventariosComponent,MarketingComponent,OperacionesComponent
     ,ProduccionComponent,PuntoVentaComponent,SalesComponent,SupportComponent,SysAdminComponent,ComprasComponent,
-    BreadcrumbComponent,MainComponent, IdleModalComponent,UserComponent],
+    BreadcrumbComponent,MainComponent, IdleModalComponent,UserComponent,UserFormComponent,
+    UsersTableComponent,UsersHomeComponent,ThemeComponent],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { 

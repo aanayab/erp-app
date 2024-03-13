@@ -12,11 +12,11 @@ import { PrivilegyBean } from 'src/app/core/model/peivilegyBean';
   providedIn: 'root'
 })
 export class WsAdministratorService {
-
-
-  companyUrl = 'http://192.168.100.15:8096/ws-administrator/api/company/all';
-  companybyIdUrl = 'http://192.168.100.15:8096/ws-administrator/api/company/';
-  privilegyByIdRoll = 'http://192.168.100.15:8096/ws-administrator/api/privilegy/allByRole/';
+  
+  url= 'localhost';
+  companyUrl = 'http://'+ this.url +':8096/ws-administrator/api/company/all';
+  companybyIdUrl = 'http://'+ this.url+ ':8096/ws-administrator/api/company/';
+  privilegyByIdRoll = 'http://'+ this.url+ ':8096/ws-administrator/api/privilegy/allByRole/';
 
 
   constructor(private http: HttpClient,private loadingService:LoadingService,private utils:Utils) { }

@@ -5,16 +5,19 @@ import { Token } from '../../model/token';
 import { Utils } from '../../util/utils';
 import { UserBean } from 'src/app/core/model/userBean';
 import { LoadingService } from 'src/app/core/services/loading/loading.service';
+import { ResponseBean } from '../../model/responseBean';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WsAuthenticateService {
 
-  tokenUrl = 'http://192.168.100.15:8096/api/authenticate?';
-  validateUrl = 'http://192.168.100.15:8096/api/authenticate/validate/';
-  refreshUrl = 'http://192.168.100.15:8096/api/authenticate/refresh/';
-  userUrl = 'http://192.168.100.15:8096/ws-authenticator/api/user/';
+  url = 'localhost';
+  tokenUrl = 'http://' + this.url+':8096/ws-authenticator/api/authenticate?';
+  validateUrl = 'http://' + this.url+':8096/ws-authenticator/api/authenticate/validate/';
+  refreshUrl = 'http://' + this.url+':8096/ws-authenticator/api/authenticate/refresh/';
+  userUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/';
+  usersUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/all';
 
   constructor(private http: HttpClient, private loadingService: LoadingService) { }
 
@@ -48,5 +51,23 @@ export class WsAuthenticateService {
       observe: 'response',
     });
   }
+
+
+  getUsers(utils:Utils): Observable<HttpResponse<UserBean[]>> {
+    this.loadingService.setLoading(true);
+    return this.http.get<UserBean[]>(this.usersUrl , {
+      headers: utils.getBearerToken(),
+      observe: 'response',
+    });
+  }
+
+  addUsers(utils:Utils,userBean:UserBean): Observable<HttpResponse<ResponseBean>> {
+    this.loadingService.setLoading(true);
+    return this.http.post<ResponseBean>(this.userUrl,userBean , {
+      headers: utils.getBearerToken(),
+      observe: 'response',
+    });
+  }
+
 
 }

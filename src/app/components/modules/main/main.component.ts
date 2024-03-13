@@ -10,6 +10,7 @@ import { Utils } from 'src/app/core/util/utils';
 })
 export class MainComponent {
   panelOpenState = true;
+  color:String | any;
   constructor(public companySrvice:CompanyService,public privilegyService:PrivilegyService, private utils:Utils){
    
     // this.utils.validateCompany();

@@ -86,7 +86,7 @@ export class Utils {
 
   getSession() {
     //  const session = localStorage.getItem('SESSIONERPAPPTK');
-    debugger;
+
     const session = this.userLoggedServiceService.getToken();
     if (session == null || session == undefined) {
        this.router.navigate(['/login']);
@@ -126,6 +126,30 @@ export class Utils {
     }
   }
 
+
+  changeTheme(): void{
+    debugger;
+
+
+    var bodyStyles = document.body.style;
+    const color = localStorage.getItem('ERPAPPCOLOR');
+         if(color ==null || color == undefined){
+          bodyStyles.setProperty('--top-color', 'linear-gradient(-180deg,#000000, #fc0303)');
+          bodyStyles.setProperty('--start-color', 'linear-gradient(-45deg,#000000, #fc0303)');
+          bodyStyles.setProperty('--end-color', 'linear-gradient(-135deg,#000000, #fc0303)');
+          bodyStyles.setProperty('--bottom-color', 'linear-gradient(-00deg,#000000, #fc0303)');
+          bodyStyles.setProperty('--start-login-color', 'linear-gradient(90deg,#000000, #fc0303)');
+         }else{
+          bodyStyles.setProperty('--top-color', 'linear-gradient(-180deg,#000000, '+color+')');
+          bodyStyles.setProperty('--start-color', 'linear-gradient(-45deg,#000000, '+color+')');
+          bodyStyles.setProperty('--end-color', 'linear-gradient(-135deg,#000000, '+color+')');
+          bodyStyles.setProperty('--bottom-color', 'linear-gradient(-00deg,#000000, '+color+')');
+          bodyStyles.setProperty('--start-login-color', 'linear-gradient(90deg,#000000, '+color+')');
+         }
+
+   
+  
+  }
   //   getUserBean() : any{
 
   //     const UserBean = localStorage.getItem('SESSIONERPAPPUSR');

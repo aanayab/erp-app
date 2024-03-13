@@ -8,6 +8,7 @@ import {
 } from '@angular/material/dialog';
 import { UserInfoComponent } from '../user-info/user-info-component';
 import { UserLoggedServiceService } from 'src/app/core/services/userLoggedService/user-logged-service.service';
+import { ThemeComponent } from '../theme/theme-component';
 
 
 
@@ -21,9 +22,11 @@ export class HeaderComponent {
 
 
   userName?:string;
-  @Input() user?:UserBean;  
+  @Input() user?:UserBean; 
+  color:string | any; 
   
-  constructor(public dialog: MatDialog,private router: Router,private utils:Utils,private userLoggedServiceService:UserLoggedServiceService){
+  constructor(public dialog: MatDialog,private router: Router,private utils:Utils,
+    private userLoggedServiceService:UserLoggedServiceService){
     
 
   }
@@ -39,6 +42,19 @@ export class HeaderComponent {
       disableClose:true
     });
   }
+
+
+
+
+openThemeDialog(): void {
+  this.dialog.open(ThemeComponent, {
+    width: '300px',
+    enterAnimationDuration: '0ms',
+    exitAnimationDuration: '0ms',
+    position:{top: '45px', right:'0px'}, 
+    disableClose:true
+  });
+}
 
 
   validateRoot(){    

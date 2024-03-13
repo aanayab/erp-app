@@ -8,7 +8,7 @@
   
 }
 .login {
-  margin-top: 50px;
+  padding-top: 50px;
   display: grid;
   height: 100%;
   width: 100%;
@@ -18,11 +18,11 @@
 }
 ::selection{
   background: #d04141;
-  color: #fff;
+  color: var(--font-color);
 }
 .wrapper{
   width: 380px;
-  background: #fff;
+  background:  var(--font-color);
   border-radius: 15px;
   box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
 }
@@ -31,10 +31,10 @@
   font-weight: 600;
   text-align: center;
   line-height: 100px;
-  color: #fff;
+  color:  var(--font-color);
   user-select: none;
   border-radius: 15px 15px 0 0;
-  background: linear-gradient(90deg,#000000, #fc0303);
+  background: var(--start-login-color);
 }
 .wrapper form{
   padding: 10px 30px 50px 30px;
@@ -75,7 +75,7 @@ form .field input:valid ~ label{
   top: 0%;
   font-size: 16px;
   color: #d04141;
-  background: #fff;
+  background:  var(--font-color);
   transform: translateY(-50%);
 }
 form .content{
@@ -105,14 +105,14 @@ form .content .pass-link{
   color: "";
 }
 form .field input[type="submit"]{
-  color: #fff;
+  color:  var(--font-color);
   border: none;
   padding-left: 0;
   margin-top: -10px;
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
-  background: linear-gradient(-135deg,#000000, #fc0303);
+  background: var(--end-color);
   transition: all 0.3s ease;
 }
 form .field input[type="submit"]:active{
@@ -138,8 +138,8 @@ form .signup-link a:hover{
   font-weight: 50;
   text-align: center;
   line-height: 50px;
-  color: #fff;
+  color:  var(--font-color);
   user-select: none;
   border-radius: 15px 15px 15px 15px;
-  background: linear-gradient(90deg,#000000, #fc0303);
+  background: var(--start-login-color);
 }

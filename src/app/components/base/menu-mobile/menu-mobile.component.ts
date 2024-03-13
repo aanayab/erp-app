@@ -14,7 +14,7 @@ export class MenuMobileComponent {
 
   collapsed:boolean = false;
   @Input() user?:UserBean;  
-  @Input() menu: Map<GroupBean, ScreenBean[]> = new Map();
+  @Input() menu: Map<String, ScreenBean[]> = new Map();
   keys:any;
 
 

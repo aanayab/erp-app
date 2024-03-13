@@ -1,18 +1,9 @@
-<div class="col-12 text-center ps-4 pe-4">
-    <div class="col-12 text-center">    
-<mat-accordion>
-    <mat-expansion-panel expanded="true"  (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Self aware panel
-        </mat-panel-title>
-        <mat-panel-description>
-          Currently I am {{panelOpenState ? 'open' : 'closed'}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-users/>
-    </mat-expansion-panel>
-  </mat-accordion>
+<div class="col-12 text-center ps-4 pe-4 pb-5">
+  <div class="col-12 text-center">
+    <mat-card>
+      <mat-card-content>
+        <router-outlet>
+        </router-outlet></mat-card-content>
+    </mat-card>
   </div>
 </div>

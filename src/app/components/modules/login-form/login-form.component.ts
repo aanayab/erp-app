@@ -27,7 +27,8 @@ export class LoginFormComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.elementRef.nativeElement.ownerDocument
-      .body.style.background = 'linear-gradient(90deg,#000000, #fc0303)';
+      .body.style.background = 'var(--start-login-color)';
+      this.utils.changeTheme();
   }
 
   ngOnInit(){

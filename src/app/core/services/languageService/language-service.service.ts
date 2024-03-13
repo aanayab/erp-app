@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 export class LanguageServiceService {
 
   constructor() {
-    debugger;
+
     const language = localStorage.getItem("SESSIONERPAPPI18N");
     if (language !== undefined && language !== null) {
       this.language = language;

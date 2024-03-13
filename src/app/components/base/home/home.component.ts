@@ -29,7 +29,7 @@ export class HomeComponent implements AfterViewInit {
   user?: UserBean;
   collapsed: boolean = true;
   screens?: ScreenBean[];
-  menu: Map<GroupBean, ScreenBean[]> = new Map();
+  menu: Map<String, ScreenBean[]> = new Map();
   showMenu: Boolean = false;
 
 
@@ -67,10 +67,11 @@ export class HomeComponent implements AfterViewInit {
   }
 
   setPrivilegy(component: any, result: any) {
+    debugger;
     component.privilegy = result;
     component.privilegyService.setPrivilegy(result);
     result.forEach((element: any) => {
-      let key: any = element.grupo;
+      let key: any = element.grupo.keyGroup + '|' + element.grupo.ruta;
       let value: any = component.menu.get(key);
       if (value == undefined) {
         value = [];

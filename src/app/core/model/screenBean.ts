@@ -5,5 +5,6 @@ export interface ScreenBean {
    image: string;
    rute: string;
    screen: string;
+   keyScreen: string;
 }
 

@@ -17,6 +17,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule} from '@angular/material/sort';
 import { MatTableModule} from '@angular/material/table';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 const modules = [
@@ -38,7 +39,8 @@ const modules = [
   MatExpansionModule,
   MatPaginatorModule,
   MatSortModule,
-  MatTableModule
+  MatTableModule,
+  MatGridListModule
 ];
 
 @NgModule({

@@ -1,9 +1,7 @@
+.mat-mdc-dialog-title {
+    background: var(--start-color);
+}
 
-
-.mat-mdc-dialog-title{
-    background: linear-gradient(-180deg,#000000, #fc0303);
-    }
-    
-    .mat-mdc-dialog-actions{
-        background: linear-gradient(-00deg,#000000, #fc0303);
-        }
+.mat-mdc-dialog-actions {
+    background: var(--bottom-color);
+}

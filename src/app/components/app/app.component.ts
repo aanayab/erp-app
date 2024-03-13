@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
@@ -56,7 +56,7 @@ export class AppComponent {
      private userLoggedServiceService: UserLoggedServiceService, private router: Router,
      private companyService:CompanyService,private privilegyService:PrivilegyService
      ,private languageServiceService:LanguageServiceService, private wsAuthenticateService:WsAuthenticateService
-     ,private utils:Utils, private translate:TranslateService) {
+     ,private utils:Utils, private translate:TranslateService,private elementRef: ElementRef,) {
 
 
 
@@ -118,6 +118,10 @@ export class AppComponent {
   }
 
 
+  ngAfterViewInit() {
+   this.utils.changeTheme();
+  }
+
 
 
   stay() {
@@ -127,7 +131,7 @@ export class AppComponent {
   }
 
   setRefresh(component: any, result: string) {
-    debugger;
+  
     component.userLoggedServiceService.setToken(result);
   }
 

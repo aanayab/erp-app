@@ -19,8 +19,8 @@
     <div class="col-1"><app-lenguage-selector /></div>
 
     <div class="col-1 text-white text-center pt-2 ps-5">{{userName}}</div>
-    <div class="col-1 "></div>
-
+    <div class="col-1 ">
+    </div>
     <div class="col-1 text-center pe-3 d-flex flex-row-reverse">
       <!-- <mat-icon  class="mt-1 text-dark"   aria-hidden="true"  [matMenuTriggerFor]="menu" aria-label="Example home icon" fontIcon="more_vert"/> -->
       <span class="material-icons mt-1 mx-2 dropdown-toggle " aria-hidden="true" [matMenuTriggerFor]="menu"
@@ -48,7 +48,13 @@
             aria-label="user_attributes">phone</span>
           <span>{{"Support"| translate}}</span>
         </button>
-        <!-- <button mat-menu-item disabled>
+        <button (click)="openThemeDialog()" mat-menu-item>
+          <span class="material-icons text-dark mt-1 mx-2" aria-hidden="true" [matMenuTriggerFor]="menu"
+            aria-label="user_attributes">style</span>
+          <span>{{"Theme"| translate}}</span>
+        </button>
+        
+                     <!-- <button mat-menu-item disabled>
         <mat-icon>voicemail</mat-icon>
         <span>Check voice mail</span>
       </button> -->

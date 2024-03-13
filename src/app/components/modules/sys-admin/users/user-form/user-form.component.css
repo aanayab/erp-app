@@ -1,0 +1,9 @@
+
+
+.mat-mdc-card-title{
+    background: var(--top-color);
+    }
+    
+    .mat-mdc-card-actions{
+        background: var(--bottom-color);
+        }

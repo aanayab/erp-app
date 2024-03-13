@@ -12,3 +12,17 @@
     z-index: 2;
     padding: 1.25rem 1rem;
 }
+
+html, body {
+  height: 100%;
+}
+
+
+:root {
+  --top-color:linear-gradient(-180deg,#000000, #fc0303);
+  --start-color:linear-gradient(-45deg,#000000, #fc0303);
+  --end-color: linear-gradient(-135deg,#000000, #fc0303);
+  --bottom-color: linear-gradient(-00deg,#000000, #fc0303);
+  --font-color:  rgb(255, 255, 255);  
+  --start-login-color:linear-gradient(90deg,#000000, #fc0303);
+}

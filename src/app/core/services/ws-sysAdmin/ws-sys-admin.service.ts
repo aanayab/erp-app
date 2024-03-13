@@ -13,10 +13,10 @@ import { PrivilegyBean } from 'src/app/core/model/peivilegyBean';
 })
 export class WsSysAdminService {
 
-
-  companyUrl = 'http://192.168.100.15:8096/ws-sysAdmin/api/company/all';
-  companybyIdUrl = 'http://192.168.100.15:8096/ws-sysAdmin/api/company/';
-  privilegyByIdRoll = 'http://192.168.100.15:8096/ws-sysAdmin/api/privilegy/allByRole/';
+  url = 'localhost';
+  companyUrl = 'http://'+ this.url +':8096/ws-sysAdmin/api/company/all';
+  companybyIdUrl = 'http://'+ this.url +':8096/ws-sysAdmin/api/company/';
+  privilegyByIdRoll = 'http://'+ this.url +':8096/ws-sysAdmin/api/privilegy/allByRole/';
 
 
   constructor(private http: HttpClient,private loadingService:LoadingService,private utils:Utils) { }

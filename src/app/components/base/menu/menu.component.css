@@ -1,10 +1,10 @@
 .mat-tree{
     background: transparent;
-    color: white;
+    color: var(--font-color);
 }
 
 .mat-tree-node{
-    color: white;
+    color: var(--font-color);
     min-height: 1.8em !important; 
       height: 1.8em;   
 }

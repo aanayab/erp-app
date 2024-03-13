@@ -1,0 +1,30 @@
+<div class="col-12 text-center" >  
+<h1 mat-dialog-title style="color: white;">{{"Theme"| translate}}</h1>
+<div mat-dialog-content>
+  <div class="col-12 ps-3">   
+    <!-- <input  onkeyup="onSubmit()" [(ngModel)]="color" type="color"/> -->
+    <input  type="hidden" [value]="color"
+      [(ngModel)]="color"
+       [style.background]="color"
+       [cpOutputFormat]="'hex'"
+       [cpOKButton]="false"
+       [cpSaveClickOutside]="false"
+       [cpDisableInput]="true"
+       [cpToggle]="true"
+       [cpDialogDisplay]="'inline'"
+       (colorPickerChange)="onSubmit()"
+       (cpSliderChange)="onSubmit()"
+       (colorPickerSelect)="onSubmit()"
+       (cpInputChange)="onSubmit()"
+       [cpAlphaChannel]="'disabled'"
+       [(colorPicker)]="color"/>
+   </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button style="color: white;"  mat-dialog-close>{{'Close'|translate}}</button>
+    <!-- <button mat-button style="color: white;"    type="submit" mat-dialog-close>{{'Submit'| translate}}</button>  -->
+
+  </div>
+
+
+</div>
