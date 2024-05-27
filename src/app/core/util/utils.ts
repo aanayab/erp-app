@@ -191,6 +191,7 @@ export class Utils {
     bodyStyles.setProperty('--end-color', 'linear-gradient(-135deg,#000000, #fc0303)');
     bodyStyles.setProperty('--bottom-color', 'linear-gradient(-00deg,#000000, #fc0303)');
     bodyStyles.setProperty('--start-login-color', 'linear-gradient(90deg,#000000, #fc0303)');
+    localStorage.removeItem("ERPAPPCOLOR");
   }
   //   getUserBean() : any{
 

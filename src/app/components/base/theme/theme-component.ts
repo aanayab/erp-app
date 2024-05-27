@@ -1,7 +1,7 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
-    MatDialogRef,
+  MatDialogRef,
 } from '@angular/material/dialog';
 import { UserBean } from 'src/app/core/model/userBean';
 import { Utils } from 'src/app/core/util/utils';
@@ -14,26 +14,31 @@ import { Validators } from '@angular/forms';
   templateUrl: './theme-component.html',
   styleUrls: ['./theme-component.css']
 })
-export class ThemeComponent {  
+export class ThemeComponent {
 
-  color:String |any;
+  color: String | any;
 
-  constructor(public utils:Utils,public dialogRef: MatDialogRef<ThemeComponent>,private formBuilder: FormBuilder ) {
+  constructor(public utils: Utils, public dialogRef: MatDialogRef<ThemeComponent>, private formBuilder: FormBuilder) {
 
-    let color  = localStorage.getItem("ERPAPPCOLOR");
-    if(color != undefined){
+    let color = localStorage.getItem("ERPAPPCOLOR");
+    if (color != undefined) {
       this.color = color;
     }
 
   }
-  
+
 
   onSubmit() {
-    
-   localStorage.setItem("ERPAPPCOLOR",this.color);
-   this.utils.changeTheme();
-   
+
+    localStorage.setItem("ERPAPPCOLOR", this.color);
+    this.utils.changeTheme();
+
   }
-   
+
+  reset(): void {
+    this.utils.resetTheme();
+
+  }
+
 }
 
