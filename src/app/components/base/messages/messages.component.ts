@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Alert } from 'src/app/core/model/alert';
-import { MessageService } from 'src/app/core/services/message/message.service';
+import { MessageService } from 'src/app/core/services/helpers/message/message.service';
 
 
 

@@ -2,16 +2,18 @@ import { Component, ElementRef, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
-import { IdleServiceService } from 'src/app/core/services/idleService/idle-service.service';
-import { UserLoggedServiceService } from 'src/app/core/services/userLoggedService/user-logged-service.service';
+import { IdleServiceService } from 'src/app/core/services/helpers/idleService/idle-service.service';
+import { UserLoggedServiceService } from 'src/app/core/services/helpers/userLoggedService/user-logged-service.service';
 import { Router } from '@angular/router';
-import { CompanyService } from 'src/app/core/services/company/company.service';
-import { PrivilegyService } from 'src/app/core/services/privilegy/privilegy.service';
-import { LanguageServiceService } from 'src/app/core/services/languageService/language-service.service';
+import { CompanyService } from 'src/app/core/services/helpers/company/company.service';
+import { PrivilegyService } from 'src/app/core/services/helpers/privilegy/privilegy.service';
+import { MenuService } from 'src/app/core/services/helpers/menu/menu.service';
+import { LanguageServiceService } from 'src/app/core/services/helpers/languageService/language-service.service';
 import { WsAuthenticateService } from 'src/app/core/services/ws-authenticate/ws-authenticate.service';
 import { Utils } from 'src/app/core/util/utils';
 import { IdleModalComponent } from '../base/idle-modal/idle-modal.component';
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService } from '@ngx-translate/core';
+import { RouteService } from 'src/app/core/services/helpers/routeServices/route-services';
 
 
 
@@ -34,29 +36,21 @@ export class AppComponent {
   // call this event handler before browser refresh
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
     
-    if (this.router.url !== "/login") {
-      this.processData();
+    if (this.router.url !== "/Login") {
+      this.utils.processRefresh();
     }
   }
 
   // execute this function before browser refresh
-  processData() {
-    
-    // store data into local storage before browser refresh
-    localStorage.setItem('SESSIONERPAPPUSN', this.userLoggedServiceService.getUserName());
-    localStorage.setItem("SESSIONERPAPPTKN",this.userLoggedServiceService.getToken());
-    localStorage.setItem("SESSIONERPAPPI18N",this.languageServiceService.getLanguage());
-    localStorage.setItem("SESSIONERPAPPCMY",JSON.stringify(this.companyService.getCompany()));
-    localStorage.setItem("SESSIONERPAPPPER",JSON.stringify(this.privilegyService.getPrivilegy()));
-  }
+
 
 
   constructor(private idle: Idle, private keepalive: Keepalive,
     private dialog: MatDialog, private idleServiceService: IdleServiceService,
      private userLoggedServiceService: UserLoggedServiceService, private router: Router,
-     private companyService:CompanyService,private privilegyService:PrivilegyService
+     private companyService:CompanyService,private privilegyService:PrivilegyService,private menuService:MenuService
      ,private languageServiceService:LanguageServiceService, private wsAuthenticateService:WsAuthenticateService
-     ,private utils:Utils, private translate:TranslateService,private elementRef: ElementRef,) {
+     ,private utils:Utils, private translate:TranslateService,private elementRef: ElementRef,private routeService:RouteService) {
 
 
 
@@ -137,14 +131,14 @@ export class AppComponent {
 
   refresh() {
     this.wsAuthenticateService.refesh(this.utils.getUsername(),this.utils)
-      .subscribe(this.utils.subscribeHandler(this, this.setRefresh,() =>this.router.navigate(['/login']))
+      .subscribe(this.utils.subscribeHandler(this, this.setRefresh,() =>this.router.navigate(['/Login']))
       );
   }
 
   exit() {
     this.dialog.closeAll()
     this.userLoggedServiceService.setUserLoggedIn(false);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/Login']);
   }
 
 

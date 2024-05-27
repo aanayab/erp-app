@@ -3,8 +3,10 @@ import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { Utils } from '../../../core/util/utils';
 import { CompanyBean } from 'src/app/core/model/companyBean';
 import { UserBean } from 'src/app/core/model/userBean';
-import { CompanyService } from 'src/app/core/services/company/company.service';
+import { CompanyService } from 'src/app/core/services/helpers/company/company.service';
 import { WsSysAdminService } from 'src/app/core/services/ws-sysAdmin/ws-sys-admin.service';
+import { Router } from '@angular/router';
+
 
 
 
@@ -27,18 +29,33 @@ export class CompanySelectorComponent implements OnChanges {
 
 
 
-  constructor(private utils: Utils, private wsSysAdminService: WsSysAdminService,private companyService:CompanyService) { }
+  constructor(private utils: Utils, private wsSysAdminService: WsSysAdminService,private companyService:CompanyService,
+    private router:Router) { }
 
   selectCompany(companyBean:any){
    this.companyBean = companyBean;
-   this.companyService.setCompany(this.companyBean);
+   this.companyService.setCompany(this.companyBean);  
+  //  this.router.
+
+  window.location.reload();
+   
+
   }
 
   setCompanies(component: any, result: any) {    
-    
     component.companyBeans = result;
-    component.companyBean = result[0];
+    let aux = component.companyService.getCompany();       
+    if(aux !== undefined){
+      component.companyBean = aux;
+    }else{
+      component.companyBean = result[0];
+    }
     component.companyService.setCompany(component.companyBean);
+    //  
+    // component.companyBeans = result;  
+   
+    // component.companyService.setCompany(component.companyBean);
+  
 
   }
 
@@ -76,7 +93,7 @@ export class CompanySelectorComponent implements OnChanges {
         result = false;
       }
     }
-    return true;
+    return result;
   }
 
   ngOnChanges(changes: SimpleChanges) {

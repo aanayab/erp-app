@@ -4,7 +4,7 @@
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
       <!-- use a disabled button to provide padding for tree leaf -->
       <span mat-icon-button disabled></span>
-      <span (click)="sidevarClose()" routerLink="/home{{node.name.split('|')[1]}}"> {{node.name.split('|')[0] | translate}}</span>
+      <span (click)="sidevarClose()" routerLink="/Home{{node.name.split('|')[1]}}"> {{node.name.split('|')[0] | translate}}</span>
     </mat-tree-node>
     <!-- This is the tree node template for expandable nodes -->
     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
@@ -14,7 +14,7 @@
           {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
         </mat-icon>
       </span>
-      <span (click)="sidevarClose()" routerLink="/home{{node.name.split('|')[1]}}">{{node.name.split('|')[0] | translate}}</span>
+      <span (click)="sidevarClose()" routerLink="/Home{{node.name.split('|')[1]}}">{{node.name.split('|')[0] | translate}}</span>
     </mat-tree-node>
   </mat-tree>
   </div>

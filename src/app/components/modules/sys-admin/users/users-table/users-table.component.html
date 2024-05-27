@@ -1,24 +1,26 @@
 <mat-accordion>
     <mat-expansion-panel expanded="{{panelOpenState}}" (opened)="panelOpenState = true"
     (closed)="panelOpenState = false">
-  <mat-expansion-panel-header>
+  <mat-expansion-panel-header >
+
   <mat-panel-title>
-  {{'UsersInfo' | translate}}
+   <div  class="text-center col-12 h5">
+    {{'UsersInfo' | translate}}
+   </div>
+
   </mat-panel-title>
-  <mat-panel-description>
-  </mat-panel-description>
   </mat-expansion-panel-header>
   <div class="col-12">
     
     <mat-form-field class="col-3 float-start">
-      <mat-label>Filter</mat-label>
+      <mat-label>{{"FILTER" | translate}}</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="{{'SEARCH_USER' | translate}}" #input>
     </mat-form-field>
     <!-- <button (click)="addUser()" ngbTooltip="Add user" mat-icon-button aria-label="Example icon button with a open in new tab icon">
       <mat-icon>add_circle</mat-icon></button> -->
     
   
-    <mat-paginator [pageSizeOptions]="[25, 50, 100, 150]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator  [pageSizeOptions]="[25, 50, 100, 150]" aria-label="Select page of users"></mat-paginator>
   </div>
   
   <div class="mat-elevation-z8 col-12 center">
@@ -65,19 +67,37 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"Country" | translate}} </th>
         <td mat-cell *matCellDef="let row"> {{row.country}} </td>
       </ng-container>
+
+
+      <ng-container matColumnDef="disabled">
+        <th mat-header-cell *matHeaderCellDef >{{"Active" | translate}}</th>
+        <td mat-cell *matCellDef="let row">  
+          <span *ngIf="!row.enabled" (click)="disable(row)"  class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true" aria-label="user_attributes" ngbTooltip="{{'Active' | translate}}">block</span>
+          <span *ngIf="row.enabled" (click)="disable(row)" class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true" aria-label="user_attributes" ngbTooltip="{{'Deactivate' | translate}}">done</span>
+        </td>
+      </ng-container>
   
   
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef >{{"Edit" | translate}}</th>
         <td mat-cell *matCellDef="let row">  
-          <span routerLink="../editUser" class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true" aria-label="user_attributes">edit</span>
+          <span  (click)="edit(row)" class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true" aria-label="user_attributes" ngbTooltip="{{'Edit' | translate}}">edit</span>
         </td>
       </ng-container>
   
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef >{{"Delete" | translate}}</th>
         <td mat-cell *matCellDef="let row">  
-          <span (click)="borrar(row)" class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true" aria-label="user_attributes">delete</span>
+          <span (click)="borrar(row)" class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true" aria-label="user_attributes" ngbTooltip="{{'Delete' | translate}}">delete</span>
+        </td>
+      </ng-container>
+  
+
+      <ng-container matColumnDef="Hide">
+        <th mat-header-cell *matHeaderCellDef >{{"Visible" | translate}}</th>
+        <td mat-cell *matCellDef="let row">  
+          <span *ngIf="row.hidden" (click)="hide(row)"  class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true" aria-label="user_attributes" ngbTooltip="{{'Show' | translate}}">radio_button_unchecked</span>
+          <span *ngIf="!row.hidden" (click)="hide(row)" class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true" aria-label="user_attributes" ngbTooltip="{{'Hide' | translate}}">radio_button_checked</span>
         </td>
       </ng-container>
   
@@ -89,7 +109,7 @@
   
       <!-- Row shown when there is no matching data. -->
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="8">No data matching {{input.value}}<br><button routerLink="../addUser" ngbTooltip="Add user" mat-icon-button aria-label="Example icon button with a open in new tab icon">
+        <td class="mat-cell" colspan="10">{{"NO_DATA_MATCHING" | translate}}<br><button routerLink="../AddUser" ngbTooltip="{{'AddUser' | translate}}" mat-icon-button aria-label="Example icon button with a open in new tab icon">
           <mat-icon>add_circle</mat-icon></button></td>
      </tr> 
     </table>  

@@ -3,9 +3,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { WsAuthenticateService } from '../../../core/services/ws-authenticate/ws-authenticate.service'
 import { Token } from '../../../core/model/token';
-import { LoadingService } from 'src/app/core/services/loading/loading.service';
+import { LoadingService } from 'src/app/core/services/helpers/loading/loading.service';
 import { Utils } from '../../../core/util/utils';
-import { UserLoggedServiceService } from 'src/app/core/services/userLoggedService/user-logged-service.service';
+import { UserLoggedServiceService } from 'src/app/core/services/helpers/userLoggedService/user-logged-service.service';
 
 @Component({
   selector: 'my-login-form',

@@ -1,8 +1,13 @@
-<div class="col-12">
-
-    <app-users-table></app-users-table>
+<!-- <pre>{{getActiveRouter().snapshot.routeConfig?.path }}</pre> -->
+<div *ngIf="getRouter().url.split('/').pop()  !== 'Users'" class="col-12">
+    <router-outlet></router-outlet>
 </div>
-&nbsp;
-<div class="col-12">
-    <app-user-form></app-user-form>
+<div class="col-12" *ngIf="getRouter().url.split('/').pop()  === 'Users'">
+    <div class="col-12">
+        <app-users-table (newItemEvent)="editUser($event)"></app-users-table>
+    </div>
+    &nbsp;
+    <div class="col-12">
+        <app-user-form [user]="this.user"></app-user-form>
+    </div>
 </div>

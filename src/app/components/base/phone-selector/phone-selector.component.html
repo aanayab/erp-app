@@ -1,0 +1,22 @@
+<div class="col-12">
+<div class="text-white text-left pt-2 ps-5" *ngIf="!validateRoot() && companyBean">{{companyBean.name}}</div>
+<div class="row" *ngIf="validateRoot() && companyBeans">
+	<div class="col col-3">
+		<div ngbDropdown  class="d-inline-block">
+			<button   style="color: white;" type="button" class="btn dropdown pt-3 pt-lg-2" id="dropdownBasic1" ngbDropdownToggle>
+				{{'Company' | translate}}
+			</button>
+			<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+				<button (click)="selectCompany(item)" *ngFor="let item of companyBeans; index as i;"  ngbDropdownItem>{{item.name}}</button>
+				<!-- <button ngbDropdownItem>Comapny C</button> -->
+			</div>
+		</div>
+	</div>
+	<div class="col col-6 pt-2 ps-5" style="color: white;" >{{companyBean?.name}}</div>
+</div>
+</div>
+<!-- <mat-form-field>
+  <mat-label>Favorite food</mat-label>
+  <mat-select> 
+      <mat-option *ngFor="let food of foods; track food" [value]="food.value">{{food.viewValue}}</mat-option>
+  </mat-select> -->

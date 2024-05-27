@@ -7,12 +7,13 @@ import { Observable, of } from 'rxjs';
 export class LanguageServiceService {
 
   constructor() {
-
+    
     const language = localStorage.getItem("SESSIONERPAPPI18N");
     if (language !== undefined && language !== null) {
       this.language = language;
       localStorage.removeItem("SESSIONERPAPPI18N");
     }else{
+      
       this.setLanguage(navigator.language.split("-")[0]);
       console.log(navigator.language.split("-")[0]);
     }

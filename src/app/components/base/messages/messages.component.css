@@ -1,0 +1,6 @@
+.div{
+    position: absolute;
+    z-index: 1000; /*Crea una capa nueva por encima, si tenemos una con valor 2 estará a una altura o por encima de una con 
+                  valor 1*/
+     margin-left:65%; /*Con este margen posicionamos el div donde queramos*/
+  }

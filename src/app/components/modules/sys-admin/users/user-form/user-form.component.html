@@ -1,123 +1,179 @@
 <div class="col-12">
   <mat-accordion>
     <mat-expansion-panel expanded="{{panelOpenState}}" (opened)="panelOpenState = true"
-    (closed)="panelOpenState = false">
-<mat-expansion-panel-header>
-<mat-panel-title>
-{{'UserInfo' | translate}}
-</mat-panel-title>
-<mat-panel-description>
-</mat-panel-description>
-</mat-expansion-panel-header>
-<div class="col-12">
+      (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="text-center col-12 h5">
+            {{'UserInfo' | translate}}
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <!-- <div class="col-12">
 <input type="file" class="file-upload" onchange="console.log(event.target.files)">
-</div>
-<form [formGroup]="userInfoForm" (ngSubmit)="onSubmit()">
-  <h1 mat-card-title style="color: white;" class="text-center">{{"UserInfo"| translate}}</h1>
-  <mat-card-content class="col-12">
+</div> -->
+      <form class="col-12" ngClass="{{userInfoForm.valid ? 'needs-validated' :'was-validated' }}" [formGroup]="userInfoForm" (ngSubmit)="onSubmit()" novalidate>
+        <h1 mat-card-title style="color: white;" class="text-center">{{"UserInfo"| translate}}</h1>
 
-    <mat-form-field>
-      <mat-label>{{'username'|translate}}</mat-label>
-      <input formControlName="username" matInput placeholder="{{'username'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    <mat-form-field>
-      <mat-label>{{'accountVerified'|translate}}</mat-label>
-      <input formControlName="accountVerified" matInput placeholder="{{'accountVerified'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    <mat-form-field>
-      <mat-label>{{'createAt'|translate}}</mat-label>
-      <input formControlName="createAt" matInput placeholder="{{'createAt'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    <mat-form-field appearance="fill">
-      <mat-label>{{'email'|translate}}</mat-label>
-      <input formControlName="email" matInput placeholder="{{'email'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    <mat-form-field>
-      <mat-label>{{'enabled'|translate}}</mat-label>
-      <input formControlName="enabled" matInput placeholder="{{'enabled'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    <mat-form-field>
-      <mat-label>{{'failedLoginAttempts'|translate}}</mat-label>
-      <input formControlName="failedLoginAttempts" matInput placeholder="{{'failedLoginAttempts'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    <mat-form-field>
-      <mat-label>{{'firstName'|translate}}</mat-label>
-      <input formControlName="firstName" matInput placeholder="{{'firstName'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>{{'lastName'|translate}}</mat-label>
-      <input formControlName="lastName" matInput placeholder="{{'lastName'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    &nbsp;
-    <mat-form-field>
-      <mat-label>{{'lastModif'|translate}}</mat-label>
-      <input formControlName="lastModif" matInput placeholder="{{'lastModif'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    <mat-form-field>
-      <mat-label>{{'mfaEnabled'|translate}}</mat-label>
-      <input formControlName="mfaEnabled" matInput placeholder="{{'mfaEnabled'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    <mat-form-field appearance="fill">
-      <mat-label>{{'mobile'|translate}}</mat-label>
-      <input formControlName="mobile" matInput placeholder="{{'mobile'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    <mat-form-field>
-      <mat-label>{{'password'|translate}}</mat-label>
-      <input formControlName="password" matInput placeholder="{{'password'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    <mat-form-field>
-      <mat-label>{{'secret'|translate}}</mat-label>
-      <input formControlName="secret" matInput placeholder="{{'secret'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;
-    <mat-form-field>
-      <mat-label>{{'token'|translate}}</mat-label>
-      <input formControlName="token" matInput placeholder="{{'token'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;    
-    <mat-form-field>
-      <mat-label>{{'company'|translate}}</mat-label>
-      <input formControlName="company" matInput placeholder="{{'company'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-    &nbsp;   
-    <mat-form-field appearance="fill">
-      <mat-label>{{'country'|translate}}</mat-label>
-      <input formControlName="country" matInput placeholder="{{'country'|translate}}" required>
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-  </mat-card-content>
-  <mat-card-actions align="end">
-    <button mat-button routerLink="../" style="color: white;">{{'Return'|translate}}</button>
-    <button mat-button style="color: white;" type="submit" [disabled]="!userInfoForm.valid">{{'Submit'|
-      translate}}</button>
-  </mat-card-actions>
-</form>
-</mat-expansion-panel>
-</mat-accordion>
+        <div class="col-12 row text-center">
+
+          <div class="form-group col-md-12 ">
+            <label>{{'Company'|translate}}</label>
+            <!-- <app-company-selector></app-company-selector> -->
+            <h2 class="pb-0" formControlName="company" matInput 
+              >{{getCompany()}}</h2>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+        </div>
+        <hr>
+        <!-- <mat-card-content class="col-12"> -->
+
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-3">
+            <label>{{'Email'|translate}}</label>
+            <input class="form-control" (keyup)="getUserName(this)" onblur="existEmail()" formControlName="email" matInput placeholder="{{'Email'|translate}}" required>
+            <div *ngIf="false" class="invalid-feedback">
+              Please choose a username.
+            </div>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{'Username'|translate}}</label>
+            <input class="form-control " formControlName="username" (change)="existUsername()" matInput placeholder="{{'Username'|translate}}">
+            <!-- <mat-hint>Hint</mat-hint> -->
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please provide a valid city.
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input" formControlName="enabled" type="checkbox" id="enabled">
+                <label class="form-check-label" for="enabled">
+                  {{'Enabled'|translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input" formControlName="hidden" type="checkbox" id="hidden">
+                <label class="form-check-label" for="hidden">
+                  {{'Hidden'|translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-3">
+            <label>{{'FirstName'|translate}}</label>
+            <input class="form-control" formControlName="firstName" matInput placeholder="{{'FirstName'|translate}}"
+              required>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+
+          <div class="form-group col-md-3">
+            <label>{{'LastName'|translate}}</label>
+            <input class="form-control" formControlName="lastName" matInput placeholder="{{'LastName'|translate}}"
+              required>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+
+          <div class="form-group col-md-3 " appearance="fill">
+            <label>{{'Mobile'|translate}}</label>
+            <!-- <app-phone-selector></app-phone-selector> -->
+             <input class="form-control" formControlName="mobile" matInput placeholder="{{'Mobile'|translate}}" type="tel" required>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+          <div class="form-group col-md-3 " appearance="fill">
+            <label>{{'Country'|translate}}</label>
+            <input class="form-control" formControlName="country" matInput placeholder="{{'Country'|translate}}"
+              required>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+        </div>
+        <hr>
+        <div class="col-12 row text-start">
+
+          <div class="col-md-3">
+            <label>{{'CreateAt'|translate}}</label>
+            <span class="form-control badge bg-secondary">{{today | localizedDate}}</span>
+            <!-- <input class="form-control" formControlName="createAt" matInput placeholder="{{'CreateAt'|translate}}"
+              required> -->
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+          <div class="form-group col-md-3 ">
+            <label>{{'LastModif'|translate}}</label>
+            <span class="form-control badge bg-secondary">{{today | localizedDate}}</span>
+            <!-- <input class="form-control" formControlName="lastModif" type="datetime" matInput
+              placeholder="{{'LastModif'|translate}}" required> -->
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{'FailedLoginAttempts'|translate}}</label>
+            <input class="form-control" formControlName="failedLoginAttempts" matInput
+              placeholder="{{'FailedLoginAttempts'|translate}}" required>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+
+          <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input" formControlName="accountVerified" type="checkbox" id="accountVerified">
+                <label class="form-check-label" for="accountVerified">
+                  {{'AccountVerified'|translate }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 row text-start">
+
+          <div class="form-group col-md-3 ">
+            <label>{{'Password'|translate}}</label>
+            <input class="form-control" formControlName="password" type="password" matInput
+              placeholder="{{'Password'|translate}}" required>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+          <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input" formControlName="mfaEnabled" type="checkbox" id="mfaEnabled">
+                <label class="form-check-label" for="mfaEnabled">
+                  {{'MfaEnabled'|translate }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3 ">
+            <label>{{'Secret'|translate}}</label>
+            <input class="form-control" formControlName="secret" matInput placeholder="{{'Secret'|translate}}" required>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+
+          <div class="form-group col-md-3 ">
+            <label>{{'Token'|translate}}</label>
+            <input class="form-control" formControlName="token" matInput placeholder="{{'Token'|translate}}" required>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+        </div>
+
+        <!-- </mat-card-content> -->
+        &nbsp;
+        <mat-card-actions align="end">
+          <button mat-button routerLink="../" style="color: white;">{{'Return'|translate}}</button>
+          <button mat-button style="color: white;" type="submit" >{{'Submit'|
+            translate}}</button>
+        </mat-card-actions>
+        <!-- [disabled]="userInfoForm.valid" -->
+      </form>
+      <app-messages-modal type="{{type}}" messsage="{{message | translate}}" (closeAction)="closeAction" ></app-messages-modal>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

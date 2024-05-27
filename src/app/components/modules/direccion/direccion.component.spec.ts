@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DireccionComponent } from './direccion.component';
+import { DirComponent } from './direccion.component';
 
 describe('DireccionComponent', () => {
-  let component: DireccionComponent;
-  let fixture: ComponentFixture<DireccionComponent>;
+  let component: DirComponent;
+  let fixture: ComponentFixture<DirComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DireccionComponent]
+      declarations: [DirComponent]
     });
-    fixture = TestBed.createComponent(DireccionComponent);
+    fixture = TestBed.createComponent(DirComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

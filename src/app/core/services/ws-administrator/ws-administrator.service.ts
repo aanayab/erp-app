@@ -3,7 +3,7 @@ import { HttpClient,HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Utils } from '../../util/utils';
 import { UserBean } from 'src/app/core/model/userBean';
-import { LoadingService } from 'src/app/core/services/loading/loading.service';
+import { LoadingService } from 'src/app/core/services/helpers/loading/loading.service';
 import { CompanyBean } from 'src/app/core/model/companyBean';
 import { PrivilegyBean } from 'src/app/core/model/peivilegyBean';
 

@@ -20,7 +20,7 @@
     </ng-container>
         <ng-container *ngIf="collapsed">
         <mat-toolbar-row class="mat-toolbar-row2" style="height: 35px;" *ngFor="let item of keys; index as i;" >
-            <div (click)="sidevarChange()" routerLink="/home{{item.split('|')[1]}}" class="col-12 ps-4 m-0  text-start opacity:  0.5 !important;"  >{{item.split('|')[0] | translate}}</div>     
+            <div (click)="sidevarChange()" routerLink="/Home{{item.split('|')[1]}}" class="col-12 ps-4 m-0  text-start opacity:  0.5 !important;"  >{{item.split('|')[0] | translate}}</div>     
 
         </mat-toolbar-row>
     </ng-container>

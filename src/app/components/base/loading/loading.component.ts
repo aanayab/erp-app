@@ -1,6 +1,6 @@
 import { Component,ViewChild,ElementRef  } from '@angular/core';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { LoadingService } from 'src/app/core/services/loading/loading.service';
+import { LoadingService } from 'src/app/core/services/helpers/loading/loading.service';
 
 
 

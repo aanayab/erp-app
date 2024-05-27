@@ -7,7 +7,7 @@ import {
   MatDialog,
 } from '@angular/material/dialog';
 import { UserInfoComponent } from '../user-info/user-info-component';
-import { UserLoggedServiceService } from 'src/app/core/services/userLoggedService/user-logged-service.service';
+import { UserLoggedServiceService } from 'src/app/core/services/helpers/userLoggedService/user-logged-service.service';
 import { ThemeComponent } from '../theme/theme-component';
 
 

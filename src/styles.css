@@ -16,6 +16,9 @@
 html, body {
   height: 100%;
 }
+.cdk-overlay-container{
+  z-index:1030 !important; 
+}
 
 
 :root {

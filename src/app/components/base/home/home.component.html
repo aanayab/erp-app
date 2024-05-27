@@ -1,6 +1,6 @@
 <div class="col-12">
   <div class="col-12">
-    <app-menu-mobile *ngIf="menu.size > 0"  [user]="user"  [menu]="menu" class="col-12  d-md-block d-lg-none d-xl-none fixed-top"></app-menu-mobile>
+    <app-menu-mobile *ngIf="foodNode!.length > 0"  [user]="user"  [foodNode]="foodNode" class="col-12  d-md-block d-lg-none d-xl-none fixed-top"></app-menu-mobile>
   </div>
   <div class="col-12">
     <app-header class="col-12 d-none d-lg-block d-xl-block fixed-top" [user]="user">
@@ -17,7 +17,7 @@
           </span>
         </div>
         <div class="col-12 ms-3 mt-3">
-          <app-menu *ngIf="showMenu" [menu]="menu" [component]="this" [sidevarChange]="sidevarChange"></app-menu>
+          <app-menu *ngIf="showMenu" [foodNode]="foodNode" [component]="this" [sidevarChange]="sidevarChange"></app-menu>
         </div>
       </mat-drawer>
       <mat-drawer-content class="col-12 min-vh-100">
@@ -29,9 +29,9 @@
         <div class="col-12 h-80 scrolling"  ngbScrollSpy #spy="ngbScrollSpy" [ngClass]="!collapsed ? '' : 'ms-md-3'">
           <app-messages class="col-12"></app-messages>
           <app-breadcrumb class="col-12 d-none d-lg-block d-xl-block"></app-breadcrumb>
-          <router-outlet  *ngIf="getRouter().url  !== '/home'" >
+          <router-outlet  *ngIf="getRouter().url  !== '/Home'" >
           </router-outlet>
-          <app-main  *ngIf="getRouter().url  === '/home'" ></app-main>
+          <app-main  *ngIf="getRouter().url  === '/Home'" ></app-main>
         </div>
       </mat-drawer-content>
     </mat-drawer-container>

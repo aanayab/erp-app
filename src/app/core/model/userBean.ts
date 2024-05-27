@@ -17,4 +17,5 @@ export interface UserBean {
     authorities?: AuthorityBean[];
     company?: number;
     country?: string;
+    hidden?: number;
   }

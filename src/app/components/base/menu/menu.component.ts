@@ -4,16 +4,16 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { GroupBean } from 'src/app/core/model/groupBean';
 import { ScreenBean } from 'src/app/core/model/screenBean';
 import { Router} from '@angular/router';
+import { MenuBean } from 'src/app/core/model/menuBean';
+import {FoodNode} from 'src/app/core/model/foodNode';
+
 
 
 /**
  * Food data with nested structure.
  * Each node has a name and an optional list of children.
  */
-interface FoodNode {
-  name: String;
-  children?: FoodNode[];
-}
+
 
 // const TREE_DATA: FoodNode[] = [
 //   {
@@ -50,7 +50,7 @@ interface ExampleFlatNode {
 })
 export class MenuComponent {
 
-  @Input() menu: Map<String, ScreenBean[]> = new Map();
+  @Input() foodNode:FoodNode[] | any;
   @Input() sidevarChange:any;
   @Input() component:any;
 
@@ -76,7 +76,7 @@ export class MenuComponent {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(private router: Router) {
+  constructor(public router: Router) {
     // this.dataSource.data = TREE_DATA;
   }
 
@@ -84,39 +84,61 @@ export class MenuComponent {
     this.sidevarChange(this.component);
   }
 
+  // createMenu(menu_data: FoodNode[]){
+  //   this.menuBean.forEach((value:MenuBean) =>{
+  //     let name = value.grupo.keyGroup + '|' + value.grupo.ruta
+  //     let children:FoodNode[];
+  //     value.children.forEach((value2:MenuBean)=>{
+  //       let name = value2.grupo.keyGroup + '|' + value.grupo.ruta;
+
+  //     })
+
+  //     let aux: FoodNode ={
+  //       name: name
+  //     }
+
+
+  //     menu_data.push(aux);
+  //     this.createMenu(aux);
+
+  //   })
+
+  // }
+
   ngOnInit() {
-    debugger;
-    let menu_data: FoodNode[] = [];
-    this.menu.forEach((value, key) => {
-      let children: FoodNode[] = [];
-      value.forEach(element =>{
-        debugger;
+     
+    // let menu_data: FoodNode[] = [];
+  //   this.menu.forEach((value, key) => {
+  //     let children: FoodNode[] = [];
+  //     value.forEach(element =>{
+  //        
 
-        var name = element.keyScreen + '|' + key.split('|')[1]
-        if(name === key){
-          return;
-        }
-        let foodNode: FoodNode = {
-          name: name + element.rute,
-        };
-        children.push(foodNode);
-      });
-      let foodNode: FoodNode = {
-        name: key,
-        children:children
-      };
-      menu_data.push(foodNode);
-    });
+  //       var name = element.keyScreen + '|' + key.split('|')[1]
+  //       if(name === key){
+  //         return;
+  //       }
+  //       let foodNode: FoodNode = {
+  //         name: name + element.rute,
+  //       };
+  //       children.push(foodNode);
+  //     });
+  //     let foodNode: FoodNode = {
+  //       name: key,
+  //       children:children
+  //     };
+  //     menu_data.push(foodNode);
+  //   });
 
-  // menu_data.forEach((element => {
-  //   // element.children = TREE_DATA;
-  // }))
+  // // menu_data.forEach((element => {
+  // //   // element.children = TREE_DATA;
+  // // }))
 
-    this.dataSource.data = menu_data;
+    this.dataSource.data = this.foodNode;
+    this.treeControl.expandAll();
   }
 
   move(name: string) {
-          console.log(this.router);
+          // console.log(this.router);
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;

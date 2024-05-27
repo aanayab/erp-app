@@ -8,7 +8,7 @@
 			<div  ngbDropdownMenu aria-labelledby="dropdownBasic1">
 				<option *ngFor="let language of translate.getLangs()"  [value]="language"
 				[selected]="language == translate.currentLang" (click)="switchLenguage(language)"
-				 ngbDropdownItem>{{language}}</option>
+				 ngbDropdownItem>{{language.split("-")[0]}}</option>
 			</div>
 		</div>
 	</div>

@@ -1,12 +1,15 @@
 import { Injectable, } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { MessageService } from 'src/app/core/services/message/message.service';
-import { LoadingService } from 'src/app/core/services/loading/loading.service';
-import { CompanyService } from '../services/company/company.service';
-import { PrivilegyService } from '../services/privilegy/privilegy.service';
-import { UserLoggedServiceService } from '../services/userLoggedService/user-logged-service.service';
+import { MessageService } from 'src/app/core/services/helpers/message/message.service';
+import { LoadingService } from 'src/app/core/services/helpers/loading/loading.service';
+import { CompanyService } from '../services/helpers/company/company.service';
+import { PrivilegyService } from '../services/helpers/privilegy/privilegy.service';
+import { MenuService } from '../services/helpers/menu/menu.service';
+import { UserLoggedServiceService } from '../services/helpers/userLoggedService/user-logged-service.service';
 import { WsAuthenticateService } from '../services/ws-authenticate/ws-authenticate.service';
+import { RouteService } from '../services/helpers/routeServices/route-services';
+import { LanguageServiceService } from '../services/helpers/languageService/language-service.service';
 
 
 @Injectable({
@@ -15,10 +18,23 @@ import { WsAuthenticateService } from '../services/ws-authenticate/ws-authentica
 export class Utils {
 
 
-  constructor(private router: Router, private loadingService: LoadingService, private messageService: MessageService, private companyService: CompanyService, private privilegyService: PrivilegyService,
-    private userLoggedServiceService: UserLoggedServiceService,private wsAuthenticateService:WsAuthenticateService) { }
+  constructor(private router: Router, private loadingService: LoadingService, private messageService: MessageService,
+    private companyService: CompanyService, private privilegyService: PrivilegyService,
+    private userLoggedServiceService: UserLoggedServiceService, private wsAuthenticateService: WsAuthenticateService
+    , private menuService: MenuService, private routeService: RouteService, private languageServiceService: LanguageServiceService) { }
 
 
+  processRefresh() {
+
+    // store data into local storage before browser refresh
+    localStorage.setItem('SESSIONERPAPPUSN', this.userLoggedServiceService.getUserName());
+    localStorage.setItem("SESSIONERPAPPTKN", this.userLoggedServiceService.getToken());
+    localStorage.setItem("SESSIONERPAPPI18N", this.languageServiceService.getLanguage());
+    localStorage.setItem("SESSIONERPAPPCMY", JSON.stringify(this.companyService.getCompany()));
+    localStorage.setItem("SESSIONERPAPPPER", JSON.stringify(this.privilegyService.getPrivilegy()));
+    localStorage.setItem("SESSIONERPAPPPMN", JSON.stringify(this.menuService.getMenu()));
+    // localStorage.setItem("SESSIONERPAPPROUTE",JSON.stringify(this.routeService.getRoute()));
+  }
 
   logOut(): any {
 
@@ -28,14 +44,16 @@ export class Utils {
     this.userLoggedServiceService.setToken(undefined);
     this.companyService.setCompany(undefined);
     this.privilegyService.setPrivilegy(undefined);
+    this.menuService.setMenu(undefined);
+    // this.routeService.setRoute(undefined);
     //localStorage.removeItem('SESSIONERPAPPUSR');
     //localStorage.removeItem('SESSIONERPAPPAUT');
     this.userLoggedServiceService.setUserLoggedIn(false);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/Login']);
   }
 
 
-  subscribeHandler(component: any, functon: Function,funcErr?:Function): any {
+  subscribeHandler(component: any, functon: Function, funcErr?: Function): any {
     return {
       next: (response: any) => {
 
@@ -61,11 +79,11 @@ export class Utils {
   }
 
   getBearerToken(): HttpHeaders {
-    
+
     // let session = localStorage.getItem('SESSIONERPAPPTK');
     const session = this.userLoggedServiceService.getToken();
     if (session == null || session == undefined) {
-      // this.router.navigate(['/login']);
+      // this.router.navigate(['/Login']);
       return new HttpHeaders();
     }
     console.log(session);
@@ -80,81 +98,105 @@ export class Utils {
 
   }
 
- setvaliate(component: any, result: string) {  
-  component.userLoggedServiceService.setToken(result);
-}
+  setvaliate(component: any, result: string) {
+    component.userLoggedServiceService.setToken(result);
+  }
 
   getSession() {
     //  const session = localStorage.getItem('SESSIONERPAPPTK');
 
     const session = this.userLoggedServiceService.getToken();
     if (session == null || session == undefined) {
-       this.router.navigate(['/login']);
+      this.router.navigate(['/Login']);
       return;
-    }else{
-      this.wsAuthenticateService.refesh(this.getUsername(),this).subscribe(
-        this.subscribeHandler(this, this.setvaliate,() =>this.router.navigate(['/login']))
+    } else {
+      this.wsAuthenticateService.refesh(this.getUsername(), this).subscribe(
+        this.subscribeHandler(this, this.setvaliate, () => this.router.navigate(['/Login']))
       );
     }
   }
 
 
   getUsername(): any {
-     const username = this.userLoggedServiceService.getUserName();
+    const username = this.userLoggedServiceService.getUserName();
     if (username === undefined) {
-      this.messageService.showDangerMessage("USERNAME_ERROR");
-       this.router.navigate(['/login']);
+      this.messageService.showDangerMessage("utils.USERNAME_ERROR");
+      this.router.navigate(['/Login']);
       return;
     }
     return username;
   }
 
   validateCompany() {
-    
+
     if (this.companyService.getCompany() === undefined) {
-      this.messageService.showDangerMessage("COMPANY_ERROR");
-      this.router.navigate(['/login']);
+      this.messageService.showDangerMessage("utils.COMPANY_ERROR");
+      this.router.navigate(['/Login']);
       return;
     }
   }
 
   validatePermissions() {
+
     if (this.privilegyService.getPrivilegy() === undefined) {
-      this.messageService.showDangerMessage("PERMISION_ERROR");
-       this.router.navigate(['/login']);
+      this.messageService.showDangerMessage("utils.PERMISION_ERROR");
+      this.router.navigate(['/Login']);
       return;
     }
   }
 
 
-  changeTheme(): void{
-    debugger;
+  validateMenu() {
+    if (this.menuService.getMenu() === undefined) {
+      this.messageService.showDangerMessage("utils.MENU_ERROR");
+      this.router.navigate(['/Login']);
+      return;
+    }
+  }
+
+  validate() {
+    this.validateCompany();
+    this.validatePermissions();
+    this.validateMenu();
+    this.getSession();
+  }
+
+  changeTheme(): void {
+
 
 
     var bodyStyles = document.body.style;
     const color = localStorage.getItem('ERPAPPCOLOR');
-         if(color ==null || color == undefined){
-          bodyStyles.setProperty('--top-color', 'linear-gradient(-180deg,#000000, #fc0303)');
-          bodyStyles.setProperty('--start-color', 'linear-gradient(-45deg,#000000, #fc0303)');
-          bodyStyles.setProperty('--end-color', 'linear-gradient(-135deg,#000000, #fc0303)');
-          bodyStyles.setProperty('--bottom-color', 'linear-gradient(-00deg,#000000, #fc0303)');
-          bodyStyles.setProperty('--start-login-color', 'linear-gradient(90deg,#000000, #fc0303)');
-         }else{
-          bodyStyles.setProperty('--top-color', 'linear-gradient(-180deg,#000000, '+color+')');
-          bodyStyles.setProperty('--start-color', 'linear-gradient(-45deg,#000000, '+color+')');
-          bodyStyles.setProperty('--end-color', 'linear-gradient(-135deg,#000000, '+color+')');
-          bodyStyles.setProperty('--bottom-color', 'linear-gradient(-00deg,#000000, '+color+')');
-          bodyStyles.setProperty('--start-login-color', 'linear-gradient(90deg,#000000, '+color+')');
-         }
+    if (color == null || color == undefined) {
+      bodyStyles.setProperty('--top-color', 'linear-gradient(-180deg,#000000, #fc0303)');
+      bodyStyles.setProperty('--start-color', 'linear-gradient(-45deg,#000000, #fc0303)');
+      bodyStyles.setProperty('--end-color', 'linear-gradient(-135deg,#000000, #fc0303)');
+      bodyStyles.setProperty('--bottom-color', 'linear-gradient(-00deg,#000000, #fc0303)');
+      bodyStyles.setProperty('--start-login-color', 'linear-gradient(90deg,#000000, #fc0303)');
+    } else {
+      bodyStyles.setProperty('--top-color', 'linear-gradient(-180deg,#000000, ' + color + ')');
+      bodyStyles.setProperty('--start-color', 'linear-gradient(-45deg,#000000, ' + color + ')');
+      bodyStyles.setProperty('--end-color', 'linear-gradient(-135deg,#000000, ' + color + ')');
+      bodyStyles.setProperty('--bottom-color', 'linear-gradient(-00deg,#000000, ' + color + ')');
+      bodyStyles.setProperty('--start-login-color', 'linear-gradient(90deg,#000000, ' + color + ')');
+    }
 
-   
-  
+
+
+  }
+  resetTheme(): void {
+    var bodyStyles = document.body.style;
+    bodyStyles.setProperty('--top-color', 'linear-gradient(-180deg,#000000, #fc0303)');
+    bodyStyles.setProperty('--start-color', 'linear-gradient(-45deg,#000000, #fc0303)');
+    bodyStyles.setProperty('--end-color', 'linear-gradient(-135deg,#000000, #fc0303)');
+    bodyStyles.setProperty('--bottom-color', 'linear-gradient(-00deg,#000000, #fc0303)');
+    bodyStyles.setProperty('--start-login-color', 'linear-gradient(90deg,#000000, #fc0303)');
   }
   //   getUserBean() : any{
 
   //     const UserBean = localStorage.getItem('SESSIONERPAPPUSR');
   //     if(UserBean ==null || UserBean == undefined){
-  //        // this.router.navigate(['/login']);
+  //        // this.router.navigate(['/Login']);
   //         return;
   //     }
   //       return JSON.parse(atob(UserBean));
@@ -164,7 +206,7 @@ export class Utils {
 
   //     const authorities = localStorage.getItem('SESSIONERPAPPAUT');
   //     if(authorities ==null || authorities == undefined){
-  //        // this.router.navigate(['/login']);
+  //        // this.router.navigate(['/Login']);
   //         return;
   //     }
   //       return JSON.parse(atob(authorities));
