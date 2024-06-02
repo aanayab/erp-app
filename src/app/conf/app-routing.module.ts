@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginFormComponent } from '../components/modules/login-form/login-form.component';
+import { LoginFormComponent } from '../components/base/login-form/login-form.component';
 import { HomeComponent } from '../components/base/home/home.component'
 import { AdminComponent } from '../components/modules/admin/admin.component';
 import { AuditComponent } from '../components/modules/auditoria/auditoria.component';
@@ -24,6 +24,7 @@ import { PurchComponent } from '../components/modules/compras/compras.component'
 import { AppComponent } from '../components/app/app.component';
 import { UserFormComponent } from '../components/modules/sys-admin/users/user-form/user-form.component';
 import { UsersHomeComponent } from '../components/modules/sys-admin/users/users-home/users-home.component';
+import { PasswordConfirmationComponent } from '../components/modules/sys-admin/users/password-confirmation/password-confirmation.component';
 
 
 const routes: Routes = [
@@ -34,8 +35,8 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "Home", pathMatch: "full" },
       { path: 'Login', component: LoginFormComponent, data: { breadcrumb: { skip: true } } },
-      // { path: 'confirmation', component: PasswordConfirmationComponent, data: { breadcrumb: { skip: true } } },
-      // { path: 'publicLogin', component: LoginFormComponent, data: { breadcrumb: { skip: true } } },
+      { path: 'confirmation', component: PasswordConfirmationComponent, data: { breadcrumb: { skip: true } } },
+      { path: 'pLogin', component: LoginFormComponent, data: { breadcrumb: { skip: true } } },
       {
         path: 'Home', component: HomeComponent, data: { breadcrumb: { alias: 'Home' } }, children:
           [

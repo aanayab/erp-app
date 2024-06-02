@@ -1,5 +1,5 @@
 import { Input, Component, Output, EventEmitter, AfterViewInit, ElementRef } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { WsAuthenticateService } from '../../../core/services/ws-authenticate/ws-authenticate.service'
 import { Token } from '../../../core/model/token';
@@ -17,6 +17,7 @@ export class LoginFormComponent implements AfterViewInit {
 
   error: string = '';
   token?: Token;
+  showPassword: boolean = false; // Variable para manejar la visibilidad de la contraseña
 
 
 
@@ -29,6 +30,14 @@ export class LoginFormComponent implements AfterViewInit {
     this.elementRef.nativeElement.ownerDocument
       .body.style.background = 'var(--start-login-color)';
       this.utils.changeTheme();
+  }
+
+  get passwordControl(): AbstractControl | any {
+    return this.form.get('password');
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
   ngOnInit(){

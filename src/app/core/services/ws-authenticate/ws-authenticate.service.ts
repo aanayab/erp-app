@@ -6,6 +6,7 @@ import { Utils } from '../../util/utils';
 import { UserBean } from 'src/app/core/model/userBean';
 import { LoadingService } from 'src/app/core/services/helpers/loading/loading.service';
 import { ResponseBean } from '../../model/responseBean';
+import { ConfirmationEmailBean } from '../../model/confirmationEmailBean';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class WsAuthenticateService {
   private hideShowUserUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/hide';
   private existUsernameUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/username/exist/';
   private existEmailUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/email/exist/';
+  private confirmUserUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/confirm';
 
   constructor(private http: HttpClient, private loadingService: LoadingService) { }
 
@@ -115,4 +117,11 @@ export class WsAuthenticateService {
       });
   }
 
+  confirmUser(confirmationEmailBean:ConfirmationEmailBean,utils:Utils): Observable<HttpResponse<ResponseBean>> {
+    this.loadingService.setLoading(true);
+    return this.http.post<ResponseBean>(this.confirmUserUrl,confirmationEmailBean , {
+      headers: utils.getBearerToken(),
+      observe: 'response',
+    });
+  }
 }

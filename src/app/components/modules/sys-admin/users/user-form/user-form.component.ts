@@ -42,7 +42,7 @@ export class UserFormComponent {
           secret: [{value:'',disabled: true},Validators.required],
           token : [{value:'',disabled: true},Validators.required],
           country: [{value:'',disabled: false},Validators.required],
-          company: [{value:this.companyService.getCompany().idCompany,disabled: false},Validators.required],
+          idCompany: [{value:this.companyService.getCompany().idCompany,disabled: false},Validators.required],
           hidden: [{value:false,disabled: false},Validators.required],
         
         });  
@@ -109,9 +109,10 @@ export class UserFormComponent {
  
 
   onSubmit() {
+    debugger;
     // TODO: Use EventEmitter with form value   
     let user: UserBean | any = this.userInfoForm.value;
-         user.company =  this.companyService.getCompany().idCompany;
+         user.idCompany =  this.companyService.getCompany().idCompany;
       this.wsAuthenticateService.addUsers(this.utils,user).subscribe(this.utils.subscribeHandler(this,() =>{
         this.type = 'success';
         this.message =  `Se ha mandado un correo de confirmación al correo ${user.email} para finalizar el alta del usuario ${user.username}.`;

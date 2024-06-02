@@ -143,3 +143,14 @@ form .signup-link a:hover{
   border-radius: 15px 15px 15px 15px;
   background: var(--start-login-color);
 }
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}

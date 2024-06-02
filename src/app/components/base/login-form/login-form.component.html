@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <app-messages class="col-12"></app-messages>
 <div class='login col-12'>
   
@@ -10,8 +11,11 @@
                <input type="text" placeholder="Username" formControlName="username" (input)="errorChange()" required>
                <label>Username</label>
             </div>
-            <div class="field">
-               <input type="password" placeholder="Password"  (input)="errorChange()" formControlName="password" required>
+            <div class="field  password-container">
+               <input [type]="showPassword ? 'text' : 'password'" placeholder="Password"  (input)="errorChange()" formControlName="password" required>
+               <i class="toggle-password" (click)="togglePasswordVisibility()">
+                  <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </i>
                <label>Password</label>
             </div>
             <div class="field">

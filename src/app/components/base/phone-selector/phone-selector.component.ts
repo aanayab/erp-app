@@ -75,7 +75,7 @@ export class PhoneSelectorComponent implements OnChanges {
 
   getCompany() {
     
-    this.wsSysAdminService.getCompany(this.userBean?.company)
+    this.wsSysAdminService.getCompany(this.userBean?.idCompany)
       .subscribe(this.utils.subscribeHandler(this, this.setCompany)
       );
 

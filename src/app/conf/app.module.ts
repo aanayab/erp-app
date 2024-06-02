@@ -6,7 +6,7 @@ import {FormsModule} from '@angular/forms';
 
 
 import { AppComponent } from '../components/app/app.component';
-import { LoginFormComponent } from '../components/modules/login-form/login-form.component';
+import { LoginFormComponent } from '../components/base/login-form/login-form.component';
 import { HomeComponent } from '../components/base/home/home.component';
 import { RouterModule } from '@angular/router';
 import {MessagesComponent} from '../components/base/messages/messages.component';
@@ -47,6 +47,7 @@ import { UsersTableComponent } from '../components/modules/sys-admin/users/users
 import { UsersHomeComponent } from '../components/modules/sys-admin/users/users-home/users-home.component';
 import { ThemeComponent } from '../components/base/theme/theme-component';
 import { MessagesModalComponent } from '../components/base/modals/messages/messages-modal.component';
+import { PasswordConfirmationComponent } from '../components/modules/sys-admin/users/password-confirmation/password-confirmation.component';
 
 
 import { MaterialModule } from './material.module';
@@ -63,6 +64,7 @@ import { WsSysAdminService } from '../core/services/ws-sysAdmin/ws-sys-admin.ser
 import { IdleServiceService } from '../core/services/helpers/idleService/idle-service.service';
 import { UserLoggedServiceService } from '../core/services/helpers/userLoggedService/user-logged-service.service';
 import { RouteService } from '../core/services/helpers/routeServices/route-services';
+import { PasswordValidatorService } from '../core/services/helpers/passwordValidator/password-validator.service';
 
 import {  HttpClient, HttpClientModule } from '@angular/common/http';
 import {  Utils } from '../core/util/utils';
@@ -88,7 +90,8 @@ import localeEs from '@angular/common/locales/es-MX';
 
 @NgModule({
   providers: [WsAuthenticateService,Utils,LoadingService,WsAdministratorService,BreadcrumbService,CompanyService
-    ,PrivilegyService,WsSysAdminService, IdleServiceService, UserLoggedServiceService,RouteService,DatePipe,{ provide: LOCALE_ID, useValue: 'en-US' },LocalizedDatePipe],
+    ,PrivilegyService,WsSysAdminService, IdleServiceService, UserLoggedServiceService,
+    RouteService,DatePipe,{ provide: LOCALE_ID, useValue: 'en-US' },LocalizedDatePipe],
   imports:      [ BrowserModule, ReactiveFormsModule,BreadcrumbModule, RouterModule , MaterialModule,
      BrowserAnimationsModule, NgbModule, AppRoutingModule,HttpClientModule,NgFor,ColorPickerModule
       ,NgbScrollSpyModule,FormsModule,NgIdleKeepaliveModule.forRoot(),
@@ -108,7 +111,7 @@ import localeEs from '@angular/common/locales/es-MX';
     AdminComponent,AuditComponent,ContaComponent,CostSuccComponent,CustomerComponent,DirComponent,DoComponent
     ,FinanzasComponent,GestionComponent,HrComponent,InvComponent,MktComponent,OpComponent
     ,ProdComponent,PvComponent,SalesComponent,SupportComponent,SysAdminComponent,PurchComponent,
-    BreadcrumbComponent,MainComponent, IdleModalComponent,UserFormComponent,MessagesModalComponent,
+    BreadcrumbComponent,MainComponent, IdleModalComponent,UserFormComponent,MessagesModalComponent,PasswordConfirmationComponent,
     UsersTableComponent,UsersHomeComponent,ThemeComponent,LocalizedDatePipe],
   bootstrap:    [ AppComponent ]
 })
