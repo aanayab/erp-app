@@ -35,7 +35,7 @@ export class AppComponent {
 
   // call this event handler before browser refresh
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
-    debugger;
+    ;
     console.log(this.router.url.toUpperCase());
     if (this.router.url.toUpperCase() !== "/LOGIN" && this.router.url.split("?")[0].toUpperCase() !== "/CONFIRMATION" && this.router.url.toUpperCase() !== "/PLOGIN") {
       this.utils.processRefresh();

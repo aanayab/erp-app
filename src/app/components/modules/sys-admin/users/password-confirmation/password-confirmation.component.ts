@@ -55,7 +55,6 @@ export class PasswordConfirmationComponent {
         this.errorMessage = 'Passwords do not match';
       } else {
               // Handle successful form submission
-              debugger;
               const urlTree = this.router.parseUrl(this.router.url);
               const token = urlTree.queryParams['token'];
               const encryptionService = new EncryptionService();

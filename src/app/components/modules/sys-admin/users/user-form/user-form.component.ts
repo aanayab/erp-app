@@ -102,14 +102,14 @@ export class UserFormComponent {
 
 
   closeAction(){
-    debugger;
+    
     this.router.navigate(['users']); 
   }
 
  
 
   onSubmit() {
-    debugger;
+    
     // TODO: Use EventEmitter with form value   
     let user: UserBean | any = this.userInfoForm.value;
          user.idCompany =  this.companyService.getCompany().idCompany;
@@ -118,7 +118,7 @@ export class UserFormComponent {
         this.message =  `Se ha mandado un correo de confirmación al correo ${user.email} para finalizar el alta del usuario ${user.username}.`;
         let element = document.getElementById("modalSuccess") as HTMLElement;
         element.click();
-    //   debugger;
+
         // 
        }));
 

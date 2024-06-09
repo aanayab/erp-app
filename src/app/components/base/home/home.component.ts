@@ -6,7 +6,6 @@ import { WsAuthenticateService } from '../../../core/services/ws-authenticate/ws
 import { UserBean } from 'src/app/core/model/userBean';
 import { WsSysAdminService } from 'src/app/core/services/ws-sysAdmin/ws-sys-admin.service';
 import { PrivilegyBean } from 'src/app/core/model/peivilegyBean';
-import { GroupBean } from 'src/app/core/model/groupBean';
 import { ScreenBean } from 'src/app/core/model/screenBean';
 import { PrivilegyService } from 'src/app/core/services/helpers/privilegy/privilegy.service';
 import { UserLoggedServiceService } from 'src/app/core/services/helpers/userLoggedService/user-logged-service.service';
@@ -14,6 +13,7 @@ import { MenuService } from 'src/app/core/services/helpers/menu/menu.service';
 import { FoodNode } from 'src/app/core/model/foodNode';
 import { Route } from 'src/app/core/model/Route';
 import { RouteService } from 'src/app/core/services/helpers/routeServices/route-services';
+import { MessageService } from 'src/app/core/services/helpers/message/message.service';
 
 
 export let browserRefresh = false;
@@ -45,7 +45,7 @@ export class HomeComponent implements AfterViewInit {
     private wsAuthenticateService: WsAuthenticateService,
     private wsSysAdminService: WsSysAdminService,
     private privilegyService: PrivilegyService,private userLoggedServiceService:UserLoggedServiceService
-    ,private menuService: MenuService,private routeService:RouteService) {
+    ,private menuService: MenuService,private routeService:RouteService, private messageService:MessageService) {
 
 
      
@@ -56,9 +56,19 @@ export class HomeComponent implements AfterViewInit {
   
 
   setUser(component: any, result: UserBean) {
-
-    component.user = result;
-    let authorities = result.authorities;
+    const user = result;
+    if(user === undefined || user === null){
+      component.messageService.showDangerMessage("utils.USERNAME_ERROR");
+      component.router.navigate(['/Login']);
+      return;
+    }
+    component.user = user;
+    const authorities = user.authorities;
+    if(authorities === undefined || authorities === null || authorities.length === 0){
+      component.messageService.showDangerMessage("utils.PERMISION_ERROR");
+      component.router.navigate(['/Login']);
+      return;
+    }
 
     // component.getRoute(authorities![0].authority);
     component.getPrivielegy(authorities![0].authority);
@@ -86,8 +96,7 @@ export class HomeComponent implements AfterViewInit {
       );
   }
 
-  setMenu(component: any, result: any) {
-     
+  setMenu(component: any, result: any) { 
     component.foodNode = result;
     component.menuService.setMenu(result);
     // result.forEach((element: any) => {
@@ -105,8 +114,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   getMenu(role: any) {
-
-    this.wsSysAdminService.getFoodNodeByRole(role)
+        this.wsSysAdminService.getFoodNodeByRole(role)
       .subscribe(this.utils.subscribeHandler(this, this.setMenu)
       );
   }
