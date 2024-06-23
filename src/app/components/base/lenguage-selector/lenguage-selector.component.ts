@@ -11,11 +11,7 @@ export class LenguageSelectorComponent {
 
 
  constructor(public translate: TranslateService,private languageService:LanguageServiceService ){ 
-    translate.addLangs(['en-US','es-MX']);
-    translate.setDefaultLang(this.languageService.getLanguage())
-    
- 
-   }
+    }
  
    switchLenguage(lang:string){
     

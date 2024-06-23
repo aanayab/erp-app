@@ -51,8 +51,11 @@ export class AppComponent {
      private userLoggedServiceService: UserLoggedServiceService, private router: Router,
      private companyService:CompanyService,private privilegyService:PrivilegyService,private menuService:MenuService
      ,private languageServiceService:LanguageServiceService, private wsAuthenticateService:WsAuthenticateService
-     ,private utils:Utils, private translate:TranslateService,private elementRef: ElementRef,private routeService:RouteService) {
-
+     ,private utils:Utils, private translate:TranslateService,private elementRef: ElementRef,private routeService:RouteService
+     ,private languageService:LanguageServiceService) {
+      debugger;
+      translate.addLangs(['en-US','es-MX']);
+      translate.setDefaultLang(this.languageService.getLanguage())
 
 
     // sets an idle timeout of 5 seconds, for testing purposes.1800:Utils

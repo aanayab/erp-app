@@ -59,8 +59,12 @@ export class PasswordConfirmationComponent {
               const token = urlTree.queryParams['token'];
               const encryptionService = new EncryptionService();
               const encryptedData = encryptionService.encrypt(this.passwordForm.value.password,token.substring(0,16));
-              
-        let confirmationEmailBean = { token:  token, hidden: encryptedData, to: '', confirmationUrl: '' }
+              const params: { [key: string]: any } = {
+                token: token,
+                hidden: encryptedData
+              };
+        debugger;
+        let confirmationEmailBean = { params, to: "" }
         this.wsAuthenticateService.confirmUser(confirmationEmailBean, this.utils).subscribe(this.utils.subscribeHandler(this, () =>{
           this.errorMessage = null;
           this.messageService.showSuccessMessage("Password confirmed successfully!");

@@ -6,6 +6,7 @@ import { Utils } from '../../util/utils';
 import { UserBean } from 'src/app/core/model/userBean';
 import { LoadingService } from 'src/app/core/services/helpers/loading/loading.service';
 import { ResponseBean } from '../../model/responseBean';
+import { EmailBean } from '../../model/emailBean';
 import { ConfirmationEmailBean } from '../../model/confirmationEmailBean';
 
 @Injectable({
