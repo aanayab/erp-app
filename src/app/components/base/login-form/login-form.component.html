@@ -9,14 +9,14 @@
          <form  [formGroup]="form" (ngSubmit)="submit()">
             <div class="field">
                <input type="text" placeholder="Username" formControlName="username" (input)="errorChange()" required>
-               <label>Username</label>
+               <label>{{"USERNAME" | translate}}</label>
             </div>
             <div class="field  password-container">
                <input [type]="showPassword ? 'text' : 'password'" placeholder="Password"  (input)="errorChange()" formControlName="password" required>
                <i class="toggle-password" (click)="togglePasswordVisibility()">
                   <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
                 </i>
-               <label>Password</label>
+               <label>{{"PASSWORD" | translate}}</label>
             </div>
             <div class="field">
                <input type="submit" value="Login">

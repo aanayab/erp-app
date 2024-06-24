@@ -33,7 +33,7 @@ const routes: Routes = [
     path: "",
     component: AppComponent,
     children: [
-      { path: "", redirectTo: "Home", pathMatch: "full" },
+      { path: "", redirectTo: "Login", pathMatch: "full" },
       { path: 'Login', component: LoginFormComponent, data: { breadcrumb: { skip: true } } },
       { path: 'confirmation', component: PasswordConfirmationComponent, data: { breadcrumb: { skip: true } } },
       { path: 'pLogin', component: LoginFormComponent, data: { breadcrumb: { skip: true } } },

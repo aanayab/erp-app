@@ -54,7 +54,7 @@ export class AppComponent {
      ,private utils:Utils, private translate:TranslateService,private elementRef: ElementRef,private routeService:RouteService
      ,private languageService:LanguageServiceService) {
       debugger;
-      translate.addLangs(['en-US','es-MX']);
+      translate.addLangs(['en-US','es']);
       translate.setDefaultLang(this.languageService.getLanguage())
 
 

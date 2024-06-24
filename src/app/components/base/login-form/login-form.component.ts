@@ -94,7 +94,7 @@ export class LoginFormComponent implements AfterViewInit {
            this.userLoggedServiceService.setToken(body.result);
            this.userLoggedServiceService.setUserName(username);
            this.userLoggedServiceService.setUserLoggedIn(true);
-           this.router.navigate(['/']);
+           this.router.navigate(['/Home']);
          } else {
            this.error = 'Username or password invalid';
           //  localStorage.removeItem("SESSIONERPAPPTK");
