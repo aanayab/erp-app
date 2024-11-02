@@ -48,6 +48,7 @@ import { UsersHomeComponent } from '../components/modules/sys-admin/users/users-
 import { ThemeComponent } from '../components/base/theme/theme-component';
 import { MessagesModalComponent } from '../components/base/modals/messages/messages-modal.component';
 import { PasswordConfirmationComponent } from '../components/modules/sys-admin/users/password-confirmation/password-confirmation.component';
+import { SnackBarComponent } from '../components/base/snack-bar/snack-bar.component';
 
 
 import { MaterialModule } from './material.module';
@@ -64,7 +65,9 @@ import { WsSysAdminService } from '../core/services/ws-sysAdmin/ws-sys-admin.ser
 import { IdleServiceService } from '../core/services/helpers/idleService/idle-service.service';
 import { UserLoggedServiceService } from '../core/services/helpers/userLoggedService/user-logged-service.service';
 import { RouteService } from '../core/services/helpers/routeServices/route-services';
-import { PasswordValidatorService } from '../core/services/helpers/passwordValidator/password-validator.service';
+import { ValidatorService } from '../core/services/helpers/validator/validator.service';
+import { WsSmsService } from '../core/services/ws-sms/ws-sms.service';
+
 
 import {  HttpClient, HttpClientModule } from '@angular/common/http';
 import {  Utils } from '../core/util/utils';
@@ -80,6 +83,7 @@ import { BreadcrumbService } from 'xng-breadcrumb';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DatePipe } from '@angular/common';
 import { LocalizedDatePipe } from '../core/services/pipes/localizedDatePipe/localized-date-pipe';
+import { NgxCountriesDropdownModule } from 'ngx-countries-dropdown';
 
 import {  LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
@@ -90,7 +94,8 @@ import localeEs from '@angular/common/locales/es-MX';
 
 @NgModule({
   providers: [WsAuthenticateService,Utils,LoadingService,WsAdministratorService,BreadcrumbService,CompanyService
-    ,PrivilegyService,WsSysAdminService, IdleServiceService, UserLoggedServiceService,
+    ,PrivilegyService,WsSysAdminService, IdleServiceService, UserLoggedServiceService,ValidatorService,
+    WsSmsService,
     RouteService,DatePipe,{ provide: LOCALE_ID, useValue: 'en-US' },LocalizedDatePipe],
   imports:      [ BrowserModule, ReactiveFormsModule,BreadcrumbModule, RouterModule , MaterialModule,
      BrowserAnimationsModule, NgbModule, AppRoutingModule,HttpClientModule,NgFor,ColorPickerModule
@@ -103,7 +108,7 @@ import localeEs from '@angular/common/locales/es-MX';
     },
     
 
-  }),  ReactiveFormsModule,NgbDatepickerModule
+  }),  ReactiveFormsModule,NgbDatepickerModule,NgxCountriesDropdownModule
 ],
   declarations: [ AppComponent ,LoginFormComponent,HomeComponent,HeaderComponent,FooterComponent,LoadingComponent,
     MessagesComponent,CompanySelectorComponent,PhoneSelectorComponent,
@@ -111,7 +116,8 @@ import localeEs from '@angular/common/locales/es-MX';
     AdminComponent,AuditComponent,ContaComponent,CostSuccComponent,CustomerComponent,DirComponent,DoComponent
     ,FinanzasComponent,GestionComponent,HrComponent,InvComponent,MktComponent,OpComponent
     ,ProdComponent,PvComponent,SalesComponent,SupportComponent,SysAdminComponent,PurchComponent,
-    BreadcrumbComponent,MainComponent, IdleModalComponent,UserFormComponent,MessagesModalComponent,PasswordConfirmationComponent,
+    BreadcrumbComponent,MainComponent, IdleModalComponent,UserFormComponent,MessagesModalComponent
+    ,PasswordConfirmationComponent,SnackBarComponent,
     UsersTableComponent,UsersHomeComponent,ThemeComponent,LocalizedDatePipe],
   bootstrap:    [ AppComponent ]
 })

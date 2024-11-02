@@ -16,6 +16,6 @@ export interface UserBean {
     token?: string;   
     authorities?: AuthorityBean[];
     idCompany?: number;
-    country?: string;
+    countryCode?: string;
     hidden?: number;
   }

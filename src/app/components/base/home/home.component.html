@@ -28,9 +28,11 @@
         </div>
         <div class="col-12 h-80 scrolling"  ngbScrollSpy #spy="ngbScrollSpy" [ngClass]="!collapsed ? '' : 'ms-md-3'">
           <app-messages class="col-12"></app-messages>
+          
           <app-breadcrumb class="col-12 d-none d-lg-block d-xl-block"></app-breadcrumb>
           <router-outlet  *ngIf="getRouter().url  !== '/Home'" >
           </router-outlet>
+          <app-snack-bar></app-snack-bar>
           <app-main  *ngIf="getRouter().url  === '/Home'" ></app-main>
         </div>
       </mat-drawer-content>

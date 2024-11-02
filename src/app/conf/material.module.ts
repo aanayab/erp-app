@@ -20,6 +20,8 @@ import { MatTableModule} from '@angular/material/table';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 
@@ -45,7 +47,8 @@ const modules = [
   MatTableModule,
   MatGridListModule,
   MatCheckboxModule,
-  MatRadioModule
+  MatRadioModule,
+  MatSnackBarModule
 ];
 
 @NgModule({

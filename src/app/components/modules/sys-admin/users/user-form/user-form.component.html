@@ -12,41 +12,85 @@
       <!-- <div class="col-12">
 <input type="file" class="file-upload" onchange="console.log(event.target.files)">
 </div> -->
-      <form class="col-12" ngClass="{{userInfoForm.valid ? 'needs-validated' :'was-validated' }}" [formGroup]="userInfoForm" (ngSubmit)="onSubmit()" novalidate>
-        <h1 mat-card-title style="color: white;" class="text-center">{{"UserInfo"| translate}}</h1>
 
+      <form class="col-12" ngClass="{{userInfoForm.valid ? 'needs-validated' :'was-validated' }}"
+        [formGroup]="userInfoForm" (ngSubmit)="onSubmit()" novalidate>
+        <h1 mat-card-title style="color: white;" class="text-center">{{"UserInfo"| translate}}</h1>
+   
         <div class="col-12 row text-center">
 
           <div class="form-group col-md-12 ">
             <label>{{'Company'|translate}}</label>
             <!-- <app-company-selector></app-company-selector> -->
-            <h2 class="pb-0" formControlName="idCompany" matInput 
-              >{{getCompany()}}</h2>
+            <h2 class="pb-0" formControlName="idCompany" matInput>{{getCompany()}}</h2>
             <!-- <mat-hint>Hint</mat-hint> -->
           </div>
         </div>
         <hr>
         <!-- <mat-card-content class="col-12"> -->
+          <div class="col-12 row text-start">
+
+            <div class="col-md-3">
+              <label>{{'CreateAt'|translate}}</label>
+              <span class="form-control badge bg-secondary">{{today | localizedDate}}</span>
+              <!-- <input class="form-control" formControlName="createAt" matInput placeholder="{{'CreateAt'|translate}}"
+                required> -->
+              <!-- <mat-hint>Hint</mat-hint> -->
+            </div>
+            <div class="form-group col-md-3 ">
+              <label>{{'LastModif'|translate}}</label>
+              <span class="form-control badge bg-secondary">{{today | localizedDate}}</span>
+              <!-- <input class="form-control" formControlName="lastModif" type="datetime" matInput
+                placeholder="{{'LastModif'|translate}}" required> -->
+              <!-- <mat-hint>Hint</mat-hint> -->
+            </div>
+            <!-- <div class="form-group col-md-3 d-none">
+              <label>{{'FailedLoginAttempts'|translate}}</label>
+              <input class="form-control" formControlName="failedLoginAttempts" matInput
+                placeholder="{{'FailedLoginAttempts'|translate}}" required>
+           
+            </div>
+  
+            <div class="form-group col-md-3 d-none">
+              <div class="col-sm-12 pt-4">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" formControlName="accountVerified" type="checkbox" id="accountVerified">
+                  <label class="form-check-label" for="accountVerified">
+                    {{'AccountVerified'|translate }}
+                  </label>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <hr>
 
         <div class="col-12 row text-start">
           <div class="form-group col-md-3">
             <label>{{'Email'|translate}}</label>
-            <input class="form-control" (keyup)="getUserName(this)" onblur="existEmail()" formControlName="email" matInput placeholder="{{'Email'|translate}}" required>
-            <div *ngIf="false" class="invalid-feedback">
-              Please choose a username.
+            <input class="form-control" (keyup)="getUserName(this)" (blur)="existEmail()" formControlName="email"
+              matInput placeholder="{{'Email'|translate}}" required>
+            <div  class="invalid-feedback">
+              {{"email:required"|translate}}
+            </div>
+            <div *ngIf="existEmailFlag" style="font-size: .875em;" class="text-danger">
+              {{"El email existe"}}
+              </div>
+            <div *ngIf="userInfoForm.get('email')!.errors">
+              <div *ngIf="userInfoForm.get('email')!.errors!.email" class="text-danger">Invalid email format.</div>
             </div>
             <!-- <mat-hint>Hint</mat-hint> -->
           </div>
           <div class="form-group col-md-3">
             <label>{{'Username'|translate}}</label>
-            <input class="form-control " formControlName="username" (change)="existUsername()" matInput placeholder="{{'Username'|translate}}">
+            <input class="form-control " formControlName="username" (change)="existUsername()" matInput
+              placeholder="{{'Username'|translate}}">
             <!-- <mat-hint>Hint</mat-hint> -->
-            <div class="valid-feedback">
-              Looks good!
+            <div  class="invalid-feedback">
+              {{"username:required"|translate}}
             </div>
-            <div class="invalid-feedback">
-              Please provide a valid city.
-            </div>
+            <div *ngIf="existUsernameFlag" style="font-size: .875em;" class="text-danger">
+              {{"El usuario existe"}}
+              </div>
           </div>
           <div class="form-group col-md-3">
             <div class="col-sm-12 pt-4">
@@ -75,6 +119,9 @@
             <label>{{'FirstName'|translate}}</label>
             <input class="form-control" formControlName="firstName" matInput placeholder="{{'FirstName'|translate}}"
               required>
+              <div  class="invalid-feedback">
+                {{"firstName:required"|translate}}
+              </div>
             <!-- <mat-hint>Hint</mat-hint> -->
           </div>
 
@@ -82,66 +129,45 @@
             <label>{{'LastName'|translate}}</label>
             <input class="form-control" formControlName="lastName" matInput placeholder="{{'LastName'|translate}}"
               required>
-            <!-- <mat-hint>Hint</mat-hint> -->
-          </div>
-
-          <div class="form-group col-md-3 " appearance="fill">
-            <label>{{'Mobile'|translate}}</label>
-            <!-- <app-phone-selector></app-phone-selector> -->
-             <input class="form-control" formControlName="mobile" matInput placeholder="{{'Mobile'|translate}}" type="tel" required>
-            <!-- <mat-hint>Hint</mat-hint> -->
-          </div>
-          <div class="form-group col-md-3 " appearance="fill">
-            <label>{{'Country'|translate}}</label>
-            <input class="form-control" formControlName="country" matInput placeholder="{{'Country'|translate}}"
-              required>
-            <!-- <mat-hint>Hint</mat-hint> -->
-          </div>
-        </div>
-        <hr>
-        <div class="col-12 row text-start">
-
-          <div class="col-md-3">
-            <label>{{'CreateAt'|translate}}</label>
-            <span class="form-control badge bg-secondary">{{today | localizedDate}}</span>
-            <!-- <input class="form-control" formControlName="createAt" matInput placeholder="{{'CreateAt'|translate}}"
-              required> -->
-            <!-- <mat-hint>Hint</mat-hint> -->
-          </div>
-          <div class="form-group col-md-3 ">
-            <label>{{'LastModif'|translate}}</label>
-            <span class="form-control badge bg-secondary">{{today | localizedDate}}</span>
-            <!-- <input class="form-control" formControlName="lastModif" type="datetime" matInput
-              placeholder="{{'LastModif'|translate}}" required> -->
-            <!-- <mat-hint>Hint</mat-hint> -->
-          </div>
-          <div class="form-group col-md-3">
-            <label>{{'FailedLoginAttempts'|translate}}</label>
-            <input class="form-control" formControlName="failedLoginAttempts" matInput
-              placeholder="{{'FailedLoginAttempts'|translate}}" required>
-            <!-- <mat-hint>Hint</mat-hint> -->
-          </div>
-
-          <div class="form-group col-md-3">
-            <div class="col-sm-12 pt-4">
-              <div class="form-check form-switch">
-                <input class="form-check-input" formControlName="accountVerified" type="checkbox" id="accountVerified">
-                <label class="form-check-label" for="accountVerified">
-                  {{'AccountVerified'|translate }}
-                </label>
+              <div  class="invalid-feedback">
+                {{"lastName:required"|translate}}
               </div>
-            </div>
+            <!-- <mat-hint>Hint</mat-hint> -->
           </div>
-        </div>
-        <div class="col-12 row text-start">
-
           <div class="form-group col-md-3 ">
+            <label>{{'Country'|translate}}</label>
+            <!-- <input class="form-control" formControlName="country" matInput placeholder="{{'Country'|translate}}"
+              required> -->
+            <lib-country-list  formControlName="country" matInput
+              [selectedCountryConfig]="selectedCountryConfig" [countryListConfig]="countryListConfig"
+              (onCountryChange)="onCountryChange($event)" required></lib-country-list>
+              <div  class="invalid-feedback">
+                {{"country:required"|translate}}
+              </div>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </div>
+          <div class="form-group col-md-3"  >
+            <label>{{'Mobile'|translate}}</label>
+            <input class="form-control" formControlName="mobile" matInput placeholder="{{'Mobile'|translate}}" required/>
+            <div  class="invalid-feedback">
+              {{"mobile:required"|translate}}
+              </div>
+              <div *ngIf="userInfoForm.get('mobile')!.errors" >
+                <div *ngIf="userInfoForm.get('mobile')!.errors!.invalidPhone" style="font-size: .875em;" class="text-danger">
+                  {{"telefono incorrecto"}}
+                  </div>
+                </div>
+              </div>
+        </div>
+        <!-- <div class="col-12 row text-start">
+
+          <div class="form-group col-md-3 d-none">
             <label>{{'Password'|translate}}</label>
             <input class="form-control" formControlName="password" type="password" matInput
               placeholder="{{'Password'|translate}}" required>
-            <!-- <mat-hint>Hint</mat-hint> -->
+
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-3 d-none">
             <div class="col-sm-12 pt-4">
               <div class="form-check form-switch">
                 <input class="form-check-input" formControlName="mfaEnabled" type="checkbox" id="mfaEnabled">
@@ -151,29 +177,33 @@
               </div>
             </div>
           </div>
-          <div class="form-group col-md-3 ">
+          <div class="form-group col-md-3 d-none">
             <label>{{'Secret'|translate}}</label>
             <input class="form-control" formControlName="secret" matInput placeholder="{{'Secret'|translate}}" required>
-            <!-- <mat-hint>Hint</mat-hint> -->
+  
           </div>
 
-          <div class="form-group col-md-3 ">
+          <div class="form-group col-md-3 d-none">
             <label>{{'Token'|translate}}</label>
             <input class="form-control" formControlName="token" matInput placeholder="{{'Token'|translate}}" required>
-            <!-- <mat-hint>Hint</mat-hint> -->
+
           </div>
-        </div>
+        </div> -->
 
         <!-- </mat-card-content> -->
-        &nbsp;
-        <mat-card-actions align="end">
+       &nbsp;
+        <app-messages class="col-12 text-start"></app-messages>
+         <mat-card-actions align="end">
           <button mat-button routerLink="../" style="color: white;">{{'Return'|translate}}</button>
-          <button mat-button style="color: white;" type="submit" >{{'Submit'|
+          <button mat-button style="color: white;" type="submit">{{'Submit'|
             translate}}</button>
         </mat-card-actions>
         <!-- [disabled]="userInfoForm.valid" -->
+        
       </form>
-      <app-messages-modal type="{{type}}" messsage="{{message | translate}}" (closeAction)="closeAction" ></app-messages-modal>
+      <app-messages-modal type="{{type}}" messsage="{{message | translate}}"
+        (closeAction)="closeAction()"></app-messages-modal>
     </mat-expansion-panel>
   </mat-accordion>
+
 </div>

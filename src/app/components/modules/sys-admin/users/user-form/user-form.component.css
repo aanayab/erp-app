@@ -1,9 +1,29 @@
-
-
-.mat-mdc-card-title{
+.mat-mdc-card-title {
     background: var(--top-color);
-    }
-    
-    .mat-mdc-card-actions{
-        background: var(--bottom-color);
-        }
+}
+
+.mat-mdc-card-actions {
+    background: var(--bottom-color);
+}
+
+input.ng-invalid.ng-touched {
+    border-color: red;
+  }
+  
+
+
+/* .ipv_selected-item {
+    position: relative;
+    padding: 0 15px 0 15px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #a6a6a6;
+    background: #fff;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: var(--bs-border-radius) !important;
+} */

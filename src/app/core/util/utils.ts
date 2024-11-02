@@ -10,6 +10,8 @@ import { UserLoggedServiceService } from '../services/helpers/userLoggedService/
 import { WsAuthenticateService } from '../services/ws-authenticate/ws-authenticate.service';
 import { RouteService } from '../services/helpers/routeServices/route-services';
 import { LanguageServiceService } from '../services/helpers/languageService/language-service.service';
+import { TranslateService } from '@ngx-translate/core';
+
 
 
 @Injectable({
@@ -21,7 +23,7 @@ export class Utils {
   constructor(private router: Router, private loadingService: LoadingService, private messageService: MessageService,
     private companyService: CompanyService, private privilegyService: PrivilegyService,
     private userLoggedServiceService: UserLoggedServiceService, private wsAuthenticateService: WsAuthenticateService
-    , private menuService: MenuService, private routeService: RouteService, private languageServiceService: LanguageServiceService) { }
+    , private menuService: MenuService, private routeService: RouteService, private languageServiceService: LanguageServiceService,private translate:TranslateService) { }
 
 
   processRefresh() {
@@ -192,6 +194,20 @@ export class Utils {
     bodyStyles.setProperty('--bottom-color', 'linear-gradient(-00deg,#000000, #fc0303)');
     bodyStyles.setProperty('--start-login-color', 'linear-gradient(90deg,#000000, #fc0303)');
     localStorage.removeItem("ERPAPPCOLOR");
+  }
+
+  getFormValidationErrors(form:any) : string[] {
+    let result : any = [];
+    Object.keys(form.controls).forEach(key => {
+      const controlErrors = form.get(key).errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+          result.push(this.translate.instant(`${key}:${keyError}`));
+          // console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+        });
+      }
+    });
+    return result;
   }
   //   getUserBean() : any{
 

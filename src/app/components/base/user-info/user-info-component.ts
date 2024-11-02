@@ -24,7 +24,7 @@ export class UserInfoComponent {
     lastName: [{value: this.userBean.lastName, disabled: true},Validators.required],
     email: [{value:this.userBean.email, disabled: true},Validators.required],
     mobile: [{value:this.userBean.mobile, disabled: true},Validators.required],
-    country: [{value:this.userBean.country, disabled: true},Validators.required],
+    country: [{value:this.userBean.countryCode, disabled: true},Validators.required],
   
   });  
 

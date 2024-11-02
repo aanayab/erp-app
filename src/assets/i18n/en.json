@@ -78,8 +78,14 @@
    "NOT_STARTED":"Not started.",
    "TIMED_OUT":"Timed out!",
    "YOU_HAVE_GONE_IDLE":"You've gone idle!",
-   "YOU_WILL_TIME_OUT":"You will logged out in: {{value1}} seconds!"
+   "YOU_WILL_TIME_OUT":"You will logged out in: {{value1}} seconds!",
+   "CONFIRMATION_EMAIL": "Se ha mandado un correo de confirmación al correo {{email}} para finalizar el alta del usuario {{username}}",
 
-
-
+   "username:required":"Username required",
+   "firstName:required":"First name required",
+   "lastName:required":"Last name required",
+   "mobile:required":"Mobile required",
+   "email:required":"Email required",
+   "country:required":"Country required",
+   "company:required":"Company required"
 }
