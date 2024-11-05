@@ -58,7 +58,7 @@ export class Utils {
   subscribeHandler(component: any, functon: Function, funcErr?: Function): any {
     return {
       next: (response: any) => {
-
+        debugger;
         this.loadingService.setLoading(false);
         if (response.status == 200) {
           var body = response.body;
@@ -72,10 +72,12 @@ export class Utils {
         }
       },
       error: (e: any) => {
-
+        debugger;
         this.loadingService.setLoading(false);
-        this.messageService.showDangerMessage(e.message);
-        funcErr!()
+        // this.messageService.showDangerMessage(e.message);
+        this.messageService.showDangerMessage("Servicio no disponible favor de intentar más tarde.");
+        // funcErr!()
+        this.router.navigate(['/Login']);
       }
     }
   }
