@@ -1,33 +1,31 @@
-import {Component} from '@angular/core';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { Component, inject } from "@angular/core";
+import { MatSnackBarRef } from "@angular/material/snack-bar";
+import { TranslateService } from "@ngx-translate/core";
+import { Alert } from "src/app/core/model/alert";
+import { MessageService } from "src/app/core/services/helpers/message/message.service";
 
-
-
-/**
- * @title Snack-bar with configurable position
- */
 @Component({
-  selector: 'app-snack-bar',
-  templateUrl: 'snack-bar.component.html',
-  styleUrls: ['snack-bar.component.css'],
-})
-export class SnackBarComponent {
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  durationInSeconds = 5;
+    selector: 'app-snack-bar',
+    templateUrl: 'snack-bar.component.html',
+    styleUrls: ['./snack-bar.component.css' ],
+  })
+  export class SnackBarComponent {
 
-  constructor(private _snackBar: MatSnackBar) {}
+    alert:Alert = {message:"", type:'',mostrar:false}; 
+    snackBarRef = inject(MatSnackBarRef);
 
-  openSnackBar() {
-    this._snackBar.open('Cannonball!!', 'Close', {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-      duration: this.durationInSeconds * 1000,
-    });
+    constructor(private messageService:MessageService , private translate:TranslateService) { }
+
+
+    ngOnInit(): void {
+      this.messageService.alert$.subscribe((alert:Alert) => {
+        this.alert = alert;
+      });
+    }
+
+    close(){
+      this.alert = {message:"", type:'',mostrar:false}; 
+     this.messageService.closeMessage();
+    }
+  
   }
-}
- 

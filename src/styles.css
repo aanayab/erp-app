@@ -64,3 +64,79 @@ html, body {
   --font-color:  rgb(255, 255, 255);  
   --start-login-color:linear-gradient(90deg,#000000, #fc0303);
 }
+
+/* Snackbar estilos personalizados usando colores de Alerts de Bootstrap */
+
+.custom-snackbar-info {
+  background-color: #d1ecf1 !important; /* Info */
+  color: #0c5460;
+  font-weight: bold;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.custom-snackbar-secondary {
+  background-color: #e2e3e5 !important; /* Secondary */
+  color: #383d41;
+  font-weight: bold;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.custom-snackbar-primary {
+  background-color: #cce5ff !important; /* Primary */
+  color: #004085;
+  font-weight: bold;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.custom-snackbar-success {
+  background-color: #d4edda !important; /* Success */
+  color: #155724;
+  font-weight: bold;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.custom-snackbar-danger {
+  background-color: #f8d7da !important; /* Danger */
+  color: #721c24;
+  font-weight: bold;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.custom-snackbar-warning {
+  background-color: #fff3cd !important; /* Warning */
+  color: #856404;
+  font-weight: bold;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.custom-snackbar-light {
+  background-color: #fefefe !important; /* Light */
+  color: #818182;
+  font-weight: bold;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.custom-snackbar-dark {
+  background-color: #d6d8d9 !important; /* Dark */
+  color: #1b1e21;
+  font-weight: bold;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: transparent !important;
+}
+
+/* Icono de alerta si lo quieres incluir
+.custom-info-snackbar .snackbar-icon {
+  margin-right: 8px;
+} */

@@ -50,7 +50,6 @@ import { MessagesModalComponent } from '../components/base/modals/messages/messa
 import { PasswordConfirmationComponent } from '../components/modules/sys-admin/users/password-confirmation/password-confirmation.component';
 import { SnackBarComponent } from '../components/base/snack-bar/snack-bar.component';
 
-
 import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
@@ -88,6 +87,13 @@ import { NgxCountriesDropdownModule } from 'ngx-countries-dropdown';
 import {  LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es-MX';
+import {
+  MatSnackBar,
+  MatSnackBarModule,
+} from '@angular/material/snack-bar';
+import { MatButtonModule } from "@angular/material/button";
+
+
  registerLocaleData(localeEs,'es');
 
 
@@ -95,21 +101,18 @@ import localeEs from '@angular/common/locales/es-MX';
 @NgModule({
   providers: [WsAuthenticateService,Utils,LoadingService,WsAdministratorService,BreadcrumbService,CompanyService
     ,PrivilegyService,WsSysAdminService, IdleServiceService, UserLoggedServiceService,ValidatorService,
-    WsSmsService,
+    WsSmsService,MatSnackBar,
     RouteService,DatePipe,{ provide: LOCALE_ID, useValue: 'en-US' },LocalizedDatePipe],
-  imports:      [ BrowserModule, ReactiveFormsModule,BreadcrumbModule, RouterModule , MaterialModule,
-     BrowserAnimationsModule, NgbModule, AppRoutingModule,HttpClientModule,NgFor,ColorPickerModule
-      ,NgbScrollSpyModule,FormsModule,NgIdleKeepaliveModule.forRoot(),
-  TranslateModule.forRoot({
-    loader: {
-      provide: TranslateLoader,
-      useFactory : httpTranslateLoader,
-      deps: [HttpClient]
-    },
-    
-
-  }),  ReactiveFormsModule,NgbDatepickerModule,NgxCountriesDropdownModule
-],
+  imports: [MatButtonModule,MatSnackBarModule,BrowserModule, ReactiveFormsModule, BreadcrumbModule, RouterModule, MaterialModule,
+    BrowserAnimationsModule, NgbModule, AppRoutingModule, HttpClientModule, NgFor, ColorPickerModule,
+    NgbScrollSpyModule, FormsModule, NgIdleKeepaliveModule.forRoot(),
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: httpTranslateLoader,
+            deps: [HttpClient]
+        },
+    }), ReactiveFormsModule, NgbDatepickerModule, NgxCountriesDropdownModule],
   declarations: [ AppComponent ,LoginFormComponent,HomeComponent,HeaderComponent,FooterComponent,LoadingComponent,
     MessagesComponent,CompanySelectorComponent,PhoneSelectorComponent,
     LenguageSelectorComponent,UserInfoComponent,MenuComponent,MenuMobileComponent,
