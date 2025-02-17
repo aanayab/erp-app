@@ -104,7 +104,7 @@ export class PasswordConfirmationComponent {
     }
 
   sendSmsCode() {
-    debugger;
+    
     if (this.passwordForm.value.phoneNumber.match(/^\d{10}$/)) {
       this.generatedCode = Math.floor(100000 + Math.random() * 9000).toString(); // Generar un código de 6 dígitos
       const urlTree = this.router.parseUrl(this.router.url);
@@ -123,7 +123,7 @@ export class PasswordConfirmationComponent {
 
   // Verifica si el código ingresado es correcto
   verifySmsCode() {
-    debugger;
+    
     if (this.passwordForm.value.smsCode === this.generatedCode) {
       this.isPhoneVerified = true;
       this.isSending = true; // Habilita el botón para reenviar el código
@@ -141,7 +141,7 @@ export class PasswordConfirmationComponent {
   }
 
   onSubmit() {
-    debugger;
+    
     if (this.passwordForm.valid) {
       if (this.passwordForm.value.password !== this.passwordForm.value.confirmPassword) {
         this.errorMessage = 'Passwords do not match';

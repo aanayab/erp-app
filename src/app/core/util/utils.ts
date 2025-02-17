@@ -29,6 +29,7 @@ export class Utils {
   processRefresh() {
 
     // store data into local storage before browser refresh
+    localStorage.setItem('SESSIONERPAPPUUID', this.userLoggedServiceService.getBrowserUuid());
     localStorage.setItem('SESSIONERPAPPUSN', this.userLoggedServiceService.getUserName());
     localStorage.setItem("SESSIONERPAPPTKN", this.userLoggedServiceService.getToken());
     localStorage.setItem("SESSIONERPAPPI18N", this.languageServiceService.getLanguage());
@@ -39,7 +40,7 @@ export class Utils {
   }
 
   logOut(): any {
-
+    debugger;
     // localStorage.removeItem("SESSIONERPAPPTK");
     // localStorage.removeItem('SESSIONERPAPPUSN');
     this.userLoggedServiceService.setUserName(undefined);
@@ -58,7 +59,7 @@ export class Utils {
   subscribeHandler(component: any, functon: Function, funcErr?: Function): any {
     return {
       next: (response: any) => {
-        debugger;
+        
         this.loadingService.setLoading(false);
         if (response.status == 200) {
           var body = response.body;
@@ -72,7 +73,36 @@ export class Utils {
         }
       },
       error: (e: any) => {
+        
+        this.loadingService.setLoading(false);
+        // this.messageService.showDangerMessage(e.message);
+        this.messageService.showDangerMessage("Servicio no disponible favor de intentar más tarde.");
+        // funcErr!()
+        this.router.navigate(['/Login']);
+      }
+    }
+  }
+  subscribeRefreshHandler(component: any, functon: Function, funcErr?: Function): any {
+    return {
+      next: (response: any) => {
         debugger;
+        this.loadingService.setLoading(false);
+        if (response.status == 200) {
+          var body = response.body;
+          if (body.tipoMensaje == 'S') {
+            const headers = response.headers;
+            const authorization = headers.get('Authorization');
+            const token = authorization.replace('Bearer ', '').trim();
+            functon(component, token);
+          } else {
+            this.messageService.showDangerMessage(body.mensaje);
+            funcErr!();
+
+          }
+        }
+      },
+      error: (e: any) => {
+        
         this.loadingService.setLoading(false);
         // this.messageService.showDangerMessage(e.message);
         this.messageService.showDangerMessage("Servicio no disponible favor de intentar más tarde.");
@@ -83,7 +113,7 @@ export class Utils {
   }
 
   getBearerToken(): HttpHeaders {
-
+    debugger;
     // let session = localStorage.getItem('SESSIONERPAPPTK');
     const session = this.userLoggedServiceService.getToken();
     if (session == null || session == undefined) {
@@ -92,7 +122,9 @@ export class Utils {
     }
     console.log(session);
     let headers = new HttpHeaders()
-      .set("Authorization", 'Bearer ' + session);
+      .set("Authorization", 'Bearer ' + session)
+      .set('X-Client-Type','browser')
+      .set('X-Browser-ID',this.userLoggedServiceService.getBrowserUuid());
 
     // .set("Allow",'POST,PUT,GET,DELETE,OPTIONS');
     console.log(headers);
@@ -103,6 +135,7 @@ export class Utils {
   }
 
   setvaliate(component: any, result: string) {
+    debugger;
     component.userLoggedServiceService.setToken(result);
   }
 
@@ -115,7 +148,7 @@ export class Utils {
       return;
     } else {
       this.wsAuthenticateService.refesh(this.getUsername(), this).subscribe(
-        this.subscribeHandler(this, this.setvaliate, () => this.router.navigate(['/Login']))
+        this.subscribeRefreshHandler(this, this.setvaliate, () => this.router.navigate(['/Login']))
       );
     }
   }

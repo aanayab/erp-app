@@ -144,7 +144,6 @@ export class UserFormComponent {
  
 
   existUsername(){
-    debugger
     let username = this.userInfoForm.value.username;
     if(username !== undefined && username !== ""){
       this.wsAuthenticateService.existUsername(username,this.utils).subscribe(this.utils.subscribeHandler(this,this.validUsername));
@@ -175,7 +174,7 @@ export class UserFormComponent {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value   
-    debugger;
+    
     if(this.existEmailFlag){
       this.messageService.showDangerMessage("email:exist");
       return; 
@@ -199,7 +198,7 @@ export class UserFormComponent {
       this.messageService.showDangerMessage("company:required");
       return;
     }
-    debugger;
+    
          user.idCompany =  this.companyService.getCompany().idCompany;
          user.countryCode = country.code;
          const phoneNumberWithCountryCode = this.country.dialling_code +user.mobile;

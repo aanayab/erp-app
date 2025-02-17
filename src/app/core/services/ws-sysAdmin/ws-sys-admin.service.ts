@@ -9,20 +9,20 @@ import { PrivilegyBean } from 'src/app/core/model/peivilegyBean';
 import { MenuBean } from '../../model/menuBean';
 import { FoodNode } from '../../model/foodNode';
 import { Route } from '@angular/router';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WsSysAdminService {
 
-  url = 'localhost';
-  companyUrl = 'http://'+ this.url +':8096/ws-sysAdmin/api/company/all';
-  companybyIdUrl = 'http://'+ this.url +':8096/ws-sysAdmin/api/company/';
-  privilegyByIdRoll = 'http://'+ this.url +':8096/ws-sysAdmin/api/privilegy/allByRole/';
-  menuByIdRoll = 'http://'+ this.url +':8096/ws-sysAdmin/api/menu/allByRole/';
-  foodNodeByIdRoll = 'http://'+ this.url +':8096/ws-sysAdmin/api/menu/allFoodNodeByRole/';
-  routeByIdRoll = 'http://'+ this.url +':8096/ws-sysAdmin/api/menu/allRouteByRole/';
+  
+  private  companyUrl = environment.wsSysAdmin.companyUrl;
+  private companybyIdUrl = environment.wsSysAdmin.companybyIdUrl;
+  private privilegyByIdRoll = environment.wsSysAdmin.privilegyByIdRoll;
+  private menuByIdRoll = environment.wsSysAdmin.menuByIdRoll;
+  private foodNodeByIdRoll = environment.wsSysAdmin.foodNodeByIdRoll;
+  private routeByIdRoll = environment.wsSysAdmin.routeByIdRoll;
 
 
   constructor(private http: HttpClient,private loadingService:LoadingService,private utils:Utils) { }

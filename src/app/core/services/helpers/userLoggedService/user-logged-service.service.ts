@@ -10,10 +10,15 @@ export class UserLoggedServiceService {
   private userLoggedIn = new Subject<boolean>();
   private username: string | any;
   private token: string | any;
-
+  private browserUuid: string | any;
 
   constructor() {
-    
+    debugger;
+    const browserUuid = localStorage.getItem("SESSIONERPAPPUUID");
+    if(browserUuid !== undefined && browserUuid !== null){
+      this.browserUuid = browserUuid;
+      localStorage.removeItem("SESSIONERPAPPUUID");
+    }
     const username = localStorage.getItem("SESSIONERPAPPUSN");
     if(username !== undefined && username !== null){
       this.username = username;
@@ -58,6 +63,18 @@ export class UserLoggedServiceService {
 
   getToken(): string {
     return this.token;
+  }
+
+  getBrowserUuidObs(): Observable<string> {
+    return of(this.browserUuid);
+  }
+
+  setBrowserUuid(browserUuid: string | any) {
+    this.browserUuid = browserUuid;
+  }
+
+  getBrowserUuid(): string {
+    return this.browserUuid;
   }
 
 }

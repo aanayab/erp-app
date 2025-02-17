@@ -5,16 +5,14 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ResponseBean } from '../../model/responseBean';
 import { Observable } from 'rxjs';
 import { SmsConfirmationBean } from '../../model/smsConfirmationBean';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WsSmsService {
 
-
-
-  url = 'localhost';
-  sendUrl = 'http://'+ this.url +':8096/ws-sms/api/sms/send-confirmation-code';
+  private sendUrl = environment.wsSms.sendUrl;
 
   constructor(private http: HttpClient,private loadingService:LoadingService,private utils:Utils) { }
 

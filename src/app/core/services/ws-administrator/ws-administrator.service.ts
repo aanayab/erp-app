@@ -6,6 +6,7 @@ import { UserBean } from 'src/app/core/model/userBean';
 import { LoadingService } from 'src/app/core/services/helpers/loading/loading.service';
 import { CompanyBean } from 'src/app/core/model/companyBean';
 import { PrivilegyBean } from 'src/app/core/model/peivilegyBean';
+import { environment } from '../../../../environments/environment';
 
 
 @Injectable({
@@ -13,10 +14,10 @@ import { PrivilegyBean } from 'src/app/core/model/peivilegyBean';
 })
 export class WsAdministratorService {
   
-  url= 'localhost';
-  companyUrl = 'http://'+ this.url +':8096/ws-administrator/api/company/all';
-  companybyIdUrl = 'http://'+ this.url+ ':8096/ws-administrator/api/company/';
-  privilegyByIdRoll = 'http://'+ this.url+ ':8096/ws-administrator/api/privilegy/allByRole/';
+ 
+  private companyUrl = environment.wsAdministrator.companyUrl;
+  private companybyIdUrl = environment.wsAdministrator.companybyIdUrl;
+  private privilegyByIdRoll = environment.wsAdministrator.privilegyByIdRoll;
 
 
   constructor(private http: HttpClient,private loadingService:LoadingService,private utils:Utils) { }

@@ -22,14 +22,14 @@ export class LoginFormComponent implements AfterViewInit {
 
 
 
-  constructor(private utils:Utils,private elementRef: ElementRef, private router: Router, private wsAuthenticateService: WsAuthenticateService,
-    private loadingService:LoadingService,private userLoggedServiceService:UserLoggedServiceService) { }
+  constructor(private utils: Utils, private elementRef: ElementRef, private router: Router, private wsAuthenticateService: WsAuthenticateService,
+    private loadingService: LoadingService, private userLoggedServiceService: UserLoggedServiceService) { }
 
 
   ngAfterViewInit() {
     this.elementRef.nativeElement.ownerDocument
       .body.style.background = 'var(--start-login-color)';
-      this.utils.changeTheme();
+    this.utils.changeTheme();
   }
 
   get passwordControl(): AbstractControl | any {
@@ -40,16 +40,17 @@ export class LoginFormComponent implements AfterViewInit {
     this.showPassword = !this.showPassword;
   }
 
-  ngOnInit(){
+  ngOnInit() {
+    debugger;
     // localStorage.removeItem("SESSIONERPAPPTK");
     // localStorage.removeItem('SESSIONERPAPPUSR');
-   // localStorage.removeItem('SESSIONERPAPPAUT');
+    // localStorage.removeItem('SESSIONERPAPPAUT');
     // localStorage.removeItem('SESSIONERPAPPUSN');
     this.userLoggedServiceService.setUserName(undefined);
     this.userLoggedServiceService.setToken(undefined);
     this.userLoggedServiceService.setUserLoggedIn(false);
-   
-    }
+
+  }
 
 
   form: FormGroup = new FormGroup({
@@ -79,43 +80,55 @@ export class LoginFormComponent implements AfterViewInit {
   }
 
 
-  
 
-  subscribeHandlerLogin(username:string){
+
+  subscribeHandlerLogin(username: string) {
     return {
-     next: (response: any) => {
-      this.loadingService.setLoading(false);
-       if (response.status == 200) {
-         var body = response.body;
-         if (body.tipoMensaje == 'S') {
-          
+      next: (response: any) => {
+        
+        this.loadingService.setLoading(false);
+        if (response.status == 200) {
+          // Leer los headers de la respuesta
+          const headers = response.headers;
+
+          const authorization = headers.get('Authorization');
+          const browserUuid = localStorage.getItem("SESSIONERPAPPUUID");
+          this.userLoggedServiceService.setBrowserUuid(browserUuid);
+          localStorage.removeItem("SESSIONERPAPPUUID");
+          //  if (body.tipoMensaje == 'S') {
+          // Extraer solo el token
+          const token = authorization.replace('Bearer ', '').trim();
           //  localStorage.setItem('SESSIONERPAPPTK', btoa(JSON.stringify(body.result)));
           //  localStorage.setItem('SESSIONERPAPPUSN', btoa(JSON.stringify(username)));
-           this.userLoggedServiceService.setToken(body.result);
-           this.userLoggedServiceService.setUserName(username);
-           this.userLoggedServiceService.setUserLoggedIn(true);
-           this.router.navigate(['/Home']);
-         } else {
-           this.error = 'Username or password invalid';
-          //  localStorage.removeItem("SESSIONERPAPPTK");
-          //  localStorage.removeItem('SESSIONERPAPPUSN');
-           this.userLoggedServiceService.setUserName(undefined);
-           this.userLoggedServiceService.setToken(undefined);
-           this.loadingService.setLoading(false);
-         }
+          this.userLoggedServiceService.setToken(token);
+          this.userLoggedServiceService.setUserName(username);
+          this.userLoggedServiceService.setUserLoggedIn(true);
+          this.router.navigate(['/Home']);
+          //  } else {
+          //  this.error = 'Username or password invalid';
+          // //  localStorage.removeItem("SESSIONERPAPPTK");
+          // //  localStorage.removeItem('SESSIONERPAPPUSN');
+          //  this.userLoggedServiceService.setUserName(undefined);
+          //  this.userLoggedServiceService.setToken(undefined);
+          //  this.loadingService.setLoading(false);
+          //  }
 
-       }
-     },
-     error: (e: any) => {
-       this.error = 'Username or password invalid';
-      //  localStorage.removeItem("SESSIONERPAPPTK");
-      //  localStorage.removeItem('SESSIONERPAPPUSN');
-       this.userLoggedServiceService.setUserName(undefined);
-       this.userLoggedServiceService.setToken(undefined);
-       this.loadingService.setLoading(false);
-     }
+
+        }
+      },
+      error: (e: any) => {
+        debugger;
+        this.error = 'Username or password invalid';
+        //  localStorage.removeItem("SESSIONERPAPPTK");
+        //  localStorage.removeItem('SESSIONERPAPPUSN');
+        localStorage.removeItem("SESSIONERPAPPUUID");
+        this.userLoggedServiceService.setBrowserUuid(undefined)
+        this.userLoggedServiceService.setUserName(undefined);
+        this.userLoggedServiceService.setToken(undefined);
+        this.loadingService.setLoading(false);
+      }
+    }
   }
-   }
 
 
   @Output() submitEM = new EventEmitter();

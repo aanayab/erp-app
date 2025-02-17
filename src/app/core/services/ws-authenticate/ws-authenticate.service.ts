@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Token } from '../../model/token';
 import { Utils } from '../../util/utils';
@@ -8,33 +8,41 @@ import { LoadingService } from 'src/app/core/services/helpers/loading/loading.se
 import { ResponseBean } from '../../model/responseBean';
 import { EmailBean } from '../../model/emailBean';
 import { ConfirmationEmailBean } from '../../model/confirmationEmailBean';
+import { useAnimation } from '@angular/animations';
+import { environment } from '../../../../environments/environment';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WsAuthenticateService {
 
-  private url = 'localhost';
-  private tokenUrl = 'http://' + this.url+':8096/ws-authenticator/api/authenticate?';
-  private validateUrl = 'http://' + this.url+':8096/ws-authenticator/api/authenticate/validate/';
-  private refreshUrl = 'http://' + this.url+':8096/ws-authenticator/api/authenticate/refresh/';
-  private userUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/';
-  private addUserUrl = 'http://' + this.url+':8096/ws-authenticator/api/user';
-  private usersUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/all';
-  private usersByIdCompanyUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/allByIdCompany/';
-  private disabelEnableUserUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/disable';
-  private hideShowUserUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/hide';
-  private existUsernameUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/username/exist/';
-  private existEmailUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/email/exist/';
-  private confirmUserUrl = 'http://' + this.url+':8096/ws-authenticator/api/user/confirm';
+
+  private tokenUrl = environment.wsAuthenticate.tokenUrl;
+  private validateUrl =  environment.wsAuthenticate.validateUrl;
+  private refreshUrl =  environment.wsAuthenticate.refreshUrl;
+  private userUrl =  environment.wsAuthenticate.userUrl;
+  private addUserUrl =  environment.wsAuthenticate.addUserUrl;
+  private usersUrl =  environment.wsAuthenticate.usersUrl;
+  private usersByIdCompanyUrl =  environment.wsAuthenticate.usersByIdCompanyUrl;
+  private disabelEnableUserUrl =  environment.wsAuthenticate.disabelEnableUserUrl;
+  private hideShowUserUrl =  environment.wsAuthenticate.hideShowUserUrl;
+  private existUsernameUrl =  environment.wsAuthenticate.existUsernameUrl;
+  private existEmailUrl =  environment.wsAuthenticate.existEmailUrl;
+  private confirmUserUrl =  environment.wsAuthenticate.confirmUserUrl;
+  private deleteUserUrl =  environment.wsAuthenticate.deleteUserUrl;
 
   constructor(private http: HttpClient, private loadingService: LoadingService) { }
 
 
   getToken(username: string, password: string): Observable<HttpResponse<Token>> {
     this.loadingService.setLoading(true);
+
+    let requestId  = uuidv4(); // Generar un UUID
+    localStorage.setItem('SESSIONERPAPPUUID', requestId);
+    let headers = new HttpHeaders().set("X-Browser-ID",requestId).set('X-Client-Type','browser');
     return this.http
-      .post<Token>(this.tokenUrl + "username=" + username + "&password=" + password, {}, { observe: 'response' });
+      .post<Token>(this.tokenUrl + "username=" + username + "&password=" + password, {}, { headers,observe: 'response' });
   }
   validate(username: string,utils:Utils): Observable<HttpResponse<Boolean>> {
     this.loadingService.setLoading(true);
@@ -69,7 +77,7 @@ export class WsAuthenticateService {
       observe: 'response',
     });
   }
-  getUsersBydDCompany(utils:Utils,idComapny:any): Observable<HttpResponse<UserBean[]>> {
+  getUsersByIdCompany(utils:Utils,idComapny:any): Observable<HttpResponse<UserBean[]>> {
     this.loadingService.setLoading(true);
     return this.http.get<UserBean[]>(this.usersByIdCompanyUrl+idComapny , {
       headers: utils.getBearerToken(),
@@ -85,19 +93,28 @@ export class WsAuthenticateService {
     });
   }
 
-  disableEnableUser(utils:Utils,userBean:UserBean): Observable<HttpResponse<ResponseBean>> {
+  disableEnableUser(utils:Utils,username:string | any,enable:boolean): Observable<HttpResponse<ResponseBean>> {
     this.loadingService.setLoading(true);
-    return this.http.post<ResponseBean>(this.disabelEnableUserUrl,userBean , {
+    return this.http.post<ResponseBean>(this.disabelEnableUserUrl,{username,enable} , {
       headers: utils.getBearerToken(),
       observe: 'response',
     });
   }
 
-  hideShowUser(utils:Utils,userBean:UserBean): Observable<HttpResponse<ResponseBean>> {
+  hideShowUser(utils:Utils,username:string | any,hide:boolean): Observable<HttpResponse<ResponseBean>> {
     this.loadingService.setLoading(true);
-    return this.http.post<ResponseBean>(this.hideShowUserUrl,userBean , {
+    return this.http.post<ResponseBean>(this.hideShowUserUrl,{username,hide} , {
       headers: utils.getBearerToken(),
       observe: 'response',
+    });
+  }
+
+  deleteUser(utils:Utils,username:string | any): Observable<HttpResponse<ResponseBean>> {
+    this.loadingService.setLoading(true);
+    return this.http.delete<ResponseBean>(this.deleteUserUrl , {
+      headers: utils.getBearerToken(),
+      observe: 'response',
+      body: username
     });
   }
 
@@ -106,7 +123,7 @@ export class WsAuthenticateService {
     return this.http
       .get<Token>(this.existUsernameUrl + username,  {
         headers: utils.getBearerToken(),
-        observe: 'response'
+        observe: 'response',
       });
   }
   existEmail(email: string | any,utils:Utils): Observable<HttpResponse<Token>> {
@@ -126,3 +143,4 @@ export class WsAuthenticateService {
     });
   }
 }
+

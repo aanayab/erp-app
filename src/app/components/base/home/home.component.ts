@@ -114,7 +114,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   getMenu(role: any) {
-    debugger;
+    
         this.wsSysAdminService.getFoodNodeByRole(role)
       .subscribe(this.utils.subscribeHandler(this, this.setMenu,() =>{ this.router.navigate(['/Login']);})
       );

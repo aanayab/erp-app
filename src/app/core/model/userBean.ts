@@ -4,7 +4,7 @@ export interface UserBean {
     accountVerified?: number;
     createAt?: Date;   
     email?: string;
-    enabled?: number;
+    enabled?: boolean;
     failedLoginAttempts?: number;   
     firstName?: string;
     lastModif?: string;   
@@ -17,5 +17,5 @@ export interface UserBean {
     authorities?: AuthorityBean[];
     idCompany?: number;
     countryCode?: string;
-    hidden?: number;
+    hidden?: boolean;
   }
