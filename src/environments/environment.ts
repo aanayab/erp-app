@@ -6,16 +6,16 @@ const params = {
     port: undefined
   },
   wsAuthenticate: {
-    url: "localhost",
-    port: "8071"
+    url: "api-dev.boyertech.mx",
+    port: undefined
   },
   wsSms: {
-    url: "localhost",
-    port: "8073"
+    url: "api-dev.boyertech.mx",
+    port: undefined
   },
   wsSysAdmin: {
-    url: "localhost",
-    port: "8070"
+    url: "api-dev.boyertech.mx",
+    port: undefined
   },
 }
 export const environment = {

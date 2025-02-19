@@ -47,7 +47,8 @@ export class UsersTableComponent {
       if (index !== -1) {
         // Elimina el objeto en el índice encontrado.
         this.users.splice(index, 1);
-        this.messageService.showSuccessMessage("El usuario " + username + "se eliminó correctamente.");
+        this.dataSource.data = this.dataSource.data.filter(item => item.username !== user.username);
+        this.messageService.showSuccessMessage("El usuario " + username + " se eliminó correctamente.");
       }
     }));
   }
