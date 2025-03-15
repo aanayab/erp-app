@@ -82,7 +82,8 @@
     "TIMED_OUT":"Sesión expirada!",
     "YOU_HAVE_GONE_IDLE":"¡Inactivo!",
     "YOU_WILL_TIME_OUT":"¡Tu sesión terminará en: {{value1}} segundos!",
-    "CONFIRMATION_EMAIL": "Se ha mandado un correo de confirmación al correo {{email}} para finalizar el alta del usuario {{username}}",
+    "CONFIRMATION_EMAIL": "Se ha mandado un correo de confirmación al correo: {{email}} para finalizar el alta del usuario: {{username}}",
+    "RESET_EMAIL": "Se ha mandado un correo de confirmación al correo: {{email}} para finalizar el resteteo del password del usuario: {{username}}",
 
     "username:required":"Usuario obligatorio",
     "firstName:required":"Nombre obligatorio",

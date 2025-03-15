@@ -35,8 +35,8 @@ export class AppComponent {
 
   // call this event handler before browser refresh
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
-    ;
-    console.log(this.router.url.toUpperCase());
+    
+    // console.log(this.router.url.toUpperCase());
     if (this.router.url.toUpperCase() !== "/LOGIN" && this.router.url.split("?")[0].toUpperCase() !== "/CONFIRMATION" && this.router.url.toUpperCase() !== "/PLOGIN") {
       this.utils.processRefresh();
     }
@@ -66,7 +66,7 @@ export class AppComponent {
 
     this.idle.onIdleEnd.subscribe(() => {
       this.idleServiceService.idleState = 'NO_LONGER_IDLE'
-      console.log(this.idleServiceService.idleState);
+      // console.log(this.idleServiceService.idleState);
       this.reset();
     });
 
@@ -74,7 +74,7 @@ export class AppComponent {
       this.dialog.closeAll();
       this.idleServiceService.idleState = 'TIMED_OUT';
       this.idleServiceService.timedOut = true;
-      console.log(this.idleServiceService.idleState);
+      // console.log(this.idleServiceService.idleState);
       this.utils.logOut();
       // this.reset();
       // return;
@@ -83,7 +83,7 @@ export class AppComponent {
 
     this.idle.onIdleStart.subscribe(() => {
       this.idleServiceService.idleState = 'YOU_HAVE_GONE_IDLE'
-      console.log(this.idleServiceService.idleState);
+      // console.log(this.idleServiceService.idleState);
       this.openDialog(this);
     });
 
@@ -179,7 +179,7 @@ export class AppComponent {
 
 
   open($event: Event) {
-    console.log(event);
+    // console.log(event);
 
   }
 

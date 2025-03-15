@@ -1,6 +1,7 @@
 // environment.ts (dev)
 export const environment = {
   production: false,
+  profile: "DEV",
   wsAdministrator: {
     companyUrl: 'http://api-dev.boyertech.mx/ws-administrator/api/company/all',
     companybyIdUrl: 'http://api-dev.boyertech.mx/ws-administrator/api/company/',

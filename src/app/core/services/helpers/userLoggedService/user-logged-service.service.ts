@@ -13,7 +13,7 @@ export class UserLoggedServiceService {
   private browserUuid: string | any;
 
   constructor() {
-    debugger;
+    
     const browserUuid = localStorage.getItem("SESSIONERPAPPUUID");
     if(browserUuid !== undefined && browserUuid !== null){
       this.browserUuid = browserUuid;

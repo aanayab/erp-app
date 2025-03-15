@@ -6,8 +6,8 @@ const params = {
     port: undefined
   },
   wsAuthenticate: {
-    url: "api-dev.boyertech.mx",
-    port: undefined
+    url: "localhost",
+    port: "8071"
   },
   wsSms: {
     url: "api-dev.boyertech.mx",
@@ -20,6 +20,7 @@ const params = {
 }
 export const environment = {
   production: false,
+  profile: "DEV",
   wsAdministrator: {
     companyUrl: `http://${params.wsAdministrator.url}${params.wsAdministrator.port ? `:${params.wsAdministrator.port}` : ''}/ws-administrator/api/company/all`,
     companybyIdUrl: `http://${params.wsAdministrator.url}${params.wsAdministrator.port ? `:${params.wsAdministrator.port}` : ''}/ws-administrator/api/company/`,
@@ -31,12 +32,15 @@ export const environment = {
     refreshUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/authenticate/refresh/`,
     userUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user/`,
     addUserUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user`,
+    resetPasswordUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user/reset`,
+    updateUserUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user`,
     usersUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user/all`,
     usersByIdCompanyUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user/allByIdCompany/`,
     disabelEnableUserUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user/disable`,
     hideShowUserUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user/hide`,
     existUsernameUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user/username/exist/`,
     existEmailUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user/email/exist/`,
+    existMobileUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user/mobile/exist/`,
     confirmUserUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user/confirm`,
     deleteUserUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/user`
   },

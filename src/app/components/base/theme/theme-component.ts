@@ -23,6 +23,8 @@ export class ThemeComponent {
     let color = localStorage.getItem("ERPAPPCOLOR");
     if (color != undefined) {
       this.color = color;
+    }else{
+      this.color = " #fc0303";
     }
 
   }
@@ -36,9 +38,14 @@ export class ThemeComponent {
   }
 
   reset(): void {
+    this.color = " #fc0303";
     this.utils.resetTheme();
 
   }
+
+  // getColor(): string{
+  //   return this.color;
+  // }
 
 }
 

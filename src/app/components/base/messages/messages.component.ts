@@ -4,10 +4,12 @@ import { MessageService } from 'src/app/core/services/helpers/message/message.se
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
+  MatSnackBarRef,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 
 
@@ -21,8 +23,15 @@ export class MessagesComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   durationInSeconds = 5;
-	alert:Alert = {message:"", type:'',mostrar:false}; 
-      constructor(private messageService:MessageService,private _snackBar: MatSnackBar  , private translate:TranslateService) { }
+	alert:Alert | null = {message:"", type:'',mostrar:false}; 
+      constructor(private messageService:MessageService,private _snackBar: MatSnackBar  , private translate:TranslateService) {
+
+        this._snackBar.dismiss();
+        this.messageService.closeMessage();
+        this.alert = {message:"", type:'',mostrar:false}; 
+       
+
+       }
 
 
   ngOnInit(): void {
@@ -34,6 +43,10 @@ export class MessagesComponent implements OnInit {
     });
   }
   
+  resetMessage(){
+    this.alert =  {message:"", type:'',mostrar:false};  
+    
+  }
 
   close(){
     this.alert = {message:"", type:'',mostrar:false}; 
@@ -87,13 +100,29 @@ export class MessagesComponent implements OnInit {
         break;
     }
     this._snackBar.openFromComponent(SnackBarComponent, {
-      duration: this.durationInSeconds * 10000,
+      duration: this.durationInSeconds * 1000,
       horizontalPosition: "center",
       verticalPosition: "top",
       panelClass: [clase],
 
       
     });
+
+  //   //TODO 
+  //  snackBarRef.afterDismissed().subscribe(() => {
+
+  //     this.resetMessage();
+  //     // this.messageService.closeMessage();
+  //   });
   }
+
+  // ngOnDestroy() {
+  //   if (this.snackBarSubscription) {
+  //     this.snackBarSubscription.unsubscribe();
+  //   }
+  //  if (this.alertSubscription) {
+  //     this.alertSubscription.unsubscribe();
+  //   }
+  // }
 
   }

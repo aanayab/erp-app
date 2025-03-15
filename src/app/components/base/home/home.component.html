@@ -1,6 +1,6 @@
 <div class="col-12">
   <div class="col-12">
-    <app-menu-mobile *ngIf="foodNode!.length > 0"  [user]="user"  [foodNode]="foodNode" class="col-12  d-md-block d-lg-none d-xl-none fixed-top"></app-menu-mobile>
+    <app-menu-mobile *ngIf="foodNode !== undefined && foodNode.length > 0"  [user]="user"  [foodNode]="foodNode" class="col-12  d-md-block d-lg-none d-xl-none fixed-top"></app-menu-mobile>
   </div>
   <div class="col-12">
     <app-header class="col-12 d-none d-lg-block d-xl-block fixed-top" [user]="user">
@@ -27,7 +27,7 @@
           </span>
         </div>
         <div class="col-12 h-80 scrolling"  ngbScrollSpy #spy="ngbScrollSpy" [ngClass]="!collapsed ? '' : 'ms-md-3'">
-          <app-messages class="col-12"></app-messages>
+          <app-messages  class="col-12"></app-messages>
 <!--   
           <snack-bar-annotated-component-example  class="col-12"></snack-bar-annotated-component-example> -->
           

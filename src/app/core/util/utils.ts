@@ -40,7 +40,7 @@ export class Utils {
   }
 
   logOut(): any {
-    debugger;
+    
     // localStorage.removeItem("SESSIONERPAPPTK");
     // localStorage.removeItem('SESSIONERPAPPUSN');
     this.userLoggedServiceService.setUserName(undefined);
@@ -67,8 +67,7 @@ export class Utils {
             functon(component, body.result);
           } else {
             this.messageService.showDangerMessage(body.mensaje);
-            funcErr!();
-
+            funcErr?.(component); // Si funcErr es undefined o null, no se ejecuta y no lanza error
           }
         }
       },
@@ -82,10 +81,49 @@ export class Utils {
       }
     }
   }
+  subscribeConfirmPasswordHandler(component: any, functon: Function, funcErr?: Function): any {
+    return {
+      next: (response: any) => {
+        
+        this.loadingService.setLoading(false);
+        if (response.status == 200) {
+          var body = response.body;
+          if (body.tipoMensaje == 'S') {
+            functon(component, body.result);
+          } else {
+ 
+            this.messageService.showDangerMessage(body.mensaje);
+            funcErr?.(component); // Si funcErr es undefined o null, no se ejecuta y no lanza error
+            setTimeout(() => {
+              window.location.reload(); 
+          }, 2000); // 3000 milisegundos = 3 segundos
+          
+            
+
+          }
+        }
+      },
+      error: (e: any) => {
+  
+        this.loadingService.setLoading(false);
+        // this.messageService.showDangerMessage(e.message);
+        this.messageService.showDangerMessage("Servicio no disponible favor de intentar más tarde.");
+        // funcErr!(component)
+        // this.router.navigate(['/Login']);
+        funcErr?.(component); // Si funcErr es undefined o null, no se ejecuta y no lanza error
+        setTimeout(() => {
+         
+          window.location.reload();  
+      }, 2000); // 3000 milisegundos = 3 segundos
+      
+       
+      }
+    }
+  }
   subscribeRefreshHandler(component: any, functon: Function, funcErr?: Function): any {
     return {
       next: (response: any) => {
-        debugger;
+  
         this.loadingService.setLoading(false);
         if (response.status == 200) {
           var body = response.body;
@@ -96,7 +134,7 @@ export class Utils {
             functon(component, token);
           } else {
             this.messageService.showDangerMessage(body.mensaje);
-            funcErr!();
+            funcErr?.(component); // Si funcErr es undefined o null, no se ejecuta y no lanza error
 
           }
         }
@@ -113,21 +151,21 @@ export class Utils {
   }
 
   getBearerToken(): HttpHeaders {
-    debugger;
+    
     // let session = localStorage.getItem('SESSIONERPAPPTK');
     const session = this.userLoggedServiceService.getToken();
     if (session == null || session == undefined) {
       // this.router.navigate(['/Login']);
       return new HttpHeaders();
     }
-    console.log(session);
+    // console.log(session);
     let headers = new HttpHeaders()
       .set("Authorization", 'Bearer ' + session)
       .set('X-Client-Type','browser')
       .set('X-Browser-ID',this.userLoggedServiceService.getBrowserUuid());
 
     // .set("Allow",'POST,PUT,GET,DELETE,OPTIONS');
-    console.log(headers);
+    // console.log(headers);
     return headers;
 
 
@@ -135,7 +173,7 @@ export class Utils {
   }
 
   setvaliate(component: any, result: string) {
-    debugger;
+    
     component.userLoggedServiceService.setToken(result);
   }
 
@@ -243,6 +281,11 @@ export class Utils {
       }
     });
     return result;
+  }
+
+  getDateToISO(dateValue:any) : string{
+
+    return new Date(dateValue).toISOString()
   }
   //   getUserBean() : any{
 

@@ -62,3 +62,16 @@ table {
     vertical-align: middle;
  
   }
+
+  .yellow-background {
+    background-color: yellow;
+  }
+
+  .disabled {
+    pointer-events: none; /* Evita que el clic funcione */
+    opacity: 0.5; /* Opcional: reduce la opacidad para indicar que está deshabilitado */
+  }
+
+  .tooltip-enabled {
+  pointer-events: auto; /* Reactiva eventos solo en el tooltip */
+}

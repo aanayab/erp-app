@@ -92,6 +92,7 @@ import {
   MatSnackBarModule,
 } from '@angular/material/snack-bar';
 import { MatButtonModule } from "@angular/material/button";
+import { UserService } from '../core/services/user/user.service';
 
 
  registerLocaleData(localeEs,'es');
@@ -101,7 +102,7 @@ import { MatButtonModule } from "@angular/material/button";
 @NgModule({
   providers: [WsAuthenticateService,Utils,LoadingService,WsAdministratorService,BreadcrumbService,CompanyService
     ,PrivilegyService,WsSysAdminService, IdleServiceService, UserLoggedServiceService,ValidatorService,
-    WsSmsService,MatSnackBar,
+    WsSmsService,MatSnackBar,UserService,
     RouteService,DatePipe,{ provide: LOCALE_ID, useValue: 'en-US' },LocalizedDatePipe],
   imports: [MatButtonModule,MatSnackBarModule,BrowserModule, ReactiveFormsModule, BreadcrumbModule, RouterModule, MaterialModule,
     BrowserAnimationsModule, NgbModule, AppRoutingModule, HttpClientModule, NgFor, ColorPickerModule,

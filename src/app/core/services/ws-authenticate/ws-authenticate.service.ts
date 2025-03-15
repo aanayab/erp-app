@@ -23,14 +23,17 @@ export class WsAuthenticateService {
   private refreshUrl =  environment.wsAuthenticate.refreshUrl;
   private userUrl =  environment.wsAuthenticate.userUrl;
   private addUserUrl =  environment.wsAuthenticate.addUserUrl;
+  private updateUserUrl =  environment.wsAuthenticate.updateUserUrl;
   private usersUrl =  environment.wsAuthenticate.usersUrl;
   private usersByIdCompanyUrl =  environment.wsAuthenticate.usersByIdCompanyUrl;
   private disabelEnableUserUrl =  environment.wsAuthenticate.disabelEnableUserUrl;
   private hideShowUserUrl =  environment.wsAuthenticate.hideShowUserUrl;
   private existUsernameUrl =  environment.wsAuthenticate.existUsernameUrl;
   private existEmailUrl =  environment.wsAuthenticate.existEmailUrl;
+  private existMobileUrl =  environment.wsAuthenticate.existMobileUrl;
   private confirmUserUrl =  environment.wsAuthenticate.confirmUserUrl;
   private deleteUserUrl =  environment.wsAuthenticate.deleteUserUrl;
+  private resetPasswordUrl = environment.wsAuthenticate.resetPasswordUrl;
 
   constructor(private http: HttpClient, private loadingService: LoadingService) { }
 
@@ -38,7 +41,7 @@ export class WsAuthenticateService {
   getToken(username: string, password: string): Observable<HttpResponse<Token>> {
     this.loadingService.setLoading(true);
 
-    let requestId  = uuidv4(); // Generar un UUID
+    let requestId  = environment.profile === "DEV" ? environment.profile : uuidv4(); // Generar un UUID
     localStorage.setItem('SESSIONERPAPPUUID', requestId);
     let headers = new HttpHeaders().set("X-Browser-ID",requestId).set('X-Client-Type','browser');
     return this.http
@@ -93,6 +96,22 @@ export class WsAuthenticateService {
     });
   }
 
+  updateUsers(utils:Utils,userBean:UserBean): Observable<HttpResponse<ResponseBean>> {
+    this.loadingService.setLoading(true);
+    return this.http.put<ResponseBean>(this.updateUserUrl,userBean , {
+      headers: utils.getBearerToken(),
+      observe: 'response',
+    });
+  }
+
+  resetPassword(utils:Utils,userBean:UserBean): Observable<HttpResponse<ResponseBean>> {
+    this.loadingService.setLoading(true);
+    return this.http.put<ResponseBean>(this.resetPasswordUrl,userBean , {
+      headers: utils.getBearerToken(),
+      observe: 'response',
+    });
+  }
+
   disableEnableUser(utils:Utils,username:string | any,enable:boolean): Observable<HttpResponse<ResponseBean>> {
     this.loadingService.setLoading(true);
     return this.http.post<ResponseBean>(this.disabelEnableUserUrl,{username,enable} , {
@@ -130,6 +149,16 @@ export class WsAuthenticateService {
     this.loadingService.setLoading(true);
     return this.http
       .get<Token>(this.existEmailUrl + email,  {
+        headers: utils.getBearerToken(),
+        observe: 'response'
+      });
+  }
+
+
+  existMobile(mobile: string | any,utils:Utils): Observable<HttpResponse<Token>> {
+    this.loadingService.setLoading(true);
+    return this.http
+      .get<Token>(this.existMobileUrl + mobile,  {
         headers: utils.getBearerToken(),
         observe: 'response'
       });

@@ -18,7 +18,7 @@ export class IdleModalComponent {
 
   
   save(){
-    console.log(this.idleServiceService.idleState);
+    // console.log(this.idleServiceService.idleState);
   }
 
 }

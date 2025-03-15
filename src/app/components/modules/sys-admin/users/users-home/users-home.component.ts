@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { ActivatedRoute } from '@angular/router';
 import { UserBean } from 'src/app/core/model/userBean';
+import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
   selector: 'app-users-home',
@@ -13,7 +14,7 @@ export class UsersHomeComponent {
 
  user!: UserBean;
 
-constructor(private router:Router,private activatedRoute:ActivatedRoute){
+constructor(private router:Router,private activatedRoute:ActivatedRoute,private userService:UserService){
 
 }
 
@@ -31,7 +32,8 @@ constructor(private router:Router,private activatedRoute:ActivatedRoute){
   editUser(user:UserBean){
     
     this.user = user;
-    this.router.navigate(["EditUser"], { relativeTo: this.activatedRoute });
+    this.userService.setUser(user); // Guarda el usuario en el servicio
+    this.router.navigate(["EditUser"], { relativeTo: this.activatedRoute, queryParams: { mode: 'edit' }  });
   }
 
 

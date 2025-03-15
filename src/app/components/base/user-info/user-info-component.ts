@@ -30,7 +30,7 @@ export class UserInfoComponent {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.userInfoForm.value);
+    // console.warn(this.userInfoForm.value);
   }
    
 }

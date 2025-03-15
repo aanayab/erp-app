@@ -55,6 +55,7 @@ export class UsersTableComponent {
 
 
   edit(user: UserBean) {
+    
     this.newItemEvent.emit(user);
   }
 
@@ -96,14 +97,14 @@ export class UsersTableComponent {
     component.paginator._intl.nextPageLabel = component.translate.instant('NEXT_PAGE_LABEL');
     component.paginator._intl.previousPageLabel = component.translate.instant('PREVIOUS_PAGE');
     component.dataSource.sort = component.sort;
-    console.log(result)
+    // console.log(result)
 
   }
 
   getUsers() {
-    debugger;
+    
     this, this.companyService.getCompanyObs().subscribe(obs => {
-      debugger;
+      
       this.wsAuthenticateService.getUsersByIdCompany(this.utils, obs.idCompany)
         .subscribe(this.utils.subscribeHandler(this, this.setUsers)
         );

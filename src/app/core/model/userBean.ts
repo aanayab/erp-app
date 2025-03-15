@@ -7,15 +7,17 @@ export interface UserBean {
     enabled?: boolean;
     failedLoginAttempts?: number;   
     firstName?: string;
-    lastModif?: string;   
+    lastModif?: Date;   
     lastName?: string;
     mfaEnabled?: number;  
     mobile?: string;  
     password?: string;
     secret?: string;
-    token?: string;   
+    confirmationToken?: string;   
     authorities?: AuthorityBean[];
     idCompany?: number;
     countryCode?: string;
     hidden?: boolean;
+    accountLocked?: boolean;
+    lockTime?: Date;   
   }

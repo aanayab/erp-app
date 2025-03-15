@@ -2,7 +2,10 @@
 <h1 mat-dialog-title style="color: white;">{{"Theme"| translate}}</h1>
 <div mat-dialog-content>
   <div class="col-12 ps-3">   
+   
     <!-- <input  onkeyup="onSubmit()" [(ngModel)]="color" type="color"/> -->
+
+
     <input  type="hidden" [value]="color"
       [(ngModel)]="color"
        [style.background]="color"

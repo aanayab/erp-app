@@ -10,7 +10,7 @@ import { LanguageServiceService } from '../../helpers/languageService/language-s
 export class LocalizedDatePipe implements PipeTransform {
   constructor(private translateService: TranslateService,private languageServiceService:LanguageServiceService) {}
 
-  transform(value: Date | string, format = 'mediumDate'): string | any {
+  transform(value: Date | string  | undefined | null, format = 'mediumDate'): string | any | undefined | null {
     
     const datePipe = new DatePipe(this.languageServiceService.getLanguage());
     return datePipe.transform(value, format);

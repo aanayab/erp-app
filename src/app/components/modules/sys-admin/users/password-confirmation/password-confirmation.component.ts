@@ -106,13 +106,15 @@ export class PasswordConfirmationComponent {
   sendSmsCode() {
     
     if (this.passwordForm.value.phoneNumber.match(/^\d{10}$/)) {
+    
       this.generatedCode = Math.floor(100000 + Math.random() * 9000).toString(); // Generar un código de 6 dígitos
       const urlTree = this.router.parseUrl(this.router.url);
       const phoneNumberWithCountryCode = this.country.dialling_code +this.passwordForm.value.phoneNumber;
       this.phoneNumberWithCountryCode = phoneNumberWithCountryCode;
       const token = urlTree.queryParams['token'];
       const message = "Su codigo de verficiación es: " + this.generatedCode;
-      this.wsSmsService.sendSms(this.utils,phoneNumberWithCountryCode,message,token).subscribe(this.utils.subscribeHandler(this, () =>{
+      console.log(this.generatedCode);
+      this.wsSmsService.sendSms(this.utils,phoneNumberWithCountryCode,message,token).subscribe(this.utils.subscribeConfirmPasswordHandler(this, () =>{
         this.smsSent = true;
         this.startCountdown(); // Arranca el temporizador de 60 segundos
       }));
@@ -123,7 +125,7 @@ export class PasswordConfirmationComponent {
 
   // Verifica si el código ingresado es correcto
   verifySmsCode() {
-    
+   
     if (this.passwordForm.value.smsCode === this.generatedCode) {
       this.isPhoneVerified = true;
       this.isSending = true; // Habilita el botón para reenviar el código
@@ -138,6 +140,31 @@ export class PasswordConfirmationComponent {
     } else {
       this.errorMessage = 'Incorrect SMS code. Please try again.';
     }
+  }
+
+  error(component:any){
+
+    component.generatedCode = '';
+    component.smsSent = false;
+    component.isPhoneVerified = false;
+    component.countdown = 0;
+    component.isSending = false;
+    component.country = null; 
+  
+    component.errorMessage = null;
+    component.showPassword = false; // Variable para manejar la visibilidad de la contraseña
+    component.showConfirmPassword = false; // Variable para manejar la visibilidad de la contraseña
+    component.phoneNumberWithCountryCode = '';
+     component.passwordForm.patchValue({
+       password:'',
+       confirmPassword:'',
+       phoneNumber:'',
+       smsCode: ''
+     });
+     component.passwordForm.get('password')?.disable();
+     component.passwordForm.get('confirmPassword')?.disable();
+    component.passwordForm.controls.phoneNumber.errors = undefined;
+
   }
 
   onSubmit() {
@@ -158,10 +185,15 @@ export class PasswordConfirmationComponent {
                 hidden2:encryptePhone
               };
         let confirmationEmailBean = { params, to: "" }
-        this.wsAuthenticateService.confirmUser(confirmationEmailBean, this.utils).subscribe(this.utils.subscribeHandler(this, () =>{
+        this.wsAuthenticateService.confirmUser(confirmationEmailBean, this.utils).subscribe(this.utils.subscribeConfirmPasswordHandler(this, () =>{
           this.errorMessage = null;
+
           this.messageService.showSuccessMessage("Password confirmed successfully!");
-          this.router.navigate(['/Login']);
+          setTimeout(() => {
+            // this.messageService.closeMessage();
+              this.router.navigate(['/Login']);
+        }, 3000); // 3000 mili
+        
         }));
         // alert();
       }

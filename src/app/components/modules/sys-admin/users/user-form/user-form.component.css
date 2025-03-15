@@ -27,3 +27,22 @@ input.ng-invalid.ng-touched {
     align-items: center;
     border-radius: var(--bs-border-radius) !important;
 } */
+lib-country-list.disabled_country_selector {
+    pointer-events: none; /* Evita clics y eventos */
+    opacity: 0.5; /* Hace que parezca deshabilitado */
+    cursor: not-allowed; /* Cursor de "prohibido" */
+  }
+
+
+button.reset {
+    margin: 10px;
+    /* display: flex; */
+    align-items: center;
+    gap: 8px;
+    background: var(--bottom-color);
+
+  }
+  .disabled {
+    pointer-events: none; /* Evita que el clic funcione */
+    opacity: 0.5; /* Opcional: reduce la opacidad para indicar que está deshabilitado */
+  }  

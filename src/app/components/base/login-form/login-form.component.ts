@@ -41,7 +41,7 @@ export class LoginFormComponent implements AfterViewInit {
   }
 
   ngOnInit() {
-    debugger;
+    
     // localStorage.removeItem("SESSIONERPAPPTK");
     // localStorage.removeItem('SESSIONERPAPPUSR');
     // localStorage.removeItem('SESSIONERPAPPAUT');
@@ -118,7 +118,8 @@ export class LoginFormComponent implements AfterViewInit {
       },
       error: (e: any) => {
         debugger;
-        this.error = 'Username or password invalid';
+        // this.error = 'Username or password invalid';
+        this.error = e.error;
         //  localStorage.removeItem("SESSIONERPAPPTK");
         //  localStorage.removeItem('SESSIONERPAPPUSN');
         localStorage.removeItem("SESSIONERPAPPUUID");
