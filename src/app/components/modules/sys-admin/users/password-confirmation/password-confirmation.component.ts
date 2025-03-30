@@ -12,6 +12,7 @@ import { EncryptionService } from 'src/app/core/services/helpers/encriptionServi
 import { MessageService } from 'src/app/core/services/helpers/message/message.service';
 import { IConfig, ICountry } from 'ngx-countries-dropdown';
 import { WsSmsService } from 'src/app/core/services/ws-sms/ws-sms.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -42,7 +43,7 @@ export class PasswordConfirmationComponent {
   constructor(private utils: Utils, private elementRef: ElementRef, private router: Router, private wsAuthenticateService: WsAuthenticateService,
     private loadingService: LoadingService, private userLoggedServiceService: UserLoggedServiceService, 
     private ValidatorService: ValidatorService, private fb: FormBuilder,private messageService:MessageService,
-    private wsSmsService:WsSmsService
+    private wsSmsService:WsSmsService,private translate:TranslateService
   ) {
     this.passwordForm = this.fb.group({
       password: [{value:'',disabled:!this.isPhoneVerified}, [Validators.required, this.passwordValidator.bind(this)]],
@@ -112,14 +113,15 @@ export class PasswordConfirmationComponent {
       const phoneNumberWithCountryCode = this.country.dialling_code +this.passwordForm.value.phoneNumber;
       this.phoneNumberWithCountryCode = phoneNumberWithCountryCode;
       const token = urlTree.queryParams['token'];
-      const message = "Su codigo de verficiación es: " + this.generatedCode;
-      console.log(this.generatedCode);
+      const message = this.translate.instant('PASSWORD_CONFIRMATION.SMS_GENERATED_CODE', {
+        generatedCode: this.generatedCode,
+      });
       this.wsSmsService.sendSms(this.utils,phoneNumberWithCountryCode,message,token).subscribe(this.utils.subscribeConfirmPasswordHandler(this, () =>{
         this.smsSent = true;
         this.startCountdown(); // Arranca el temporizador de 60 segundos
       }));
     } else {
-      this.errorMessage = 'Invalid phone number. Must be 10 digits.';
+      this.errorMessage = 'PASSWORD_CONFIRMATION.PHONE_NUMBER_INVALID';
     }
   }
 
@@ -135,10 +137,8 @@ export class PasswordConfirmationComponent {
       this.smsSent = false;
       this.passwordForm.get('confirmPassword')?.enable();
       this.passwordForm.get('password')?.enable();
-      // this.passwordForm.get('phoneNumber')?.disable();
-      // this.passwordForm.get('phoneNumber')?.setValue('');
     } else {
-      this.errorMessage = 'Incorrect SMS code. Please try again.';
+      this.errorMessage = 'PASSWORD_CONFIRMATION.SMS_INCORRECT_CODE';
     }
   }
 
@@ -171,7 +171,7 @@ export class PasswordConfirmationComponent {
     
     if (this.passwordForm.valid) {
       if (this.passwordForm.value.password !== this.passwordForm.value.confirmPassword) {
-        this.errorMessage = 'Passwords do not match';
+        this.errorMessage = 'PASSWORD_CONFIRMATION.PASSWORD_NOT_MATCH';
       } else {
               // Handle successful form submission
               const urlTree = this.router.parseUrl(this.router.url);
@@ -188,9 +188,8 @@ export class PasswordConfirmationComponent {
         this.wsAuthenticateService.confirmUser(confirmationEmailBean, this.utils).subscribe(this.utils.subscribeConfirmPasswordHandler(this, () =>{
           this.errorMessage = null;
 
-          this.messageService.showSuccessMessage("Password confirmed successfully!");
+          this.messageService.showSuccessMessage("PASSWORD_CONFIRMATION.SUCCESS");
           setTimeout(() => {
-            // this.messageService.closeMessage();
               this.router.navigate(['/Login']);
         }, 3000); // 3000 mili
         
@@ -199,7 +198,7 @@ export class PasswordConfirmationComponent {
       }
     } else {
       // Maneja el formulario inválido
-    this.messageService.showDangerMessage("Formulario inválido "+ this.passwordForm.errors);
+    this.messageService.showDangerMessage("PASSWORD_CONFIRMATION.INVALID"+ this.passwordForm.errors);
 
     }
 
@@ -220,16 +219,5 @@ export class PasswordConfirmationComponent {
   toggleConfirmPasswordVisibility() {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
-
-  // ngOnInit(){
-  //   // localStorage.removeItem("SESSIONERPAPPTK");
-  //   // localStorage.removeItem('SESSIONERPAPPUSR');
-  //  // localStorage.removeItem('SESSIONERPAPPAUT');
-  //   // localStorage.removeItem('SESSIONERPAPPUSN');
-  //   this.userLoggedServiceService.setUserName(undefined);
-  //   this.userLoggedServiceService.setToken(undefined);
-  //   this.userLoggedServiceService.setUserLoggedIn(false);
-
-  //   }
 
 }

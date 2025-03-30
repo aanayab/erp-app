@@ -14,7 +14,6 @@ export class LoadingComponent {
 
   @ViewChild("content",{static:true}) content?:ElementRef;
   ngOnInit() {
-  // this.open(this.content);
   this.loadingService.setContent(this.content);   
   }
  
@@ -37,10 +36,5 @@ export class LoadingComponent {
 	close() {
 		this.modalService.dismissAll();
 	}
-
-
-	ngAfterViewInit(): void {
-		
-	  }
 }
 

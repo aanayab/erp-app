@@ -58,24 +58,22 @@ export class HomeComponent implements AfterViewInit {
   setUser(component: any, result: UserBean) {
     const user = result;
     if(user === undefined || user === null){
-      component.messageService.showDangerMessage("utils.USERNAME_ERROR");
+      component.messageService.showDangerMessage("HOME.USERNAME_ERROR");
       component.router.navigate(['/Login']);
       return;
     }
     component.user = user;
     const authorities = user.authorities;
     if(authorities === undefined || authorities === null || authorities.length === 0){
-      component.messageService.showDangerMessage("utils.PERMISION_ERROR");
+      component.messageService.showDangerMessage("HOME.PERMISION_ERROR");
       component.router.navigate(['/Login']);
       return;
     }
 
-    // component.getRoute(authorities![0].authority);
+
     component.getPrivielegy(authorities![0].authority);
     component.getMenu(authorities![0].authority);
 
-    // component.userName = this.utils.getUsername();  
-    //this.ref.detectChanges();
   }
 
   getUser() {
@@ -99,18 +97,6 @@ export class HomeComponent implements AfterViewInit {
   setMenu(component: any, result: any) { 
     component.foodNode = result;
     component.menuService.setMenu(result);
-    // result.forEach((element: any) => {
-    //   let key: any = element.grupo.keyGroup + '|' + element.grupo.ruta;
-    //   let value: any = component.menu.get(key);
-    //   if (value == undefined) {
-    //     value = [];
-    //   }
-    //   value.push(element.screen);
-      // component.menu.set(key, value);
-
-
-    // });
-
   }
 
   getMenu(role: any) {
@@ -119,33 +105,6 @@ export class HomeComponent implements AfterViewInit {
       .subscribe(this.utils.subscribeHandler(this, this.setMenu,() =>{ this.router.navigate(['/Login']);})
       );
   }
-
-
-  // setRoute(component: any, result: any) {
-  //    
-  //   component.routes = result;
-  //   component.routeService.setRoute(result);
-  //   // component.router.config = result;
-  //   // result.forEach((element: any) => {
-  //   //   let key: any = element.grupo.keyGroup + '|' + element.grupo.ruta;
-  //   //   let value: any = component.menu.get(key);
-  //   //   if (value == undefined) {
-  //   //     value = [];
-  //   //   }
-  //   //   value.push(element.screen);
-  //     // component.menu.set(key, value);
-
-
-  //   // });
-
-  // }
-
-  // getRoute(role: any) {
-
-  //   this.wsSysAdminService.getRouteByRole(role)
-  //     .subscribe(this.utils.subscribeHandler(this, this.setRoute)
-  //     );
-  // }
 
 
   ngAfterViewInit() {
@@ -161,14 +120,8 @@ export class HomeComponent implements AfterViewInit {
 
 
   ngOnInit() {
-    // this.utils.getSession();
     this.getUser();
-
-
-    // this.router.navigate(['/']);
   }
-
-  title: string = "Hola";
 
   @Input() error: string = '';
 

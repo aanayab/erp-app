@@ -54,14 +54,7 @@ export class MessagesComponent implements OnInit {
    this._snackBar.dismiss();
   }
 
-  // openTopSnackBar(alert:Alert) {
-  //   this._snackBar.open( this.translate.instant(alert.message), 'Close', {
-  //     horizontalPosition: "center",
-  //     verticalPosition: "top",
-  //     duration: this.durationInSeconds * 1000,
 
-  //   });
-  // }
 
   mostrarSnackbar(tipo: string) {
 
@@ -108,21 +101,8 @@ export class MessagesComponent implements OnInit {
       
     });
 
-  //   //TODO 
-  //  snackBarRef.afterDismissed().subscribe(() => {
 
-  //     this.resetMessage();
-  //     // this.messageService.closeMessage();
-  //   });
   }
 
-  // ngOnDestroy() {
-  //   if (this.snackBarSubscription) {
-  //     this.snackBarSubscription.unsubscribe();
-  //   }
-  //  if (this.alertSubscription) {
-  //     this.alertSubscription.unsubscribe();
-  //   }
-  // }
 
   }

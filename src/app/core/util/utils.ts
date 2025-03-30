@@ -36,21 +36,16 @@ export class Utils {
     localStorage.setItem("SESSIONERPAPPCMY", JSON.stringify(this.companyService.getCompany()));
     localStorage.setItem("SESSIONERPAPPPER", JSON.stringify(this.privilegyService.getPrivilegy()));
     localStorage.setItem("SESSIONERPAPPPMN", JSON.stringify(this.menuService.getMenu()));
-    // localStorage.setItem("SESSIONERPAPPROUTE",JSON.stringify(this.routeService.getRoute()));
+   
   }
 
   logOut(): any {
-    
-    // localStorage.removeItem("SESSIONERPAPPTK");
-    // localStorage.removeItem('SESSIONERPAPPUSN');
+
     this.userLoggedServiceService.setUserName(undefined);
     this.userLoggedServiceService.setToken(undefined);
     this.companyService.setCompany(undefined);
     this.privilegyService.setPrivilegy(undefined);
     this.menuService.setMenu(undefined);
-    // this.routeService.setRoute(undefined);
-    //localStorage.removeItem('SESSIONERPAPPUSR');
-    //localStorage.removeItem('SESSIONERPAPPAUT');
     this.userLoggedServiceService.setUserLoggedIn(false);
     this.router.navigate(['/Login']);
   }
@@ -71,12 +66,9 @@ export class Utils {
           }
         }
       },
-      error: (e: any) => {
-        
+      error: (e: any) => {        
         this.loadingService.setLoading(false);
-        // this.messageService.showDangerMessage(e.message);
-        this.messageService.showDangerMessage("Servicio no disponible favor de intentar más tarde.");
-        // funcErr!()
+        this.messageService.showDangerMessage("UTILS.SERVICE_UNAVAILABLE");
         this.router.navigate(['/Login']);
       }
     }
@@ -106,10 +98,7 @@ export class Utils {
       error: (e: any) => {
   
         this.loadingService.setLoading(false);
-        // this.messageService.showDangerMessage(e.message);
-        this.messageService.showDangerMessage("Servicio no disponible favor de intentar más tarde.");
-        // funcErr!(component)
-        // this.router.navigate(['/Login']);
+        this.messageService.showDangerMessage("UTILS.SERVICE_UNAVAILABLE");
         funcErr?.(component); // Si funcErr es undefined o null, no se ejecuta y no lanza error
         setTimeout(() => {
          
@@ -139,12 +128,9 @@ export class Utils {
           }
         }
       },
-      error: (e: any) => {
-        
+      error: (e: any) => {        
         this.loadingService.setLoading(false);
-        // this.messageService.showDangerMessage(e.message);
-        this.messageService.showDangerMessage("Servicio no disponible favor de intentar más tarde.");
-        // funcErr!()
+        this.messageService.showDangerMessage("UTILS.SERVICE_UNAVAILABLE");
         this.router.navigate(['/Login']);
       }
     }
@@ -152,20 +138,14 @@ export class Utils {
 
   getBearerToken(): HttpHeaders {
     
-    // let session = localStorage.getItem('SESSIONERPAPPTK');
     const session = this.userLoggedServiceService.getToken();
-    if (session == null || session == undefined) {
-      // this.router.navigate(['/Login']);
+    if (session == null || session == undefined) {      
       return new HttpHeaders();
     }
-    // console.log(session);
     let headers = new HttpHeaders()
       .set("Authorization", 'Bearer ' + session)
       .set('X-Client-Type','browser')
       .set('X-Browser-ID',this.userLoggedServiceService.getBrowserUuid());
-
-    // .set("Allow",'POST,PUT,GET,DELETE,OPTIONS');
-    // console.log(headers);
     return headers;
 
 
@@ -173,14 +153,11 @@ export class Utils {
   }
 
   setvaliate(component: any, result: string) {
-    
-    component.userLoggedServiceService.setToken(result);
+        component.userLoggedServiceService.setToken(result);
   }
 
   getSession() {
-    //  const session = localStorage.getItem('SESSIONERPAPPTK');
-
-    const session = this.userLoggedServiceService.getToken();
+       const session = this.userLoggedServiceService.getToken();
     if (session == null || session == undefined) {
       this.router.navigate(['/Login']);
       return;
@@ -195,7 +172,7 @@ export class Utils {
   getUsername(): any {
     const username = this.userLoggedServiceService.getUserName();
     if (username === undefined) {
-      this.messageService.showDangerMessage("utils.USERNAME_ERROR");
+      this.messageService.showDangerMessage("UTILS.USERNAME_ERROR");
       this.router.navigate(['/Login']);
       return;
     }
@@ -205,7 +182,7 @@ export class Utils {
   validateCompany() {
 
     if (this.companyService.getCompany() === undefined) {
-      this.messageService.showDangerMessage("utils.COMPANY_ERROR");
+      this.messageService.showDangerMessage("UTILS.COMPANY_ERROR");
       this.router.navigate(['/Login']);
       return;
     }
@@ -214,7 +191,7 @@ export class Utils {
   validatePermissions() {
 
     if (this.privilegyService.getPrivilegy() === undefined) {
-      this.messageService.showDangerMessage("utils.PERMISION_ERROR");
+      this.messageService.showDangerMessage("UTILS.PERMISION_ERROR");
       this.router.navigate(['/Login']);
       return;
     }
@@ -223,7 +200,7 @@ export class Utils {
 
   validateMenu() {
     if (this.menuService.getMenu() === undefined) {
-      this.messageService.showDangerMessage("utils.MENU_ERROR");
+      this.messageService.showDangerMessage("UTILS.MENU_ERROR");
       this.router.navigate(['/Login']);
       return;
     }
@@ -276,7 +253,6 @@ export class Utils {
       if (controlErrors != null) {
         Object.keys(controlErrors).forEach(keyError => {
           result.push(this.translate.instant(`${key}:${keyError}`));
-          // console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
         });
       }
     });
@@ -284,42 +260,6 @@ export class Utils {
   }
 
   getDateToISO(dateValue:any) : string{
-
     return new Date(dateValue).toISOString()
   }
-  //   getUserBean() : any{
-
-  //     const UserBean = localStorage.getItem('SESSIONERPAPPUSR');
-  //     if(UserBean ==null || UserBean == undefined){
-  //        // this.router.navigate(['/Login']);
-  //         return;
-  //     }
-  //       return JSON.parse(atob(UserBean));
-  // } 
-
-  //   getAuthorities() : any{
-
-  //     const authorities = localStorage.getItem('SESSIONERPAPPAUT');
-  //     if(authorities ==null || authorities == undefined){
-  //        // this.router.navigate(['/Login']);
-  //         return;
-  //     }
-  //       return JSON.parse(atob(authorities));
-  // } 
-
-  // validateRoot() : boolean{
-
-  //   let authorities = this.getAuthorities();
-  //   authorities.forEach((value:any) => {
-  //     // console.log(value);
-  //     if(value.authority === "ROLE_ROOT"){
-  //       return true;
-  //     }else{
-  //       return false;
-  //     }
-  //   });
-
-  //     return authorities;
-  // } 
-
 }

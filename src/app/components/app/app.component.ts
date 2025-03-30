@@ -12,11 +12,8 @@ import { LanguageServiceService } from 'src/app/core/services/helpers/languageSe
 import { WsAuthenticateService } from 'src/app/core/services/ws-authenticate/ws-authenticate.service';
 import { Utils } from 'src/app/core/util/utils';
 import { IdleModalComponent } from '../base/idle-modal/idle-modal.component';
-import { TranslateService } from '@ngx-translate/core';
+  import { TranslateService } from '@ngx-translate/core';
 import { RouteService } from 'src/app/core/services/helpers/routeServices/route-services';
-
-
-
 
 
 
@@ -29,20 +26,15 @@ import { RouteService } from 'src/app/core/services/helpers/routeServices/route-
 export class AppComponent {
 
 
-  myValue = "Hello world!";
-
-
-
+ 
   // call this event handler before browser refresh
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
     
-    // console.log(this.router.url.toUpperCase());
+
     if (this.router.url.toUpperCase() !== "/LOGIN" && this.router.url.split("?")[0].toUpperCase() !== "/CONFIRMATION" && this.router.url.toUpperCase() !== "/PLOGIN") {
       this.utils.processRefresh();
     }
   }
-
-  // execute this function before browser refresh
 
 
 
@@ -53,7 +45,7 @@ export class AppComponent {
      ,private languageServiceService:LanguageServiceService, private wsAuthenticateService:WsAuthenticateService
      ,private utils:Utils, private translate:TranslateService,private elementRef: ElementRef,private routeService:RouteService
      ,private languageService:LanguageServiceService) {
-      translate.addLangs(['en-US','es']);
+      translate.addLangs(['en','es','de','fr','ja','ru']);
       translate.setDefaultLang(this.languageService.getLanguage())
 
 
@@ -65,32 +57,30 @@ export class AppComponent {
     // this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
     this.idle.onIdleEnd.subscribe(() => {
-      this.idleServiceService.idleState = 'NO_LONGER_IDLE'
-      // console.log(this.idleServiceService.idleState);
+      this.idleServiceService.idleState = 'APP.NO_LONGER_IDLE'
+
       this.reset();
     });
 
     this.idle.onTimeout.subscribe(() => {
       this.dialog.closeAll();
-      this.idleServiceService.idleState = 'TIMED_OUT';
+      this.idleServiceService.idleState = 'APP.TIMED_OUT';
       this.idleServiceService.timedOut = true;
-      // console.log(this.idleServiceService.idleState);
+     
       this.utils.logOut();
-      // this.reset();
-      // return;
+
 
     });
 
     this.idle.onIdleStart.subscribe(() => {
-      this.idleServiceService.idleState = 'YOU_HAVE_GONE_IDLE'
-      // console.log(this.idleServiceService.idleState);
+      this.idleServiceService.idleState = 'APP.YOU_HAVE_GONE_IDLE'
       this.openDialog(this);
     });
 
 
 
     this.idle.onTimeoutWarning.subscribe((countdown) => {
-      this.idleServiceService.idleState =   this.translate.instant('YOU_WILL_TIME_OUT', {
+      this.idleServiceService.idleState =   this.translate.instant('APP.YOU_WILL_TIME_OUT', {
         value1: countdown,
       });
       console.log(this.idleServiceService.idleState);
@@ -108,7 +98,7 @@ export class AppComponent {
         this.idle.stop();
       }
     })
-    // this.reset();
+
 
 
 
@@ -155,11 +145,9 @@ export class AppComponent {
   }
 
   reset() {
-    this.idle.watch();
-    // this.idleServiceService.resetIdle();
-    // this.idleServiceService.idleState = 'started.';
+    this.idle.watch();   
     this.idleServiceService.timedOut = false;
-    // this.dialog.closeAll();
+
   }
 
 
@@ -168,20 +156,11 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.idle.watch();
-  //   window.addEventListener("keyup", disableF5);
-  //   window.addEventListener("keydown", disableF5);
-  
-  //  function disableF5(e:any) {
-  //     if ((e.which || e.keyCode) == 116) e.preventDefault(); 
-  //  };
 
   }
 
 
-  open($event: Event) {
-    // console.log(event);
 
-  }
 
 }
 

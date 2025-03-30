@@ -41,53 +41,19 @@ export class UserFormComponent {
 
   };
 
-  // selectedCountryConfig: IConfig = {
-  //   hideFlag: true,
-  //   hideCode: true,
-  //   hideName: true,
-  //   hideSearch: true,
-  //   hideDialCode: true,
-  //   displayCapital: true,
-  //   displayLanguageCode: true,
-  //   displayLanguageName: true,
-  //   displayCurrencyCode: true,
-  //   displayCurrencyName: true,
-  //   displayCurrencySymbol: true,
-  // };
-  // countryListConfig: IConfig = {
-  //   hideFlag: true,
-  //   hideCode: true,
-  //   hideName: true,
-  //   hideSearch: true,
-  //   hideDialCode: true,
-  //   displayCapital: true,
-  //   displayLanguageCode: true,
-  //   displayLanguageName: true,
-  //   displayCurrencyCode: true,
-  //   displayCurrencyName: true,
-  //   displayCurrencySymbol: true,
 
-  // };
   country: ICountry | any;
   panelOpenState = true;
   @Input() user: UserBean | any;
   userInfoForm = this.formBuilder.group({
     username: [{ value: '', disabled: false }, Validators.required],
-    // accountVerified: [{value: false, disabled: true}, Validators.required],
     createAt: [{ value: new Date(), disabled: false }, Validators.required],
     enabled: [{ value: false, disabled: true }, Validators.required],
-    // failedLoginAttempts: [{value: 0, disabled: true}, Validators.required],
     firstName: [{ value: '', disabled: false }, Validators.required],
     lastModif: [{ value: new Date(), disabled: false }, Validators.required],
     lastName: [{ value: '', disabled: false }, Validators.required],
-    // mfaEnabled : [{value:false, disabled: true},Validators.required],
     email: [{ value: '', disabled: false }, [Validators.required, Validators.email]],
-    mobile: [{ value: '', disabled: false }, Validators.required, this.phoneValidator],
-    // password: [{value:'', disabled: true},Validators.required],
-    // secret: [{value:'',disabled: true},Validators.required],
-    // token : [{value:'',disabled: true},Validators.required],
-    // country: [{value:'',disabled: true},Validators.required],
-    //  idCompany: [{value:this.companyService.getCompany().idCompany,disabled: false},Validators.required],
+    mobile: [{ value: '', disabled: false }, Validators.required, this.phoneValidator], 
     hidden: [{ value: false, disabled: false }, Validators.required],
 
   });
@@ -95,7 +61,6 @@ export class UserFormComponent {
   existEmailFlag = false;
   existMobileFlag = false;
   existUsernameFlag = false;
-  //  today: Date = new Date();  
   private intervalo: any;
   type: any;
   message: any;
@@ -136,7 +101,6 @@ export class UserFormComponent {
           email: this.user.email,
           mobile: this.user.mobile,
           hidden: this.user.hidden,
-          // country:  this.user.countryCode
         });
         this.country = this.countryService.getAllCountries().find(c => c.code === this.user.countryCode);
         this.userInfoForm.get('username')?.disable({ emitEvent: false });
@@ -150,7 +114,6 @@ export class UserFormComponent {
           this.userInfoForm.get('hidden')?.disable({ emitEvent: false });
           
         }
-        // this.userInfoForm.get('country')?.disable({ emitEvent: false });
       }
     });
   }
@@ -236,22 +199,22 @@ export class UserFormComponent {
     // TODO: Use EventEmitter with form value   
 
     if (this.existEmailFlag) {
-      this.messageService.showDangerMessage("email:exist");
+      this.messageService.showDangerMessage("USER_FORM.EMAIL_EXIST");
       return;
     }
     if (this.existMobileFlag) {
-      this.messageService.showDangerMessage("mobile:exist");
+      this.messageService.showDangerMessage("USER_FORM.MOBILE_EXIST");
       return;
     }
     if (this.existUsernameFlag) {
-      this.messageService.showDangerMessage("username:exist");
+      this.messageService.showDangerMessage("USER_FORM.USERNAME_EXIST");
       return;
     }
 
     let user: UserBean | any = this.userInfoForm.getRawValue();
     let country = this.country;
     if (country == undefined) {
-      this.messageService.showDangerMessage("country:required");
+      this.messageService.showDangerMessage("USER_FORM.COUNTRY_REQUIRED");
       return;
     }
     if (!this.userInfoForm.valid) {
@@ -259,7 +222,7 @@ export class UserFormComponent {
       return;
     }
     if (this.companyService.getCompany().idCompany === undefined) {
-      this.messageService.showDangerMessage("company:required");
+      this.messageService.showDangerMessage("USER_FORM.COMPANY_REQUIRED");
       return;
     }
 
@@ -273,45 +236,31 @@ export class UserFormComponent {
 
       this.wsAuthenticateService.updateUsers(this.utils, user).subscribe(this.utils.subscribeHandler(this, () => {
         this.type = 'success';
-        this.message = "El usuario " + this.user.username + " se actualizó correctamente."
-        //   this.message =  `Se ha mandado un correo de confirmación al correo ${user.email} para finalizar el alta del usuario ${user.username}.`;
+        this.message = this.translate.instant('USER_FORM.EDIT_SUCCESS', {
+          username: this.user.username
+        });
         let element = document.getElementById("modalSuccess") as HTMLElement;
         element.click();
-
-        //   // 
       }));
 
 
     } else {
       this.wsAuthenticateService.addUsers(this.utils, user).subscribe(this.utils.subscribeHandler(this, () => {
         this.type = 'success';
-        this.message = this.translate.instant('CONFIRMATION_EMAIL', {
+        this.message = this.translate.instant('USER_FORM.CONFIRMATION_EMAIL', {
           email: user.email,
           username: user.username
         });
-        //   this.message =  `Se ha mandado un correo de confirmación al correo ${user.email} para finalizar el alta del usuario ${user.username}.`;
         let element = document.getElementById("modalSuccess") as HTMLElement;
-        element.click();
-
-        //   // 
+        element.click(); 
       }));
 
     }
-
-    ;
-
-
-    // console.log(user);
   }
 
   getCompany() {
     return this.companyService.getCompany().name;
   }
-
-
-  // updateName() {
-  //   this.name.setValue('Nancy');
-  // }
 
   updateProfile() {
     this.userInfoForm.patchValue({
@@ -325,7 +274,6 @@ export class UserFormComponent {
     this.userInfoForm.patchValue({
       createAt:ahora,
       lastModif: ahora,
-      // country:  this.user.countryCode
     });
   }
 
@@ -337,15 +285,12 @@ export class UserFormComponent {
     let user: UserBean | any = this.userInfoForm.getRawValue();
     this.wsAuthenticateService.resetPassword(this.utils, user).subscribe(this.utils.subscribeHandler(this, () => {
       this.type = 'success';
-      this.message = this.translate.instant('RESET_EMAIL', {
+      this.message = this.translate.instant('USER_FORM.RESET_EMAIL', {
         email: user.email,
         username: user.username
       });
-      //   this.message =  `Se ha mandado un correo de confirmación al correo ${user.email} para finalizar el alta del usuario ${user.username}.`;
       let element = document.getElementById("modalSuccess") as HTMLElement;
       element.click();
-
-      //   // 
     }));
   }
 

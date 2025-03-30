@@ -16,9 +16,6 @@ export class IdleModalComponent {
     ,@Inject(MAT_DIALOG_DATA) public component:any,public idleServiceService:IdleServiceService,
     private wsAuthenticateService:WsAuthenticateService) {}
 
-  
-  save(){
-    // console.log(this.idleServiceService.idleState);
-  }
+
 
 }

@@ -19,7 +19,8 @@ import { Router } from '@angular/router';
 
 
 
-export class PhoneSelectorComponent implements OnChanges {
+// TODO quité Onchanges
+export class PhoneSelectorComponent  {
 
   @Input() userBean?: UserBean;
   companyBeans?: CompanyBean[];
@@ -35,8 +36,6 @@ export class PhoneSelectorComponent implements OnChanges {
   selectCompany(companyBean:any){
    this.companyBean = companyBean;
    this.companyService.setCompany(this.companyBean);  
-  //  this.router.
-
   window.location.reload();
    
 
@@ -51,11 +50,7 @@ export class PhoneSelectorComponent implements OnChanges {
       component.companyBean = result[0];
     }
     component.companyService.setCompany(component.companyBean);
-    //  
-    // component.companyBeans = result;  
-   
-    // component.companyService.setCompany(component.companyBean);
-  
+
 
   }
 
@@ -95,13 +90,6 @@ export class PhoneSelectorComponent implements OnChanges {
     }
     return result;
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    
-   
-
-  }
-
 
   ngOnInit() {
 

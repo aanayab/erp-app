@@ -1,19 +1,16 @@
 <div class="col-12">
     <h1 mat-dialog-title style="color: white;" class="text-center">
-    <span>{{"Inactivity" | translate}}</span>
+    <span>{{"IDDLE_MODAL_INACTIVITY" | translate}}</span>
     </h1>
     <div mat-dialog-content>
-      <p>{{"INACTIVITY_MESSAGE"| translate}}</p>
+      <p>{{"IDDLE_MODAL_INACTIVITY_MESSAGE"| translate}}</p>
       <div class="example-form-fields" >   
          <p><strong>{{idleServiceService.idleState | translate}}</strong></p>
-          <!-- <p *ngIf="idleServiceService.lastPing"><small>Last keepalive ping <strong>{{idleServiceService.lastPing }}</strong></small></p> -->
-          <!-- <button (click)="component.reset()" *ngIf="idleServiceService.timedOut">Restart</button> -->
     </div>
       </div>
       <div mat-dialog-actions>
-        <button mat-button style="color: white;" (click)="component.stay()"   mat-dialog-close>{{"Stay" | translate}}</button>
-        <button mat-button style="color: white;" (click)="component.exit()"   mat-dialog-close>{{"Logout" | translate}}</button>
-        <!-- <button mat-button color="warn" (click)="save()" cdkFocusInitial>{{'Save'|translate}}</button> -->
+        <button mat-button style="color: white;" (click)="component.stay()"   mat-dialog-close>{{"IDDLE_MODAL_STAY" | translate}}</button>
+        <button mat-button style="color: white;" (click)="component.exit()"   mat-dialog-close>{{"IDDLE_MODAL_LOGOUT" | translate}}</button>
       </div>
     </div>
     

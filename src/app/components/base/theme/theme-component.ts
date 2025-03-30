@@ -42,10 +42,5 @@ export class ThemeComponent {
     this.utils.resetTheme();
 
   }
-
-  // getColor(): string{
-  //   return this.color;
-  // }
-
 }
 

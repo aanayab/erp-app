@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Utils } from '../../../core/util/utils';
 import { CompanyBean } from 'src/app/core/model/companyBean';
@@ -18,8 +18,8 @@ import { Router } from '@angular/router';
 })
 
 
-
-export class CompanySelectorComponent implements OnChanges {
+// TODO quit oncahcnges
+export class CompanySelectorComponent  {
 
   @Input() userBean?: UserBean;
   companyBeans?: CompanyBean[];
@@ -35,8 +35,6 @@ export class CompanySelectorComponent implements OnChanges {
   selectCompany(companyBean:any){
    this.companyBean = companyBean;
    this.companyService.setCompany(this.companyBean);  
-  //  this.router.
-
   window.location.reload();
    
 
@@ -51,11 +49,7 @@ export class CompanySelectorComponent implements OnChanges {
       component.companyBean = result[0];
     }
     component.companyService.setCompany(component.companyBean);
-    //  
-    // component.companyBeans = result;  
-   
-    // component.companyService.setCompany(component.companyBean);
-  
+ 
 
   }
 
@@ -95,13 +89,6 @@ export class CompanySelectorComponent implements OnChanges {
     }
     return result;
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    
-   
-
-  }
-
 
   ngOnInit() {
 

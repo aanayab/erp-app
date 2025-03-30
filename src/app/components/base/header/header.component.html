@@ -2,7 +2,6 @@
 
 <div class="col-12">
 <header class="header pt-1 center">
-  <!-- <header class="p-1 border" style="background: linear-gradient(90deg,#000000, #fc0303);"> -->
   <div class="d-flex flex-wrap col-12">
     <div class="col-1">
       <span routerLink="/Home" class="material-icons mt-1 mx-2 pl-3" style="font-size: 30px;color: white;"
@@ -13,7 +12,7 @@
     </div>
     <div class="col-4">
       <form class="col-12  mb-3 mb-lg-0 me-lg-2">
-        <input type="search" class="form-control" placeholder="{{'Search'|translate}}" aria-label="Search">
+        <input type="search" class="form-control" placeholder="{{'HEADER.SEARCH'|translate}}" aria-label="Search">
       </form>
     </div>
     <div class="col-1"><app-lenguage-selector /></div>
@@ -22,46 +21,39 @@
     <div class="col-1 ">
     </div>
     <div class="col-1 text-center pe-3 d-flex flex-row-reverse">
-      <!-- <mat-icon  class="mt-1 text-dark"   aria-hidden="true"  [matMenuTriggerFor]="menu" aria-label="Example home icon" fontIcon="more_vert"/> -->
+
       <span class="material-icons mt-1 mx-2 dropdown-toggle " aria-hidden="true" [matMenuTriggerFor]="menu"
         aria-label="home icon" fontIcon="account_circle">account_circle</span>
-      <!-- <mat-icon  class="mt-1 mx-2 text-dark dropdown-toggle"   aria-hidden="true"  [matMenuTriggerFor]="menu" aria-label="home icon" fontIcon="account_circle"/> -->
-
       <mat-menu #menu="matMenu">
         <button (click)="openDialog(user)" mat-menu-item>
           <span class="material-icons text-dark mt-1 mx-2" aria-hidden="true"
             aria-label="user_attributes">person</span>
-          <span>{{"UserInfo"| translate}}</span>
+          <span>{{"HEADER.USER_INFO"| translate}}</span>
         </button>
         <button (click)="openDialog(user)" mat-menu-item>
           <span class="material-icons text-dark mt-1 mx-2" aria-hidden="true"
             aria-label="user_attributes">comment</span>
-          <span>{{"Community"| translate}}</span>
+          <span>{{"HEADER.COMMUNITY"| translate}}</span>
         </button>
         <button (click)="openDialog(user)" mat-menu-item>
           <span class="material-icons text-dark mt-1 mx-2" aria-hidden="true" 
             aria-label="user_attributes">help_outline</span>
-          <span>{{"Help"| translate}}</span>
+          <span>{{"HEADER.HELP"| translate}}</span>
         </button>
         <button (click)="openDialog(user)" mat-menu-item>
           <span class="material-icons text-dark mt-1 mx-2" aria-hidden="true"
             aria-label="user_attributes">phone</span>
-          <span>{{"Support"| translate}}</span>
+          <span>{{"HEADER.SUPPORT"| translate}}</span>
         </button>
         <button (click)="openThemeDialog()" mat-menu-item>
           <span class="material-icons text-dark mt-1 mx-2" aria-hidden="true"
             aria-label="user_attributes">style</span>
-          <span>{{"Theme"| translate}}</span>
+          <span>{{"HEADER.THEME"| translate}}</span>
         </button>
-        
-                     <!-- <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voice mail</span>
-      </button> -->
         <button (click)="logOut()" mat-menu-item>
           <span class="material-icons text-dark mt-1 mx-2" aria-hidden="true" 
             aria-label="home icon">logout</span>
-          <span>{{"Logout" | translate}}</span>
+          <span>{{"HEADER.LOGOUT" | translate}}</span>
         </button>
       </mat-menu>
     </div>

@@ -4,7 +4,7 @@
 
       <mat-panel-title>
         <div class="text-center col-12 h5">
-          {{'UsersInfo' | translate}}
+          {{'USERS_TABLE.USERINFO' | translate}}
         </div>
 
       </mat-panel-title>
@@ -12,63 +12,56 @@
     <div class="col-12">
 
       <mat-form-field class="col-3 float-start">
-        <mat-label>{{"FILTER" | translate}}</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="{{'SEARCH_USER' | translate}}" #input>
+        <mat-label>{{"USERS_TABLE.FILTER" | translate}}</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="{{'USERS_TABLE.SEARCH_USER' | translate}}" #input>
       </mat-form-field>
       <button class="col-3 float-end" routerLink="./AddUser" [queryParams]="{ mode: 'add' }"
-        ngbTooltip="{{'AddUser' | translate}}" mat-icon-button
+        ngbTooltip="{{'USERS_TABLE.ADD_USER' | translate}}" mat-icon-button
         aria-label="Example icon button with a open in new tab icon">
         <mat-icon>add_circle</mat-icon></button>
 
 
-      <mat-paginator [pageSizeOptions]="[25, 50, 100, 150]" aria-label="Select page of users"></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[25, 50, 100, 150]"
+        [attr.aria-label]="'USERS_TABLE.PAGINATOR' | translate"></mat-paginator>
     </div>
 
     <div class="mat-elevation-z8 col-12 center">
       <table class="table table-sm table-striped  table-hover" mat-table j [dataSource]="dataSource" matSort>
-        <!-- <mat-text-column justify="center">
-        test
-      </mat-text-column> -->
-
-
-        <!-- Progress Column -->
         <ng-container matColumnDef="username">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"Username" | translate}} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"USERS_TABLE.USERNAME" | translate}} </th>
           <td [ngClass]="{
             'table-warning': row.confirmationToken && !row.accountLocked,
             'table-danger': row.accountLocked
           }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
-              ? 'Cuenta bloqueada' 
+              ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate) 
               : (row.confirmationToken 
-                  ? 'Este usuario está pendiente de confirmación' 
+                  ? ('USERS_TABLE.CONFIRM_PENNDING' | translate) 
                   : '')">{{row.username}}</span>
           </td>
         </ng-container>
-
-        <!-- Name Column -->
         <ng-container matColumnDef="firstName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"FirstName" | translate}} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"USERS_TABLE.FIRSTNAME" | translate}} </th>
           <td [ngClass]="{
             'table-warning': row.confirmationToken && !row.accountLocked,
             'table-danger': row.accountLocked
           }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
-             ? 'Cuenta bloqueada' 
-             : (row.confirmationToken 
-                 ? 'Este usuario está pendiente de confirmación' 
-                 : '')">{{row.firstName}}
+              ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('USERS_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{row.firstName}}
             </span></td>
         </ng-container>
 
         <!-- Fruit Column -->
         <ng-container matColumnDef="lastName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"LastName" | translate}} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"USERS_TABLE.LASTNAME" | translate}} </th>
           <td [ngClass]="{
             'table-warning': row.confirmationToken && !row.accountLocked,
             'table-danger': row.accountLocked
           }" mat-cell *matCellDef="let row"><span [ngbTooltip]="row.accountLocked 
-              ? 'Cuenta bloqueada' 
+              ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate) 
               : (row.confirmationToken 
-                  ? 'Este usuario está pendiente de confirmación' 
+                  ? ('USERS_TABLE.CONFIRM_PENNDING' | translate) 
                   : '')">
               {{row.lastName}} </span> </td>
         </ng-container>
@@ -76,14 +69,14 @@
 
         <!-- Fruit Column -->
         <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"Email" | translate}} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"USERS_TABLE.EMAIL" | translate}} </th>
           <td [ngClass]="{
             'table-warning': row.confirmationToken && !row.accountLocked,
             'table-danger': row.accountLocked
           }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
-              ? 'Cuenta bloqueada' 
+              ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate) 
               : (row.confirmationToken 
-                  ? 'Este usuario está pendiente de confirmación' 
+                  ? ('USERS_TABLE.CONFIRM_PENNDING' | translate) 
                   : '')">{{row.email}}
             </span> </td>
         </ng-container>
@@ -91,14 +84,14 @@
 
         <!-- Fruit Column -->
         <ng-container matColumnDef="mobile">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"Mobile" | translate}} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"USERS_TABLE.MOBILE" | translate}} </th>
           <td [ngClass]="{
             'table-warning': row.confirmationToken && !row.accountLocked,
             'table-danger': row.accountLocked
           }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
-              ? 'Cuenta bloqueada' 
+              ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate) 
               : (row.confirmationToken 
-                  ? 'Este usuario está pendiente de confirmación' 
+                  ? ('USERS_TABLE.CONFIRM_PENNDING' | translate) 
                   : '')">{{row.mobile}}
             </span> </td>
         </ng-container>
@@ -106,21 +99,21 @@
 
         <!-- Fruit Column -->
         <ng-container matColumnDef="country">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"Country" | translate}} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"USERS_TABLE.COUNTRY" | translate}} </th>
           <td [ngClass]="{
             'table-warning': row.confirmationToken && !row.accountLocked,
             'table-danger': row.accountLocked
           }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
-             ? 'Cuenta bloqueada' 
-             : (row.confirmationToken 
-                 ? 'Este usuario está pendiente de confirmación' 
-                 : '')">
+              ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('USERS_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">
               {{row.countryCode}} </span></td>
         </ng-container>
 
 
         <ng-container matColumnDef="disabled">
-          <th mat-header-cell *matHeaderCellDef>{{"Active" | translate}}</th>
+          <th mat-header-cell *matHeaderCellDef>{{"USERS_TABLE.ACTIVE" | translate}}</th>
           <td [ngClass]="{
             'table-warning': row.confirmationToken && !row.accountLocked,
             'table-danger': row.accountLocked
@@ -129,57 +122,55 @@
               (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : disable(row)"
               class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
               aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
-  ? 'Cuenta bloqueada' 
+  ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate)
   : (row.confirmationToken 
-      ? 'Este usuario está pendiente de confirmación' 
-      : ('Active' | translate))">block</span>
+      ? ('USERS_TABLE.CONFIRM_PENNDING' | translate)  
+      : ('USERS_TABLE.ENABLED' | translate))">block</span>
             <span [class.disabled]="row.confirmationToken || row.accountLocked" *ngIf="row.enabled"
               (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : disable(row)"
               class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
               aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
-  ? 'Cuenta bloqueada' 
+  ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate)
   : (row.confirmationToken 
-      ? 'Este usuario está pendiente de confirmación' 
-      : ('Deactive' | translate))">done</span>
+      ?  ('USERS_TABLE.CONFIRM_PENNDING' | translate)  
+      : ('USERS_TABLE.DISABLED' | translate))">done</span>
           </td>
         </ng-container>
 
 
         <ng-container matColumnDef="edit">
-          <th mat-header-cell *matHeaderCellDef>{{"Edit" | translate}}</th>
+          <th mat-header-cell *matHeaderCellDef>{{"USERS_TABLE.EDIT" | translate}}</th>
           <td [ngClass]="{
             'table-warning': row.confirmationToken && !row.accountLocked,
             'table-danger': row.accountLocked
           }" mat-cell *matCellDef="let row">
-            <span 
-              (click)="edit(row)"
-              class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
-              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
-  ? 'Cuenta bloqueada' 
+            <span (click)="edit(row)" class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled"
+              aria-hidden="true" aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate)
   : (row.confirmationToken 
-      ? 'Este usuario está pendiente de confirmación' 
-      : ('Edit' | translate))">edit</span>
+      ? ('USERS_TABLE.CONFIRM_PENNDING' | translate) 
+      : ('USERS_TABLE.EDIT' | translate))">edit</span>
           </td>
         </ng-container>
 
         <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef>{{"Delete" | translate}}</th>
+          <th mat-header-cell *matHeaderCellDef>{{"USERS_TABLE.DELETE" | translate}}</th>
           <td [ngClass]="{
             'table-warning': row.confirmationToken && !row.accountLocked,
             'table-danger': row.accountLocked
           }" mat-cell *matCellDef="let row">
             <span (click)="borrar(row)" class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true"
               aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
-  ? 'Cuenta bloqueada' 
+  ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate)
   : (row.confirmationToken 
-      ? 'Este usuario está pendiente de confirmación' 
-      : ('Delete' | translate))">delete</span>
+      ? ('USERS_TABLE.CONFIRM_PENNDING' | translate) 
+      : ('USERS_TABLE.DELETE' | translate))">delete</span>
           </td>
         </ng-container>
 
 
         <ng-container matColumnDef="Hide">
-          <th mat-header-cell *matHeaderCellDef>{{"Visible" | translate}}</th>
+          <th mat-header-cell *matHeaderCellDef>{{"USERS_TABLE.VISIBLE" | translate}}</th>
           <td [ngClass]="{
             'table-warning': row.confirmationToken && !row.accountLocked,
             'table-danger': row.accountLocked
@@ -188,18 +179,18 @@
               (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : hide(row)"
               class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
               aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
-  ? 'Cuenta bloqueada' 
+  ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate) 
   : (row.confirmationToken 
-      ? 'Este usuario está pendiente de confirmación' 
-      : ('Show' | translate))">radio_button_unchecked</span>
+      ? ('USERS_TABLE.CONFIRM_PENNDING' | translate) 
+      : ('USERS_TABLE.SHOW' | translate))">radio_button_unchecked</span>
             <span [class.disabled]="row.confirmationToken || row.accountLocked" *ngIf="!row.hidden"
               (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : hide(row)"
               class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
               aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
-  ? 'Cuenta bloqueada' 
+  ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate) 
   : (row.confirmationToken 
-      ? 'Este usuario está pendiente de confirmación' 
-      : ('Hide' | translate))">radio_button_checked</span>
+      ? ('USERS_TABLE.CONFIRM_PENNDING' | translate)
+      : ('USERS_TABLE.HIDE' | translate))">radio_button_checked</span>
           </td>
         </ng-container>
 
@@ -211,8 +202,8 @@
 
         <!-- Row shown when there is no matching data. -->
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="10">{{"NO_DATA_MATCHING" | translate}}<br><button routerLink="./AddUser"
-              [queryParams]="{ mode: 'add' }" ngbTooltip="{{'AddUser' | translate}}" mat-icon-button
+          <td class="mat-cell" colspan="10">{{"USERS_TABLE.NO_DATA_MATCHING" | translate}}<br><button routerLink="./AddUser"
+              [queryParams]="{ mode: 'add' }" ngbTooltip="{{'USERS_TABLE.ADD_USER' | translate}}" mat-icon-button
               aria-label="Example icon button with a open in new tab icon">
               <mat-icon>add_circle</mat-icon></button></td>
         </tr>

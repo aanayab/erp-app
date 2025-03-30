@@ -1,42 +1,42 @@
 <div class="col-12">
   <form [formGroup]="userInfoForm" (ngSubmit)="onSubmit()">
-<h1 mat-dialog-title style="color: white;" class="text-center">{{"UserInfo"| translate}}</h1>
+<h1 mat-dialog-title style="color: white;" class="text-center">{{"USER_INFO.USERINFO"| translate}}</h1>
 <div mat-dialog-content>
   <div class="col-12">   
       <mat-form-field>
-        <mat-label>{{'FirstName'|translate}}</mat-label>
-        <input formControlName="firstName"  matInput placeholder="{{'FirstName'|translate}}" required>
+        <mat-label>{{'USER_INFO.FIRSTNAME'|translate}}</mat-label>
+        <input formControlName="firstName"  matInput placeholder="{{'USER_INFO.FIRSTNAME'|translate}}" required>
         <mat-hint>Hint</mat-hint> 
       </mat-form-field>
       &nbsp;
       <mat-form-field>
-        <mat-label>{{'LastName'|translate}}</mat-label>
-        <input  formControlName="lastName"  matInput placeholder="{{'LastName'|translate}}" required>
+        <mat-label>{{'USER_INFO.LASTNAME'|translate}}</mat-label>
+        <input  formControlName="lastName"  matInput placeholder="{{'USER_INFO.LASTNAME'|translate}}" required>
         <mat-hint>Hint</mat-hint> 
       </mat-form-field>
       &nbsp;
       <mat-form-field appearance="fill">
-        <mat-label>{{'Email'|translate}}</mat-label>
-        <input  formControlName="email"  matInput placeholder="{{'Email'|translate}}" required>
+        <mat-label>{{'USER_INFO.EMAIL'|translate}}</mat-label>
+        <input  formControlName="email"  matInput placeholder="{{'USER_INFO.EMAIL'|translate}}" required>
          <mat-hint>Hint</mat-hint> 
       </mat-form-field>
       &nbsp;
       <mat-form-field appearance="fill">
-        <mat-label>{{'Mobile'|translate}}</mat-label>
-        <input formControlName="mobile"  matInput placeholder="{{'Mobile'|translate}}" required>
+        <mat-label>{{'USER_INFO.MOBILE'|translate}}</mat-label>
+        <input formControlName="mobile"  matInput placeholder="{{'USER_INF._MOBILE'|translate}}" required>
         <mat-hint>Hint</mat-hint> 
       </mat-form-field>
       &nbsp;
       <mat-form-field appearance="fill">
-        <mat-label>{{'Country'|translate}}</mat-label>
-        <input  formControlName="country"  matInput placeholder="{{'Country'|translate}}" required>
+        <mat-label>{{'USER_INFO.COUNTRY'|translate}}</mat-label>
+        <input  formControlName="country"  matInput placeholder="{{'USER_INFO.COUNTRY'|translate}}" required>
         <mat-hint>Hint</mat-hint> 
       </mat-form-field>
    </div>
   </div>
   <div mat-dialog-actions>
-    <button mat-button style="color: white;"   mat-dialog-close>{{'Close'|translate}}</button>
-    <button mat-button style="color: white;"    type="submit" [disabled]="!userInfoForm.valid">{{'Submit'| translate}}</button>
+    <button mat-button style="color: white;"   mat-dialog-close>{{'USER_INFO.CLOSE'|translate}}</button>
+    <button mat-button style="color: white;"    type="submit" [disabled]="!userInfoForm.valid">{{'USER_INFO.SUBMIT'| translate}}</button>
 
   </div>
 </form>

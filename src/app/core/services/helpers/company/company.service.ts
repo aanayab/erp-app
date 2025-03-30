@@ -23,15 +23,12 @@ export class CompanyService {
 
   getCompanyObs(): Observable<CompanyBean> {
     if (this.company === undefined) {
-      this.messageService.showDangerMessage("utils.COMPANY ERROR");
+      this.messageService.showDangerMessage("COMPANY_SERVICE.COMPANY_ERROR");
     }
     return of(this.company);
   }
 
   getCompany(): CompanyBean {
-    // if (this.company === undefined) {
-    //   this.messageService.showDangerMessage("utils.COMPANY ERROR");
-    // }
     return this.company;
   }
 

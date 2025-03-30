@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class IdleServiceService {
 
 
-  idleState = 'NOT_STARTED';
+  idleState = 'IDDLE_SERVICE.NOT_STARTED';
   timedOut = false;
   lastPing?: any = null;
 
@@ -15,7 +15,7 @@ export class IdleServiceService {
 
 
   resetIdle(){
-    this.idleState = 'NOT_STARTED';
+    this.idleState = 'IDDLE_SERVICE.NOT_STARTED';
     this.timedOut = false;
   }
  

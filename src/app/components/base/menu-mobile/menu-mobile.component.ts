@@ -24,10 +24,6 @@ export class MenuMobileComponent {
 
   }
 
-  ngOnInit() {
-  // this.keys =[ ...this.menu.keys() ];
-
-  }
 
 
   logOut(){    
@@ -36,7 +32,6 @@ export class MenuMobileComponent {
 
   move(name: string) {
     alert(name);
-    // this.sidevarChange();
 }
 
   sidevarChange() {

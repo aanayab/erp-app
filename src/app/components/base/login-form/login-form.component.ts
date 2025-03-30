@@ -42,10 +42,6 @@ export class LoginFormComponent implements AfterViewInit {
 
   ngOnInit() {
     
-    // localStorage.removeItem("SESSIONERPAPPTK");
-    // localStorage.removeItem('SESSIONERPAPPUSR');
-    // localStorage.removeItem('SESSIONERPAPPAUT');
-    // localStorage.removeItem('SESSIONERPAPPUSN');
     this.userLoggedServiceService.setUserName(undefined);
     this.userLoggedServiceService.setToken(undefined);
     this.userLoggedServiceService.setUserLoggedIn(false);
@@ -66,7 +62,7 @@ export class LoginFormComponent implements AfterViewInit {
           this.subscribeHandlerLogin(this.form.value.username)
         );
     } else {
-      this.error = 'Username or password invalid';
+      this.error = 'LOGIN.INVALID';
       this.loadingService.setLoading(false);
     }
 
@@ -95,33 +91,15 @@ export class LoginFormComponent implements AfterViewInit {
           const browserUuid = localStorage.getItem("SESSIONERPAPPUUID");
           this.userLoggedServiceService.setBrowserUuid(browserUuid);
           localStorage.removeItem("SESSIONERPAPPUUID");
-          //  if (body.tipoMensaje == 'S') {
-          // Extraer solo el token
           const token = authorization.replace('Bearer ', '').trim();
-          //  localStorage.setItem('SESSIONERPAPPTK', btoa(JSON.stringify(body.result)));
-          //  localStorage.setItem('SESSIONERPAPPUSN', btoa(JSON.stringify(username)));
           this.userLoggedServiceService.setToken(token);
           this.userLoggedServiceService.setUserName(username);
           this.userLoggedServiceService.setUserLoggedIn(true);
           this.router.navigate(['/Home']);
-          //  } else {
-          //  this.error = 'Username or password invalid';
-          // //  localStorage.removeItem("SESSIONERPAPPTK");
-          // //  localStorage.removeItem('SESSIONERPAPPUSN');
-          //  this.userLoggedServiceService.setUserName(undefined);
-          //  this.userLoggedServiceService.setToken(undefined);
-          //  this.loadingService.setLoading(false);
-          //  }
-
-
         }
       },
       error: (e: any) => {
-        debugger;
-        // this.error = 'Username or password invalid';
         this.error = e.error;
-        //  localStorage.removeItem("SESSIONERPAPPTK");
-        //  localStorage.removeItem('SESSIONERPAPPUSN');
         localStorage.removeItem("SESSIONERPAPPUUID");
         this.userLoggedServiceService.setBrowserUuid(undefined)
         this.userLoggedServiceService.setUserName(undefined);

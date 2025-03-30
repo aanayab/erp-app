@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PrivilegyBean } from 'src/app/core/model/peivilegyBean';
-import { MenuBean } from '../../../model/menuBean';
 import { FoodNode } from '../../../model/foodNode';
 
 @Injectable({

@@ -19,13 +19,11 @@ constructor(private router:Router,private activatedRoute:ActivatedRoute,private 
 }
 
   getRouter(): Router {
-    // console.log(this.router);
     return this.router;
   }
 
   getActiveRouter(): ActivatedRoute {
      
-    // console.log(this.activatedRoute);
     return this.activatedRoute;
   }
 

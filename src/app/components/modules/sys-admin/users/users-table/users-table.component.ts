@@ -28,7 +28,6 @@ export class UsersTableComponent {
   users: UserBean[] | any;
   panelOpenState = true;
   @Output() newItemEvent = new EventEmitter<UserBean>();
-  // @Output() user?: UserBean | any;
 
 
   constructor(private utils: Utils, private wsAuthenticateService: WsAuthenticateService,
@@ -48,7 +47,10 @@ export class UsersTableComponent {
         // Elimina el objeto en el índice encontrado.
         this.users.splice(index, 1);
         this.dataSource.data = this.dataSource.data.filter(item => item.username !== user.username);
-        this.messageService.showSuccessMessage("El usuario " + username + " se eliminó correctamente.");
+        const message =  this.translate.instant('USERS_TABLE.DELETE_MESSAGE', {
+          username: username
+        });
+        this.messageService.showSuccessMessage(message);
       }
     }));
   }
@@ -61,25 +63,12 @@ export class UsersTableComponent {
 
   disable(user: UserBean) {
     user.enabled = !user.enabled;
-    // if(user.enabled === 1){
-    //   user.enabled = 0;
-    //   enabled = false;
-    // }else{
-    //   user.enabled = 1;
-    //   enabled = true;
-    // }
 
     this.wsAuthenticateService.disableEnableUser(this.utils, user.username, user.enabled).subscribe(this.utils.subscribeHandler(this, () => { }));
   }
   hide(user: UserBean) {
     user.hidden = !user.hidden;
-    // if(user.hidden === 1){
-    //   user.hidden = 0;
-    // }else{
-    //   user.hidden = 1;
-    // }
     this.wsAuthenticateService.hideShowUser(this.utils, user.username, user.hidden).subscribe(this.utils.subscribeHandler(this, () => { }));
-    // this.router.navigate(['/UserEdit']);
   }
 
   ngOnInit() {
@@ -93,11 +82,10 @@ export class UsersTableComponent {
     component.users = result;
     component.dataSource = new MatTableDataSource(result);
     component.dataSource.paginator = component.paginator;
-    component.paginator._intl.itemsPerPageLabel = component.translate.instant('ITEMS_PER_PAGE');
-    component.paginator._intl.nextPageLabel = component.translate.instant('NEXT_PAGE_LABEL');
-    component.paginator._intl.previousPageLabel = component.translate.instant('PREVIOUS_PAGE');
+    component.paginator._intl.itemsPerPageLabel = component.translate.instant('USERS_TABLE.ITEMS_PER_PAGE');
+    component.paginator._intl.nextPageLabel = component.translate.instant('USERS_TABLE.NEXT_PAGE_LABEL');
+    component.paginator._intl.previousPageLabel = component.translate.instant('USERS_TABLE.PREVIOUS_PAGE');
     component.dataSource.sort = component.sort;
-    // console.log(result)
 
   }
 
