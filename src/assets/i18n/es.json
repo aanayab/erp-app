@@ -1,29 +1,29 @@
 {
  
     "BREADCRUMP":{
-        "ADMINISTRATOR": "Administrador",
-        "AUDITORY": "Auditoria",
-        "CONTABILITY": "Contabilidad",
-        "COSTUMER_SUCCESS": "Servicio al cliente",
-        "COSTUMER": "Clientes",
-        "DIRECTION": "Dirección",
-        "DO": "Desarrollo Organizacional",
-        "FINANCE": "Finanzas",
-        "MANAGEMENT": "Gestión",
-        "HR": "Recursos Humanos",
-        "INVENTORY": "Inventarios",
-        "MARKETING": "Mercadotecnia",
-        "OPERATIONS": "Operaciones",
-        "PRODUCTIONS": "Producción",
-        "SALES_POINT": "Punto de Venta",
-        "SALES": "Ventas",
-        "SUPPORT":"Soporte",
-        "SYSTEM_ADMINISTRATOR": "Administrador de sistema",
-        "USERS": "Usuarios",
-        "ADD_USER": "Agregar Usuario",
-        "EDIT_USER": "Editar Usuario",
-        "PURCHASING": "Compras",
-        "HOME": "Home"
+        "ADMINISTRATOR": "Administrador.",
+        "AUDITORY": "Auditoria.",
+        "CONTABILITY": "Contabilidad.",
+        "COSTUMER_SUCCESS": "Servicio al cliente.",
+        "COSTUMER": "Clientes.",
+        "DIRECTION": "Dirección.",
+        "DO": "Desarrollo Organizacional.",
+        "FINANCE": "Finanzas.",
+        "MANAGEMENT": "Gestión.",
+        "HR": "Recursos Humanos.",
+        "INVENTORY": "Inventarios.",
+        "MARKETING": "Mercadotecnia.",
+        "OPERATIONS": "Operaciones.",
+        "PRODUCTIONS": "Producción.",
+        "SALES_POINT": "Punto de Venta.",
+        "SALES": "Ventas.",
+        "SUPPORT":"Soporte.",
+        "SYSTEM_ADMINISTRATOR": "Administrador de sistema.",
+        "USERS": "Usuarios.",
+        "ADD_USER": "Agregar Usuario.",
+        "EDIT_USER": "Editar Usuario.",
+        "PURCHASING": "Compras.",
+        "HOME": "Home."
     },
 
     
@@ -32,25 +32,38 @@
         "USERNAME_ERROR": "El usuario no ha sido asignado."
     },
     "LENGUAGE_SELECTOR": {
-        "LANGUAGE": "Idioma"
+        "LANGUAGE": "Idioma."
     },
     "COMPANY_SELECTOR": {
-        "COMPANY": "Empresa"
+        "COMPANY": "Empresa.",
+        "TOOLTIP":"Seleccionar empresa.",
+        "TOOLTIP_COMPANY":"Empresa."
     },
     "PHONE_SELECTOR": {
-        "COMPANY": "Empresa"
+        "COMPANY": "Empresa."
     },
     "HEADER": {
         "SEARCH": "Buscar...",
-        "USER_INFO": "Información de usuario",
-        "COMMUNITY": "Comunidad",
-        "HELP": "Ayuda",
-        "THEME": "Tema",
-        "SUPPORT": "Soporte",
-        "LOGOUT": "Salir"
+        "USER_INFO": "Información de usuario.",
+        "COMMUNITY": "Comunidad.",
+        "HELP": "Ayuda.",
+        "THEME": "Tema.",
+        "SUPPORT": "Soporte.",
+        "LOGOUT": "Salir.",
+        "TOOLTIP_HOME": "Ir al inicio",
+        "TOOLTIP_SEARCH": "Buscar cualquier elemento que se encuentre en la página.",
+        "TOOLTIP_USERNAME": "Usuario en sesión.",
+        "TOOLTIP_PROFILE": "Abrir para ver perfíl del usuario.",
+        "TOOLTIP_PROFILE_USER":"Dar click para ver información del usuario.",
+        "TOOLTIP_PROFILE_COMMENT":"Dar click para excribir en el blog.",
+        "TOOLTIP_PROFILE_HELP":"Dar click para ver la ayuda.",
+        "TOOLTIP_PROFILE_SUPPORT":"Dar click para soliciar soporte.",
+        "TOOLTIP_PROFILE_THEME":"Dar click para cambiar el tema de la página.",
+        "TOOLTIP_PROFILE_LOGOUT":"Dar click para salir de la página."
     },
     "FOOTER": {
-        "COPYRIGHT": "Derechos reservados"
+        "COPYRIGHT": "Derechos reservados",
+        "TOOLTIP":"Enlace oficial."
     },
     "LOGIN": {
         "PASSWORD": "Contraseña",
