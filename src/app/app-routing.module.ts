@@ -1,30 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginFormComponent } from '../components/base/login-form/login-form.component';
-import { HomeComponent } from '../components/base/home/home.component'
-import { AdminComponent } from '../components/modules/admin/admin.component';
-import { AuditComponent } from '../components/modules/auditoria/auditoria.component';
-import { ContaComponent } from '../components/modules/contabilidad/contabilidad.component';
-import { CostSuccComponent } from '../components/modules/cost-succ/cost-succ.component';
-import { CustomerComponent } from '../components/modules/costumers/costumers.component';
-import { DirComponent } from '../components/modules/direccion/direccion.component';
-import { DoComponent } from '../components/modules/do/do.component';
-import { FinanzasComponent } from '../components/modules/finanzas/finanzas.component';
-import { GestionComponent } from '../components/modules/gestion/gestion.component';
-import { HrComponent } from '../components/modules/hr/hr.component';
-import { InvComponent } from '../components/modules/inventarios/inventarios.component';
-import { MktComponent } from '../components/modules/marketing/marketing.component';
-import { OpComponent } from '../components/modules/operaciones/operaciones.component';
-import { ProdComponent } from '../components/modules/produccion/produccion.component';
-import { PvComponent } from '../components/modules/punto-venta/punto-venta.component';
-import { SalesComponent } from '../components/modules/sales/sales.component';
-import { SupportComponent } from '../components/modules/support/support.component';
-import { SysAdminComponent } from '../components/modules/sys-admin/sys-admin.component';
-import { PurchComponent } from '../components/modules/compras/compras.component';
-import { AppComponent } from '../components/app/app.component';
-import { UserFormComponent } from '../components/modules/sys-admin/users/user-form/user-form.component';
-import { UsersHomeComponent } from '../components/modules/sys-admin/users/users-home/users-home.component';
-import { PasswordConfirmationComponent } from '../components/modules/sys-admin/users/password-confirmation/password-confirmation.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { HomeComponent } from './components/home/home.component'
+import { AdminComponent } from './pages/admin/admin.component';
+import { AuditComponent } from './pages/auditoria/auditoria.component';
+import { ContaComponent } from './pages/contabilidad/contabilidad.component';
+import { CostSuccComponent } from './pages/cost-succ/cost-succ.component';
+import { CustomerComponent } from './pages/costumers/costumers.component';
+import { DirComponent } from './pages/direccion/direccion.component';
+import { DoComponent } from './pages/do/do.component';
+import { FinanzasComponent } from './pages/finanzas/finanzas.component';
+import { GestionComponent } from './pages/gestion/gestion.component';
+import { HrComponent } from './pages/hr/hr.component';
+import { InvComponent } from './pages/inventarios/inventarios.component';
+import { MktComponent } from './pages/marketing/marketing.component';
+import { OpComponent } from './pages/operaciones/operaciones.component';
+import { ProdComponent } from './pages/produccion/produccion.component';
+import { PvComponent } from './pages/punto-venta/punto-venta.component';
+import { SalesComponent } from './pages/sales/sales.component';
+import { SupportComponent } from './pages/support/support.component';
+import { SysAdminComponent } from './pages/sys-admin/sys-admin.component';
+import { PurchComponent } from './pages/compras/compras.component';
+import { AppComponent } from './app.component';
+import { UserFormComponent } from './pages/sys-admin/users/user-form/user-form.component';
+import { UsersHomeComponent } from './pages/sys-admin/users/users-home/users-home.component';
+import { PasswordConfirmationComponent } from './pages/sys-admin/users/password-confirmation/password-confirmation.component';
 
 
 const routes: Routes = [
