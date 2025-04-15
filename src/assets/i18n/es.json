@@ -78,7 +78,7 @@
         "INVALID": "Username or password invalido.",
         "TOOLTIP_USERNAME":"Capturar el usuario.",
         "TOOLTIP_PASSWORD":"Capturar la contraseña.",
-        "TOOLTIP_SUBMIT":"AutDar click para authenticar."
+        "TOOLTIP_SUBMIT":"Dar click para authenticar."
     },
     "THEME": {
         "THEME": "Tema",
