@@ -124,7 +124,7 @@ export class AppComponent {
 
   refresh() {
     this.wsAuthenticateService.refesh(this.utils.getUsername(),this.utils)
-      .subscribe(this.utils.subscribeHandler(this, this.setRefresh,() =>this.router.navigate(['/Login']))
+      .subscribe(this.utils.subscribeRefreshHandler(this, this.setRefresh,() =>this.router.navigate(['/Login']))
       );
   }
 

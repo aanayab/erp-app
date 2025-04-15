@@ -25,14 +25,19 @@
         "PURCHASING": "Compras.",
         "HOME": "Home."
     },
-
+    "MENU":{
+      "TOOLTIP":"Dar click."
+    },
     
     "HOME": {
         "PERMISION_ERROR": "El usuario no tiene permisos asignados.",
-        "USERNAME_ERROR": "El usuario no ha sido asignado."
+        "USERNAME_ERROR": "El usuario no ha sido asignado.",
+        "TOOLTIP_CLOSE_MENU":"Cerrar menú.",
+        "TOOLTIP_OPEN_MENU":"Abrir menú."
     },
     "LENGUAGE_SELECTOR": {
-        "LANGUAGE": "Idioma."
+        "LANGUAGE": "Idioma.",
+        "TOOLTIP": "Seleccionar idioma."
     },
     "COMPANY_SELECTOR": {
         "COMPANY": "Empresa.",
@@ -40,7 +45,8 @@
         "TOOLTIP_COMPANY":"Empresa."
     },
     "PHONE_SELECTOR": {
-        "COMPANY": "Empresa."
+        "COMPANY": "Empresa.",
+        "TOOLTIP": "Seleccionar empresa."
     },
     "HEADER": {
         "SEARCH": "Buscar...",
@@ -66,10 +72,13 @@
         "TOOLTIP":"Enlace oficial."
     },
     "LOGIN": {
-        "PASSWORD": "Contraseña",
-        "USERNAME": "Usuario",
-        "FORM_LOGIN": "Login",
-        "INVALID": "Username or password invalid"
+        "PASSWORD": "Contraseña.",
+        "USERNAME": "Usuario.",
+        "FORM_LOGIN": "Login.",
+        "INVALID": "Username or password invalido.",
+        "TOOLTIP_USERNAME":"Capturar el usuario.",
+        "TOOLTIP_PASSWORD":"Capturar la contraseña.",
+        "TOOLTIP_SUBMIT":"AutDar click para authenticar."
     },
     "THEME": {
         "THEME": "Tema",

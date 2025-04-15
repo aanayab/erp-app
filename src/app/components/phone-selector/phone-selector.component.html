@@ -2,7 +2,7 @@
 <div class="text-white text-left pt-2 ps-5" *ngIf="!validateRoot() && companyBean">{{companyBean.name}}</div>
 <div class="row" *ngIf="validateRoot() && companyBeans">
 	<div class="col col-3">
-		<div ngbDropdown  class="d-inline-block">
+		<div [ngbTooltip]="('PHONE_SELECTOR.TOOLTIP' | translate )" ngbDropdown  class="d-inline-block">
 			<button   style="color: white;" type="button" class="btn dropdown pt-3 pt-lg-2" id="dropdownBasic1" ngbDropdownToggle>
 				{{'PHONE_SELECTOR.COMPANY' | translate}}
 			</button>

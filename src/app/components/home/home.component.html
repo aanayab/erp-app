@@ -11,7 +11,7 @@
       <mat-drawer disableClose="true" opened="{{!collapsed}}" class="col-3 pt-5 float-end d-none d-lg-block d-xl-block"
         #drawer mode="over">
         <div class="col-12">
-          <span (click)="drawer.toggle();sidevarChange(this)" *ngIf="!collapsed"
+          <span (click)="drawer.toggle();sidevarChange(this)"  [ngbTooltip]="('HOME.TOOLTIP_CLOSE_MENU' | translate)" *ngIf="!collapsed"
             class="float-end material-icons d-none d-lg-block d-xl-block">
             arrow_back
           </span>
@@ -22,7 +22,7 @@
       </mat-drawer>
       <mat-drawer-content class="col-12 min-vh-100">
         <div class="col-12 d-none  d-lg-block pt-5 " (click)="drawer.toggle();sidevarChange(this)">
-          <span *ngIf="collapsed" class="material-icons sidevar pt-5">
+          <span *ngIf="collapsed"  [ngbTooltip]="('HOME.TOOLTIP_OPEN_MENU' | translate)" class="material-icons sidevar pt-5">
             menu
           </span>
         </div>
