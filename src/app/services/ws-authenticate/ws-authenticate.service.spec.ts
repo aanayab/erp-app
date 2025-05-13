@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/testing';
 
-import { WsAuthenticateService } from './ws-authenticate.service';
+import { WsAuthenticateService } from './ws-authenticate.user.service';
 
 describe('WsAuthenticateService', () => {
   let service: WsAuthenticateService;

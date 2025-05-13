@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { ActivatedRoute } from '@angular/router';
 import { UserBean } from 'src/app/model/userBean';
-import { UserService } from 'src/app/services/user/user.service';
+import { UserService } from 'src/app/pages/sys-admin/users/services/user.service';
 
 @Component({
   selector: 'app-users-home',

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Utils } from 'src/app/util/utils';
 import { IdleServiceService } from 'src/app/services/helpers/idleService/idle-service.service';
-import { WsAuthenticateService } from 'src/app/services/ws-authenticate/ws-authenticate.service';
+import { WsAuthenticateService } from 'src/app/services/ws-authenticate/ws-authenticate.user.service';
 
 
 @Component({

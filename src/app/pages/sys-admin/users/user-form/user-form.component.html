@@ -129,7 +129,23 @@
             <label>{{'USER_FORM.LAST_MODIF'|translate}}</label>
             <h2><span class="form-control badge bg-secondary">{{userInfoForm!.get('lastModif')?.value | localizedDate:'medium' }}</span></h2>
           </div>
-          <div *ngIf="mode ==='edit'" class="form-group col-md-3 text-center pt-2">
+
+          <div class="col-md-3">
+            <label>{{'USER_FORM.CREATE_AT_USER'|translate}}</label>
+           <h2><span class="form-control badge bg-secondary">{{  userInfoForm.get('createUser')?.value    }}</span></h2>
+          </div>
+          <div class="form-group col-md-3 ">
+            <label>{{'USER_FORM.LAST_MODIF_USER'|translate}}</label>
+            <h2><span class="form-control badge bg-secondary">{{userInfoForm!.get('lastModifUser')?.value  }}</span></h2>
+          </div>
+
+          
+        </div>
+         <hr>
+         <div class="col-12 row text-start">
+          <div class="col-md-6"></div>
+
+         <div *ngIf="mode ==='edit'" class="form-group col-md-3 text-center pt-2">
             <button class="reset badge" type="button"   mat-button (click)="resetPassword()" style="color: white;"> <mat-icon>lock_reset</mat-icon>{{'USER_FORM.RESET_PASSWORD'|translate}}</button>
           </div>
           <div *ngIf="user?.accountLocked" class="form-group col-md-3 ">

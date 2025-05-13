@@ -1,7 +1,7 @@
 import { Input, Component, Output, EventEmitter, AfterViewInit, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { WsAuthenticateService } from '../../../../services/ws-authenticate/ws-authenticate.service'
+import { WsAuthenticateService } from '../../../../services/ws-authenticate/ws-authenticate.user.service'
 import { Token } from '../../../../model/token';
 import { LoadingService } from 'src/app/services/helpers/loading/loading.service';
 import { Utils } from '../../../../util/utils';

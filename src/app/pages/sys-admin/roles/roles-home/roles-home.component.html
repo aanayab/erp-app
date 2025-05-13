@@ -1,0 +1,8 @@
+<div *ngIf="getRouter().url.split('/').pop() !== 'Roles'" class="col-12">
+  <router-outlet></router-outlet>
+</div>
+<div class="col-12" *ngIf="getRouter().url.split('/').pop() === 'Roles'">
+  <div class="col-12">
+    <app-roles-table (newItemEvent)="editAuthority($event)"></app-roles-table>
+  </div>
+</div>

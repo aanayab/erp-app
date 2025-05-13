@@ -1,0 +1,105 @@
+<div class="col-12">
+  <mat-accordion>
+    <mat-expansion-panel expanded="{{panelOpenState}}" (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="text-center col-12 h5">
+            {{'ROLE_FORM.ROLEINFO' | translate}}
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form class="col-12" ngClass="{{authorityInfoForm.valid ? 'needs-validated' :'was-validated' }}"
+        [formGroup]="authorityInfoForm" (ngSubmit)="onSubmit()" novalidate>
+        <h1 mat-card-title style="color: white;" class="text-center">{{"ROLE_FORM.ROLEINFO"| translate}}</h1>
+
+        <div class="col-12 row text-center">
+
+          <div class="form-group col-md-12 ">
+            <label>{{'ROLE_FORM.COMPANY'|translate}}</label>
+            <h2 class="pb-0"  matInput>{{getCompany()}}</h2>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-3">
+            <label>{{'ROLE_FORM.AUTHORITY'|translate}}</label>
+            <input class="form-control " formControlName="authority" (blur)="existAuthority()" matInput
+              placeholder="{{'ROLE_FORM.AUTHORITY'|translate}}">
+            <div class="invalid-feedback">
+              {{"ROLE_FORM.AUTHORITY_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="existAuthorityFlag" style="font-size: .875em;" class="text-danger">
+              {{"ROLE_FORM.AUTHORITY_EXIST" | translate}}
+            </div>
+          </div>
+       </div>
+<hr>
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-3">
+            <label>{{'ROLE_FORM.DESCRIPTION'|translate}}</label>  
+            <input class="form-control"  formControlName="description" matInput placeholder="{{'ROLE_FORM.DESCRIPTION'|translate}}"
+              required>
+            <div class="invalid-feedback">
+              {{"ROLE_FORM.DESCRIPTION_REQUIRED"|translate}}
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input"   formControlName="enabled" type="checkbox" id="enabled">
+                <label class="form-check-label" for="enabled">
+                  {{'ROLE_FORM.ACTIVE'|translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input"   formControlName="hidden" type="checkbox" id="hidden">
+                <label class="form-check-label" for="hidden">
+                  {{'ROLE_FORM.VISIBLE'|translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="col-12 row text-start">
+
+          <div class="col-md-3">
+            <label>{{'ROLE_FORM.CREATE_AT'|translate}}</label>
+           <h2><span class="form-control badge bg-secondary">{{  authorityInfoForm.get('createAt')?.value | localizedDate:'medium'   }}</span></h2>
+          </div>
+          <div class="form-group col-md-3 ">
+            <label>{{'ROLE_FORM.LAST_MODIF'|translate}}</label>
+            <h2><span class="form-control badge bg-secondary">{{authorityInfoForm!.get('lastModif')?.value | localizedDate:'medium' }}</span></h2>
+          </div>
+
+          <div class="col-md-3">
+            <label>{{'ROLE_FORM.CREATE_AT_ROLE'|translate}}</label>
+           <h2><span class="form-control badge bg-secondary">{{  authorityInfoForm.get('createUser')?.value    }}</span></h2>
+          </div>
+          <div class="form-group col-md-3 ">
+            <label>{{'ROLE_FORM.LAST_MODIF_ROLE'|translate}}</label>
+            <h2><span class="form-control badge bg-secondary">{{authorityInfoForm!.get('lastModifUser')?.value  }}</span></h2>
+          </div>         
+        </div>
+         <hr>
+        &nbsp;
+        <mat-card-actions align="end">
+          <button mat-button routerLink="../" type="button" style="color: white;">{{'ROLE_FORM.RETURN'|translate}}</button>
+          <button mat-button style="color: white;" type="submit">{{'ROLE_FORM.SUBMIT'|
+            translate}}</button>
+        </mat-card-actions>
+      </form>
+      <app-messages-modal type="{{type}}" messsage="{{message | translate}}"
+        (closeAction)="closeAction()"></app-messages-modal>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

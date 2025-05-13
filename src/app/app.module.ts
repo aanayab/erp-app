@@ -50,12 +50,16 @@ import { MessagesModalComponent } from './components/modals/messages/messages-mo
 import { PasswordConfirmationComponent } from './pages/sys-admin/users/password-confirmation/password-confirmation.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
+import { RoleFormComponent } from './pages/sys-admin/roles/role-form/role-form.component';
+import { RolesTableComponent } from './pages/sys-admin/roles/roles-table/roles-table.component';
+import { RolesHomeComponent } from './pages/sys-admin/roles/roles-home/roles-home.component';
+
 import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
 
-import { WsAuthenticateService} from './services/ws-authenticate/ws-authenticate.service';
+import { WsAuthenticateService} from './services/ws-authenticate/ws-authenticate.user.service';
 import { LoadingService } from './services/helpers/loading/loading.service';
 import {WsAdministratorService} from './services/ws-administrator/ws-administrator.service';
 import { CompanyService } from './services/helpers/company/company.service';
@@ -66,6 +70,7 @@ import { UserLoggedServiceService } from './services/helpers/userLoggedService/u
 import { RouteService } from './services/helpers/routeServices/route-services';
 import { ValidatorService } from './services/helpers/validator/validator.service';
 import { WsSmsService } from './services/ws-sms/ws-sms.service';
+import { AuthorityService } from './pages/sys-admin/roles/services/authority.service';
 
 
 import {  HttpClient, HttpClientModule } from '@angular/common/http';
@@ -92,7 +97,7 @@ import {
   MatSnackBarModule,
 } from '@angular/material/snack-bar';
 import { MatButtonModule } from "@angular/material/button";
-import { UserService } from './services/user/user.service';
+import { UserService } from './pages/sys-admin/users/services/user.service';
 
 
  registerLocaleData(localeEs,'es');
@@ -102,7 +107,7 @@ import { UserService } from './services/user/user.service';
 @NgModule({
   providers: [WsAuthenticateService,Utils,LoadingService,WsAdministratorService,BreadcrumbService,CompanyService
     ,PrivilegyService,WsSysAdminService, IdleServiceService, UserLoggedServiceService,ValidatorService,
-    WsSmsService,MatSnackBar,UserService,
+    WsSmsService,MatSnackBar,UserService,AuthorityService,
     RouteService,DatePipe,{ provide: LOCALE_ID, useValue: 'en' },LocalizedDatePipe],
   imports: [MatButtonModule,MatSnackBarModule,BrowserModule, ReactiveFormsModule, BreadcrumbModule, RouterModule, MaterialModule,
     BrowserAnimationsModule, NgbModule, AppRoutingModule, HttpClientModule, NgFor, ColorPickerModule,
@@ -122,6 +127,7 @@ import { UserService } from './services/user/user.service';
     ,ProdComponent,PvComponent,SalesComponent,SupportComponent,SysAdminComponent,PurchComponent,
     BreadcrumbComponent,MainComponent, IdleModalComponent,UserFormComponent,MessagesModalComponent
     ,PasswordConfirmationComponent,SnackBarComponent,
+    RoleFormComponent,RolesHomeComponent,RolesTableComponent,
     UsersTableComponent,UsersHomeComponent,ThemeComponent,LocalizedDatePipe],
   bootstrap:    [ AppComponent ]
 })

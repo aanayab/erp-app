@@ -2,7 +2,7 @@ import { Input, Component, Output, ChangeDetectionStrategy, EventEmitter, AfterV
 import { FormGroup, FormControl } from '@angular/forms';
 import { Utils } from '../../util/utils';
 import {  Router } from '@angular/router';
-import { WsAuthenticateService } from '../../services/ws-authenticate/ws-authenticate.service'
+import { WsAuthenticateService } from '../../services/ws-authenticate/ws-authenticate.user.service'
 import { UserBean } from 'src/app/model/userBean';
 import { WsSysAdminService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.service';
 import { PrivilegyBean } from 'src/app/model/peivilegyBean';

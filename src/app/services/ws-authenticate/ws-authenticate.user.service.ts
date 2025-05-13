@@ -18,22 +18,22 @@ import { v4 as uuidv4 } from 'uuid';
 export class WsAuthenticateService {
 
 
-  private tokenUrl = environment.wsAuthenticate.tokenUrl;
-  private validateUrl =  environment.wsAuthenticate.validateUrl;
-  private refreshUrl =  environment.wsAuthenticate.refreshUrl;
-  private userUrl =  environment.wsAuthenticate.userUrl;
-  private addUserUrl =  environment.wsAuthenticate.addUserUrl;
-  private updateUserUrl =  environment.wsAuthenticate.updateUserUrl;
-  private usersUrl =  environment.wsAuthenticate.usersUrl;
-  private usersByIdCompanyUrl =  environment.wsAuthenticate.usersByIdCompanyUrl;
-  private disabelEnableUserUrl =  environment.wsAuthenticate.disabelEnableUserUrl;
-  private hideShowUserUrl =  environment.wsAuthenticate.hideShowUserUrl;
-  private existUsernameUrl =  environment.wsAuthenticate.existUsernameUrl;
-  private existEmailUrl =  environment.wsAuthenticate.existEmailUrl;
-  private existMobileUrl =  environment.wsAuthenticate.existMobileUrl;
-  private confirmUserUrl =  environment.wsAuthenticate.confirmUserUrl;
-  private deleteUserUrl =  environment.wsAuthenticate.deleteUserUrl;
-  private resetPasswordUrl = environment.wsAuthenticate.resetPasswordUrl;
+  private tokenUrl = environment.wsAuthenticate.user.tokenUrl;
+  private validateUrl =  environment.wsAuthenticate.user.validateUrl;
+  private refreshUrl =  environment.wsAuthenticate.user.refreshUrl;
+  private userUrl =  environment.wsAuthenticate.user.userUrl;
+  private addUserUrl =  environment.wsAuthenticate.user.addUserUrl;
+  private updateUserUrl =  environment.wsAuthenticate.user.updateUserUrl;
+  private usersUrl =  environment.wsAuthenticate.user.usersUrl;
+  private usersByIdCompanyUrl =  environment.wsAuthenticate.user.usersByIdCompanyUrl;
+  private disabelEnableUserUrl =  environment.wsAuthenticate.user.disabelEnableUserUrl;
+  private hideShowUserUrl =  environment.wsAuthenticate.user.hideShowUserUrl;
+  private existUsernameUrl =  environment.wsAuthenticate.user.existUsernameUrl;
+  private existEmailUrl =  environment.wsAuthenticate.user.existEmailUrl;
+  private existMobileUrl =  environment.wsAuthenticate.user.existMobileUrl;
+  private confirmUserUrl =  environment.wsAuthenticate.user.confirmUserUrl;
+  private deleteUserUrl =  environment.wsAuthenticate.user.deleteUserUrl;
+  private resetPasswordUrl = environment.wsAuthenticate.user.resetPasswordUrl;
 
   constructor(private http: HttpClient, private loadingService: LoadingService) { }
 

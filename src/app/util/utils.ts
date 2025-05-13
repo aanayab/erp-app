@@ -7,7 +7,7 @@ import { CompanyService } from '../services/helpers/company/company.service';
 import { PrivilegyService } from '../services/helpers/privilegy/privilegy.service';
 import { MenuService } from '../services/helpers/menu/menu.service';
 import { UserLoggedServiceService } from '../services/helpers/userLoggedService/user-logged-service.service';
-import { WsAuthenticateService } from '../services/ws-authenticate/ws-authenticate.service';
+import { WsAuthenticateService } from '../services/ws-authenticate/ws-authenticate.user.service';
 import { RouteService } from '../services/helpers/routeServices/route-services';
 import { LanguageServiceService } from '../services/helpers/languageService/language-service.service';
 import { TranslateService } from '@ngx-translate/core';

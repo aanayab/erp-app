@@ -19,5 +19,7 @@ export interface UserBean {
     countryCode?: string;
     hidden?: boolean;
     accountLocked?: boolean;
-    lockTime?: Date;   
+    lockTime?: Date;    
+	  createUser?:string;
+    lastModifUser?:String;   
   }

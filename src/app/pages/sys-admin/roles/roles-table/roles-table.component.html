@@ -1,0 +1,161 @@
+<mat-accordion>
+  <mat-expansion-panel expanded="{{panelOpenState}}" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+
+      <mat-panel-title>
+        <div class="text-center col-12 h5">
+          {{'ROLES_TABLE.ROLEINFO' | translate}}
+        </div>
+
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="col-12">
+
+      <mat-form-field class="col-3 float-start">
+        <mat-label>{{"ROLES_TABLE.FILTER" | translate}}</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="{{'ROLES_TABLE.SEARCH_ROLE' | translate}}" #input>
+      </mat-form-field>
+      <button class="col-3 float-end" routerLink="./AddRole" [queryParams]="{ mode: 'add' }"
+        ngbTooltip="{{'ROLES_TABLE.ADD_ROLE' | translate}}" mat-icon-button
+        aria-label="Example icon button with a open in new tab icon">
+        <mat-icon>add_circle</mat-icon></button>
+
+
+      <mat-paginator [pageSizeOptions]="[25, 50, 100, 150]"
+        [attr.aria-label]="'ROLES_TABLE.PAGINATOR' | translate"></mat-paginator>
+    </div>
+
+    <div class="mat-elevation-z8 col-12 center">
+      <table class="table table-sm table-striped  table-hover" mat-table j [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="authority">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"ROLES_TABLE.AUTHORITY" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('ROLES_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('ROLES_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{ row.authority.replace('ROLE_', '') }}</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"ROLES_TABLE.DESCRIPTION" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('ROLES_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('ROLES_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{row.description}}
+            </span></td>
+        </ng-container>
+  
+
+
+      
+
+
+     
+
+
+        <ng-container matColumnDef="disabled">
+          <th mat-header-cell *matHeaderCellDef>{{"ROLES_TABLE.ACTIVE" | translate}}</th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row">
+            <span [class.disabled]="row.confirmationToken || row.accountLocked " *ngIf="!row.enabled"
+              (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : disable(row)"
+              class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
+              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('ROLES_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ? ('ROLES_TABLE.CONFIRM_PENNDING' | translate)  
+      : ('ROLES_TABLE.ENABLED' | translate))">block</span>
+            <span [class.disabled]="row.confirmationToken || row.accountLocked" *ngIf="row.enabled"
+              (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : disable(row)"
+              class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
+              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('ROLES_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ?  ('ROLES_TABLE.CONFIRM_PENNDING' | translate)  
+      : ('ROLES_TABLE.DISABLED' | translate))">done</span>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef>{{"ROLES_TABLE.EDIT" | translate}}</th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row">
+            <span (click)="edit(row)" class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled"
+              aria-hidden="true" aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('ROLES_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ? ('ROLES_TABLE.CONFIRM_PENNDING' | translate) 
+      : ('ROLES_TABLE.EDIT' | translate))">edit</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>{{"ROLES_TABLE.DELETE" | translate}}</th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row">
+            <span (click)="borrar(row)" class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true"
+              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('ROLES_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ? ('ROLES_TABLE.CONFIRM_PENNDING' | translate) 
+      : ('ROLES_TABLE.DELETE' | translate))">delete</span>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Hide">
+          <th mat-header-cell *matHeaderCellDef>{{"ROLES_TABLE.VISIBLE" | translate}}</th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row">
+            <span [class.disabled]="row.confirmationToken || row.accountLocked" *ngIf="row.hidden"
+              (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : hide(row)"
+              class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
+              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('ROLES_TABLE.ACCOUNT_LOCKED' | translate) 
+  : (row.confirmationToken 
+      ? ('ROLES_TABLE.CONFIRM_PENNDING' | translate) 
+      : ('ROLES_TABLE.SHOW' | translate))">radio_button_unchecked</span>
+            <span [class.disabled]="row.confirmationToken || row.accountLocked" *ngIf="!row.hidden"
+              (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : hide(row)"
+              class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
+              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('ROLES_TABLE.ACCOUNT_LOCKED' | translate) 
+  : (row.confirmationToken 
+      ? ('ROLES_TABLE.CONFIRM_PENNDING' | translate)
+      : ('ROLES_TABLE.HIDE' | translate))">radio_button_checked</span>
+          </td>
+        </ng-container>
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="10">{{"ROLES_TABLE.NO_DATA_MATCHING" | translate}}<br><button routerLink="./AddRole"
+              [queryParams]="{ mode: 'add' }" ngbTooltip="{{'ROLES_TABLE.ADD_ROLE' | translate}}" mat-icon-button
+              aria-label="Example icon button with a open in new tab icon">
+              <mat-icon>add_circle</mat-icon></button></td>
+        </tr>
+      </table>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

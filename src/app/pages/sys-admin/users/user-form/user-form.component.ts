@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { UserBean } from 'src/app/model/userBean';
 import { CompanyService } from 'src/app/services/helpers/company/company.service';
-import { WsAuthenticateService } from 'src/app/services/ws-authenticate/ws-authenticate.service';
+import { WsAuthenticateService } from 'src/app/services/ws-authenticate/ws-authenticate.user.service';
 import { Utils } from 'src/app/util/utils';
 import { LanguageServiceService } from 'src/app/services/helpers/languageService/language-service.service';
 import { LocalizedDatePipe } from 'src/app/services/pipes/localizedDatePipe/localized-date-pipe';
@@ -13,9 +13,10 @@ import { IConfig, ICountry } from 'ngx-countries-dropdown';
 import { MessageService } from 'src/app/services/helpers/message/message.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
-import { UserService } from 'src/app/services/user/user.service';
+import { UserService } from 'src/app/pages/sys-admin/users/services/user.service';
 import { CountryService } from 'ngx-countries-dropdown';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserLoggedServiceService } from 'src/app/services/helpers/userLoggedService/user-logged-service.service';
 
 
 
@@ -55,6 +56,8 @@ export class UserFormComponent {
     email: [{ value: '', disabled: false }, [Validators.required, Validators.email]],
     mobile: [{ value: '', disabled: false }, Validators.required, this.phoneValidator], 
     hidden: [{ value: false, disabled: false }, Validators.required],
+    lastModifUser: [{value:this.userLoggedServiceService.getUserName(), disabled: false }, Validators.required],
+    createUser: [{value:this.userLoggedServiceService.getUserName() , disabled: false }, Validators.required]
 
   });
 
@@ -71,7 +74,7 @@ export class UserFormComponent {
     , private languageServiceService: LanguageServiceService,
     private router: Router, private messageService: MessageService, private translate: TranslateService
     , private route: ActivatedRoute, private userService: UserService, private countryService: CountryService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,private userLoggedServiceService:UserLoggedServiceService) {
 
   }
 
@@ -101,7 +104,10 @@ export class UserFormComponent {
           email: this.user.email,
           mobile: this.user.mobile,
           hidden: this.user.hidden,
+          createUser:this.user.createUser,
+          lastModifUser: this.user.lastModifUser,
         });
+        debugger;
         this.country = this.countryService.getAllCountries().find(c => c.code === this.user.countryCode);
         this.userInfoForm.get('username')?.disable({ emitEvent: false });
         this.userInfoForm.get('email')?.disable({ emitEvent: false });
@@ -233,7 +239,7 @@ export class UserFormComponent {
     user.createAt = this.utils.getDateToISO(user.createAt);
     user.lastModif = this.utils.getDateToISO(user.lastModif);
     if (this.mode === "edit") {
-
+      user.lastModifUser = this.userLoggedServiceService.getUserName();
       this.wsAuthenticateService.updateUsers(this.utils, user).subscribe(this.utils.subscribeHandler(this, () => {
         this.type = 'success';
         this.message = this.translate.instant('USER_FORM.EDIT_SUCCESS', {
@@ -245,6 +251,7 @@ export class UserFormComponent {
 
 
     } else {
+      user.createUser = this.userLoggedServiceService.getUserName();
       this.wsAuthenticateService.addUsers(this.utils, user).subscribe(this.utils.subscribeHandler(this, () => {
         this.type = 'success';
         this.message = this.translate.instant('USER_FORM.CONFIRMATION_EMAIL', {

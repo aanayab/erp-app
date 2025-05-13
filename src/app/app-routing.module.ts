@@ -25,6 +25,8 @@ import { AppComponent } from './app.component';
 import { UserFormComponent } from './pages/sys-admin/users/user-form/user-form.component';
 import { UsersHomeComponent } from './pages/sys-admin/users/users-home/users-home.component';
 import { PasswordConfirmationComponent } from './pages/sys-admin/users/password-confirmation/password-confirmation.component';
+import { RolesHomeComponent } from './pages/sys-admin/roles/roles-home/roles-home.component';
+import { RoleFormComponent } from './pages/sys-admin/roles/role-form/role-form.component';
 
 
 const routes: Routes = [
@@ -64,6 +66,12 @@ const routes: Routes = [
                 //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb: { alias: 'UserMain' } }, },
                  { path: 'EditUser', component: UserFormComponent, data: { breadcrumb: { alias: 'BREADCRUMP.EDIT_USER' } }, },
                  { path: 'AddUser', component: UserFormComponent, data: { breadcrumb: { alias: 'BREADCRUMP.ADD_USER' } }, },
+  
+               ] },
+               { path: 'Roles', component: RolesHomeComponent, data: { breadcrumb: { alias: 'BREADCRUMP.ROLES' } }, children:[
+                //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb: { alias: 'UserMain' } }, },
+                 { path: 'EditRole', component: RoleFormComponent, data: { breadcrumb: { alias: 'BREADCRUMP.EDIT_ROLE' } }, },
+                 { path: 'AddRole', component: RoleFormComponent, data: { breadcrumb: { alias: 'BREADCRUMP.ADD_ROLE' } }, },
   
                ] },
              ] },
