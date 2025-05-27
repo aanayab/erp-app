@@ -53,6 +53,7 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { RoleFormComponent } from './pages/sys-admin/roles/role-form/role-form.component';
 import { RolesTableComponent } from './pages/sys-admin/roles/roles-table/roles-table.component';
 import { RolesHomeComponent } from './pages/sys-admin/roles/roles-home/roles-home.component';
+import { UserRolesComponent } from './pages/sys-admin/user-roles/user-roles.component';
 
 import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -127,7 +128,7 @@ import { UserService } from './pages/sys-admin/users/services/user.service';
     ,ProdComponent,PvComponent,SalesComponent,SupportComponent,SysAdminComponent,PurchComponent,
     BreadcrumbComponent,MainComponent, IdleModalComponent,UserFormComponent,MessagesModalComponent
     ,PasswordConfirmationComponent,SnackBarComponent,
-    RoleFormComponent,RolesHomeComponent,RolesTableComponent,
+    RoleFormComponent,RolesHomeComponent,RolesTableComponent,UserRolesComponent,
     UsersTableComponent,UsersHomeComponent,ThemeComponent,LocalizedDatePipe],
   bootstrap:    [ AppComponent ]
 })

@@ -17,6 +17,7 @@ import { UserService } from 'src/app/pages/sys-admin/users/services/user.service
 import { CountryService } from 'ngx-countries-dropdown';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserLoggedServiceService } from 'src/app/services/helpers/userLoggedService/user-logged-service.service';
+import { AuthorityBean } from 'src/app/model/authorityBean';
 
 
 
@@ -45,6 +46,8 @@ export class UserFormComponent {
 
   country: ICountry | any;
   panelOpenState = true;
+  panelRolesOpenState = false;
+  panelSaveOpenState = false;
   @Input() user: UserBean | any;
   userInfoForm = this.formBuilder.group({
     username: [{ value: '', disabled: false }, Validators.required],
@@ -57,9 +60,11 @@ export class UserFormComponent {
     mobile: [{ value: '', disabled: false }, Validators.required, this.phoneValidator], 
     hidden: [{ value: false, disabled: false }, Validators.required],
     lastModifUser: [{value:this.userLoggedServiceService.getUserName(), disabled: false }, Validators.required],
-    createUser: [{value:this.userLoggedServiceService.getUserName() , disabled: false }, Validators.required]
+    createUser: [{value:this.userLoggedServiceService.getUserName() , disabled: false }, Validators.required],
+    authorities: [{value:[]}]
 
   });
+
 
   existEmailFlag = false;
   existMobileFlag = false;
@@ -68,6 +73,8 @@ export class UserFormComponent {
   type: any;
   message: any;
   mode: string = 'add'; // Por defecto, modo agregar
+
+
 
 
   constructor(private formBuilder: FormBuilder, private companyService: CompanyService, private wsAuthenticateService: WsAuthenticateService, private utils: Utils,public datePipe: LocalizedDatePipe
@@ -106,6 +113,8 @@ export class UserFormComponent {
           hidden: this.user.hidden,
           createUser:this.user.createUser,
           lastModifUser: this.user.lastModifUser,
+          authorities: [this.user.authorities]
+          //revisar sl split del role
         });
         debugger;
         this.country = this.countryService.getAllCountries().find(c => c.code === this.user.countryCode);
@@ -124,6 +133,9 @@ export class UserFormComponent {
     });
   }
 
+  onAuthoritiesChange(updatedAuthorities: AuthorityBean[] | any) {
+    this.userInfoForm.patchValue({ authorities: updatedAuthorities });
+  }
 
   getUserName(email: any) {
 

@@ -156,15 +156,48 @@
         </div>
          <hr>
         &nbsp;
-        <mat-card-actions align="end">
+        <!-- <mat-card-actions align="end">
           <button mat-button routerLink="../" type="button" style="color: white;">{{'USER_FORM.RETURN'|translate}}</button>
           <button mat-button style="color: white;" type="submit">{{'USER_FORM.SUBMIT'|
             translate}}</button>
-        </mat-card-actions>
+        </mat-card-actions> -->
       </form>
       <app-messages-modal type="{{type}}" messsage="{{message | translate}}"
         (closeAction)="closeAction()"></app-messages-modal>
     </mat-expansion-panel>
+    
+
+
+    <mat-expansion-panel expanded="{{panelRolesOpenState}}" (opened)="panelRolesOpenState = true" (closed)="panelRolesOpenState = false">
+      <mat-expansion-panel-header>
+  
+        <mat-panel-title>
+          <div class="text-center col-12 h5">
+            {{'ROLES_TABLE.ROLEINFO' | translate}}
+          </div>
+  
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+     <app-user-roles 
+     [selectedAuthorities]="userInfoForm.value.authorities"
+     (selectedAuthoritiesChange)="onAuthoritiesChange($event)" ></app-user-roles>
+    </mat-expansion-panel>
+    <mat-expansion-panel expanded="{{panelSaveOpenState}}" (opened)="panelSaveOpenState = true" (closed)="panelSaveOpenState = false">
+      <mat-expansion-panel-header>
+  
+        <mat-panel-title>
+          <div class="text-center col-12 h5">
+            {{'USER_FORM.SUBMIT' | translate}}
+          </div>
+  
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    <mat-card-actions align="end">
+      <button mat-button routerLink="../" type="button" style="color: white;">{{'USER_FORM.RETURN'|translate}}</button>
+      <button mat-button (click)="onSubmit()" style="color: white;" type="submit">{{'USER_FORM.SUBMIT'|
+        translate}}</button>
+    </mat-card-actions>
+  </mat-expansion-panel>
   </mat-accordion>
 
 </div>
