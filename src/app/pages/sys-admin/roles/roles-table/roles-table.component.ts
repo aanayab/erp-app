@@ -39,6 +39,7 @@ export class RolesTableComponent {
   
     borrar(authority: AuthorityBean) {
       let authorityAux = authority.authority;
+      debugger;
       let idCompany = this.companyService.getCompany().idCompany;
       this.wsAuthenticateService.deleteAuthority(this.utils, authorityAux,idCompany).subscribe(this.utils.subscribeHandler(this, () => {
         // Encuentra el índice del objeto.

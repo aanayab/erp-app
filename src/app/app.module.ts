@@ -18,7 +18,7 @@ import { LenguageSelectorComponent } from './components/lenguage-selector/lengua
 import {UserInfoComponent} from './components/user-info/user-info-component'
 import { MenuComponent } from './components/menu/menu.component';
 import { MenuMobileComponent } from './components/menu-mobile/menu-mobile.component';
-import { PhoneSelectorComponent } from './components/phone-selector/phone-selector.component';
+
 
 import { AdminComponent } from './pages/admin/admin.component';
 import { AuditComponent } from './pages/auditoria/auditoria.component';
@@ -54,6 +54,7 @@ import { RoleFormComponent } from './pages/sys-admin/roles/role-form/role-form.c
 import { RolesTableComponent } from './pages/sys-admin/roles/roles-table/roles-table.component';
 import { RolesHomeComponent } from './pages/sys-admin/roles/roles-home/roles-home.component';
 import { UserRolesComponent } from './pages/sys-admin/user-roles/user-roles.component';
+import { RoleSelectorComponent } from './pages/sys-admin/roles/role-selector/role-selector.component';
 
 import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -121,7 +122,7 @@ import { UserService } from './pages/sys-admin/users/services/user.service';
         },
     }), ReactiveFormsModule, NgbDatepickerModule, NgxCountriesDropdownModule],
   declarations: [ AppComponent ,LoginFormComponent,HomeComponent,HeaderComponent,FooterComponent,LoadingComponent,
-    MessagesComponent,CompanySelectorComponent,PhoneSelectorComponent,
+    MessagesComponent,CompanySelectorComponent,RoleSelectorComponent,
     LenguageSelectorComponent,UserInfoComponent,MenuComponent,MenuMobileComponent,
     AdminComponent,AuditComponent,ContaComponent,CostSuccComponent,CustomerComponent,DirComponent,DoComponent
     ,FinanzasComponent,GestionComponent,HrComponent,InvComponent,MktComponent,OpComponent

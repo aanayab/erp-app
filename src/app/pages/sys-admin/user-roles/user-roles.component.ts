@@ -29,13 +29,13 @@ export class UserRolesComponent {
     @ViewChild(MatSort) sort!: MatSort;
     authorities: AuthorityBean[]= [];
 
-    @Input() selectedAuthorities: AuthorityBean[] | any;
+    @Input() selectedAuthorities: AuthorityBean[] | any = [];
 
     @Output() selectedAuthoritiesChange = new EventEmitter<AuthorityBean[]>();
 
     @Output() newItemEvent = new EventEmitter<AuthorityBean>();
 
-    formArray: FormArray = this.fb.array([]);
+
   
   
     constructor(private utils: Utils, private wsAuthenticateService: WsAuthenticateService,
@@ -89,6 +89,9 @@ export class UserRolesComponent {
     addAuthorities() {
     }
   
+    emitSelectedAuthorities() {
+      this.selectedAuthoritiesChange.emit(this.selection.selected);
+    }
     setAuthorities(component: any, result: AuthorityBean[]) {
       component.authorities = result;
       component.dataSource = new MatTableDataSource(result);
@@ -97,32 +100,13 @@ export class UserRolesComponent {
       component.paginator._intl.nextPageLabel = component.translate.instant('ROLES_TABLE.NEXT_PAGE_LABEL');
       component.paginator._intl.previousPageLabel = component.translate.instant('ROLES_TABLE.PREVIOUS_PAGE');
       component.dataSource.sort = component.sort;
-      if (component.authorities?.length) {
-        component.buildCheckboxes();
-      }
+    
+      
+  // ✅ Inicializar selección aquí
+  component.initSelection();
   
     }
 
-    buildCheckboxes() {
-      debugger;
-      this.formArray.clear();
-    
-      // const selected = this.selectedAuthorities?.map((a: { authority: any; }) => a.authority) ?? [];
-      const selected = this.selectedAuthorities.map((a:AuthorityBean) => a.authority);
-
-      this.authorities.forEach(auth => {
-        const isChecked = selected.includes(auth.authority);
-        this.formArray.push(this.fb.control(isChecked));
-      });
-    
-      this.formArray.valueChanges.subscribe(() => {
-        const selectedList = this.formArray.controls
-        .map((ctrl, i) => ctrl.value ? this.authorities[i] : null)
-        .filter((auth): auth is AuthorityBean => auth !== null); // <- asegura el tipo
-    
-        this.selectedAuthoritiesChange.emit(selectedList);
-      });
-    }
   
     getAuthorities() {
              
@@ -134,6 +118,19 @@ export class UserRolesComponent {
    
   
     }
+
+    initSelection() {
+      if (!this.selectedAuthorities?.length || !this.authorities?.length) {
+        return;
+      }
+    
+      const preselected = this.authorities.filter(auth =>
+        this.selectedAuthorities.some((sel:AuthorityBean) => sel.authority === auth.authority)
+      );
+    
+      this.selection = new SelectionModel<AuthorityBean>(true, preselected);
+    }
+    
   
     applyFilter(event: Event) {
       const filterValue = (event.target as HTMLInputElement).value;

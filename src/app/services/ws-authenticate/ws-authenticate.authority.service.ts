@@ -28,6 +28,7 @@ export class WsAuthenticateService {
   private existAuthorityUrl =  environment.wsAuthenticate.authority.existAuthorityUrl;
   private deleteAuthorityUrl =  environment.wsAuthenticate.authority.deleteAuthorityUrl;
   private authoritiesByIdCompanyUrl = environment.wsAuthenticate.authority.authorityByIdCompanyUrl;
+  private authoritiesEnabledByIdCompanyUrl = environment.wsAuthenticate.authority.authoritiesEnabledByIdCompanyUrl;
 
 
   constructor(private http: HttpClient, private loadingService: LoadingService) { }
@@ -55,6 +56,14 @@ export class WsAuthenticateService {
     getAuthoritiesByIdCompany(utils:Utils,idCompany:any): Observable<HttpResponse<AuthorityBean[]>> {
       this.loadingService.setLoading(true);
       return this.http.get<AuthorityBean[]>(this.authoritiesByIdCompanyUrl+idCompany , {
+        headers: utils.getBearerToken(),
+        observe: 'response',
+      });
+    }
+
+    getAuthoritiesEnabledByIdCompany(utils:Utils,idCompany:any): Observable<HttpResponse<AuthorityBean[]>> {
+      this.loadingService.setLoading(true);
+      return this.http.get<AuthorityBean[]>(this.authoritiesEnabledByIdCompanyUrl+idCompany , {
         headers: utils.getBearerToken(),
         observe: 'response',
       });
@@ -94,12 +103,12 @@ export class WsAuthenticateService {
     });
   }
 
-  deleteAuthority(utils:Utils,authorityname:string | any,idCompany:any): Observable<HttpResponse<ResponseBean>> {
+  deleteAuthority(utils:Utils,authority:string | any,idCompany:any): Observable<HttpResponse<ResponseBean>> {
     this.loadingService.setLoading(true);
     return this.http.delete<ResponseBean>(this.deleteAuthorityUrl , {
       headers: utils.getBearerToken(),
       observe: 'response',
-      body: {authorityname,idCompany}
+      body: {authority,idCompany}
     });
   }
 

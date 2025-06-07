@@ -1,0 +1,33 @@
+ <div class="form-group">
+	<!-- <label for="dropdownRole" class="form-label">Perfiles</label> -->
+	<div class="dropdown w-100" ngbDropdown>
+	  <button
+		class="form-select text-start"
+		id="dropdownRole"
+		ngbDropdownToggle
+		type="button"
+	  >
+		{{ roleBean?.authority?.replace("ROLE_","") || ('ROLE_SELECTOR.SELECT' | translate) }}
+	  </button>
+  
+	  <div ngbDropdownMenu class="w-100 p-2 shadow-sm dropdown-scroll">
+		<input
+		  type="search"
+		  autocomplete="off"
+		  class="form-control mb-2 no-valid-style"
+		  [placeholder]="('ROLE_SELECTOR.SEARCH' | translate )"
+		  [(ngModel)]="searchTerm"
+		/>
+  
+		<button
+		  *ngFor="let item of filteredItems()"
+		  class="dropdown-item"
+		  type="button"
+		  (click)="selectRole(item)"
+		  [class.active]="roleBean?.authority === item.authority"
+		>
+		  {{ item.authority.replace("ROLE_","") }}
+		</button>
+	  </div>
+	</div>
+  </div>

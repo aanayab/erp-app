@@ -35,6 +35,7 @@ export class WsAuthenticateService {
   private deleteUserUrl =  environment.wsAuthenticate.user.deleteUserUrl;
   private resetPasswordUrl = environment.wsAuthenticate.user.resetPasswordUrl;
 
+
   constructor(private http: HttpClient, private loadingService: LoadingService) { }
 
 

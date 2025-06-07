@@ -141,3 +141,8 @@ html, body {
   margin-right: 8px;
 } */
 
+.dropdown-scroll {
+  max-height: 250px; /* ajusta según necesidad */
+  overflow-y: auto;
+}
+

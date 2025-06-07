@@ -61,7 +61,7 @@ export class UserFormComponent {
     hidden: [{ value: false, disabled: false }, Validators.required],
     lastModifUser: [{value:this.userLoggedServiceService.getUserName(), disabled: false }, Validators.required],
     createUser: [{value:this.userLoggedServiceService.getUserName() , disabled: false }, Validators.required],
-    authorities: [{value:[]}]
+    authorities: this.formBuilder.control<AuthorityBean[]>([])
 
   });
 
@@ -87,6 +87,7 @@ export class UserFormComponent {
 
 
   ngOnInit() {
+    debugger;
     this.route.queryParams.subscribe(params => {
       this.mode = params['mode'] || 'add'; // Detecta si es "edit" o "add"
 
@@ -113,7 +114,7 @@ export class UserFormComponent {
           hidden: this.user.hidden,
           createUser:this.user.createUser,
           lastModifUser: this.user.lastModifUser,
-          authorities: [this.user.authorities]
+          authorities: this.user.authorities
           //revisar sl split del role
         });
         debugger;
@@ -133,9 +134,9 @@ export class UserFormComponent {
     });
   }
 
-  onAuthoritiesChange(updatedAuthorities: AuthorityBean[] | any) {
-    this.userInfoForm.patchValue({ authorities: updatedAuthorities });
-  }
+  // onAuthoritiesChange(updatedAuthorities: AuthorityBean[] | any) {
+  //   this.userInfoForm.patchValue({ authorities: updatedAuthorities });
+  // }
 
   getUserName(email: any) {
 
@@ -213,7 +214,7 @@ export class UserFormComponent {
 
 
   onSubmit() {
- 
+    debugger;
     // TODO: Use EventEmitter with form value   
 
     if (this.existEmailFlag) {
@@ -311,6 +312,13 @@ export class UserFormComponent {
       let element = document.getElementById("modalSuccess") as HTMLElement;
       element.click();
     }));
+  }
+ 
+  onRoleSelected(role: AuthorityBean): void {
+    debugger;
+    if (!role) return;
+    const authorities: AuthorityBean[] = [role];
+    this.userInfoForm.get('authorities')?.setValue(authorities);
   }
 
 }

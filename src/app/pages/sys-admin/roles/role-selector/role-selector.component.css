@@ -1,0 +1,10 @@
+  
+  /* Quita la flecha del estilo form-select de Bootstrap */
+  .form-select::after {
+    display: none !important;
+  }
+  .no-valid-style,
+.no-valid-style:focus {
+  background-image: none !important;
+  box-shadow: none !important;
+}
