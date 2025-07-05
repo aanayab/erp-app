@@ -14,46 +14,17 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class WsSysAdminService {
+export class WsSysAdminMenuService {
 
-  
-  private  companyUrl = environment.wsSysAdmin.companyUrl;
-  private companybyIdUrl = environment.wsSysAdmin.companybyIdUrl;
-  private privilegyByIdRoll = environment.wsSysAdmin.privilegyByIdRoll;
-  private menuByIdRoll = environment.wsSysAdmin.menuByIdRoll;
-  private foodNodeByIdRoll = environment.wsSysAdmin.foodNodeByIdRoll;
-  private routeByIdRoll = environment.wsSysAdmin.routeByIdRoll;
+  private menuByIdRoll = environment.wsSysAdmin.menu.menuByIdRoll;
+  private foodNodeByIdRoll = environment.wsSysAdmin.menu.foodNodeByIdRoll;
+  private routeByIdRoll = environment.wsSysAdmin.menu.routeByIdRoll;
 
 
   constructor(private http: HttpClient,private loadingService:LoadingService,private utils:Utils) { }
 
 
- 
 
-  getCompanies(): Observable<HttpResponse<CompanyBean>>{
-    this.loadingService.setLoading(true);
-     return  this.http.get<CompanyBean>(this.companyUrl,{
-      headers:this.utils.getBearerToken(),
-      observe:  'response' ,
-     });
-  }
-
-
-  getCompany(idCompany:any): Observable<HttpResponse<UserBean>>{
-    this.loadingService.setLoading(true);
-     return  this.http.get<CompanyBean>(this.companybyIdUrl + idCompany,{
-      headers:this.utils.getBearerToken(),
-      observe:  'response' ,
-     });
-  }
-
-  getPrivilegyByRole(role:any): Observable<HttpResponse<PrivilegyBean>>{
-    this.loadingService.setLoading(true);
-     return  this.http.get<PrivilegyBean>(this.privilegyByIdRoll + role,{
-      headers:this.utils.getBearerToken(),
-      observe:  'response' ,
-     });
-  }
 
   getMenuByRole(role:any): Observable<HttpResponse<MenuBean>>{
     this.loadingService.setLoading(true);

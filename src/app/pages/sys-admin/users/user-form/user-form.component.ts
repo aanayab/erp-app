@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { UserBean } from 'src/app/model/userBean';
 import { CompanyService } from 'src/app/services/helpers/company/company.service';
-import { WsAuthenticateService } from 'src/app/services/ws-authenticate/ws-authenticate.user.service';
+import { WsAuthenticateUserService } from 'src/app/services/ws-authenticate/ws-authenticate.user.service';
 import { Utils } from 'src/app/util/utils';
 import { LanguageServiceService } from 'src/app/services/helpers/languageService/language-service.service';
 import { LocalizedDatePipe } from 'src/app/services/pipes/localizedDatePipe/localized-date-pipe';
@@ -77,7 +77,7 @@ export class UserFormComponent {
 
 
 
-  constructor(private formBuilder: FormBuilder, private companyService: CompanyService, private wsAuthenticateService: WsAuthenticateService, private utils: Utils,public datePipe: LocalizedDatePipe
+  constructor(private formBuilder: FormBuilder, private companyService: CompanyService, private wsAuthenticateService: WsAuthenticateUserService, private utils: Utils,public datePipe: LocalizedDatePipe
     , private languageServiceService: LanguageServiceService,
     private router: Router, private messageService: MessageService, private translate: TranslateService
     , private route: ActivatedRoute, private userService: UserService, private countryService: CountryService,

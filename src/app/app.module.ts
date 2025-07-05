@@ -53,20 +53,30 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { RoleFormComponent } from './pages/sys-admin/roles/role-form/role-form.component';
 import { RolesTableComponent } from './pages/sys-admin/roles/roles-table/roles-table.component';
 import { RolesHomeComponent } from './pages/sys-admin/roles/roles-home/roles-home.component';
-import { UserRolesComponent } from './pages/sys-admin/user-roles/user-roles.component';
 import { RoleSelectorComponent } from './pages/sys-admin/roles/role-selector/role-selector.component';
+
+import { ScreensHomeComponent } from './pages/sys-admin/screens/screens-home/screens-home.component';
+import { ScreensTableComponent } from './pages/sys-admin/screens/screens-table/screens-table.component';
+import { ScreenFormComponent } from './pages/sys-admin/screens/screen-form/screen-form.component';
+
 
 import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
 
-import { WsAuthenticateService} from './services/ws-authenticate/ws-authenticate.user.service';
+import { WsAuthenticateUserService} from './services/ws-authenticate/ws-authenticate.user.service';
+import { WsAuthenticateAuthorityService} from './services/ws-authenticate/ws-authenticate.authority.service';
 import { LoadingService } from './services/helpers/loading/loading.service';
 import {WsAdministratorService} from './services/ws-administrator/ws-administrator.service';
 import { CompanyService } from './services/helpers/company/company.service';
 import { PrivilegyService } from './services/helpers/privilegy/privilegy.service';
-import { WsSysAdminService } from './services/ws-sysAdmin/ws-sys-admin.service';
+import { WsSysAdminCompanyService } from './services/ws-sysAdmin/ws-sys-admin.company.service';
+import { WsSysAdminMenuService } from './services/ws-sysAdmin/ws-sys-admin.menu.service';
+import { WsSysAdminPrivilegyService } from './services/ws-sysAdmin/ws-sys-admin.privilegy.service';
+import { WsSysAdminScreenService } from './services/ws-sysAdmin/ws-sys-admin.screen.service';
+
+
 import { IdleServiceService } from './services/helpers/idleService/idle-service.service';
 import { UserLoggedServiceService } from './services/helpers/userLoggedService/user-logged-service.service';
 import { RouteService } from './services/helpers/routeServices/route-services';
@@ -107,8 +117,8 @@ import { UserService } from './pages/sys-admin/users/services/user.service';
 
 
 @NgModule({
-  providers: [WsAuthenticateService,Utils,LoadingService,WsAdministratorService,BreadcrumbService,CompanyService
-    ,PrivilegyService,WsSysAdminService, IdleServiceService, UserLoggedServiceService,ValidatorService,
+  providers: [WsAuthenticateUserService,WsAuthenticateAuthorityService,Utils,LoadingService,WsAdministratorService,BreadcrumbService,CompanyService
+    ,PrivilegyService,WsSysAdminCompanyService,WsSysAdminMenuService,WsSysAdminPrivilegyService,WsSysAdminScreenService, IdleServiceService, UserLoggedServiceService,ValidatorService,
     WsSmsService,MatSnackBar,UserService,AuthorityService,
     RouteService,DatePipe,{ provide: LOCALE_ID, useValue: 'en' },LocalizedDatePipe],
   imports: [MatButtonModule,MatSnackBarModule,BrowserModule, ReactiveFormsModule, BreadcrumbModule, RouterModule, MaterialModule,
@@ -129,7 +139,7 @@ import { UserService } from './pages/sys-admin/users/services/user.service';
     ,ProdComponent,PvComponent,SalesComponent,SupportComponent,SysAdminComponent,PurchComponent,
     BreadcrumbComponent,MainComponent, IdleModalComponent,UserFormComponent,MessagesModalComponent
     ,PasswordConfirmationComponent,SnackBarComponent,
-    RoleFormComponent,RolesHomeComponent,RolesTableComponent,UserRolesComponent,
+    RoleFormComponent,RolesHomeComponent,RolesTableComponent,ScreensHomeComponent, ScreensTableComponent, ScreenFormComponent,
     UsersTableComponent,UsersHomeComponent,ThemeComponent,LocalizedDatePipe],
   bootstrap:    [ AppComponent ]
 })

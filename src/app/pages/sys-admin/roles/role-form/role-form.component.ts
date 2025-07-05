@@ -11,7 +11,7 @@ import { MessageService } from 'src/app/services/helpers/message/message.service
 import { UserLoggedServiceService } from 'src/app/services/helpers/userLoggedService/user-logged-service.service';
 import { LocalizedDatePipe } from 'src/app/services/pipes/localizedDatePipe/localized-date-pipe';
 import { AuthorityService } from '../services/authority.service';
-import { WsAuthenticateService } from 'src/app/services/ws-authenticate/ws-authenticate.authority.service';
+import { WsAuthenticateAuthorityService } from 'src/app/services/ws-authenticate/ws-authenticate.authority.service';
 import { Utils } from 'src/app/util/utils';
 
 
@@ -44,7 +44,7 @@ export class RoleFormComponent implements OnInit {
     mode: string = 'add'; // Por defecto, modo agregar
 
 
-      constructor(private formBuilder: FormBuilder, private companyService: CompanyService, private wsAuthenticateService: WsAuthenticateService, private utils: Utils,public datePipe: LocalizedDatePipe
+      constructor(private formBuilder: FormBuilder, private companyService: CompanyService, private wsAuthenticateService: WsAuthenticateAuthorityService, private utils: Utils,public datePipe: LocalizedDatePipe
         , private languageServiceService: LanguageServiceService,
         private router: Router, private messageService: MessageService, private translate: TranslateService
         , private route: ActivatedRoute, private authorityService: AuthorityService, private countryService: CountryService,

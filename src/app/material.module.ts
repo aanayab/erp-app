@@ -20,6 +20,7 @@ import { MatTableModule} from '@angular/material/table';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
@@ -45,7 +46,8 @@ const modules = [
   MatTableModule,
   MatGridListModule,
   MatCheckboxModule,
-  MatRadioModule
+  MatRadioModule,
+  DragDropModule
 ];
 
 @NgModule({

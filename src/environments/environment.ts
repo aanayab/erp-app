@@ -1,21 +1,23 @@
 // environment.ts (dev)
 
+import { PrivilegyService } from "src/app/services/helpers/privilegy/privilegy.service";
+
 const params = {
   wsAdministrator: {
     url: "api-dev.boyertech.mx",
     port: undefined
   },
   wsAuthenticate: {
-    url: "localhost",
-    port: 8071
+    url: "api-dev.boyertech.mx",
+    port: undefined
   },
   wsSms: {
     url: "api-dev.boyertech.mx",
     port: undefined
   },
   wsSysAdmin: {
-    url: "api-dev.boyertech.mx",
-    port: undefined
+    url: "localhost",
+    port: 8070
   },
 }
 export const environment = {
@@ -62,12 +64,30 @@ export const environment = {
     sendUrl: `http://${params.wsSms.url}${params.wsSms.port ? `:${params.wsSms.port}` : ''}/ws-sms/api/sms/send-confirmation-code`
   },
   wsSysAdmin: {
-    companyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/company/all`,
-    companybyIdUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/company/`,
-    privilegyByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy/allByRole/`,
-    menuByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/allByRole/`,
-    foodNodeByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/allFoodNodeByRole/`,
-    routeByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/allRouteByRole/`,
-    
+    company: {
+      companyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/company/all`,
+      companybyIdUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/company/`,
+    },
+    privilegy: {
+      privilegyByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy/allByRole/`,
+    },
+    menu: {
+      menuByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/allByRole/`,
+      foodNodeByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/allFoodNodeByRole/`,
+      routeByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/allRouteByRole/`,
+    },
+
+    screen: {
+      screenUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen/`,
+      addScreenUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen`,
+      updateScreenUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen`,
+      screensUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen/all`,
+      disableEnableScreenUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen/disable`,
+      existScreenUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen/exist/`,
+      deleteScreenUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen`,
+      screensEnabledUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen/allEnabled/`,
+      updateScreensOrderUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen/all/order`,
+    }
+
   }
 };

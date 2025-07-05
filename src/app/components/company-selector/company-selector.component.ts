@@ -4,7 +4,8 @@ import { Utils } from '../../util/utils';
 import { CompanyBean } from 'src/app/model/companyBean';
 import { UserBean } from 'src/app/model/userBean';
 import { CompanyService } from 'src/app/services/helpers/company/company.service';
-import { WsSysAdminService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.service';
+import { WsSysAdminMenuService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.menu.service';
+import { WsSysAdminCompanyService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.company.service';
 import { Router } from '@angular/router';
 
 
@@ -29,7 +30,8 @@ export class CompanySelectorComponent  {
 
 
 
-  constructor(private utils: Utils, private wsSysAdminService: WsSysAdminService,private companyService:CompanyService,
+  constructor(private utils: Utils, private wsSysAdminService: WsSysAdminMenuService,
+     private wsSysAdminCompanyService: WsSysAdminCompanyService,private companyService:CompanyService,
     private router:Router) { }
 
   selectCompany(companyBean:any){
@@ -61,7 +63,7 @@ export class CompanySelectorComponent  {
 
 
   getCompanies() {
-    this.wsSysAdminService.getCompanies()
+    this.wsSysAdminCompanyService.getCompanies()
       .subscribe(this.utils.subscribeHandler(this, this.setCompanies)
       );
 
@@ -69,7 +71,7 @@ export class CompanySelectorComponent  {
 
   getCompany() {
     
-    this.wsSysAdminService.getCompany(this.userBean?.idCompany)
+    this.wsSysAdminCompanyService.getCompany(this.userBean?.idCompany)
       .subscribe(this.utils.subscribeHandler(this, this.setCompany)
       );
 

@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthorityBean } from 'src/app/model/authorityBean';
 import { CompanyService } from 'src/app/services/helpers/company/company.service';
 import { MessageService } from 'src/app/services/helpers/message/message.service';
-import { WsAuthenticateService } from 'src/app/services/ws-authenticate/ws-authenticate.authority.service';
+import { WsAuthenticateAuthorityService } from 'src/app/services/ws-authenticate/ws-authenticate.authority.service';
 import { Utils } from 'src/app/util/utils';
 
 @Component({
@@ -29,7 +29,7 @@ export class RolesTableComponent {
     @Output() newItemEvent = new EventEmitter<AuthorityBean>();
   
   
-    constructor(private utils: Utils, private wsAuthenticateService: WsAuthenticateService,
+    constructor(private utils: Utils, private wsAuthenticateService: WsAuthenticateAuthorityService,
       private router: Router, private translate: TranslateService, private companyService: CompanyService
       , private messageService: MessageService) {
   

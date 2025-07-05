@@ -1,11 +1,20 @@
+import { ScreenImageBean } from "./screenImageBean";
 
-export interface ScreenBean {
-   idScreen: number;
-   enabled: number;
-   image: string;
-   rute: string;
-   screen: string;
-   keyScreen: string;
-   componente:string;
+
+export interface ScreenBean   {    
+    screen?: string;
+    enabled?: boolean;
+    image?: ScreenImageBean ;
+    path?: string;
+    alias?: string;
+    componente?: string;
+    deleted?: boolean;    
+    createAt?: Date;
+    lastModif?: Date;
+    createUser?: string;
+    lastModifUser?: string;
+    order: number;
 }
+
+
 

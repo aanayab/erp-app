@@ -1,7 +1,7 @@
 import { Input, Component, Output, EventEmitter, AfterViewInit, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { WsAuthenticateService } from '../../../../services/ws-authenticate/ws-authenticate.user.service'
+import { WsAuthenticateUserService } from '../../../../services/ws-authenticate/ws-authenticate.user.service'
 import { Token } from '../../../../model/token';
 import { LoadingService } from 'src/app/services/helpers/loading/loading.service';
 import { Utils } from '../../../../util/utils';
@@ -40,7 +40,7 @@ export class PasswordConfirmationComponent {
 
 
 
-  constructor(private utils: Utils, private elementRef: ElementRef, private router: Router, private wsAuthenticateService: WsAuthenticateService,
+  constructor(private utils: Utils, private elementRef: ElementRef, private router: Router, private wsAuthenticateService: WsAuthenticateUserService,
     private loadingService: LoadingService, private userLoggedServiceService: UserLoggedServiceService, 
     private ValidatorService: ValidatorService, private fb: FormBuilder,private messageService:MessageService,
     private wsSmsService:WsSmsService,private translate:TranslateService

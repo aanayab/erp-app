@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/testing';
 
-import { WsSysAdminService } from './ws-sys-admin.service';
+import { ScreenService } from './screen.service';
 
-describe('WsSysAdminService', () => {
-  let service: WsSysAdminService;
+describe('ScreenService', () => {
+  let service: ScreenService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(WsSysAdminService);
+    service = TestBed.inject(ScreenService);
   });
 
   it('should be created', () => {

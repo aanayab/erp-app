@@ -5,7 +5,7 @@ import { AuthorityBean } from 'src/app/model/authorityBean';
 import { UserBean } from 'src/app/model/userBean';
 import { Router } from '@angular/router';
 import { CompanyService } from 'src/app/services/helpers/company/company.service';
-import { WsAuthenticateService } from 'src/app/services/ws-authenticate/ws-authenticate.authority.service';
+import { WsAuthenticateAuthorityService } from 'src/app/services/ws-authenticate/ws-authenticate.authority.service';
 
 
 
@@ -31,7 +31,7 @@ export class RoleSelectorComponent  {
 
 
 
-  constructor(private utils: Utils, private wsAuthenticateService: WsAuthenticateService, private companyService: CompanyService,
+  constructor(private utils: Utils, private wsAuthenticateService: WsAuthenticateAuthorityService, private companyService: CompanyService,
     private router:Router) { }
 
   selectRole(item: AuthorityBean): void {

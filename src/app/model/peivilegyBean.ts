@@ -7,7 +7,6 @@ export interface PrivilegyBean  {
   idPrivilegy?: number;
   action: ActionBean;
   authority?: AuthorityBean;
-  grupo: GroupBean;
   screen: ScreenBean;
 }
 

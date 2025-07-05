@@ -7,7 +7,7 @@ import { CompanyService } from '../services/helpers/company/company.service';
 import { PrivilegyService } from '../services/helpers/privilegy/privilegy.service';
 import { MenuService } from '../services/helpers/menu/menu.service';
 import { UserLoggedServiceService } from '../services/helpers/userLoggedService/user-logged-service.service';
-import { WsAuthenticateService } from '../services/ws-authenticate/ws-authenticate.user.service';
+import { WsAuthenticateUserService } from '../services/ws-authenticate/ws-authenticate.user.service';
 import { RouteService } from '../services/helpers/routeServices/route-services';
 import { LanguageServiceService } from '../services/helpers/languageService/language-service.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,7 +22,7 @@ export class Utils {
 
   constructor(private router: Router, private loadingService: LoadingService, private messageService: MessageService,
     private companyService: CompanyService, private privilegyService: PrivilegyService,
-    private userLoggedServiceService: UserLoggedServiceService, private wsAuthenticateService: WsAuthenticateService
+    private userLoggedServiceService: UserLoggedServiceService, private wsAuthenticateService: WsAuthenticateUserService
     , private menuService: MenuService, private routeService: RouteService, private languageServiceService: LanguageServiceService,private translate:TranslateService) { }
 
 
@@ -51,11 +51,11 @@ export class Utils {
   }
 
 
-  subscribeHandler(component: any, functon: Function, funcErr?: Function): any {
+  subscribeHandler(component: any, functon: Function, funcErr?: Function,loading:boolean = false): any {
     return {
       next: (response: any) => {
-        
-        this.loadingService.setLoading(false);
+        debugger;
+        this.loadingService.setLoading(loading);
         if (response.status == 200) {
           var body = response.body;
           if (body.tipoMensaje == 'S') {

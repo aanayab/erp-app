@@ -1,5 +1,6 @@
 
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { BreadcrumbService } from 'xng-breadcrumb';
 
 @Component({
@@ -10,8 +11,10 @@ import { BreadcrumbService } from 'xng-breadcrumb';
 export class BreadcrumbComponent {
 
 
+
   constructor(
     private breadcrumbService: BreadcrumbService,
+     private translate:TranslateService
   ) { }
   
   ngOnInit(): void {
@@ -24,6 +27,7 @@ export class BreadcrumbComponent {
     // this.breadcrumbService.set('@do', 'Desarrollo Organizacional');
     // this.breadcrumbService.set('@finanzas', 'Finanzas');
     // this.breadcrumbService.set('@gestion', 'Gestión');
+
     // this.breadcrumbService.set('@hr', 'Recursos Humanos');
     // this.breadcrumbService.set('@inv', 'Inventarios');
     // this.breadcrumbService.set('@mkt', 'Mercadotecnia');
@@ -32,7 +36,7 @@ export class BreadcrumbComponent {
     // this.breadcrumbService.set('@pv', 'Punto de Venta');
     // this.breadcrumbService.set('@sales', 'Ventas');
     // this.breadcrumbService.set('@support', 'Soporte');
-    // this.breadcrumbService.set('@sysAdmin', 'Administrador de sistema');
+    //  this.breadcrumbService.set('@sysAdmin', 'BREADCRUMP.SYSTEM_ADMINISTRATOR');
     // this.breadcrumbService.set('@purch', 'Compras'); 
     // this.breadcrumbService.set('@home', 'Home');        
 

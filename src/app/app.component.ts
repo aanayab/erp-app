@@ -9,7 +9,7 @@ import { CompanyService } from 'src/app/services/helpers/company/company.service
 import { PrivilegyService } from 'src/app/services/helpers/privilegy/privilegy.service';
 import { MenuService } from 'src/app/services/helpers/menu/menu.service';
 import { LanguageServiceService } from 'src/app/services/helpers/languageService/language-service.service';
-import { WsAuthenticateService } from 'src/app/services/ws-authenticate/ws-authenticate.user.service';
+import { WsAuthenticateUserService } from 'src/app/services/ws-authenticate/ws-authenticate.user.service';
 import { Utils } from 'src/app/util/utils';
 import { IdleModalComponent } from './components/idle-modal/idle-modal.component';
   import { TranslateService } from '@ngx-translate/core';
@@ -42,7 +42,7 @@ export class AppComponent {
     private dialog: MatDialog, private idleServiceService: IdleServiceService,
      private userLoggedServiceService: UserLoggedServiceService, private router: Router,
      private companyService:CompanyService,private privilegyService:PrivilegyService,private menuService:MenuService
-     ,private languageServiceService:LanguageServiceService, private wsAuthenticateService:WsAuthenticateService
+     ,private languageServiceService:LanguageServiceService, private wsAuthenticateService:WsAuthenticateUserService
      ,private utils:Utils, private translate:TranslateService,private elementRef: ElementRef,private routeService:RouteService
      ,private languageService:LanguageServiceService) {
       translate.addLangs(['en','es','de','fr','ja','ru']);

@@ -27,6 +27,9 @@ import { UsersHomeComponent } from './pages/sys-admin/users/users-home/users-hom
 import { PasswordConfirmationComponent } from './pages/sys-admin/users/password-confirmation/password-confirmation.component';
 import { RolesHomeComponent } from './pages/sys-admin/roles/roles-home/roles-home.component';
 import { RoleFormComponent } from './pages/sys-admin/roles/role-form/role-form.component';
+import { ScreensHomeComponent } from './pages/sys-admin/screens/screens-home/screens-home.component';
+import { ScreensTableComponent } from './pages/sys-admin/screens/screens-table/screens-table.component';
+import { ScreenFormComponent } from './pages/sys-admin/screens/screen-form/screen-form.component';
 
 
 const routes: Routes = [
@@ -40,40 +43,48 @@ const routes: Routes = [
       { path: 'confirmation', component: PasswordConfirmationComponent, data: { breadcrumb: { skip: true } } },
       { path: 'pLogin', component: LoginFormComponent, data: { breadcrumb: { skip: true } } },
       {
-        path: 'Home', component: HomeComponent, data: { breadcrumb: { alias: 'BREADCRUMP.HOME' } }, children:
+        path: 'Home', component: HomeComponent, data: { breadcrumb:  'BREADCRUMP.HOME'  }, children:
           [
-            { path: 'Admin', component: AdminComponent, data: { breadcrumb: { alias: 'BREADCRUMP.ADMINISTRATOR' } }, },
-            { path: 'Audit', component: AuditComponent, data: { breadcrumb: { alias: 'BREADCRUMP.AUDITORY' } }, },
-            { path: 'Conta', component: ContaComponent, data: { breadcrumb: { alias: 'BREADCRUMP.CONTABILITY' } }, },
-            { path: 'CostSucc', component: CostSuccComponent, data: { breadcrumb: { alias: 'BREADCRUMP.COSTUMER_SUCCESS' } }, },
-            { path: 'Costumer', component: CustomerComponent, data: { breadcrumb: { alias: 'BREADCRUMP.COSTUMER' } }, },
-            { path: 'Dir', component: DirComponent, data: { breadcrumb: { alias: 'BREADCRUMP.DIRECTION' } }, },
-            { path: 'Do', component: DoComponent, data: { breadcrumb: { alias: 'BREADCRUMP.DO' } }, },
-            { path: 'Finanzas', component: FinanzasComponent, data: { breadcrumb: { alias: 'BREADCRUMP.FINANCE' } }, },
-            { path: 'Gestion', component: GestionComponent, data: { breadcrumb: { alias: 'BREADCRUMP.MANAGEMENT' } }, },
-            { path: 'Hr', component: HrComponent, data: { breadcrumb: { alias: 'BREADCRUMP.HR' } }, },
-            { path: 'Inv', component: InvComponent, data: { breadcrumb: { alias: 'BREADCRUMP.INVENTORY' } }, },
-            { path: 'Mkt', component: MktComponent, data: { breadcrumb: { alias: 'BREADCRUMP.MARKETING' } }, },
-            { path: 'Op', component: OpComponent, data: { breadcrumb: { alias: 'BREADCRUMP.OPERATIONS' } }, },
-            { path: 'Prod', component: ProdComponent, data: { breadcrumb: { alias: 'BREADCRUMP.PRODUCTIONS' } }, },
-            { path: 'Pv', component: PvComponent, data: { breadcrumb: { alias: 'BREADCRUMP.SALES_POINT' } }, },
-            { path: 'Sales', component: SalesComponent, data: { breadcrumb: { alias: 'BREADCRUMP.SALES' } }, },
-            { path: 'Support', component: SupportComponent, data: { breadcrumb: { alias: 'BREADCRUMP.SUPPORT' } }, },
-            { path: 'purch', component: PurchComponent, data: { breadcrumb: { alias: 'BREADCRUMP.PURCHASING' } }, },
-             { path: 'SysAdmin', component: SysAdminComponent, data: { breadcrumb: { alias: 'BREADCRUMP.SYSTEM_ADMINISTRATOR' } }, children:[
+            { path: 'Admin', component: AdminComponent, data: { breadcrumb:  'BREADCRUMP.ADMINISTRATOR'  }, },
+            { path: 'Audit', component: AuditComponent, data: { breadcrumb:  'BREADCRUMP.AUDITORY'  }, },
+            { path: 'Conta', component: ContaComponent, data: { breadcrumb:  'BREADCRUMP.CONTABILITY'  }, },
+            { path: 'CostSucc', component: CostSuccComponent, data: { breadcrumb:  'BREADCRUMP.COSTUMER_SUCCESS'  }, },
+            { path: 'Costumer', component: CustomerComponent, data: { breadcrumb:  'BREADCRUMP.COSTUMER'  }, },
+            { path: 'Dir', component: DirComponent, data: { breadcrumb:  'BREADCRUMP.DIRECTION'  }, },
+            { path: 'Do', component: DoComponent, data: { breadcrumb:  'BREADCRUMP.DO'  }, },
+            { path: 'Finanzas', component: FinanzasComponent, data: { breadcrumb:  'BREADCRUMP.FINANCE'  }, },
+            { path: 'Gestion', component: GestionComponent, data: { breadcrumb:  'BREADCRUMP.MANAGEMENT'  }, },
+            { path: 'Hr', component: HrComponent, data: { breadcrumb:  'BREADCRUMP.HR'  }, },
+            { path: 'Inv', component: InvComponent, data: { breadcrumb:  'BREADCRUMP.INVENTORY'  }, },
+            { path: 'Mkt', component: MktComponent, data: { breadcrumb:  'BREADCRUMP.MARKETING'  }, },
+            { path: 'Op', component: OpComponent, data: { breadcrumb:  'BREADCRUMP.OPERATIONS'  }, },
+            { path: 'Prod', component: ProdComponent, data: { breadcrumb:  'BREADCRUMP.PRODUCTIONS'  }, },
+            { path: 'Pv', component: PvComponent, data: { breadcrumb:  'BREADCRUMP.SALES_POINT'  }, },
+            { path: 'Sales', component: SalesComponent, data: { breadcrumb:  'BREADCRUMP.SALES'  }, },
+            { path: 'Support', component: SupportComponent, data: { breadcrumb:  'BREADCRUMP.SUPPORT'  }, },
+            { path: 'purch', component: PurchComponent, data: { breadcrumb:  'BREADCRUMP.PURCHASING'  }, },
+             { path: 'SysAdmin', component: SysAdminComponent, data: { breadcrumb:  'BREADCRUMP.SYSTEM_ADMINISTRATOR'  }, children:[
               //  { path: 'Users', redirectTo: 'Users/Main',pathMatch: "full" },
-               { path: 'Users', component: UsersHomeComponent, data: { breadcrumb: { alias: 'BREADCRUMP.USERS' } }, children:[
-                //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb: { alias: 'UserMain' } }, },
-                 { path: 'EditUser', component: UserFormComponent, data: { breadcrumb: { alias: 'BREADCRUMP.EDIT_USER' } }, },
-                 { path: 'AddUser', component: UserFormComponent, data: { breadcrumb: { alias: 'BREADCRUMP.ADD_USER' } }, },
+               { path: 'Users', component: UsersHomeComponent, data: { breadcrumb:  'BREADCRUMP.USERS'  }, children:[
+                //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb:  'UserMain' } }, },
+                 { path: 'EditUser', component: UserFormComponent, data: { breadcrumb:  'BREADCRUMP.EDIT_USER'  }, },
+                 { path: 'AddUser', component: UserFormComponent, data: { breadcrumb:  'BREADCRUMP.ADD_USER'  }, },
   
                ] },
-               { path: 'Roles', component: RolesHomeComponent, data: { breadcrumb: { alias: 'BREADCRUMP.ROLES' } }, children:[
-                //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb: { alias: 'UserMain' } }, },
-                 { path: 'EditRole', component: RoleFormComponent, data: { breadcrumb: { alias: 'BREADCRUMP.EDIT_ROLE' } }, },
-                 { path: 'AddRole', component: RoleFormComponent, data: { breadcrumb: { alias: 'BREADCRUMP.ADD_ROLE' } }, },
+               { path: 'Roles', component: RolesHomeComponent, data: { breadcrumb:  'BREADCRUMP.ROLES'  }, children:[
+                //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb:  'UserMain' } }, },
+                 { path: 'EditRole', component: RoleFormComponent, data: { breadcrumb:  'BREADCRUMP.EDIT_ROLE'  }, },
+                 { path: 'AddRole', component: RoleFormComponent, data: { breadcrumb:  'BREADCRUMP.ADD_ROLE'  }, },
   
                ] },
+                { path: 'Screens', component: ScreensHomeComponent, data: { breadcrumb:  'BREADCRUMP.SCREENS'  }, children:[
+                //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb:  'UserMain' } }, },
+                 { path: 'EditScreen', component: ScreenFormComponent, data: { breadcrumb:  'BREADCRUMP.EDIT_SCREEN'  }, },
+                 { path: 'AddScreen', component: ScreenFormComponent, data: { breadcrumb:  'BREADCRUMP.ADD_SCREEN'  }, },
+  
+               ] },
+
+
              ] },
          
           ]

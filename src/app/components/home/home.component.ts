@@ -2,9 +2,10 @@ import { Input, Component, Output, ChangeDetectionStrategy, EventEmitter, AfterV
 import { FormGroup, FormControl } from '@angular/forms';
 import { Utils } from '../../util/utils';
 import {  Router } from '@angular/router';
-import { WsAuthenticateService } from '../../services/ws-authenticate/ws-authenticate.user.service'
+import { WsAuthenticateUserService } from '../../services/ws-authenticate/ws-authenticate.user.service'
 import { UserBean } from 'src/app/model/userBean';
-import { WsSysAdminService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.service';
+import { WsSysAdminMenuService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.menu.service';
+import { WsSysAdminPrivilegyService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.privilegy.service';
 import { PrivilegyBean } from 'src/app/model/peivilegyBean';
 import { ScreenBean } from 'src/app/model/screenBean';
 import { PrivilegyService } from 'src/app/services/helpers/privilegy/privilegy.service';
@@ -42,8 +43,9 @@ export class HomeComponent implements AfterViewInit {
 
 
   constructor(private elementRef: ElementRef, private utils: Utils, private router: Router,
-    private wsAuthenticateService: WsAuthenticateService,
-    private wsSysAdminService: WsSysAdminService,
+    private wsAuthenticateService: WsAuthenticateUserService,
+    private wsSysAdminMenuService: WsSysAdminMenuService,
+    private wsSysAdminPrivilegyService:WsSysAdminPrivilegyService,
     private privilegyService: PrivilegyService,private userLoggedServiceService:UserLoggedServiceService
     ,private menuService: MenuService,private routeService:RouteService, private messageService:MessageService) {
 
@@ -70,7 +72,8 @@ export class HomeComponent implements AfterViewInit {
       return;
     }
 
-
+    debugger;  
+    // regresar cuando se definan los privilegios
     component.getPrivielegy(authorities![0].authority);
     component.getMenu(authorities![0].authority);
 
@@ -83,25 +86,42 @@ export class HomeComponent implements AfterViewInit {
   }
 
   setPrivilegy(component: any, result: any) {
+    debugger;
     component.privilegy = result;
+     const privilegy = component.privilegy;
+    if(privilegy === undefined || privilegy === null || privilegy.length === 0){
+      component.messageService.showDangerMessage("HOME.PERMISION_ERROR");
+      component.router.navigate(['/Login']);
+      return;
+    }
+    
+
     component.privilegyService.setPrivilegy(result);
   }
 
   getPrivielegy(role: any) {
 
-    this.wsSysAdminService.getPrivilegyByRole(role)
-      .subscribe(this.utils.subscribeHandler(this, this.setPrivilegy)
+    this.wsSysAdminPrivilegyService.getPrivilegyByRole(role)
+      .subscribe(this.utils.subscribeHandler(this, this.setPrivilegy, () =>{
+        this.router.navigate(['/Login']);
+      },true)
       );
   }
 
   setMenu(component: any, result: any) { 
     component.foodNode = result;
+     const menu = component.foodNode;
+    if(menu === undefined || menu === null || menu.length === 0){
+      component.messageService.showDangerMessage("HOME.MENU_ERROR");
+      component.router.navigate(['/Login']);
+      return;
+    }
     component.menuService.setMenu(result);
   }
 
   getMenu(role: any) {
     
-        this.wsSysAdminService.getFoodNodeByRole(role)
+        this.wsSysAdminMenuService.getFoodNodeByRole(role)
       .subscribe(this.utils.subscribeHandler(this, this.setMenu,() =>{ this.router.navigate(['/Login']);})
       );
   }

@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { UserBean } from 'src/app/model/userBean';
 import { CompanyService } from 'src/app/services/helpers/company/company.service';
-import { WsAuthenticateService } from 'src/app/services/ws-authenticate/ws-authenticate.user.service';
+import { WsAuthenticateUserService } from 'src/app/services/ws-authenticate/ws-authenticate.user.service';
 import { Utils } from 'src/app/util/utils';
 import { Output, EventEmitter } from '@angular/core';
 import { MessageService } from 'src/app/services/helpers/message/message.service';
@@ -30,7 +30,7 @@ export class UsersTableComponent {
   @Output() newItemEvent = new EventEmitter<UserBean>();
 
 
-  constructor(private utils: Utils, private wsAuthenticateService: WsAuthenticateService,
+  constructor(private utils: Utils, private wsAuthenticateService: WsAuthenticateUserService,
     private router: Router, private translate: TranslateService, private companyService: CompanyService
     , private messageService: MessageService) {
 

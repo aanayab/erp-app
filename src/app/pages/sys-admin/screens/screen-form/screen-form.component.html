@@ -1,0 +1,183 @@
+<div class="col-12">
+  <mat-accordion>
+    <mat-expansion-panel expanded="{{panelOpenState}}" (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="text-center col-12 h5">
+            {{'SCREEN_FORM.SCREENINFO' | translate}}
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form class="col-12" ngClass="{{screenInfoForm.valid ? 'needs-validated' :'was-validated' }}"
+        [formGroup]="screenInfoForm" (ngSubmit)="onSubmit()" novalidate>
+        <h1 mat-card-title style="color: white;" class="text-center">{{"SCREEN_FORM.SCREENINFO"| translate}}</h1>
+
+        <div class="col-12 row text-center">
+
+          <div class="form-group col-md-12 ">
+            <label>{{'SCREEN_FORM.COMPANY'|translate}}</label>
+            <h2 class="pb-0" matInput>{{getCompany()}}</h2>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-3">
+            <label>{{'SCREEN_FORM.SCREEN'|translate}}</label>
+            <input class="form-control " formControlName="screen" (blur)="existScreen()" matInput
+              placeholder="{{'SCREEN_FORM.SCREEN'|translate}}">
+            <div class="invalid-feedback">
+              {{"SCREEN_FORM.SCREEN_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="existScreenFlag" style="font-size: .875em;" class="text-danger">
+              {{"SCREEN_FORM.SCREEN_EXIST" | translate}}
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{'SCREEN_FORM.COMPONENT'|translate}}</label>
+            <input class="form-control " formControlName="componente" matInput
+              placeholder="{{'SCREEN_FORM.COMPONENT'|translate}}">
+            <div class="invalid-feedback">
+              {{"SCREEN_FORM.COMPONENT_REQUIRED"|translate}}
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{'SCREEN_FORM.ALIAS'|translate}}</label>
+            <input class="form-control " formControlName="alias" matInput
+              placeholder="{{'SCREEN_FORM.ALIAS'|translate}}">
+            <div class="invalid-feedback">
+              {{"SCREEN_FORM.ALIAS_REQUIRED"|translate}}
+            </div>
+          </div>
+          <div *ngIf="mode ==='edit'" class="form-group col-md-3">
+            <label>{{'SCREEN_FORM.ORDER'|translate}}</label>
+            <input class="form-control " formControlName="order" matInput
+              placeholder="{{'SCREEN_FORM.ORDER'|translate}}">
+            <div class="invalid-feedback">
+              {{"SCREEN_FORM.ORDER"|translate}}
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="col-12 row text-start">
+          <!-- <div class="form-group col-md-3">
+            <label>{{'SCREEN_FORM.REDIRECT_TO'|translate}}</label>
+            <input class="form-control" formControlName="redirectTo" matInput
+              placeholder="{{'SCREEN_FORM.REDIRECT_TO'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"SCREEN_FORM.REDIRECT_TO_REQUIRED"|translate}}
+            </div>
+          </div> -->
+          <!-- <div class="form-group col-md-3">
+            <label>{{'SCREEN_FORM.PATH_MATCH'|translate}}</label>
+            <input class="form-control" formControlName="pathMatch" matInput
+              placeholder="{{'SCREEN_FORM.PATH_MATCH'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"SCREEN_FORM.PATH_MATCH_REQUIRED"|translate}}
+            </div>
+          </div> -->
+          <div class="form-group col-md-3">
+            <label>{{'SCREEN_FORM.PATH'|translate}}</label>
+            <input class="form-control" formControlName="path" matInput placeholder="{{'SCREEN_FORM.PATH' |translate}}"
+              required>
+            <div class="invalid-feedback">
+              {{"SCREEN_FORM.PATH_REQUIRED"|translate}}
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{ 'SCREEN_FORM.IMAGE' | translate }}</label>
+            <input  type="file" class="form-control" (change)="onFileSelected($event)"
+              placeholder="{{ 'SCREEN_FORM.IMAGE' | translate }}" accept="image/*" required />
+            <div class="invalid-feedback">
+              {{ 'SCREEN_FORM.IMAGE_REQUIRED' | translate }}
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+
+
+            <!-- <img *ngIf="this.screen.image"
+              [src]="'data:' + this.screen.image.contentType + ';base64,' + this.screen.image.data" alt="Imagen cargada"
+              style="max-width: 100px; max-height: 100px;" /> -->
+
+            <img *ngIf="previewUrl" [src]="previewUrl" style="max-height: 100px;" />
+            <p *ngIf="previewUrl">Archivo cargado: {{ selectedFile?.name }}</p>
+          </div>
+
+        </div>
+        <hr>
+        <div class="col-12 row text-start">
+
+          <!-- <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input" formControlName="skip" type="checkbox" id="skip">
+                <label class="form-check-label" for="enabled">
+                  {{'SCREEN_FORM.SKIP'|translate}}
+                </label>
+              </div>
+            </div>
+          </div> -->
+          <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input" formControlName="enabled" type="checkbox" id="enabled">
+                <label class="form-check-label" for="enabled">
+                  {{'SCREEN_FORM.ACTIVE'|translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- <div class="form-group col-md-3">
+            <label>{{ 'SCREEN_FORM.ORDER' | translate }}</label>
+            <input type="number" class="form-control" formControlName="order" matInput
+              placeholder="{{ 'SCREEN_FORM.ORDER' | translate }}" required />
+            <div class="invalid-feedback">
+              {{ 'SCREEN_FORM.ORDER_REQUIRED' | translate }}
+            </div>
+          </div> -->
+
+        </div>
+        <hr>
+        <div class="col-12 row text-start">
+
+          <div class="col-md-3">
+            <label>{{'SCREEN_FORM.CREATE_AT'|translate}}</label>
+            <h2><span class="form-control badge bg-secondary">{{ screenInfoForm.get('createAt')?.value |
+                localizedDate:'medium' }}</span></h2>
+          </div>
+          <div class="form-group col-md-3 ">
+            <label>{{'SCREEN_FORM.LAST_MODIF'|translate}}</label>
+            <h2><span class="form-control badge bg-secondary">{{screenInfoForm!.get('lastModif')?.value |
+                localizedDate:'medium' }}</span></h2>
+          </div>
+
+          <div class="col-md-3">
+            <label>{{'SCREEN_FORM.CREATE_AT_SCREEN'|translate}}</label>
+            <h2><span class="form-control badge bg-secondary">{{ screenInfoForm.get('createUser')?.value }}</span></h2>
+          </div>
+          <div class="form-group col-md-3 ">
+            <label>{{'SCREEN_FORM.LAST_MODIF_SCREEN'|translate}}</label>
+            <h2><span class="form-control badge bg-secondary">{{screenInfoForm!.get('lastModifUser')?.value }}</span>
+            </h2>
+          </div>
+        </div>
+        <hr>
+        &nbsp;
+        <mat-card-actions align="end">
+          <button mat-button routerLink="../" type="button"
+            style="color: white;">{{'SCREEN_FORM.RETURN'|translate}}</button>
+          <button mat-button style="color: white;" type="submit">{{'SCREEN_FORM.SUBMIT'|
+            translate}}</button>
+        </mat-card-actions>
+      </form>
+      <app-messages-modal type="{{type}}" messsage="{{message | translate}}"
+        (closeAction)="closeAction()"></app-messages-modal>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

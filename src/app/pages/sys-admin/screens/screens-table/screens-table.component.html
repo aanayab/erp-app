@@ -1,0 +1,172 @@
+<mat-accordion>
+  <mat-expansion-panel expanded="{{panelOpenState}}" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+
+      <mat-panel-title>
+        <div class="text-center col-12 h5">
+          {{'SCREENS_TABLE.SCREENINFO' | translate}}
+        </div>
+
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="col-12">
+
+      <mat-form-field class="col-3 float-start">
+        <mat-label>{{"SCREENS_TABLE.FILTER" | translate}}</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="{{'SCREENS_TABLE.SEARCH_SCREEN' | translate}}"
+          #input>
+      </mat-form-field>
+
+      <button class="col-3 float-end" routerLink="./AddScreen" [queryParams]="{ mode: 'add' }"
+        ngbTooltip="{{'SCREENS_TABLE.ADD_SCREEN' | translate}}" mat-icon-button
+        aria-label="Example icon button with a open in new tab icon">
+        <mat-icon>add_circle</mat-icon></button>
+
+      <button class="col-3 float-end" *ngIf="isOrderChanged" (click)="saveOrder()"
+        ngbTooltip="{{'SCREENS_TABLE.UPDATE_ORDER' | translate}}" mat-icon-button
+        aria-label="Example icon button with a open in new tab icon">
+        <mat-icon>save</mat-icon></button>
+
+
+
+
+      <mat-paginator [pageSizeOptions]="[25, 50, 100, 150]"
+        [attr.aria-label]="'SCREENS_TABLE.PAGINATOR' | translate"></mat-paginator>
+    </div>
+
+    <div class="mat-elevation-z8 col-12 center">
+      <table class="table table-sm table-striped table-hover" mat-table cdkDropList (cdkDropListDropped)="drop($event)"
+        [dataSource]="dataSource" matSort>
+        <!-- Position Column -->
+        <ng-container matColumnDef="position" sticky>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"SCREENS_TABLE.NUMBER" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <mat-icon class="example-drag-cursor"
+              style="padding: 0; font-size: 18px;">reorder</mat-icon>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="order">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"SCREENS_TABLE.ORDER" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('SCREENS_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('SCREENS_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{ row.order }}</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="screen">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"SCREENS_TABLE.SCREEN" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('SCREENS_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('SCREENS_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{ row.screen }}</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="componente">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"SCREENS_TABLE.COMPONENT" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('SCREENS_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('SCREENS_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{row.componente}}
+            </span></td>
+        </ng-container>
+        <ng-container matColumnDef="path">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"SCREENS_TABLE.PATH" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('SCREENS_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('SCREENS_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">/{{row.path}}
+            </span></td>
+        </ng-container>
+        <ng-container matColumnDef="disabled">
+          <th mat-header-cell *matHeaderCellDef>{{"SCREENS_TABLE.ACTIVE" | translate}}</th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row">
+            <span [class.disabled]="row.confirmationToken || row.accountLocked " *ngIf="!row.enabled"
+              (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : disable(row)"
+              class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
+              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('SCREENS_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ? ('SCREENS_TABLE.CONFIRM_PENNDING' | translate)  
+      : ('SCREENS_TABLE.ENABLED' | translate))">block</span>
+            <span [class.disabled]="row.confirmationToken || row.accountLocked" *ngIf="row.enabled"
+              (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : disable(row)"
+              class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
+              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('SCREENS_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ?  ('SCREENS_TABLE.CONFIRM_PENNDING' | translate)  
+      : ('SCREENS_TABLE.DISABLED' | translate))">done</span>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef>{{"SCREENS_TABLE.EDIT" | translate}}</th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row">
+            <span (click)="edit(row)" class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled"
+              aria-hidden="true" aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('SCREENS_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ? ('SCREENS_TABLE.CONFIRM_PENNDING' | translate) 
+      : ('SCREENS_TABLE.EDIT' | translate))">edit</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>{{"SCREENS_TABLE.DELETE" | translate}}</th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row">
+            <span (click)="borrar(row)" class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true"
+              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('SCREENS_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ? ('SCREENS_TABLE.CONFIRM_PENNDING' | translate) 
+      : ('SCREENS_TABLE.DELETE' | translate))">delete</span>
+          </td>
+        </ng-container>
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag></tr>
+
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="10">{{"SCREENS_TABLE.NO_DATA_MATCHING" | translate}}<br><button
+              routerLink="./AddScreen" [queryParams]="{ mode: 'add' }"
+              ngbTooltip="{{'SCREENS_TABLE.ADD_SCREEN' | translate}}" mat-icon-button
+              aria-label="Example icon button with a open in new tab icon">
+              <mat-icon>add_circle</mat-icon></button></td>
+        </tr>
+      </table>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
