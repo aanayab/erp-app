@@ -63,7 +63,7 @@ export class CompanySelectorComponent  {
 
 
   getCompanies() {
-    this.wsSysAdminCompanyService.getCompanies()
+    this.wsSysAdminCompanyService.getCompaniesEnabled()
       .subscribe(this.utils.subscribeHandler(this, this.setCompanies)
       );
 

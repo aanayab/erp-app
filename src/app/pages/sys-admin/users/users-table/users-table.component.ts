@@ -92,10 +92,11 @@ export class UsersTableComponent {
   getUsers() {
     
     this, this.companyService.getCompanyObs().subscribe(obs => {
-      
+       if (obs) {
       this.wsAuthenticateService.getUsersByIdCompany(this.utils, obs.idCompany)
         .subscribe(this.utils.subscribeHandler(this, this.setUsers)
         );
+      }
     });
 
   }

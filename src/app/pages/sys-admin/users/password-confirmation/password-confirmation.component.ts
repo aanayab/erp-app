@@ -42,7 +42,7 @@ export class PasswordConfirmationComponent {
 
   constructor(private utils: Utils, private elementRef: ElementRef, private router: Router, private wsAuthenticateService: WsAuthenticateUserService,
     private loadingService: LoadingService, private userLoggedServiceService: UserLoggedServiceService, 
-    private ValidatorService: ValidatorService, private fb: FormBuilder,private messageService:MessageService,
+     private fb: FormBuilder,private messageService:MessageService,
     private wsSmsService:WsSmsService,private translate:TranslateService
   ) {
     this.passwordForm = this.fb.group({
@@ -71,12 +71,12 @@ export class PasswordConfirmationComponent {
   };
 
   passwordValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    return this.ValidatorService.validatePassword(control.value);
+    return ValidatorService.validatePassword(control.value);
   }
 
   
   phoneNumberValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    return this.ValidatorService.validatePhoneNumber(control.value);
+    return ValidatorService.validatePhoneNumber(control.value);
   }
 
   ngAfterViewInit() {

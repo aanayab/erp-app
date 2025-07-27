@@ -13,7 +13,7 @@ import { LocalizedDatePipe } from 'src/app/services/pipes/localizedDatePipe/loca
 import { ScreenService } from '../services/screen.service';
 import { WsSysAdminScreenService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.screen.service';
 import { Utils } from 'src/app/util/utils';
-import { ScreenImageBean } from 'src/app/model/screenImageBean';
+
 
 
 @Component({
@@ -326,6 +326,6 @@ export class ScreenFormComponent implements OnInit {
   }
 
   getCompany() {
-    return this.companyService.getCompany().name;
+    return this.companyService.getCompany().commercialName;
   }
 }

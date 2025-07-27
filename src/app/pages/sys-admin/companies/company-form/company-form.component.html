@@ -1,0 +1,788 @@
+<div class="col-12">
+  <mat-accordion>
+    <mat-expansion-panel expanded="{{panelOpenState}}" (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="text-center col-12 h5">
+            {{'COMPANY_FORM.COMPANYINFO' | translate}}
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form class="col-12" [formGroup]="companyInfoForm" (ngSubmit)="onSubmit()"
+        [ngClass]="companyInfoForm.valid ? 'needs-validated' : 'was-validated'" novalidate>
+
+
+
+        <h1 mat-card-title class="text-center text-white">
+          {{ 'COMPANY_FORM.COMPANYINFO' | translate }}
+        </h1>
+
+        <hr />
+
+        <!-- Identificación legal -->
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.LEGAL_NAME' | translate }}</label>
+            <input class="form-control" formControlName="legalName" matInput
+              placeholder="{{'COMPANY_FORM.LEGAL_NAME'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.LEGAL_NAME_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('legalName')!.errors">
+              <div *ngIf="companyInfoForm.get('legalName')!.errors!.email" class="text-danger">
+                {{"COMPANY_FORM.LEGAL_NAME_INVALID"|
+                translate}}</div>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.COMMERCIAL_NAME' | translate }}</label>
+            <input class="form-control" formControlName="commercialName" matInput
+              placeholder="{{'COMPANY_FORM.COMMERCIAL_NAME'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.COMMERCIAL_NAME_REQUIRED"|translate}}
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.TAX_ID' | translate }}</label>
+            <input class="form-control" formControlName="taxId" matInput
+              placeholder="{{'COMPANY_FORM.TAX_ID'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.TAX_ID_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="existLegalNameFlag" style="font-size: .875em;" class="text-danger">
+              {{"COMPANY_FORM.TAX_ID_EXIST" | translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('taxId')!.errors">
+              <div *ngIf="companyInfoForm.get('taxId')?.hasError('invalidRfc')" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.TAX_ID_INVALID" | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 row text-start">
+          <div *ngIf="companyInfoForm.get('countryCodeIso3')?.value === '484'" class="form-group col-md-8">
+            <label>{{ 'COMPANY_FORM.FISCAL_REGIME' | translate }}</label>
+            <app-regimen-fiscal-selector [selectedItem]="companyInfoForm.get('fiscalRegime')?.value"
+              (selectedItemChange)="companyInfoForm.get('fiscalRegime')?.setValue($event)">
+            </app-regimen-fiscal-selector>
+            <div class="invalid-feedback">
+              {{ "COMPANY_FORM.FISCAL_REGIME_REQUIRED" | translate }}
+            </div>
+          </div>
+          <div *ngIf="companyInfoForm.get('countryCodeIso3')?.value !== '484'" class="form-group col-md-6">
+            <label>{{ 'COMPANY_FORM.FISCAL_REGIME' | translate }}</label>
+            <input class="form-control" formControlName="fiscalRegime" matInput
+              placeholder="{{'COMPANY_FORM.FISCAL_REGIME'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.FISCAL_REGIME_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('fiscalRegime')!.errors">
+              <div *ngIf="companyInfoForm.get('fiscalRegime')!.errors!.email" class="text-danger">
+                {{"COMPANY_FORM.FISCAL_REGIME_INVALID"|
+                translate}}</div>
+            </div>
+          </div>
+          <div *ngIf="mode ==='edit'" class="form-group col-md-4">
+            <label>{{'COMPANY_FORM.ID_COMPANY'|translate}}</label>
+            <input class="form-control " formControlName="idCompany" matInput
+              placeholder="{{'COMPANY_FORM.ID_COMPANY'|translate}}">
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.ID_COMPANY"|translate}}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.WEBSITE_URL' | translate }}</label>
+            <input class="form-control" formControlName="websiteUrl" matInput
+              placeholder="{{'COMPANY_FORM.WEBSITE_URL'|translate}}">
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.WEBSITE_URL_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('websiteUrl')!.errors">
+              <div *ngIf="companyInfoForm.get('websiteUrl')!.errors!.invalidUrl" class="text-danger">
+                {{"COMPANY_FORM.WEBSITE_URL_INVALID"|
+                translate}}</div>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.LOGO_URL' | translate }}</label>
+            <input class="form-control" formControlName="logoUrl" matInput
+              placeholder="{{'COMPANY_FORM.LOGO_URL'|translate}}">
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.LOGO_URL_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('logoUrl')!.errors">
+              <div *ngIf="companyInfoForm.get('logoUrl')!.errors!.invalidUrl" class="text-danger">
+                {{"COMPANY_FORM.LOGO_URL_INVALID"|
+                translate}}</div>
+            </div>
+          </div>
+
+
+        </div>
+        <hr />
+        <h1 mat-card-title class="text-center text-white">
+          {{ 'COMPANY_FORM.COUNTRYINFO' | translate }}
+        </h1>
+
+        <hr />
+        <div class="col-12 row text-start">
+
+          <div class="form-group col-md-3 ">
+            <label>{{'COMPANY_FORM.COUNTRY'|translate}}</label>
+            <lib-country-list [ngClass]="mode ==='edit'?'disabled_country_selector' : ''"
+              selectedCountryCode="{{country?.code}}" matInput [selectedCountryConfig]="selectedCountryConfig"
+              [countryListConfig]="countryListConfig" (onCountryChange)="onCountryChange($event)" required
+              readonly></lib-country-list>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.COUNTRY_REQUIRED"|translate}}
+            </div>
+          </div>
+          <!-- <div class="form-group col-md-4">
+      <label>{{ 'COMPANY_FORM.COUNTRY_CODE' | translate }}</label>
+      <input class="form-control" formControlName="countryCodeIso3" />
+    </div> -->
+          <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.CURRENCY' | translate }}</label>
+            <input class="form-control" formControlName="currency" matInput />
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.LANGUAGE' | translate }}</label>
+            <input class="form-control" formControlName="language" matInput />
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          <label>{{'COMPANY_FORM.TIMEZONE'|translate}}</label>
+          <app-timezone-selector [selectedTimezone]="companyInfoForm.get('timezone')?.value"
+            (selectedItemChange)="companyInfoForm.get('timezone')?.setValue($event)" [timezones]="timezones"
+            [ngClass]="mode ==='edit'?'disabled_country_selector' : ''" matInput required
+            readonly></app-timezone-selector>
+          <div class="invalid-feedback">
+            {{"COMPANY_FORM.TIMEZONE_REQUIRED"|translate}}
+          </div>
+        </div>
+        <!-- <div class="form-group col-md-3">
+          <label>{{'COMPANY_FORM.TIMEZONE'|translate}}</label>
+          <app-timezone-selector  [timezones]="timezones" [ngClass]="mode ==='edit'?'disabled_country_selector' : ''"
+            matInput required readonly></app-timezone-selector>
+          <div class="invalid-feedback">
+            {{"COMPANY_FORM.TIMEZONE_REQUIRED"|translate}}
+          </div>
+        </div> -->
+        <!-- <div class="col-12 row text-start">
+          <div class="form-group col-md-6">
+            <label>{{ 'COMPANY_FORM.TIMEZONE' | translate }}</label>
+            <input class="form-control" formControlName="timezone" />
+          </div>
+        </div> -->
+        <hr />
+        <h1 mat-card-title class="text-center text-white">
+          {{ 'COMPANY_FORM.ADRESSINFO' | translate }}
+        </h1>
+
+        <hr />
+
+        <!-- Dirección -->
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.CITY' | translate }}</label>
+            <input class="form-control" formControlName="city" matInput placeholder="{{'COMPANY_FORM.CITY'|translate}}"
+              required>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.CITY_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('city')!.errors">
+              <div *ngIf="companyInfoForm.get('city')!.errors!.email" class="text-danger">{{"COMPANY_FORM.CITY_INVALID"|
+                translate}}</div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.STATE' | translate }}</label>
+            <input class="form-control" formControlName="stateProvince" matInput
+              placeholder="{{'COMPANY_FORM.STATE'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.STATE_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('stateProvince')!.errors">
+              <div *ngIf="companyInfoForm.get('stateProvince')!.errors!.email" class="text-danger">
+                {{"COMPANY_FORM.STATE_INVALID"|
+                translate}}</div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.POSTAL_CODE' | translate }}</label>
+            <input class="form-control" formControlName="postalCode" matInput
+              placeholder="{{'COMPANY_FORM.POSTAL_CODE'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.POSTAL_CODE_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('postalCode')!.errors">
+              <div *ngIf="companyInfoForm.get('postalCode')!.errors!.email" class="text-danger">
+                {{"COMPANY_FORM.POSTAL_CODE_INVALID"|
+                translate}}</div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.STREET' | translate }}</label>
+            <input class="form-control" formControlName="street" matInput
+              placeholder="{{'COMPANY_FORM.STREET'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.STREET_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('street')!.errors">
+              <div *ngIf="companyInfoForm.get('street')!.errors!.email" class="text-danger">
+                {{"COMPANY_FORM.STREET_INVALID"|
+                translate}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-6">
+            <label>{{ 'COMPANY_FORM.ADDRESS_COMPLEMENT' | translate }}</label>
+            <input class="form-control" formControlName="addressComplement" matInput
+              placeholder="{{'COMPANY_FORM.ADDRESS_COMPLEMENT'|translate}}" />
+          </div>
+        </div>
+
+        <hr />
+        <h1 mat-card-title class="text-center text-white">
+          {{ 'COMPANY_FORM.CONTACTINFO' | translate }}
+        </h1>
+
+        <hr />
+        <!-- Contacto -->
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.CONTACT_NAME' | translate }}</label>
+            <input class="form-control" formControlName="contactName" matInput
+              placeholder="{{'COMPANY_FORM.CONTACT_NAME'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.CONTACT_NAME_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('contactName')!.errors">
+              <div *ngIf="companyInfoForm.get('contactName')!.errors!.email" class="text-danger">
+                {{"COMPANY_FORM.CONTACT_NAME_INVALID"|
+                translate}}</div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.POSITION' | translate }}</label>
+            <input class="form-control" formControlName="position" matInput
+              placeholder="{{'COMPANY_FORM.POSITION'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.POSITION_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('position')!.errors">
+              <div *ngIf="companyInfoForm.get('position')!.errors!.email" class="text-danger">
+                {{"COMPANY_FORM.POSITION_INVALID"|
+                translate}}</div>
+            </div>
+          </div>
+          <!-- <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.EMAIL' | translate }}</label>
+            <input class="form-control" formControlName="email" />
+          </div> -->
+          <div class="form-group col-md-3">
+            <label>{{'COMPANY_FORM.EMAIL'|translate}}</label>
+            <input class="form-control" formControlName="email" matInput
+              placeholder="{{'COMPANY_FORM.EMAIL'|translate}}" required>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.EMAIL_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="existEmailFlag" style="font-size: .875em;" class="text-danger">
+              {{"COMPANY_FORM.EMAIL_EXIST" | translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('email')!.errors">
+              <div *ngIf="companyInfoForm.get('email')!.errors!.email" class="text-danger">
+                {{"COMPANY_FORM.EMAIL_INVALID"|
+                translate}}</div>
+            </div>
+          </div>
+          <!-- <div class="form-group col-md-3">
+          <label>{{ 'COMPANY_FORM.MOBILE' | translate }}</label>
+          <input class="form-control" formControlName="mobileNumber" />
+        </div> -->
+          <div class="form-group col-md-3">
+            <label>{{'COMPANY_FORM.MOBILE'|translate}}</label>
+            <input class="form-control" formControlName="mobileNumber" matInput
+              placeholder="{{'COMPANY_FORM.MOBILE'|translate}}" required />
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.MOBILE_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('mobileNumber')!.errors">
+              <div *ngIf="companyInfoForm.get('mobileNumber')!.errors!.invalidPhone" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.MOBILE_INVALID" | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 row text-start">
+          <!-- <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.PHONE' | translate }}</label>
+            <input class="form-control" formControlName="phoneNumber" />
+          </div> -->
+          <div class="form-group col-md-3">
+            <label>{{'COMPANY_FORM.PHONE'|translate}}</label>
+            <input class="form-control" formControlName="phoneNumber" matInput
+              placeholder="{{'COMPANY_FORM.PHONE'|translate}}" required />
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.PHONE_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('phoneNumber')!.errors">
+              <div *ngIf="companyInfoForm.get('phoneNumber')!.errors!.invalidPhone" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.MOBILE_INVALID" | translate}}
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.INDUSTRY' | translate }}</label>
+            <input class="form-control" formControlName="industry" matInput
+              placeholder="{{'COMPANY_FORM.INDUSTRY'|translate}}" required />
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.INDUSTRY_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('industry')!.errors">
+              <div *ngIf="companyInfoForm.get('industry')!.errors!.invalidPhone" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.INDUSTRY_INVALID" | translate}}
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.EMPLOYEES' | translate }}</label>
+            <input type="number" class="form-control" formControlName="employeeCount" matInput
+              placeholder="{{'COMPANY_FORM.EMPLOYEES'|translate}}" required />
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.EMPLOYEES_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('employeeCount')!.errors">
+              <div *ngIf="companyInfoForm.get('employeeCount')!.errors!.invalidPhone" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.EMPLOYEES_INVALID" | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <h1 mat-card-title class="text-center text-white">
+          {{ 'COMPANY_FORM.ADITIONALCONTACTINFO' | translate }}
+        </h1>
+        <div class="col-12 row text-start">
+
+          <div formArrayName="contacts" class="form-group col-12">
+
+            <div class="col-12 border rounded p-3 mb-3 bg-light"
+              *ngFor="let contact of contacts.controls; let i = index" [formGroupName]="i">
+              <!-- Título del contacto -->
+              <h5 class="mb-3 text-primary">
+                {{ 'COMPANY_FORM.CONTACT_HEADER' | translate }} #{{ i + 1 }}
+              </h5>
+              <div class="col-12 row text-start">
+                <!-- Nombre -->
+                <div class="form-group col-md-4">
+                  <label>{{ 'COMPANY_FORM.CONTACT_NAME' | translate }}</label>
+                  <input class="form-control" formControlName="name"
+                    placeholder="{{ 'COMPANY_FORM.CONTACT_NAME' | translate }}" required />
+                  <div class="invalid-feedback d-block"
+                    *ngIf="contact.get('name')?.invalid && contact.get('name')?.touched">
+                    {{ 'COMPANY_FORM.CONTACT_NAME_REQUIRED' | translate }}
+                  </div>
+                </div>
+
+                <!-- Puesto -->
+                <div class="form-group col-md-4">
+                  <label>{{ 'COMPANY_FORM.POSITION' | translate }}</label>
+                  <input class="form-control" formControlName="position"
+                    placeholder="{{ 'COMPANY_FORM.POSITION' | translate }}" required />
+                  <div class="invalid-feedback d-block"
+                    *ngIf="contact.get('position')?.invalid && contact.get('position')?.touched">
+                    {{ 'COMPANY_FORM.POSITION_REQUIRED' | translate }}
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group col-md-4">
+                  <label>{{ 'COMPANY_FORM.EMAIL' | translate }}</label>
+                  <input class="form-control" formControlName="email"
+                    placeholder="{{ 'COMPANY_FORM.EMAIL' | translate }}" required />
+                  <div class="invalid-feedback">
+                    {{"COMPANY_FORM.EMAIL_REQUIRED"|translate}}
+                  </div>
+                  <div *ngIf="contact.get('email')!.errors">
+                    <div *ngIf="contact.get('email')!.errors!.email" class="text-danger">
+                      {{"COMPANY_FORM.EMAIL_INVALID"|
+                      translate}}</div>
+                  </div>
+                </div>
+
+                <!-- Celular -->
+                <div class="form-group col-md-4">
+                  <label>{{ 'COMPANY_FORM.MOBILE' | translate }}</label>
+                  <input class="form-control" formControlName="mobileNumber"
+                    placeholder="{{ 'COMPANY_FORM.MOBILE' | translate }}" />
+                  <div class="invalid-feedback">
+                    {{"COMPANY_FORM.MOBILE_REQUIRED"|translate}}
+                  </div>
+                  <div *ngIf="contact.get('mobileNumber')!.errors">
+                    <div *ngIf="contact.get('mobileNumber')!.errors!.invalidPhone" style="font-size: .875em;"
+                      class="text-danger">
+                      {{"COMPANY_FORM.MOBILE_INVALID" | translate}}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Teléfono fijo -->
+                <div class="form-group col-md-4">
+                  <label>{{ 'COMPANY_FORM.PHONE' | translate }}</label>
+                  <input class="form-control" formControlName="phoneNumber"
+                    placeholder="{{ 'COMPANY_FORM.PHONE' | translate }}" />
+                  <div class="invalid-feedback">
+                    {{"COMPANY_FORM.MOBILE_REQUIRED"|translate}}
+                  </div>
+                  <div *ngIf="contact.get('phoneNumber')!.errors">
+                    <div *ngIf="contact.get('phoneNumber')!.errors!.invalidPhone" style="font-size: .875em;"
+                      class="text-danger">
+                      {{"COMPANY_FORM.MOBILE_INVALID" | translate}}
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group col-12 mt-2 text-end">
+                  <span role="button" class="text-danger d-inline-flex align-items-center" (click)="removeContact(i)"
+                    ngbTooltip="{{ 'COMPANY_FORM.REMOVE_CONTACT' | translate }}" style="cursor: pointer;">
+                    <mat-icon class="me-1" fontSet="material-icons">remove_circle</mat-icon>
+                    {{ 'COMPANY_FORM.REMOVE_CONTACT' | translate }}
+                  </span>
+                </div>
+
+                <!-- <div class="form-group col-12 mt-2 text-end">
+                  <span role="button" class="text-danger d-inline-flex align-items-center" (click)="removeContact(i)"
+                    ngbTooltip="{{ 'COMPANY_FORM.REMOVE_CONTACT' | translate }}">
+                    <mat-icon class="me-1">remove_circle</mat-icon>
+                    {{ 'COMPANY_FORM.REMOVE_CONTACT' | translate }}
+                  </span>
+                </div> -->
+                <!-- <div class="form-group col-md-1">
+                  <button type="button" class="btn btn-danger" (click)="removeContact(i)"
+                    title="{{ 'COMMON.REMOVE' | translate }}">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div> -->
+              </div>
+            </div>
+
+
+            <div class="form-group col-12 mt-2 text-end">
+              <span role="button" class=" d-inline-flex align-items-center" (click)="addContact()"
+                ngbTooltip="{{ 'COMPANY_FORM.ADD_CONTACT' | translate }}">
+                <mat-icon class="me-1">add_circle</mat-icon>
+                {{ 'COMPANY_FORM.ADD_CONTACT' | translate }}
+              </span>
+            </div>
+
+            <!-- <div class="form-group col-12 mt-2">
+              <label>{{'COMPANY_FORM.ADD_CONTACT' | translate}}</label>
+              <button class="col-3 float-end" (click)="addContact()" 
+                ngbTooltip="{{'COMPANY_FORM.ADD_CONTACT' | translate}}" mat-icon-button>
+                <mat-icon>add_circle</mat-icon></button>
+            </div> -->
+          </div>
+
+
+        </div>
+
+        <hr />
+        <h1 mat-card-title class="text-center text-white">
+          {{ 'COMPANY_FORM.BILLINGINFO' | translate }}
+        </h1>
+
+        <hr />
+        <!-- Facturación -->
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.BILLING_EMAIL' | translate }}</label>
+            <input class="form-control" formControlName="billingEmail" matInput
+              placeholder="{{'COMPANY_FORM.BILLING_EMAIL'|translate}}" required />
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.BILLING_EMAIL_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('billingEmail')!.errors">
+              <div *ngIf="companyInfoForm.get('billingEmail')!.errors!.email" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.EMAIL_INVALID" | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-12">
+            <label>{{ 'COMPANY_FORM.BILLING_ADDRESS' | translate }}</label>
+            <textarea class="form-control" formControlName="billingAddress" matInput
+              placeholder="{{'COMPANY_FORM.BILLING_ADDRESS'|translate}}" rows="3" required></textarea>
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.BILLING_ADDRESS_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('billingAddress')!.errors">
+              <div *ngIf="companyInfoForm.get('billingAddress')!.errors!.invalidPhone" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.BILLING_ADDRESS_INVALID" | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.PAYMENT_TERMS' | translate }}</label>
+            <app-terminos-pago-selector [selectedItem]="companyInfoForm.get('paymentTerms')?.value"
+              (selectedItemChange)="companyInfoForm.get('paymentTerms')?.setValue($event)">
+            </app-terminos-pago-selector>
+            <div class="invalid-feedback">
+              {{ "COMPANY_FORM.PAYMENT_TERMS_REQUIRED" | translate }}
+            </div>
+          </div>
+
+          <!-- <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.PAYMENT_TERMS' | translate }}</label>
+            <input class="form-control" formControlName="paymentTerms" matInput
+              placeholder="{{'COMPANY_FORM.PAYMENT_TERMS'|translate}}" required />
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.PAYMENT_TERMS_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('paymentTerms')!.errors">
+              <div *ngIf="companyInfoForm.get('paymentTerms')!.errors!.invalidPhone" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.PAYMENT_TERMS_INVALID" | translate}}
+              </div>
+            </div>
+          </div> -->
+          <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.PAYMENT_METHOD' | translate }}</label>
+            <app-formas-pago-selector [selectedItem]="companyInfoForm.get('paymentMethod')?.value"
+              (selectedItemChange)="companyInfoForm.get('paymentMethod')?.setValue($event)">
+            </app-formas-pago-selector>
+            <div class="invalid-feedback">
+              {{ "COMPANY_FORM.PAYMENT_METHOD_REQUIRED" | translate }}
+            </div>
+          </div>
+
+          <!-- <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.PAYMENT_METHOD' | translate }}</label>
+            <input class="form-control" formControlName="paymentMethod" matInput
+              placeholder="{{'COMPANY_FORM.PAYMENT_METHOD'|translate}}" required />
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.PAYMENT_METHOD_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('paymentMethod')!.errors">
+              <div *ngIf="companyInfoForm.get('paymentMethod')!.errors!.invalidPhone" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.PAYMENT_METHOD_INVALID" | translate}}
+              </div>
+            </div>
+          </div> -->
+          <div *ngIf="companyInfoForm.get('paymentMethod')?.value !== 'Efectivo'" class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.BANK_ACCOUNT' | translate }}</label>
+            <input class="form-control" formControlName="bankAccount" matInput
+              placeholder="{{'COMPANY_FORM.BANK_ACCOUNT'|translate}}" />
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.BANK_ACCOUNT_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('bankAccount')!.errors">
+              <div *ngIf="companyInfoForm.get('bankAccount')!.errors!.invalidPhone" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.BANK_ACCOUNT_INVALID" | translate}}
+              </div>
+              <!-- Errores -->
+              <div class="text-danger" *ngIf="companyInfoForm.get('bankAccount')?.errors?.invalidClabe">
+                {{"COMPANY_FORM.BANK_CLABE_INVALID" | translate}}
+              </div>
+              <div class="text-danger" *ngIf="companyInfoForm.get('bankAccount')?.errors?.invalidIban">
+                {{"COMPANY_FORM.BANK_IBAN_INVALID" | translate}}
+              </div>
+              <div *ngIf="companyInfoForm.get('bankAccount')?.errors?.invalidCard">
+                {{"COMPANY_FORM.BANK_TARJETA_INVALID" | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <h1 mat-card-title class="text-center text-white">
+          {{ 'COMPANY_FORM.EXTRASINFO' | translate }}
+        </h1>
+        <!-- Extras -->
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.CLASSIFICATION' | translate }}</label>
+            <app-clasificacion-selector [selectedItem]="companyInfoForm.get('classification')?.value"
+              (selectedItemChange)="companyInfoForm.get('classification')?.setValue($event)">
+            </app-clasificacion-selector>
+            <div class="invalid-feedback">
+              {{ "COMPANY_FORM.CLASSIFICATION_REQUIRED" | translate }}
+            </div>
+          </div>
+
+          <!-- <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.CLASSIFICATION' | translate }}</label>
+            <input class="form-control" formControlName="classification" matInput
+              placeholder="{{'COMPANY_FORM.CLASSIFICATION'|translate}}" required />
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.CLASSIFICATION_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('classification')!.errors">
+              <div *ngIf="companyInfoForm.get('classification')!.errors!.invalidPhone" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.CLASSIFICATION_INVALID" | translate}}
+              </div>
+            </div>
+          </div> -->
+          <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.INTEGRATION_TYPE' | translate }}</label>
+            <app-tipo-integracion-selector [selectedItem]="companyInfoForm.get('integrationType')?.value"
+              (selectedItemChange)="companyInfoForm.get('integrationType')?.setValue($event)">
+            </app-tipo-integracion-selector>
+            <div class="invalid-feedback">
+              {{ "COMPANY_FORM.INTEGRATION_TYPE_REQUIRED" | translate }}
+            </div>
+          </div>
+
+          <!-- <div class="form-group col-md-3">
+            <label>{{ 'COMPANY_FORM.INTEGRATION_TYPE' | translate }}</label>
+            <input class="form-control" formControlName="integrationType" matInput
+              placeholder="{{'COMPANY_FORM.INTEGRATION_TYPE'|translate}}" required />
+            <div class="invalid-feedback">
+              {{"COMPANY_FORM.INTEGRATION_TYPE_REQUIRED"|translate}}
+            </div>
+            <div *ngIf="companyInfoForm.get('integrationType')!.errors">
+              <div *ngIf="companyInfoForm.get('integrationType')!.errors!.invalidPhone" style="font-size: .875em;"
+                class="text-danger">
+                {{"COMPANY_FORM.INTEGRATION_TYPE_INVALID" | translate}}
+              </div>
+            </div>
+          </div> -->
+          <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input" formControlName="contractSigned" type="checkbox" id="contractSigned">
+                <label class="form-check-label" for="contractSigned">
+                  {{'COMPANY_FORM.CONTRACT_SIGNED'|translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input" formControlName="enabled" type="checkbox" id="enabled">
+                <label class="form-check-label" for="enabled">
+                  {{'COMPANY_FORM.ACTIVE'|translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-12">
+            <label>{{ 'COMPANY_FORM.NOTES' | translate }}</label>
+            <textarea class="form-control" formControlName="notes" rows="3"></textarea>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- Imagen y estado -->
+        <div class="col-12 row text-start">
+          <!-- <div class="form-group col-md-4">
+            <label>{{ 'COMPANY_FORM.IMAGE' | translate }}</label>
+            <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*" />
+          </div>
+          <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input" formControlName="enabled" type="checkbox" id="enabled">
+                <label class="form-check-label" for="enabled">
+                  {{'COMPANY_FORM.ACTIVE'|translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <img *ngIf="previewUrl" [src]="previewUrl" style="max-height: 100px;" />
+            <p *ngIf="previewUrl">{{ selectedFile?.name }}</p>
+          </div> -->
+
+          <div class="form-group col-md-3">
+            <label>{{ 'SCREEN_FORM.IMAGE' | translate }}</label>
+            <input type="file" class="form-control" (change)="onFileSelected($event)"
+              placeholder="{{ 'SCREEN_FORM.IMAGE' | translate }}" accept="image/*" required />
+            <div class="invalid-feedback">
+              {{ 'SCREEN_FORM.IMAGE_REQUIRED' | translate }}
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+
+
+            <!-- <img *ngIf="this.screen.image"
+              [src]="'data:' + this.screen.image.contentType + ';base64,' + this.screen.image.data" alt="Imagen cargada"
+              style="max-width: 100px; max-height: 100px;" /> -->
+
+            <img *ngIf="previewUrl" [src]="previewUrl" style="max-height: 100px;" />
+            <p *ngIf="previewUrl">Archivo cargado: {{ selectedFile?.name }}</p>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- Auditoría -->
+        <div class="row text-start">
+          <div class="col-md-3">
+            <label>{{ 'COMPANY_FORM.CREATE_AT' | translate }}</label>
+            <h2><span class="form-control badge bg-secondary">{{ companyInfoForm.get('createAt')?.value |
+                localizedDate:'medium' }}</span></h2>
+          </div>
+          <div class="col-md-3">
+            <label>{{ 'COMPANY_FORM.LAST_MODIF' | translate }}</label>
+            <h2><span class="form-control badge bg-secondary">{{ companyInfoForm.get('lastModif')?.value |
+                localizedDate:'medium' }}</span></h2>
+          </div>
+          <div class="col-md-3">
+            <label>{{ 'COMPANY_FORM.CREATE_USER' | translate }}</label>
+            <h2><span class="form-control badge bg-secondary">{{ companyInfoForm.get('createUser')?.value }}</span></h2>
+          </div>
+          <div class="col-md-3">
+            <label>{{ 'COMPANY_FORM.LAST_MODIF_USER' | translate }}</label>
+            <h2><span class="form-control badge bg-secondary">{{ companyInfoForm.get('lastModifUser')?.value }}</span>
+            </h2>
+          </div>
+        </div>
+
+        <hr />
+
+        <mat-card-actions align="end">
+          <button mat-button routerLink="../" type="button" style="color: white;">
+            {{ 'COMPANY_FORM.RETURN' | translate }}
+          </button>
+          <button mat-button type="submit" style="color: white;">
+            {{ 'COMPANY_FORM.SUBMIT' | translate }}
+          </button>
+        </mat-card-actions>
+      </form>
+
+      <app-messages-modal type="{{type}}" messsage="{{message | translate}}"
+        (closeAction)="closeAction()"></app-messages-modal>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

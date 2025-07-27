@@ -15,6 +15,7 @@ import { FoodNode } from 'src/app/model/foodNode';
 import { Route } from 'src/app/model/Route';
 import { RouteService } from 'src/app/services/helpers/routeServices/route-services';
 import { MessageService } from 'src/app/services/helpers/message/message.service';
+import { CompanyService } from 'src/app/services/helpers/company/company.service';
 
 
 export let browserRefresh = false;
@@ -42,12 +43,14 @@ export class HomeComponent implements AfterViewInit {
 
 
 
+
   constructor(private elementRef: ElementRef, private utils: Utils, private router: Router,
     private wsAuthenticateService: WsAuthenticateUserService,
     private wsSysAdminMenuService: WsSysAdminMenuService,
     private wsSysAdminPrivilegyService:WsSysAdminPrivilegyService,
     private privilegyService: PrivilegyService,private userLoggedServiceService:UserLoggedServiceService
-    ,private menuService: MenuService,private routeService:RouteService, private messageService:MessageService) {
+    ,private menuService: MenuService,private routeService:RouteService, private messageService:MessageService,
+  private companyService:CompanyService) {
 
 
      
@@ -141,6 +144,7 @@ export class HomeComponent implements AfterViewInit {
 
   ngOnInit() {
     this.getUser();
+    
   }
 
   @Input() error: string = '';

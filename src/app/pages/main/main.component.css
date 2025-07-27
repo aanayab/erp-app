@@ -1,0 +1,33 @@
+.home-background {
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 35%;          /* ⬅️ 🔧 Ajusta este valor para reducir el tamaño */
+  background-color: white;       /* o el color que desees */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.home-image {
+  max-width: 30vw;       /* ajusta el tamaño */
+  max-height: 60vh;
+  object-fit: contain;
+  opacity: 0.3;          /* opcional: para dejarlo como fondo tenue */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centrado */
+  z-index: 0;
+}
+
+.home-content {
+  position: relative;
+  z-index: 1; /* se muestra encima de la imagen */
+  text-align: center;
+  color: white; /* o el color que desees para el texto */
+}
+
+

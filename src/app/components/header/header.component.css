@@ -12,3 +12,17 @@
     color: var(--font-color);  
 
   }
+
+  .home-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-size: contain;     /* o 'cover' si quieres que llene el cuadro */
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 4px;           /* opcional: bordes redondeados */
+  margin-top: 4px;
+  margin-left: 8px;
+  padding-left: 12px;
+  cursor: pointer;
+}

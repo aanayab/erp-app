@@ -1,17 +1,17 @@
 <div class="col-12">
-<div class="text-white text-left pt-2 ps-5" [ngbTooltip]="('COMPANY_SELECTOR.TOOLTIP_COMPANY' | translate )"  *ngIf="!validateRoot() && companyBean">{{companyBean.name}}</div>
+<div class="text-white text-left pt-2 ps-5" [ngbTooltip]="('COMPANY_SELECTOR.TOOLTIP_COMPANY' | translate )"   *ngIf="!validateRoot() && companyBean">{{companyBean.commercialName}}</div>
 <div class="row" *ngIf="validateRoot() && companyBeans">
 	<div class="col col-3">
-		<div ngbDropdown [ngbTooltip]="('COMPANY_SELECTOR.TOOLTIP' | translate )"  class="d-inline-block">
+		<div ngbDropdown   class="d-inline-block">
 			<button   style="color: white;" type="button" class="btn dropdown pt-3 pt-lg-2" id="dropdownBasic1" ngbDropdownToggle>
 				{{'COMPANY_SELECTOR.COMPANY' | translate}}
 			</button>
 			<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-				<button (click)="selectCompany(item)" *ngFor="let item of companyBeans; index as i;"  ngbDropdownItem>{{item.name}}</button>
+				<button (click)="selectCompany(item)" *ngFor="let item of companyBeans; index as i;"  ngbDropdownItem>{{item.commercialName}}</button>
 			</div>
 		</div>
 	</div>
-	<div class="col col-6 pt-2 ps-5"   style="color: white;" ><span [ngbTooltip]="('COMPANY_SELECTOR.TOOLTIP_COMPANY' | translate )" >{{companyBean?.name}}</span></div>
+	<div class="col col-6 pt-2 ps-5"   style="color: white;" ><span [ngbTooltip]="('COMPANY_SELECTOR.TOOLTIP_COMPANY' | translate )" >{{companyBean?.commercialName}}</span></div>
 </div>
 </div>
 

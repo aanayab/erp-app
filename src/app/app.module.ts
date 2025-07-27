@@ -59,6 +59,16 @@ import { ScreensHomeComponent } from './pages/sys-admin/screens/screens-home/scr
 import { ScreensTableComponent } from './pages/sys-admin/screens/screens-table/screens-table.component';
 import { ScreenFormComponent } from './pages/sys-admin/screens/screen-form/screen-form.component';
 
+import { CompanyFormComponent } from './pages/sys-admin/companies/company-form/company-form.component';
+import { CompaniesHomeComponent } from './pages/sys-admin/companies/companies-home/companies-home.component';
+import { CompaniesTableComponent } from './pages/sys-admin/companies/companies-table/companies-table.component';
+
+
+import { GroupFormComponent } from './pages/sys-admin/groups/group-form/group-form.component';
+import { GroupsTableComponent } from './pages/sys-admin/groups/groups-table/groups-table.component';
+import { GroupsHomeComponent } from './pages/sys-admin/groups/groups-home/groups-home.component';
+import { GroupSelectorComponent } from './pages/sys-admin/groups/group-selector/group-selector.component';
+
 
 import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -75,12 +85,14 @@ import { WsSysAdminCompanyService } from './services/ws-sysAdmin/ws-sys-admin.co
 import { WsSysAdminMenuService } from './services/ws-sysAdmin/ws-sys-admin.menu.service';
 import { WsSysAdminPrivilegyService } from './services/ws-sysAdmin/ws-sys-admin.privilegy.service';
 import { WsSysAdminScreenService } from './services/ws-sysAdmin/ws-sys-admin.screen.service';
+import { WsSysAdminGroupService } from './services/ws-sysAdmin/ws-sys-admin.group.service';
 
 
 import { IdleServiceService } from './services/helpers/idleService/idle-service.service';
 import { UserLoggedServiceService } from './services/helpers/userLoggedService/user-logged-service.service';
 import { RouteService } from './services/helpers/routeServices/route-services';
 import { ValidatorService } from './services/helpers/validator/validator.service';
+import { bankAccountValidator } from './services/helpers/validator/bank-account.validator';
 import { WsSmsService } from './services/ws-sms/ws-sms.service';
 import { AuthorityService } from './pages/sys-admin/roles/services/authority.service';
 
@@ -111,6 +123,12 @@ import {
 import { MatButtonModule } from "@angular/material/button";
 import { UserService } from './pages/sys-admin/users/services/user.service';
 
+import { TimezoneSelectorComponent } from './components/timezone-selector/timezone-selector.component';
+import { ClasificacionSelectorComponent } from './components/clasificacion-selector/clasificacion-selector.component';
+import { FormasPagoSelectorComponent } from './components/formas-pago-selector/formas-pago-selector.component';
+import { RegimenFiscalSelectorComponent } from './components/regimen-fiscal-selector/regimen-fiscal-selector.component';
+import { TerminosPagoSelectorComponent } from './components/terminos-pago-selector/terminos-pago-selector.component';
+import { TipoIntegracionSelectorComponent } from './components/tipo-integracion-selector/tipo-integracion-selector.component';
 
  registerLocaleData(localeEs,'es');
 
@@ -118,7 +136,8 @@ import { UserService } from './pages/sys-admin/users/services/user.service';
 
 @NgModule({
   providers: [WsAuthenticateUserService,WsAuthenticateAuthorityService,Utils,LoadingService,WsAdministratorService,BreadcrumbService,CompanyService
-    ,PrivilegyService,WsSysAdminCompanyService,WsSysAdminMenuService,WsSysAdminPrivilegyService,WsSysAdminScreenService, IdleServiceService, UserLoggedServiceService,ValidatorService,
+    ,PrivilegyService,WsSysAdminCompanyService,WsSysAdminMenuService,WsSysAdminPrivilegyService,WsSysAdminScreenService,WsSysAdminGroupService
+    , IdleServiceService, UserLoggedServiceService,ValidatorService,
     WsSmsService,MatSnackBar,UserService,AuthorityService,
     RouteService,DatePipe,{ provide: LOCALE_ID, useValue: 'en' },LocalizedDatePipe],
   imports: [MatButtonModule,MatSnackBarModule,BrowserModule, ReactiveFormsModule, BreadcrumbModule, RouterModule, MaterialModule,
@@ -138,8 +157,11 @@ import { UserService } from './pages/sys-admin/users/services/user.service';
     ,FinanzasComponent,GestionComponent,HrComponent,InvComponent,MktComponent,OpComponent
     ,ProdComponent,PvComponent,SalesComponent,SupportComponent,SysAdminComponent,PurchComponent,
     BreadcrumbComponent,MainComponent, IdleModalComponent,UserFormComponent,MessagesModalComponent
-    ,PasswordConfirmationComponent,SnackBarComponent,
+    ,PasswordConfirmationComponent,SnackBarComponent,TimezoneSelectorComponent,
+    ClasificacionSelectorComponent,FormasPagoSelectorComponent,RegimenFiscalSelectorComponent,TerminosPagoSelectorComponent,TipoIntegracionSelectorComponent,
     RoleFormComponent,RolesHomeComponent,RolesTableComponent,ScreensHomeComponent, ScreensTableComponent, ScreenFormComponent,
+    CompaniesHomeComponent,CompaniesTableComponent,CompanyFormComponent,
+    GroupFormComponent,GroupsHomeComponent,GroupsTableComponent,GroupSelectorComponent,
     UsersTableComponent,UsersHomeComponent,ThemeComponent,LocalizedDatePipe],
   bootstrap:    [ AppComponent ]
 })

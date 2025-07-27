@@ -34,7 +34,7 @@ export class WsAdministratorService {
   }
 
 
-  getCompany(idCompany:any): Observable<HttpResponse<UserBean>>{
+  getCompany(idCompany:any): Observable<HttpResponse<CompanyBean>>{
     this.loadingService.setLoading(true);
      return  this.http.get<CompanyBean>(this.companybyIdUrl + idCompany,{
       headers:this.utils.getBearerToken(),

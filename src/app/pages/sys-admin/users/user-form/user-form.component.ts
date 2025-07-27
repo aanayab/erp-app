@@ -18,6 +18,7 @@ import { CountryService } from 'ngx-countries-dropdown';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserLoggedServiceService } from 'src/app/services/helpers/userLoggedService/user-logged-service.service';
 import { AuthorityBean } from 'src/app/model/authorityBean';
+import { ValidatorService } from 'src/app/services/helpers/validator/validator.service';
 
 
 
@@ -57,7 +58,7 @@ export class UserFormComponent {
     lastModif: [{ value: new Date(), disabled: false }, Validators.required],
     lastName: [{ value: '', disabled: false }, Validators.required],
     email: [{ value: '', disabled: false }, [Validators.required, Validators.email]],
-    mobile: [{ value: '', disabled: false }, Validators.required, this.phoneValidator], 
+    mobile: [{ value: '', disabled: false }, Validators.required, ValidatorService.phoneValidator], 
     hidden: [{ value: false, disabled: false }, Validators.required],
     lastModifUser: [{value:this.userLoggedServiceService.getUserName(), disabled: false }, Validators.required],
     createUser: [{value:this.userLoggedServiceService.getUserName() , disabled: false }, Validators.required],
@@ -147,13 +148,7 @@ export class UserFormComponent {
 
   }
 
-  phoneValidator(control: AbstractControl):
-    Observable<ValidationErrors | null> {
-    const valid = /^\d{10}$/.test(control.value);
-    return of(valid ? null : { invalidPhone: true });
-    // Emit null, to indicate no error occurred.
 
-  }
 
   validEmail(component: any, result: any) {
     component.existEmailFlag = result;
@@ -279,7 +274,7 @@ export class UserFormComponent {
   }
 
   getCompany() {
-    return this.companyService.getCompany().name;
+    return this.companyService.getCompany().commercialName;
   }
 
   updateProfile() {

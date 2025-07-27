@@ -1,6 +1,5 @@
 {
- 
-    "BREADCRUMP":{
+    "BREADCRUMP": {
         "ADMINISTRATOR": "Administrador",
         "AUDITORY": "Auditoria",
         "CONTABILITY": "Contabilidad",
@@ -17,7 +16,7 @@
         "PRODUCTIONS": "Producción",
         "SALES_POINT": "Punto de Venta",
         "SALES": "Ventas",
-        "SUPPORT":"Soporte",
+        "SUPPORT": "Soporte",
         "SYSTEM_ADMINISTRATOR": "Administrador de sistema",
         "USERS": "Usuarios",
         "ADD_USER": "Agregar Usuario",
@@ -27,21 +26,22 @@
         "ROLES": "Roles",
         "ADD_ROLE": "Agregar perfil",
         "EDIT_ROLE": "Editar perfil",
-        "SCREENS" :"Pantallas",
-         "ADD_SCREEN": "Agregar pantalla",
-        "EDIT_SCREEN": "Editar pantalla"
-
+        "SCREENS": "Pantallas",
+        "ADD_SCREEN": "Agregar pantalla",
+        "EDIT_SCREEN": "Editar pantalla",
+        "COMPANIES": "Empresas",
+        "ADDCOMPANY": "Agregar empresa",
+        "EDITCOMPANY": "Editar empresa"
     },
-    "MENU":{
-      "TOOLTIP":"Dar click."
+    "MENU": {
+        "TOOLTIP": "Dar click."
     },
-    
     "HOME": {
         "PERMISION_ERROR": "El usuario no tiene permisos asignados.",
         "MENU_ERROR": "El usuario no tiene pantallas asignadas.",
         "USERNAME_ERROR": "El usuario no ha sido asignado.",
-        "TOOLTIP_CLOSE_MENU":"Cerrar menu.",
-        "TOOLTIP_OPEN_MENU":"Abrir menu."
+        "TOOLTIP_CLOSE_MENU": "Cerrar menu.",
+        "TOOLTIP_OPEN_MENU": "Abrir menu."
     },
     "LENGUAGE_SELECTOR": {
         "LANGUAGE": "Idioma",
@@ -49,8 +49,8 @@
     },
     "COMPANY_SELECTOR": {
         "COMPANY": "Empresa",
-        "TOOLTIP":"Seleccionar empresa.",
-        "TOOLTIP_COMPANY":"Empresa."
+        "TOOLTIP": "Seleccionar empresa.",
+        "TOOLTIP_COMPANY": "Empresa."
     },
     "PHONE_SELECTOR": {
         "COMPANY": "Empresa",
@@ -68,25 +68,25 @@
         "TOOLTIP_SEARCH": "Buscar cualquier elemento que se encuentre en la página.",
         "TOOLTIP_USERNAME": "Usuario en sesión.",
         "TOOLTIP_PROFILE": "Abrir para ver perfíl del usuario.",
-        "TOOLTIP_PROFILE_USER":"Dar click para ver información del usuario.",
-        "TOOLTIP_PROFILE_COMMENT":"Dar click para excribir en el blog.",
-        "TOOLTIP_PROFILE_HELP":"Dar click para ver la ayuda.",
-        "TOOLTIP_PROFILE_SUPPORT":"Dar click para soliciar soporte.",
-        "TOOLTIP_PROFILE_THEME":"Dar click para cambiar el tema de la página.",
-        "TOOLTIP_PROFILE_LOGOUT":"Dar click para salir de la página."
+        "TOOLTIP_PROFILE_USER": "Dar click para ver información del usuario.",
+        "TOOLTIP_PROFILE_COMMENT": "Dar click para excribir en el blog.",
+        "TOOLTIP_PROFILE_HELP": "Dar click para ver la ayuda.",
+        "TOOLTIP_PROFILE_SUPPORT": "Dar click para soliciar soporte.",
+        "TOOLTIP_PROFILE_THEME": "Dar click para cambiar el tema de la página.",
+        "TOOLTIP_PROFILE_LOGOUT": "Dar click para salir de la página."
     },
     "FOOTER": {
         "COPYRIGHT": "Derechos reservados.",
-        "TOOLTIP":"Enlace oficial."
+        "TOOLTIP": "Enlace oficial."
     },
     "LOGIN": {
         "PASSWORD": "Contraseña",
         "USERNAME": "Usuario",
         "FORM_LOGIN": "Login",
         "INVALID": "Username or password invalido.",
-        "TOOLTIP_USERNAME":"Capturar el usuario.",
-        "TOOLTIP_PASSWORD":"Capturar la contraseña.",
-        "TOOLTIP_SUBMIT":"Dar click para authenticar."
+        "TOOLTIP_USERNAME": "Capturar el usuario.",
+        "TOOLTIP_PASSWORD": "Capturar la contraseña.",
+        "TOOLTIP_SUBMIT": "Dar click para authenticar."
     },
     "THEME": {
         "THEME": "Tema",
@@ -180,7 +180,7 @@
         "EDIT_SUCCESS": "El usuario {{username}} se actualizó correctamente.",
         "CONFIRMATION_EMAIL": "Se ha mandado un correo de confirmación al correo: {{email}} para finalizar el alta del usuario: {{username}}.",
         "RESET_EMAIL": "Se ha mandado un correo de confirmación al correo: {{email}} para finalizar el resteteo del password del usuario: {{username}}.",
-        "ROLE":  "Perfil"
+        "ROLE": "Perfil"
     },
     "USERS_TABLE": {
         "USERINFO": "Usuarios",
@@ -223,7 +223,6 @@
         "PERMISION_ERROR": "El usuario no tiene permisos asignados.",
         "MENU_ERROR": "El usuario no tiene menus asignados."
     },
-
     "ROLE_FORM": {
         "ROLEINFO": "Información de perfil",
         "COMPANY": "Empresa",
@@ -271,33 +270,39 @@
     "ROLE_SELECTOR": {
         "SELECT": "Seleccionar perfíl",
         "SEARCH": "Buscar perfíl",
-        "TOOLTIP":"Seleccionar perfíl.",
-        "TOOLTIP_ROLE":"Perfíl."
+        "TOOLTIP": "Seleccionar perfíl.",
+        "TOOLTIP_ROLE": "Perfíl."
     },
-       "SCREEN_FORM": {
+    "TIMEZONE_SELECTOR": {
+        "SELECT": "Seleccionar zona horaria",
+        "SEARCH": "Buscar zona hoararia",
+        "TOOLTIP": "Seleccionar zona horaria.",
+        "TOOLTIP_ROLE": "Zona horaria."
+    },
+    "SCREEN_FORM": {
         "SCREENINFO": "Información de pantalla",
         "COMPANY": "Empresa",
         "COMPANY_REQUIRED": "Empresa obligatoria",
         "ID_SCREEN": "Id de pantalla",
-        "ID_SCREEN_REQUIRED": "Id de pantalla obligatoria",        
+        "ID_SCREEN_REQUIRED": "Id de pantalla obligatoria",
         "ID_SCREEN_EXIST": "EL id de la pantalla existe.",
         "SCREEN": "Pantalla",
-        "SCREEN_REQUIRED": "Pantalla obligatoria",        
+        "SCREEN_REQUIRED": "Pantalla obligatoria",
         "SCREEN_EXIST": "LA pantalla existe.",
         "COMPONENT": "Componente ",
         "COMPONENT_REQUIRED": "Descripción obligatorio",
         "ALIAS": "Alias ",
         "ALIAS_REQUIRED": "Alias obligatorio",
         "REDIRECT_TO": "Redirect",
-        "REDIRECT_TO_REQUIRED": "Redirect obligatorio",        
+        "REDIRECT_TO_REQUIRED": "Redirect obligatorio",
         "PATH_MATCH": "Path match",
-        "PATH_MATCH_REQUIRED": "Path match obligatorio",   
+        "PATH_MATCH_REQUIRED": "Path match obligatorio",
         "PATH": "Path",
-        "PATH_REQUIRED": "Path obligatorio",  
+        "PATH_REQUIRED": "Path obligatorio",
         "IMAGE": "Imagen",
-        "IMAGE_REQUIRED": "Imagen obligatoria", 
+        "IMAGE_REQUIRED": "Imagen obligatoria",
         "SKIP": "Saltar",
-        "SKIP_REQUIRED": "Satar obligatorio", 
+        "SKIP_REQUIRED": "Satar obligatorio",
         "ACTIVE": "Activar",
         "ORDER": "Orden",
         "CREATE_AT": "Fecha de creación",
@@ -328,8 +333,8 @@
         "DISABLED": "Desactivar",
         "EDIT": "Editar",
         "DELETE": " Borrar",
-        "UPDATE_ORDER" :"Actaulizar orden",
-        "DELETE_MESSAGE": "El perfil {{screen}} se eliminó correctamente.",
+        "UPDATE_ORDER": "Actaulizar orden",
+        "DELETE_MESSAGE": "La pantalla {{screen}} se eliminó correctamente.",
         "NO_DATA_MATCHING": "No se encontraron resultados",
         "ITEMS_PER_PAGE": "Filas por página",
         "NEXT_PAGE_LABEL": "Siguiente página",
@@ -338,7 +343,156 @@
     "SCREEN_SELECTOR": {
         "SELECT": "Seleccionar perfíl",
         "SEARCH": "Buscar perfíl",
-        "TOOLTIP":"Seleccionar perfíl.",
-        "TOOLTIP_SCREEN":"Perfíl."
+        "TOOLTIP": "Seleccionar perfíl.",
+        "TOOLTIP_SCREEN": "Perfíl."
+    },
+    "COMPANY_FORM": {
+        "ID_COMPANY": "Id",
+        "COMPANYINFO": "Información de empresa",
+        "COUNTRYINFO": "País",
+        "ADRESSINFO": "Dirección",
+        "CONTACTINFO": "Contacto Principal",
+        "BILLINGINFO": "Facturación",
+        "LEGAL_NAME": "Nombre legal",
+        "LEGAL_NAME_REQUIRED": "El nombre legal es obligatorio",
+        "COMMERCIAL_NAME": "Nombre comercial",
+        "TAX_ID": "RFC",
+        "TAX_ID_REQUIRED": "El RFC es obligatorio",
+        "FISCAL_REGIME": "Régimen fiscal",
+        "COUNTRY_CODE": "País (ISO 3)",
+        "COUNTRY_CODE_REQUIRED": "El país es obligatorio",
+        "STATE": "Estado o provincia",
+        "CITY": "Ciudad",
+        "POSTAL_CODE": "Código postal",
+        "STREET": "Calle",
+        "ADDRESS_COMPLEMENT": "Complemento de dirección",
+        "CONTACT_NAME": "Nombre del contacto",
+        "POSITION": "Puesto",
+        "EMAIL": "Correo electrónico",
+        "MOBILE": "Celular",
+        "PHONE": "Teléfono",
+        "LANGUAGE": "Idioma",
+        "TIMEZONE": "Zona horaria",
+        "CURRENCY": "Moneda",
+        "WEBSITE_URL": "Sitio web",
+        "WEBSITE_URL_REQUIRED": "Sitio web obligatorio",
+        "WEBSITE_URL_INVALID": "Sitio web inválido",
+        "LOGO_URL": "Logo url",
+        "LOGO_URL_REQUIRED": "url logo obligatorio",
+        "LOGO_URL_INVALID": "Url logo inválido",
+        "INDUSTRY": "Industria",
+        "EMPLOYEES": "Número de empleados",
+        "BILLING_EMAIL": "Correo de facturación",
+        "BILLING_ADDRESS": "Dirección de facturación",
+        "PAYMENT_TERMS": "Términos de pago",
+        "PAYMENT_METHOD": "Método de pago",
+        "BANK_ACCOUNT": "Cuenta bancaria",
+        "CLASSIFICATION": "Clasificación",
+        "INTEGRATION_TYPE": "Tipo de integración",
+        "CONTRACT_SIGNED": "Contrato firmado",
+        "NOTES": "Notas",
+        "IMAGE": "Imagen",
+        "IMAGE_REQUIRED": "La imagen es obligatoria",
+        "ACTIVE": "Activar",
+        "CREATE_AT": "Fecha de creación",
+        "LAST_MODIF": "Fecha de modificación",
+        "CREATE_USER": "Usuario que dio de alta",
+        "LAST_MODIF_USER": "Usuario que realizó la última modificación",
+        "RETURN": "Regresar",
+        "SUBMIT": "Guardar",
+        "ADD_SUCCESS": "La empresa {{commercialName}} se dio de alta correctamente.",
+        "EDIT_SUCCESS": "La empresa {{commercialName}} se actualizó correctamente.",
+        "COMMERCIAL_NAME_REQUIRED": "Nombre comercial es obligatorio",
+        "TAX_ID_INVALID": "El RFC no es válido",
+        "FISCAL_REGIME_REQUIRED": "El régimen fiscal es obligatorio",
+        "COUNTRY": "País",
+        "COUNTRY_NAME": "MXMexico (México)+52",
+        "CURRENCY_NAME": "MXN",
+        "LANGUAGE_NAME": "es",
+        "TIMEZONE_SELECT": "Seleccionar zona horaria",
+        "ADDRESS": "Dirección",
+        "CITY_REQUIRED": "La ciudad es obligatoria",
+        "STATE_REQUIRED": "El estado o provincia es obligatorio",
+        "POSTAL_CODE_REQUIRED": "El código postal es obligatorio",
+        "STREET_REQUIRED": "La calle es obligatoria",
+        "CONTACT": "Contacto",
+        "CONTACT_NAME_REQUIRED": "El nombre del contacto es obligatorio",
+        "POSITION_REQUIRED": "El puesto es obligatorio",
+        "EMAIL_REQUIRED": "El correo electrónico es obligatorio",
+        "EMAIL_INVALID": "El correo electrónico es inválido",
+        "MOBILE_REQUIRED": "El celular es obligatorio",
+        "PHONE_REQUIRED": "El teléfono es obligatorio",
+        "INDUSTRY_REQUIRED": "La industria es obligatoria",
+        "EMPLOYEES_REQUIRED": "El número de empleados es obligatorio",
+        "BILLING": "Facturación",
+        "BILLING_EMAIL_REQUIRED": "El correo de facturación es obligatorio",
+        "BILLING_ADDRESS_REQUIRED": "La dirección de facturación es obligatoria",
+        "PAYMENT_TERMS_REQUIRED": "Los términos de pago son obligatorios",
+        "PAYMENT_METHOD_REQUIRED": "El método de pago es obligatorio",
+        "BANK_ACCOUNT_REQUIRED": "La cuenta bancaria es obligatoria",
+        "EXTRASINFO": "Información adicional",
+        "CLASSIFICATION_REQUIRED": "La clasificación es obligatoria",
+        "INTEGRATION_TYPE_REQUIRED": "El tipo de integración es obligatorio",
+        "SIGNED_CONTRACT": "Contrato firmado",
+        "MOBILE_INVALID": "El teléfono es inválido.",
+        "ADD_CONTACT": "Agregar contacto",
+        "REMOVE_CONTACT": "Eliminar contacto",
+        "CONTACT_HEADER":"Contacto ",
+        "BANK_CLABE_INVALID":"Clabe inválida",
+        "BANK_IBAN_INVALID":"Cuanta inválida",
+        "BANK_TARJETA_INVALID":"Tarjeta inválida",
+        "ADITIONALCONTACTINFO":"Contactos adicionales"
+        },
+    "COMPANIES_TABLE": {
+        "COMPANYINFO": "Empresas",
+        "FILTER": "Filtro",
+        "SEARCH_COMPANY": "Buscar empresa",
+        "PAGINATOR": "Select page of companies",
+        "LEGAL_NAME": "Nombre legal",
+        "COMMERCIAL_NAME": "Nombre comercial",
+        "DELETE_MESSAGE": "La empresa {{commercialName}} se eliminó correctamente.",
+        "ID_COMPANY": "Id",
+        "RFC": "RFC",
+        "COUNTRY": "País",
+        "CURRENCY": "Moneda",
+        "CONTACT": "Contacto",
+        "EMAIL": "Correo",
+        "INDUSTRY": "Industria",
+        "WEBSITEURL": "Sitio de internet",
+        "ACTIVE": "Activo",
+        "EDIT": "Editar",
+        "DELETE": "Eliminar",
+        "NO_DATA_MATCHING": "No hay empresas que coincidan",
+        "ADD_COMPANY": "Agregar empresa",
+        "ITEMS_PER_PAGE": "Filas por página",
+        "NEXT_PAGE_LABEL": "Siguiente página",
+        "PREVIOUS_PAGE": "Página anterior",
+        "ACCOUNT_LOCKED": "Empresa sin contrato firmado.",
+        "CONFIRM_PENNDING": "Este perfíl está pendiente de confirmación",
+        "COMPONENT": "Componente",
+        "NUMBER": "No.",
+        "PATH": "Path",
+        "ENABLED": "Activar",
+        "DISABLED": "Desactivar"
+    },
+    "REGIMEN_FISCAL_SELECTOR": {
+        "SELECT": "Selecciona un régimen fiscal",
+        "SEARCH": "Buscar régimen fiscal..."
+    },
+    "CLASIFICACION_SELECTOR": {
+        "SELECT": "Selecciona una clasificación",
+        "SEARCH": "Buscar clasificación..."
+    },
+    "TIPO_INTEGRACION_SELECTOR": {
+        "SELECT": "Selecciona tipo de integración",
+        "SEARCH": "Buscar tipo..."
+    },
+    "FORMAS_PAGO_SELECTOR": {
+        "SELECT": "Selecciona una forma de pago",
+        "SEARCH": "Buscar forma de pago..."
+    },
+    "TERMINOS_PAGO_SELECTOR": {
+        "SELECT": "Selecciona términos de pago",
+        "SEARCH": "Buscar término..."
     }
 }

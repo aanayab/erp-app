@@ -53,10 +53,12 @@ export class RoleSelectorComponent  {
 
   getAuthorities() {
      debugger;        
-    this, this.companyService.getCompanyObs().subscribe(obs => {
+    this.companyService.getCompanyObs().subscribe(obs => {
+       if (obs) {
       this.wsAuthenticateService.getAuthoritiesEnabledByIdCompany(this.utils, obs.idCompany)
         .subscribe(this.utils.subscribeHandler(this, this.setAuthorities)
         );
+      }
       });
  
 

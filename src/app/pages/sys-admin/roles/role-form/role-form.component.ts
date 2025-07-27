@@ -187,6 +187,6 @@ export class RoleFormComponent implements OnInit {
   }
  
   getCompany() {
-    return this.companyService.getCompany().name;
+    return this.companyService.getCompany().commercialName;
   }
 }

@@ -49,55 +49,55 @@ export class AppComponent {
       translate.setDefaultLang(this.languageService.getLanguage())
 
 
-    // sets an idle timeout of 5 seconds, for testing purposes.1800:Utils
-    this.idle.setIdle(1800);
-    // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.10
-    this.idle.setTimeout(10);
-    // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
-    // this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+    // // sets an idle timeout of 5 seconds, for testing purposes.1800:Utils
+    // this.idle.setIdle(1800);
+    // // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.10
+    // this.idle.setTimeout(10);
+    // // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
+    // // this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
-    this.idle.onIdleEnd.subscribe(() => {
-      this.idleServiceService.idleState = 'APP.NO_LONGER_IDLE'
+    // this.idle.onIdleEnd.subscribe(() => {
+    //   this.idleServiceService.idleState = 'APP.NO_LONGER_IDLE'
 
-      this.reset();
-    });
+    //   this.reset();
+    // });
 
-    this.idle.onTimeout.subscribe(() => {
-      this.dialog.closeAll();
-      this.idleServiceService.idleState = 'APP.TIMED_OUT';
-      this.idleServiceService.timedOut = true;
+    // this.idle.onTimeout.subscribe(() => {
+    //   this.dialog.closeAll();
+    //   this.idleServiceService.idleState = 'APP.TIMED_OUT';
+    //   this.idleServiceService.timedOut = true;
      
-      this.utils.logOut();
+    //   this.utils.logOut();
 
 
-    });
+    // });
 
-    this.idle.onIdleStart.subscribe(() => {
-      this.idleServiceService.idleState = 'APP.YOU_HAVE_GONE_IDLE'
-      this.openDialog(this);
-    });
+    // this.idle.onIdleStart.subscribe(() => {
+    //   this.idleServiceService.idleState = 'APP.YOU_HAVE_GONE_IDLE'
+    //   this.openDialog(this);
+    // });
 
 
 
-    this.idle.onTimeoutWarning.subscribe((countdown) => {
-      this.idleServiceService.idleState =   this.translate.instant('APP.YOU_WILL_TIME_OUT', {
-        value1: countdown,
-      });
-      console.log(this.idleServiceService.idleState);
-    });
-    // sets the ping interval to 15 seconds
-    this.keepalive.interval(15);
+    // this.idle.onTimeoutWarning.subscribe((countdown) => {
+    //   this.idleServiceService.idleState =   this.translate.instant('APP.YOU_WILL_TIME_OUT', {
+    //     value1: countdown,
+    //   });
+    //   console.log(this.idleServiceService.idleState);
+    // });
+    // // sets the ping interval to 15 seconds
+    // this.keepalive.interval(15);
 
-    this.keepalive.onPing.subscribe(() => this.idleServiceService.lastPing = new Date());
+    // this.keepalive.onPing.subscribe(() => this.idleServiceService.lastPing = new Date());
 
-    this.userLoggedServiceService.getUserLoggedIn().subscribe(userLoggedIn => {
-      if (userLoggedIn) {
-        this.idle.watch()
-        this.idleServiceService.timedOut = false;
-      } else {
-        this.idle.stop();
-      }
-    })
+    // this.userLoggedServiceService.getUserLoggedIn().subscribe(userLoggedIn => {
+    //   if (userLoggedIn) {
+    //     this.idle.watch()
+    //     this.idleServiceService.timedOut = false;
+    //   } else {
+    //     this.idle.stop();
+    //   }
+    // })
 
 
 

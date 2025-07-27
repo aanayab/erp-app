@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { CompanyBean } from 'src/app/model/companyBean';
 import { MessageService } from '../message/message.service';
 
@@ -7,6 +7,8 @@ import { MessageService } from '../message/message.service';
   providedIn: 'root'
 })
 export class CompanyService {
+
+  private companySubject = new BehaviorSubject<CompanyBean | null>(null);
 
   constructor(private messageService: MessageService) {
     
@@ -21,22 +23,20 @@ export class CompanyService {
   private company: CompanyBean | any;
 
 
-  getCompanyObs(): Observable<CompanyBean> {
-    if (this.company === undefined) {
-      this.messageService.showDangerMessage("COMPANY_SERVICE.COMPANY_ERROR");
-    }
-    return of(this.company);
+  getCompanyObs(): Observable<CompanyBean | null> {
+    //TODO revisar 
+    // if (this.company === undefined) {
+    //   this.messageService.showDangerMessage("COMPANY_SERVICE.COMPANY_ERROR");
+    // }
+    return this.companySubject.asObservable();
   }
 
-  getCompany(): CompanyBean {
+  getCompany(): CompanyBean | any {
     return this.company;
   }
 
-  setCompany(company: CompanyBean | any) {
-    
+  setCompany(company: CompanyBean|any ): void {
     this.company = company;
-    
-
+    this.companySubject.next(company);
   }
-
 }

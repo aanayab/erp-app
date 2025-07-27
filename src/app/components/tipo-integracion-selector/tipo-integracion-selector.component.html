@@ -1,0 +1,32 @@
+<div class="form-group">
+  <div class="dropdown" style="max-width: 415px;" ngbDropdown>
+    <button
+      class="form-select text-start"
+      id="dropdownRole"
+      ngbDropdownToggle
+      type="button"
+    >
+      {{ selectedItem || ('TIPO_INTEGRACION_SELECTOR.SELECT' | translate) }}
+    </button>
+
+    <div ngbDropdownMenu class="w-100 p-2 shadow-sm dropdown-scroll">
+      <input
+        type="search"
+        autocomplete="off"
+        class="form-control mb-2 no-valid-style"
+        [placeholder]="('TIPO_INTEGRACION_SELECTOR.SEARCH' | translate )"
+        [(ngModel)]="searchTerm"
+      />
+
+      <button
+        *ngFor="let item of filteredItems()"
+        class="dropdown-item"
+        type="button"
+        (click)="onChange(item)"
+        [class.active]="selectedItem === item"
+      >
+        {{ item }}
+      </button>
+    </div>
+  </div>
+</div>

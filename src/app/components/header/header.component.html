@@ -2,9 +2,12 @@
   <header class="header pt-1 center">
     <div class="d-flex flex-wrap col-12">
       <div class="col-1">
-        <span routerLink="/Home" [ngbTooltip]="('HEADER.TOOLTIP_HOME' | translate)"
+        <!-- <span routerLink="/Home" [ngbTooltip]="('HEADER.TOOLTIP_HOME' | translate)"
           class="material-icons mt-1 mx-2 pl-3" style="font-size: 30px;color: white;" aria-hidden="true"
-          aria-label="Example home icon" fontIcon="home">home</span>
+          aria-label="Example home icon" fontIcon="home">home</span> -->
+        <span  *ngIf="isImageReady" routerLink="/Home" [ngbTooltip]="'HEADER.TOOLTIP_HOME' | translate" class="home-icon"
+          [ngStyle]="{ 'background-image': 'url(' + backgroundUrl + ')' }" aria-label="Example home icon"></span>
+
       </div>
       <div class="col-3">
         <app-company-selector class="ps-8" *ngIf="user" [userBean]="user" />

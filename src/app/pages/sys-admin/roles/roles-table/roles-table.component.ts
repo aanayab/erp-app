@@ -93,10 +93,12 @@ export class RolesTableComponent {
   
     getAuthorities() {
              
-      this, this.companyService.getCompanyObs().subscribe(obs => {
+       this.companyService.getCompanyObs().subscribe(obs => {
+         if (obs) {
         this.wsAuthenticateService.getAuthoritiesByIdCompany(this.utils, obs.idCompany)
           .subscribe(this.utils.subscribeHandler(this, this.setAuthorities)
           );
+        }
         });
    
   

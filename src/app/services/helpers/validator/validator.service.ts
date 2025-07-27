@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+
+const rfcRegex = /^([A-ZÑ&]{3,4})\d{6}(?:[A-Z\d]{3})?$/;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ValidatorService {
 
+
+  
+
   constructor() { }
 
-  validatePassword(password: string): { [key: string]: boolean } | null {
+  static validatePassword(password: string): { [key: string]: boolean } | null {
     const errors: { [key: string]: boolean } = {};
 
     if (!password) {
@@ -39,7 +46,7 @@ export class ValidatorService {
   }
 
   
-  validatePhoneNumber(phoneNumber: string): { [key: string]: boolean } | null {
+  static validatePhoneNumber(phoneNumber: string): { [key: string]: boolean } | null {
     const errors: { [key: string]: boolean } = {};
 
     if (!phoneNumber) {
@@ -59,4 +66,40 @@ export class ValidatorService {
 
     return Object.keys(errors).length ? errors : null;
   }
+
+    static phoneValidator(control: AbstractControl):
+    Observable<ValidationErrors | null> {
+    const valid = /^\d{10}$/.test(control.value);
+    return of(valid ? null : { invalidPhone: true });
+    // Emit null, to indicate no error occurred.
+
+  }
+
+    static rfcValidatorIfMexico(getCountryFn: () => string | any ): ValidatorFn {
+      return (control: AbstractControl) => {
+        const country = getCountryFn();
+        const rfc = control.value;
+  debugger;
+        if (country !== '484') {
+          return null; // No aplica la validación si no es México
+        }
+  
+        const valid = rfcRegex.test(rfc?.toUpperCase() || '');
+        return valid ? null : { invalidRfc: true };
+      };
+    }
+
+static urlValidator(control: AbstractControl): Observable<ValidationErrors | null> {
+    const value = control.value;
+
+    if (!value) return of(null);
+
+    const urlRegex =
+      /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)(\/[\w-.,@?^=%&:\/~+#]*)?$/i;
+
+    const valid = urlRegex.test(value);
+
+    return of(valid ? null : { invalidUrl: true });
+  }
+
 }
