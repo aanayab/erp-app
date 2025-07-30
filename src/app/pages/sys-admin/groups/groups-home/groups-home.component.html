@@ -1,0 +1,8 @@
+<div *ngIf="getRouter().url.split('/').pop() !== 'Groups'" class="col-12">
+  <router-outlet></router-outlet>
+</div>
+<div class="col-12" *ngIf="getRouter().url.split('/').pop() === 'Groups'">
+  <div class="col-12">
+    <app-groups-table (newItemEvent)="editGroup($event)"></app-groups-table>
+  </div>
+</div>

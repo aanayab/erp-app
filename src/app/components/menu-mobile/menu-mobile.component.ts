@@ -1,6 +1,6 @@
 import { Component,Input } from '@angular/core';
 import { FoodNode } from 'src/app/model/foodNode';
-import { GroupBean } from 'src/app/model/groupBean';
+import { GrupoBean } from 'src/app/model/grupoBean';
 import { MenuBean } from 'src/app/model/menuBean';
 import { ScreenBean } from 'src/app/model/screenBean';
 import { UserBean } from 'src/app/model/userBean';

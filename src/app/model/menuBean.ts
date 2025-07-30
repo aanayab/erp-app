@@ -1,12 +1,12 @@
 import { ActionBean } from "./actionBean";
 import { AuthorityBean } from "./authorityBean";
-import { GroupBean } from "./groupBean";
+import { GrupoBean } from "./grupoBean";
 import { ScreenBean } from "./screenBean";
 
 export interface MenuBean  {
   idMenu?: number;
   authority?: AuthorityBean;
-  grupo: GroupBean;
+  grupo: GrupoBean;
   screen: ScreenBean;
   idParentMenu?: number;
   children: MenuBean[];

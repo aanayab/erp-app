@@ -96,17 +96,17 @@ export const environment = {
       screensEnabledUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen/allEnabled`,
       updateScreensOrderUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen/all/order`,
     },
-    group: {
-      groupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/group/`,
-      addGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/group`,
-      updateGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/group`,
-      groupsUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/group/all`,
-      disabelEnableGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/group/disable`,
-      hideShowGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/group/hide`,
-      existGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/group/exist/`,
-      deleteGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/group`,
-      groupByIdCompanyUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/group/allByIdCompany/`,
-      groupsEnabledByIdCompanyUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/group/allEnabledByIdCompany/`,
+    grupo: {
+      grupoUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/`,
+      addGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo`,
+      updateGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo`,
+      gruposUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/all`,
+      disabelEnableGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/disable`,
+      hideShowGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/hide`,
+      existGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/exist/`,
+      deleteGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo`,
+      grupoByIdCompanyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/allByIdCompany/`,
+      gruposEnabledByIdCompanyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/allEnabledByIdCompany/`,
     }
 
   }

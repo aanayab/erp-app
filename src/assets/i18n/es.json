@@ -24,14 +24,17 @@
         "PURCHASING": "Compras",
         "HOME": "Home",
         "ROLES": "Roles",
-        "ADD_ROLE": "Agregar perfil",
-        "EDIT_ROLE": "Editar perfil",
+        "ADD_ROLE": "Agregar grupo",
+        "EDIT_ROLE": "Editar grupo",
         "SCREENS": "Pantallas",
         "ADD_SCREEN": "Agregar pantalla",
         "EDIT_SCREEN": "Editar pantalla",
         "COMPANIES": "Empresas",
         "ADDCOMPANY": "Agregar empresa",
-        "EDITCOMPANY": "Editar empresa"
+        "EDITCOMPANY": "Editar empresa",
+        "GROUPS": "Grupos",
+        "ADDGROUP": "Agregar grupo",
+        "EDITGROUP": "Editar grupo"
     },
     "MENU": {
         "TOOLTIP": "Dar click."
@@ -224,7 +227,7 @@
         "MENU_ERROR": "El usuario no tiene menus asignados."
     },
     "ROLE_FORM": {
-        "ROLEINFO": "Información de perfil",
+        "ROLEINFO": "Información de grupo",
         "COMPANY": "Empresa",
         "COMPANY_REQUIRED": "Empresa obligatoria",
         "AUTHORITY": "Perfil",
@@ -240,8 +243,8 @@
         "SUBMIT": "Guardar",
         "CREATE_AT_ROLE": "Usuario que dío de alta",
         "LAST_MODIF_ROLE": "Usuario que realizó la ultima modificación",
-        "EDIT_SUCCESS": "El perfil {{authority}} se actualizó correctamente.",
-        "ADD_SUCCESS": "El perfil {{authority}} se dió de alta correctamente."
+        "EDIT_SUCCESS": "El grupo {{authority}} se actualizó correctamente.",
+        "ADD_SUCCESS": "El grupo {{authority}} se dió de alta correctamente."
     },
     "ROLES_TABLE": {
         "ROLEINFO": "Perfiles",
@@ -258,7 +261,7 @@
         "DISABLED": "Desactivar",
         "EDIT": "Editar",
         "DELETE": " Borrar",
-        "DELETE_MESSAGE": "El perfil {{authority}} se eliminó correctamente.",
+        "DELETE_MESSAGE": "El grupo {{authority}} se eliminó correctamente.",
         "VISIBLE": "Visible",
         "HIDE": "Ocultar",
         "SHOW": "Mostrar",
@@ -437,12 +440,12 @@
         "MOBILE_INVALID": "El teléfono es inválido.",
         "ADD_CONTACT": "Agregar contacto",
         "REMOVE_CONTACT": "Eliminar contacto",
-        "CONTACT_HEADER":"Contacto ",
-        "BANK_CLABE_INVALID":"Clabe inválida",
-        "BANK_IBAN_INVALID":"Cuanta inválida",
-        "BANK_TARJETA_INVALID":"Tarjeta inválida",
-        "ADITIONALCONTACTINFO":"Contactos adicionales"
-        },
+        "CONTACT_HEADER": "Contacto ",
+        "BANK_CLABE_INVALID": "Clabe inválida",
+        "BANK_IBAN_INVALID": "Cuanta inválida",
+        "BANK_TARJETA_INVALID": "Tarjeta inválida",
+        "ADITIONALCONTACTINFO": "Contactos adicionales"
+    },
     "COMPANIES_TABLE": {
         "COMPANYINFO": "Empresas",
         "FILTER": "Filtro",
@@ -494,5 +497,55 @@
     "TERMINOS_PAGO_SELECTOR": {
         "SELECT": "Selecciona términos de pago",
         "SEARCH": "Buscar término..."
+    },
+    "GROUP_FORM": {
+        "GROUPINFO": "Información de grupo",
+        "COMPANY": "Empresa",
+        "COMPANY_REQUIRED": "Empresa obligatoria",
+        "ID_GRUPO": "Id grupo",
+        "ID_GRUPO_REQUIRED": "Grupo obligatorio",
+        "GRUPO_EXIST": "El grupo existe.",
+        "GRUPO": "Nombre grupo",
+        "GRUPO_REQUIRED": "Grupo obligatorio",
+        "ACTIVE": "Activar",
+        "VISIBLE": "Ocultar",
+        "CREATE_AT": "Fecha de creación",
+        "LAST_MODIF": "Fecha de modificación",
+        "RETURN": "Regresar",
+        "SUBMIT": "Guardar",
+        "CREATE_AT_GROUP": "Usuario que dío de alta",
+        "LAST_MODIF_GROUP": "Usuario que realizó la ultima modificación",
+        "EDIT_SUCCESS": "El grupo {{grupo}} se actualizó correctamente.",
+        "ADD_SUCCESS": "El grupo {{grupo}} se dió de alta correctamente."
+    },
+    "GROUPS_TABLE": {
+        "GROUPINFO": "Grupos",
+        "FILTER": "Filtro",
+        "SEARCH_GROUP": "Buscar grupo",
+        "ADD_GROUP": "Agregar grupo",
+        "PAGINATOR": "Select page of groups",
+        "ID_GRUPO": "Id Grupo",
+        "ACCOUNT_LOCKED": "Cuenta bloqueada",
+        "CONFIRM_PENNDING": "Este grupo está pendiente de confirmación",
+        "GRUPO": "Grupo",
+        "ACTIVE": "Activo",
+        "ENABLED": "Activar",
+        "DISABLED": "Desactivar",
+        "EDIT": "Editar",
+        "DELETE": " Borrar",
+        "DELETE_MESSAGE": "El grupo {{grupo}} se eliminó correctamente.",
+        "VISIBLE": "Visible",
+        "HIDE": "Ocultar",
+        "SHOW": "Mostrar",
+        "NO_DATA_MATCHING": "No se encontraron resultados",
+        "ITEMS_PER_PAGE": "Filas por página",
+        "NEXT_PAGE_LABEL": "Siguiente página",
+        "PREVIOUS_PAGE": "Página anterior"
+    },
+    "GROUP_SELECTOR": {
+        "SELECT": "Seleccionar grupo",
+        "SEARCH": "Buscar grupo",
+        "TOOLTIP": "Seleccionar grupo.",
+        "TOOLTIP_ROLE": "Perfíl."
     }
 }

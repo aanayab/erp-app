@@ -1,0 +1,33 @@
+ <div class="form-group">
+	<!-- <label for="dropdownGroup" class="form-label">Perfiles</label> -->
+	<div class="dropdown w-100" ngbDropdown>
+	  <button
+		class="form-select text-start"
+		id="dropdownGroup"
+		ngbDropdownToggle
+		type="button"
+	  >
+		{{ groupBean?.idGrupo || ('GROUP_SELECTOR.SELECT' | translate) }}
+	  </button>
+  
+	  <div ngbDropdownMenu class="w-100 p-2 shadow-sm dropdown-scroll">
+		<input
+		  type="search"
+		  autocomplete="off"
+		  class="form-control mb-2 no-valid-style"
+		  [placeholder]="('GROUP_SELECTOR.SEARCH' | translate )"
+		  [(ngModel)]="searchTerm"
+		/>
+  
+		<button
+		  *ngFor="let item of filteredItems()"
+		  class="dropdown-item"
+		  type="button"
+		  (click)="selectGroup(item)"
+		  [class.active]="groupBean?.idGrupo === item.idGrupo"
+		>
+		  {{ item.group.replace("GROUP_","") }}
+		</button>
+	  </div>
+	</div>
+  </div>

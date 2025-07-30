@@ -1,7 +1,7 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, Input } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { GroupBean } from 'src/app/model/groupBean';
+import { GrupoBean } from 'src/app/model/grupoBean';
 import { ScreenBean } from 'src/app/model/screenBean';
 import { Router} from '@angular/router';
 import { MenuBean } from 'src/app/model/menuBean';
