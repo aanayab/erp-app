@@ -1,0 +1,33 @@
+ <div class="form-action">
+	<!-- <label for="dropdownAction" class="form-label">Perfiles</label> -->
+	<div class="dropdown w-100" ngbDropdown>
+	  <button
+		class="form-select text-start"
+		id="dropdownAction"
+		ngbDropdownToggle
+		type="button"
+	  >
+		{{ actionBean?.idAction || ('ACTION_SELECTOR.SELECT' | translate) }}
+	  </button>
+  
+	  <div ngbDropdownMenu class="w-100 p-2 shadow-sm dropdown-scroll">
+		<input
+		  type="search"
+		  autocomplete="off"
+		  class="form-control mb-2 no-valid-style"
+		  [placeholder]="('ACTION_SELECTOR.SEARCH' | translate )"
+		  [(ngModel)]="searchTerm"
+		/>
+  
+		<button
+		  *ngFor="let item of filteredItems()"
+		  class="dropdown-item"
+		  type="button"
+		  (click)="selectAction(item)"
+		  [class.active]="actionBean?.idAction === item.idAction"
+		>
+		  {{ item.action.replace("ACTION_","") }}
+		</button>
+	  </div>
+	</div>
+  </div>

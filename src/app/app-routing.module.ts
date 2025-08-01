@@ -35,6 +35,9 @@ import { CompanyFormComponent } from './pages/sys-admin/companies/company-form/c
 import { GroupsHomeComponent } from './pages/sys-admin/groups/groups-home/groups-home.component';
 import { GroupFormComponent } from './pages/sys-admin/groups/group-form/group-form.component';
 import { GroupsTableComponent } from './pages/sys-admin/groups/groups-table/groups-table.component';
+import { ActionsHomeComponent } from './pages/sys-admin/actions/actions-home/actions-home.component';
+import { ActionFormComponent } from './pages/sys-admin/actions/action-form/action-form.component';
+import { ActionsTableComponent } from './pages/sys-admin/actions/actions-table/actions-table.component';
 
 
 
@@ -107,11 +110,19 @@ const routes: Routes = [
                 {
                   path: 'Groups', component: GroupsHomeComponent, data: { breadcrumb: 'BREADCRUMP.GROUPS' }, children: [
                     //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb:  'UserMain' } }, },
-                    { path: 'EditGroup', component: GroupFormComponent, data: { breadcrumb: 'BREADCRUMP.EDIT_GROUP' }, },
-                    { path: 'AddGroup', component: GroupFormComponent, data: { breadcrumb: 'BREADCRUMP.ADD_GROUP' }, },
+                    { path: 'EditGroup', component: GroupFormComponent, data: { breadcrumb: 'BREADCRUMP.EDITGROUP' }, },
+                    { path: 'AddGroup', component: GroupFormComponent, data: { breadcrumb: 'BREADCRUMP.ADDGROUP' }, },
 
                   ]
                 },
+                 {
+                  path: 'Actions', component: ActionsHomeComponent, data: { breadcrumb: 'BREADCRUMP.ACTIONS' }, children: [
+                    //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb:  'UserMain' } }, },
+                    { path: 'EditAction', component: ActionFormComponent, data: { breadcrumb: 'BREADCRUMP.EDITACTION' }, },
+                    { path: 'AddAction', component: ActionFormComponent, data: { breadcrumb: 'BREADCRUMP.ADDACTION' }, },
+
+                  ]
+                }
 
 
 

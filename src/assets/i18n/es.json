@@ -34,7 +34,10 @@
         "EDITCOMPANY": "Editar empresa",
         "GROUPS": "Grupos",
         "ADDGROUP": "Agregar grupo",
-        "EDITGROUP": "Editar grupo"
+        "EDITGROUP": "Editar grupo",
+        "ACTIONS": "Acciones",
+        "ADDACTION": "Agregar acción",
+        "EDITACTION": "Editar acción"
     },
     "MENU": {
         "TOOLTIP": "Dar click."
@@ -546,6 +549,56 @@
         "SELECT": "Seleccionar grupo",
         "SEARCH": "Buscar grupo",
         "TOOLTIP": "Seleccionar grupo.",
-        "TOOLTIP_ROLE": "Perfíl."
+        "TOOLTIP_GROUP": "Grupo."
+    },
+    "ACTION_FORM": {
+        "ACTIONINFO": "Información de acción",
+        "COMPANY": "Empresa",
+        "COMPANY_REQUIRED": "Empresa obligatoria",
+        "ID_GRUPO": "Id acción",
+        "ID_GRUPO_REQUIRED": "Acción obligatorio",
+        "GRUPO_EXIST": "El acción existe.",
+        "GRUPO": "Nombre acción",
+        "GRUPO_REQUIRED": "Acción obligatorio",
+        "ACTIVE": "Activar",
+        "VISIBLE": "Ocultar",
+        "CREATE_AT": "Fecha de creación",
+        "LAST_MODIF": "Fecha de modificación",
+        "RETURN": "Regresar",
+        "SUBMIT": "Guardar",
+        "CREATE_AT_ACTION": "Usuario que dío de alta",
+        "LAST_MODIF_ACTION": "Usuario que realizó la ultima modificación",
+        "EDIT_SUCCESS": "El acción {{action}} se actualizó correctamente.",
+        "ADD_SUCCESS": "El acción {{action}} se dió de alta correctamente."
+    },
+    "ACTIONS_TABLE": {
+        "ACTIONINFO": "Acciones",
+        "FILTER": "Filtro",
+        "SEARCH_ACTION": "Buscar acción",
+        "ADD_ACTION": "Agregar acción",
+        "PAGINATOR": "Select page of groups",
+        "ID_GRUPO": "Id Acción",
+        "ACCOUNT_LOCKED": "Cuenta bloqueada",
+        "CONFIRM_PENNDING": "Este acción está pendiente de confirmación",
+        "GRUPO": "Acción",
+        "ACTIVE": "Activo",
+        "ENABLED": "Activar",
+        "DISABLED": "Desactivar",
+        "EDIT": "Editar",
+        "DELETE": " Borrar",
+        "DELETE_MESSAGE": "El acción {{action}} se eliminó correctamente.",
+        "VISIBLE": "Visible",
+        "HIDE": "Ocultar",
+        "SHOW": "Mostrar",
+        "NO_DATA_MATCHING": "No se encontraron resultados",
+        "ITEMS_PER_PAGE": "Filas por página",
+        "NEXT_PAGE_LABEL": "Siguiente página",
+        "PREVIOUS_PAGE": "Página anterior"
+    },
+    "ACTION_SELECTOR": {
+        "SELECT": "Seleccionar acción",
+        "SEARCH": "Buscar acción",
+        "TOOLTIP": "Seleccionar acción.",
+        "TOOLTIP_ACTION": "Acción."
     }
 }

@@ -69,6 +69,11 @@ import { GroupsTableComponent } from './pages/sys-admin/groups/groups-table/grou
 import { GroupsHomeComponent } from './pages/sys-admin/groups/groups-home/groups-home.component';
 import { GroupSelectorComponent } from './pages/sys-admin/groups/group-selector/group-selector.component';
 
+import { ActionFormComponent } from './pages/sys-admin/actions/action-form/action-form.component';
+import { ActionsTableComponent } from './pages/sys-admin/actions/actions-table/actions-table.component';
+import { ActionsHomeComponent } from './pages/sys-admin/actions/actions-home/actions-home.component';
+import { ActionSelectorComponent } from './pages/sys-admin/actions/action-selector/action-selector.component';
+
 
 import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -86,6 +91,7 @@ import { WsSysAdminMenuService } from './services/ws-sysAdmin/ws-sys-admin.menu.
 import { WsSysAdminPrivilegyService } from './services/ws-sysAdmin/ws-sys-admin.privilegy.service';
 import { WsSysAdminScreenService } from './services/ws-sysAdmin/ws-sys-admin.screen.service';
 import { WsSysAdminGroupService } from './services/ws-sysAdmin/ws-sys-admin.group.service';
+import { WsSysAdminActionService } from './services/ws-sysAdmin/ws-sys-admin.action.service';
 
 
 import { IdleServiceService } from './services/helpers/idleService/idle-service.service';
@@ -162,6 +168,7 @@ import { TipoIntegracionSelectorComponent } from './components/tipo-integracion-
     RoleFormComponent,RolesHomeComponent,RolesTableComponent,ScreensHomeComponent, ScreensTableComponent, ScreenFormComponent,
     CompaniesHomeComponent,CompaniesTableComponent,CompanyFormComponent,
     GroupFormComponent,GroupsHomeComponent,GroupsTableComponent,GroupSelectorComponent,
+      ActionFormComponent,ActionsHomeComponent,ActionsTableComponent,ActionSelectorComponent,
     UsersTableComponent,UsersHomeComponent,ThemeComponent,LocalizedDatePipe],
   bootstrap:    [ AppComponent ]
 })

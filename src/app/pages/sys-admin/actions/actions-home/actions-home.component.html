@@ -1,0 +1,8 @@
+<div *ngIf="getRouter().url.split('/').pop() !== 'Actions'" class="col-12">
+  <router-outlet></router-outlet>
+</div>
+<div class="col-12" *ngIf="getRouter().url.split('/').pop() === 'Actions'">
+  <div class="col-12">
+    <app-actions-table (newItemEvent)="editAction($event)"></app-actions-table>
+  </div>
+</div>
