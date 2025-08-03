@@ -10,6 +10,8 @@ import { MenuBean } from '../../model/menuBean';
 import { FoodNode } from '../../model/foodNode';
 import { Route } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { Token } from '@angular/compiler';
+import { ResponseBean } from 'src/app/model/responseBean';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,16 @@ export class WsSysAdminMenuService {
   private foodNodeByIdRoll = environment.wsSysAdmin.menu.foodNodeByIdRoll;
   private routeByIdRoll = environment.wsSysAdmin.menu.routeByIdRoll;
 
+
+  private menuUrl =  environment.wsSysAdmin.menu.menuUrl;
+  private addMenuUrl =  environment.wsSysAdmin.menu.addMenuUrl;
+  private updateMenuUrl =  environment.wsSysAdmin.menu.updateMenuUrl;
+  private menusUrl =  environment.wsSysAdmin.menu.menusUrl;
+  private disabelEnableMenuUrl =  environment.wsSysAdmin.menu.disableEnableMenuUrl;
+  private existMenuUrl =  environment.wsSysAdmin.menu.existMenuUrl;
+  private deleteMenuUrl =  environment.wsSysAdmin.menu.deleteMenuUrl;
+  private menusEnabledUrl = environment.wsSysAdmin.menu.menusEnabledUrl;
+  private updateMenusOrderUrl = environment.wsSysAdmin.menu.updateMenusOrderUrl;
 
   constructor(private http: HttpClient,private loadingService:LoadingService,private utils:Utils) { }
 
@@ -50,5 +62,83 @@ export class WsSysAdminMenuService {
       observe:  'response' ,
      });
   }
+
+    getMenu(menu: string,utils:Utils): Observable<HttpResponse<MenuBean>> {
+      this.loadingService.setLoading(true);
+      return this.http.get<MenuBean>(this.menuUrl + menu , {
+        headers: utils.getBearerToken(),
+        observe: 'response',
+      });
+    }
+  
+      getMenus(utils:Utils): Observable<HttpResponse<MenuBean[]>> {
+        this.loadingService.setLoading(true);
+        return this.http.get<MenuBean[]>(this.menusUrl , {
+          headers: utils.getBearerToken(),
+          observe: 'response',
+        });
+      }
+  
+      getMenusEnabled(utils:Utils): Observable<HttpResponse<MenuBean[]>> {
+        this.loadingService.setLoading(true);
+        return this.http.get<MenuBean[]>(this.menusEnabledUrl , {
+          headers: utils.getBearerToken(),
+          observe: 'response',
+        });
+      }
+  
+    addMenu(utils:Utils,menuBean:MenuBean): Observable<HttpResponse<ResponseBean>> {
+      this.loadingService.setLoading(true);
+      return this.http.post<ResponseBean>(this.addMenuUrl,menuBean , {
+        headers: utils.getBearerToken(),
+        observe: 'response',
+      });
+    }
+  
+    updateMenu(utils:Utils,menuBean:MenuBean): Observable<HttpResponse<ResponseBean>> {
+      this.loadingService.setLoading(true);
+      return this.http.put<ResponseBean>(this.updateMenuUrl,menuBean , {
+        headers: utils.getBearerToken(),
+        observe: 'response',
+      });
+    }
+  
+  
+  
+    disableEnableMenu(utils:Utils,menu:string | any,enable:boolean): Observable<HttpResponse<ResponseBean>> {
+      this.loadingService.setLoading(true);
+      return this.http.post<ResponseBean>(this.disabelEnableMenuUrl,{menu,enable} , {
+        headers: utils.getBearerToken(),
+        observe: 'response',
+      });
+    }
+  
+  
+  
+    deleteMenu(utils:Utils,menu:string | any): Observable<HttpResponse<ResponseBean>> {
+      this.loadingService.setLoading(true);
+      return this.http.delete<ResponseBean>(this.deleteMenuUrl , {
+        headers: utils.getBearerToken(),
+        observe: 'response',
+        body: {menu}
+      });
+    }
+  
+    existMenu(menu: string | any,utils:Utils): Observable<HttpResponse<Token>> {
+      this.loadingService.setLoading(true);
+      return this.http
+        .get<Token>(this.existMenuUrl + menu,  {
+          headers: utils.getBearerToken(),
+          observe: 'response',
+        });
+    }
+  
+      updateMenuSOrder(utils:Utils,menuBean:MenuBean[]): Observable<HttpResponse<ResponseBean>> {
+      this.loadingService.setLoading(true);
+      return this.http.put<ResponseBean>(this.updateMenusOrderUrl,menuBean , {
+        headers: utils.getBearerToken(),
+        observe: 'response',
+      });
+    }
 
 }

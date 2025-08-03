@@ -15,20 +15,20 @@ import { v4 as uuidv4 } from 'uuid';
 @Injectable({
   providedIn: 'root'
 })
-export class WsSysAdminGroupService {
+export class WsAuthenticateGroupService {
 
 
 
-  private grupoUrl =  environment.wsSysAdmin.grupo.grupoUrl;
-  private addGroupUrl =  environment.wsSysAdmin.grupo.addGroupUrl;
-  private updateGroupUrl =  environment.wsSysAdmin.grupo.updateGroupUrl;
-  private gruposUrl =  environment.wsSysAdmin.grupo.gruposUrl;
-  private disabelEnableGroupUrl =  environment.wsSysAdmin.grupo.disabelEnableGroupUrl;
-  private hideShowGroupUrl =  environment.wsSysAdmin.grupo.hideShowGroupUrl;
-  private existGroupUrl =  environment.wsSysAdmin.grupo.existGroupUrl;
-  private deleteGroupUrl =  environment.wsSysAdmin.grupo.deleteGroupUrl;
-  private gruposByIdCompanyUrl = environment.wsSysAdmin.grupo.grupoByIdCompanyUrl;
-  private gruposEnabledByIdCompanyUrl = environment.wsSysAdmin.grupo.gruposEnabledByIdCompanyUrl;
+  private grupoUrl =  environment.wsAuthenticate.grupo.grupoUrl;
+  private addGroupUrl =  environment.wsAuthenticate.grupo.addGroupUrl;
+  private updateGroupUrl =  environment.wsAuthenticate.grupo.updateGroupUrl;
+  private gruposUrl =  environment.wsAuthenticate.grupo.gruposUrl;
+  private disabelEnableGroupUrl =  environment.wsAuthenticate.grupo.disabelEnableGroupUrl;
+  private hideShowGroupUrl =  environment.wsAuthenticate.grupo.hideShowGroupUrl;
+  private existGroupUrl =  environment.wsAuthenticate.grupo.existGroupUrl;
+  private deleteGroupUrl =  environment.wsAuthenticate.grupo.deleteGroupUrl;
+  private gruposByIdCompanyUrl = environment.wsAuthenticate.grupo.grupoByIdCompanyUrl;
+  private gruposEnabledByIdCompanyUrl = environment.wsAuthenticate.grupo.gruposEnabledByIdCompanyUrl;
 
 
   constructor(private http: HttpClient, private loadingService: LoadingService) { }

@@ -145,7 +145,7 @@
          <div class="col-12 row text-start">
           <div  class="form-group col-md-3 ">
             <label>{{'USER_FORM.ROLE'|translate}}</label>
-            <app-role-selector (roleSelected)="onRoleSelected($event)"u [userBean]="user" [ngClass]="mode ==='edit'?'disabled_country_selector' : ''"     matInput
+            <app-role-selector (rolesSelected)="onRolesSelected($event)" [selectedAuthorities]="user.authorities" [ngClass]="mode ==='edit'?'disabled_country_selector' : ''"     matInput
      
               required  readonly></app-role-selector>
             <div class="invalid-feedback">

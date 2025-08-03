@@ -8,8 +8,8 @@ const params = {
     port: undefined
   },
   wsAuthenticate: {
-    url: "api-dev.boyertech.mx",
-    port: undefined
+    url: "localhost",
+    port: 8071
   },
   wsSms: {
     url: "api-dev.boyertech.mx",
@@ -58,7 +58,19 @@ export const environment = {
       deleteAuthorityUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/authority`,
       authorityByIdCompanyUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/authority/allByIdCompany/`,
       authoritiesEnabledByIdCompanyUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/authority/allEnabledByIdCompany/`,
-    }
+    },
+    grupo: {
+      grupoUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/grupo/`,
+      addGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/grupo`,
+      updateGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/grupo`,
+      gruposUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/grupo/all`,
+      disabelEnableGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/grupo/disable`,
+      hideShowGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/grupo/hide`,
+      existGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/grupo/exist/`,
+      deleteGroupUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/grupo`,
+      grupoByIdCompanyUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/grupo/allByIdCompany/`,
+      gruposEnabledByIdCompanyUrl: `http://${params.wsAuthenticate.url}${params.wsAuthenticate.port ? `:${params.wsAuthenticate.port}` : ''}/ws-authenticator/api/grupo/allEnabledByIdCompany/`,
+    },
   },
   wsSms: {
     sendUrl: `http://${params.wsSms.url}${params.wsSms.port ? `:${params.wsSms.port}` : ''}/ws-sms/api/sms/send-confirmation-code`
@@ -83,6 +95,16 @@ export const environment = {
       menuByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/allByRole/`,
       foodNodeByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/allFoodNodeByRole/`,
       routeByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/allRouteByRole/`,
+
+      menuUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/`,
+      addMenuUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu`,
+      updateMenuUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu`,
+      menusUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/all`,
+      disableEnableMenuUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/disable`,
+      existMenuUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/exist/`,
+      deleteMenuUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu`,
+      menusEnabledUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/allEnabled`,
+      updateMenusOrderUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/all/order`,
     },
 
     screen: {
@@ -95,18 +117,6 @@ export const environment = {
       deleteScreenUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen`,
       screensEnabledUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen/allEnabled`,
       updateScreensOrderUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/screen/all/order`,
-    },
-    grupo: {
-      grupoUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/`,
-      addGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo`,
-      updateGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo`,
-      gruposUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/all`,
-      disabelEnableGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/disable`,
-      hideShowGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/hide`,
-      existGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/exist/`,
-      deleteGroupUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo`,
-      grupoByIdCompanyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/allByIdCompany/`,
-      gruposEnabledByIdCompanyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/grupo/allEnabledByIdCompany/`,
     },
     action: {
       actionUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/action/`,

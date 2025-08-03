@@ -1,3 +1,5 @@
+import { AuthorityBean } from "./authorityBean";
+
 export interface GrupoBean {
 
     idGrupo: number;
@@ -18,6 +20,8 @@ export interface GrupoBean {
     createUser?: string;
 
     lastModifUser?: string;
+
+    authorities?: AuthorityBean[];
 
 
 }

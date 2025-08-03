@@ -6,6 +6,7 @@ import { UserBean } from 'src/app/model/userBean';
 import { Router } from '@angular/router';
 import { CompanyService } from 'src/app/services/helpers/company/company.service';
 import { WsAuthenticateAuthorityService } from 'src/app/services/ws-authenticate/ws-authenticate.authority.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -21,25 +22,34 @@ import { WsAuthenticateAuthorityService } from 'src/app/services/ws-authenticate
 // TODO quit oncahcnges
 export class RoleSelectorComponent  {
 
-  @Input() userBean?:UserBean;
+  @Input() selectedAuthorities: AuthorityBean[] = [];
+  // @Input() userBean?:UserBean;
   roleBeans?: AuthorityBean[];
-  roleBean?: AuthorityBean;
+ selectedRoles: AuthorityBean[] = [];
   // selectedItem: AuthorityBean | null = null;
   searchTerm = '';
-  @Output() roleSelected = new EventEmitter<AuthorityBean>();
+  @Output() rolesSelected = new EventEmitter<AuthorityBean[]>();
 
 
 
 
   constructor(private utils: Utils, private wsAuthenticateService: WsAuthenticateAuthorityService, private companyService: CompanyService,
-    private router:Router) { }
+    private router:Router,private translate: TranslateService) { }
 
-  selectRole(item: AuthorityBean): void {
-    debugger;
-    this.roleBean = item;
-    this.roleSelected.emit(item); // 🔥 Enviamos el dato al padre
+toggleRole(item: AuthorityBean): void {
+  const index = this.selectedRoles.findIndex(r => r.authority === item.authority);
+  if (index >= 0) {
+    this.selectedRoles.splice(index, 1);
+  } else {
+    this.selectedRoles.push(item);
   }
+  this.rolesSelected.emit(this.selectedRoles); // Emitir lista actualizada
+}
 
+
+isSelected(item: AuthorityBean): boolean {
+  return this.selectedRoles.some(r => r.authority === item.authority);
+}
   filteredItems(): AuthorityBean[] | any {
     const term = this.searchTerm.toLowerCase();
     return this.roleBeans?.filter(item =>
@@ -63,14 +73,26 @@ export class RoleSelectorComponent  {
  
 
   }
-  ngOnInit() {
-    debugger;
-    this.getAuthorities();
-    if(this.userBean?.authorities){
-      this.roleBean = this.userBean.authorities[0];
-    }
+ngOnInit() {
+  this.getAuthorities();
 
+  if (this.selectedAuthorities?.length) {
+    this.selectedRoles = [...this.selectedAuthorities];
+    this.rolesSelected.emit(this.selectedRoles);
   }
+}
+
+
+get selectedRolesLabel(): string {
+  if (!this.selectedRoles || this.selectedRoles.length === 0) {
+    return this.translate.instant('ROLE_SELECTOR.SELECT');
+  }
+
+  return this.selectedRoles
+    .map(r => r.authority.replace('ROLE_', ''))
+    .join(', ');
+}
+
 
 
 }

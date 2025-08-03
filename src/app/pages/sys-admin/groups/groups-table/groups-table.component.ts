@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { GrupoBean } from 'src/app/model/grupoBean';
 import { CompanyService } from 'src/app/services/helpers/company/company.service';
 import { MessageService } from 'src/app/services/helpers/message/message.service';
-import { WsSysAdminGroupService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.group.service';
+import { WsAuthenticateGroupService } from 'src/app/services/ws-authenticate/ws-authenticate.group.service';
 import { Utils } from 'src/app/util/utils';
 
 @Component({
@@ -29,7 +29,7 @@ export class GroupsTableComponent {
     @Output() newItemEvent = new EventEmitter<GrupoBean>();
   
   
-    constructor(private utils: Utils, private wsSysAdminGroupService: WsSysAdminGroupService,
+    constructor(private utils: Utils, private wsAuthenticateGroupService: WsAuthenticateGroupService,
       private router: Router, private translate: TranslateService, private companyService: CompanyService
       , private messageService: MessageService) {
   
@@ -41,7 +41,7 @@ export class GroupsTableComponent {
       let groupAux = group.idGrupo;
       debugger;
       let idCompany = this.companyService.getCompany().idCompany;
-      this.wsSysAdminGroupService.deleteGroup(this.utils, groupAux,idCompany).subscribe(this.utils.subscribeHandler(this, () => {
+      this.wsAuthenticateGroupService.deleteGroup(this.utils, groupAux,idCompany).subscribe(this.utils.subscribeHandler(this, () => {
         // Encuentra el índice del objeto.
         const index = this.groups.findIndex((group: any) => group.idGrupo === groupAux);
         if (index !== -1) {
@@ -65,12 +65,12 @@ export class GroupsTableComponent {
     disable(group: GrupoBean) {
       group.enabled = !group.enabled;
       let idCompany = this.companyService.getCompany().idCompany;
-      this.wsSysAdminGroupService.disableEnableGroup(this.utils, group.idGrupo, group.enabled,idCompany).subscribe(this.utils.subscribeHandler(this, () => { }));
+      this.wsAuthenticateGroupService.disableEnableGroup(this.utils, group.idGrupo, group.enabled,idCompany).subscribe(this.utils.subscribeHandler(this, () => { }));
     }
     hide(group: GrupoBean) {
       group.hidden = !group.hidden;
       let idCompany = this.companyService.getCompany().idCompany;
-      this.wsSysAdminGroupService.hideShowGroup(this.utils, group.idGrupo, group.hidden,idCompany).subscribe(this.utils.subscribeHandler(this, () => { }));
+      this.wsAuthenticateGroupService.hideShowGroup(this.utils, group.idGrupo, group.hidden,idCompany).subscribe(this.utils.subscribeHandler(this, () => { }));
     }
   
     ngOnInit() {
@@ -95,7 +95,7 @@ export class GroupsTableComponent {
              
        this.companyService.getCompanyObs().subscribe(obs => {
          if (obs) {
-        this.wsSysAdminGroupService.getGroupsByIdCompany(this.utils, obs.idCompany)
+        this.wsAuthenticateGroupService.getGroupsByIdCompany(this.utils, obs.idCompany)
           .subscribe(this.utils.subscribeHandler(this, this.setgroups)
           );
         }

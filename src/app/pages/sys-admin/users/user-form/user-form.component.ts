@@ -309,10 +309,10 @@ export class UserFormComponent {
     }));
   }
  
-  onRoleSelected(role: AuthorityBean): void {
+  onRolesSelected(role: AuthorityBean[]): void {
     debugger;
     if (!role) return;
-    const authorities: AuthorityBean[] = [role];
+    const authorities: AuthorityBean[] = role;
     this.userInfoForm.get('authorities')?.setValue(authorities);
   }
 

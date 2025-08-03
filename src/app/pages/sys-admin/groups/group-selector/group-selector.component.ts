@@ -5,7 +5,7 @@ import { GrupoBean } from 'src/app/model/grupoBean';
 import { UserBean } from 'src/app/model/userBean';
 import { Router } from '@angular/router';
 import { CompanyService } from 'src/app/services/helpers/company/company.service';
-import { WsSysAdminGroupService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.group.service';
+import { WsAuthenticateGroupService } from 'src/app/services/ws-authenticate/ws-authenticate.group.service';
 
 
 
@@ -31,7 +31,7 @@ export class GroupSelectorComponent  {
 
 
 
-  constructor(private utils: Utils, private wsSysAdminGroupService: WsSysAdminGroupService, private companyService: CompanyService,
+  constructor(private utils: Utils, private wsAuthenticateGroupService: WsAuthenticateGroupService, private companyService: CompanyService,
     private router:Router) { }
 
   selectGroup(item: GrupoBean): void {
@@ -55,7 +55,7 @@ export class GroupSelectorComponent  {
      debugger;        
     this.companyService.getCompanyObs().subscribe(obs => {
        if (obs) {
-      this.wsSysAdminGroupService.getGroupsEnabledByIdCompany(this.utils, obs.idCompany)
+      this.wsAuthenticateGroupService.getGroupsEnabledByIdCompany(this.utils, obs.idCompany)
         .subscribe(this.utils.subscribeHandler(this, this.setGroups)
         );
       }

@@ -11,8 +11,9 @@ import { MessageService } from 'src/app/services/helpers/message/message.service
 import { UserLoggedServiceService } from 'src/app/services/helpers/userLoggedService/user-logged-service.service';
 import { LocalizedDatePipe } from 'src/app/services/pipes/localizedDatePipe/localized-date-pipe';
 import { GroupService } from '../services/group.service';
-import { WsSysAdminGroupService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.group.service';
+import { WsAuthenticateGroupService } from 'src/app/services/ws-authenticate/ws-authenticate.group.service';
 import { Utils } from 'src/app/util/utils';
+import { AuthorityBean } from 'src/app/model/authorityBean';
 
 
 @Component({
@@ -33,7 +34,8 @@ export class GroupFormComponent implements OnInit {
       lastModif: [{ value: new Date(), disabled: false }, Validators.required],
       hidden: [{ value: false, disabled: false }, Validators.required],
       lastModifUser: [{value:this.userLoggedServiceService.getUserName(), disabled: false }, Validators.required],
-      createUser: [{value:this.userLoggedServiceService.getUserName() , disabled: false }, Validators.required]
+      createUser: [{value:this.userLoggedServiceService.getUserName() , disabled: false }, Validators.required],
+      authorities: this.formBuilder.control<AuthorityBean[]>([])
   
     });
   
@@ -44,7 +46,7 @@ export class GroupFormComponent implements OnInit {
     mode: string = 'add'; // Por defecto, modo agregar
 
 
-      constructor(private formBuilder: FormBuilder, private companyService: CompanyService, private wsSysAdminGroupService: WsSysAdminGroupService, private utils: Utils,public datePipe: LocalizedDatePipe
+      constructor(private formBuilder: FormBuilder, private companyService: CompanyService, private wsAuthenticateGroupService: WsAuthenticateGroupService, private utils: Utils,public datePipe: LocalizedDatePipe
         , private languageServiceService: LanguageServiceService,
         private router: Router, private messageService: MessageService, private translate: TranslateService
         , private route: ActivatedRoute, private groupService: GroupService, private countryService: CountryService,
@@ -75,6 +77,7 @@ export class GroupFormComponent implements OnInit {
               hidden: this.group.hidden,
               createUser:this.group.createUser,
               lastModifUser: this.group.lastModifUser,
+                authorities: this.group.authorities
             });
             this.groupInfoForm.get('idGrupo')?.disable({ emitEvent: false });
             this.groupInfoForm.get('enabled')?.enable({ emitEvent: false });
@@ -115,7 +118,7 @@ export class GroupFormComponent implements OnInit {
     let group = this.groupInfoForm.value.grupo;
     if (group !== undefined && group !== "") {
       let idCompany = this.companyService.getCompany().idCompany;
-      this.wsSysAdminGroupService.existGroup(group,idCompany, this.utils).subscribe(this.utils.subscribeHandler(this, this.validGroup));
+      this.wsAuthenticateGroupService.existGroup(group,idCompany, this.utils).subscribe(this.utils.subscribeHandler(this, this.validGroup));
 
     }
 
@@ -150,7 +153,7 @@ export class GroupFormComponent implements OnInit {
     group.lastModif = this.utils.getDateToISO(group.lastModif);
     if (this.mode === "edit") {
       group.lastModifUser = this.userLoggedServiceService.getUserName();
-      this.wsSysAdminGroupService.updateGroups(this.utils, group).subscribe(this.utils.subscribeHandler(this, () => {
+      this.wsAuthenticateGroupService.updateGroups(this.utils, group).subscribe(this.utils.subscribeHandler(this, () => {
         this.type = 'success';
         this.message = this.translate.instant('GROUP_FORM.EDIT_SUCCESS', {
           grupo: this.group.grupo
@@ -161,7 +164,7 @@ export class GroupFormComponent implements OnInit {
 
        }   else {
         group.createUser = this.userLoggedServiceService.getUserName();
-        this.wsSysAdminGroupService.addGroup(this.utils, group).subscribe(this.utils.subscribeHandler(this, () => {
+        this.wsAuthenticateGroupService.addGroup(this.utils, group).subscribe(this.utils.subscribeHandler(this, () => {
           this.type = 'success';
           this.message = this.translate.instant('GROUP_FORM.ADD_SUCCESS', {
             grupo: group.grupo
@@ -188,4 +191,12 @@ export class GroupFormComponent implements OnInit {
   getCompany() {
     return this.companyService.getCompany().commercialName;
   }
+
+   
+    onRolesSelected(role: AuthorityBean[]): void {
+      debugger;
+      if (!role) return;
+      const authorities: AuthorityBean[] = role;
+      this.groupInfoForm.get('authorities')?.setValue(authorities);
+    }
 }
