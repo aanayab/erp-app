@@ -1,0 +1,162 @@
+<div class="col-12">
+  <mat-accordion>
+    <mat-expansion-panel expanded="{{panelOpenState}}" (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>c
+          <div class="text-center col-12 h5">
+            {{ 'MENU_FORM.MENUINFO' | translate }}
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form class="col-12" ngClass="{{menuInfoForm.valid ? 'needs-validated' : 'was-validated'}}"
+        [formGroup]="menuInfoForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <h1 mat-card-title class="text-center" style="color: white;">
+          {{ 'MENU_FORM.MENUINFO' | translate }}
+        </h1>
+
+        <!-- Empresa -->
+        <div class="col-12 row text-center">
+          <div class="form-group col-md-12">
+            <label>{{ 'MENU_FORM.COMPANY' | translate }}</label>
+            <h2 class="pb-0" matInput>{{ getCompany() }}</h2>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Nombre, Menú padre, Pantalla -->
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-3">
+            <label>{{ 'MENU_FORM.NAME' | translate }}</label>
+            <input class="form-control" formControlName="name" (blur)="existMenuName()" matInput
+              placeholder="{{ 'MENU_FORM.NAME' | translate }}">
+            <div class="invalid-feedback">
+              {{ 'MENU_FORM.NAME_REQUIRED' | translate }}
+            </div>
+            <div *ngIf="existMenuNameFlag" class="text-danger" style="font-size: .875em;">
+              {{ 'MENU_FORM.NAME_EXIST' | translate }}
+            </div>
+          </div>
+
+          <!-- <div class="form-group col-md-3">
+            <label>{{ 'MENU_FORM.PARENT' | translate }}</label>
+            <select class="form-control" formControlName="idParentMenu" matInput>
+              <option [ngValue]="null">{{ 'MENU_FORM.NONE' | translate }}</option>
+              <option *ngFor="let m of parentMenus" [ngValue]="m.idMenu">{{ m.name }}</option>
+            </select>
+            <div class="invalid-feedback">
+              {{ 'MENU_FORM.PARENT_INVALID' | translate }}
+            </div>
+          </div> -->
+          <div class="form-group col-md-3 ">
+            <label>{{'MENU_FORM.PARENT'|translate}}</label>
+            <app-menu-selector (menuSelected)="onMenuSelected($event)" [selectedMenu]="menu?.idParentMenu"
+              [ngClass]="mode ==='edit'?'disabled_country_selector' : ''" matInput required
+              readonly></app-menu-selector>
+            <div class="invalid-feedback">
+              {{"MENU_FORM.PARENT_REQUIRED"|translate}}
+            </div>
+          </div>
+
+          <div class="form-group col-md-3">
+            <label>{{ 'MENU_FORM.SCREEN' | translate }}</label>
+            <app-screen-selector (screenSelected)="onScreenSelected($event)" [selectedScreen]="menu?.idScreen"
+              [ngClass]="mode ==='edit'?'disabled_country_selector' : ''" matInput required
+              readonly></app-screen-selector>
+            <div class="invalid-feedback">
+              {{ 'MENU_FORM.SCREEN_INVALID' | translate }}
+            </div>
+          </div>
+
+          <div *ngIf="mode ==='edit'" class="form-group col-md-3">
+            <label>{{'MENU_FORM.ORDER'|translate}}</label>
+            <input class="form-control " formControlName="order" matInput
+              placeholder="{{'SCREEN_FORM.ORDER'|translate}}">
+            <div class="invalid-feedback">
+              {{"MENUFORM.ORDER"|translate}}
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Switches -->
+        <div class="col-12 row text-start">
+          <div class="form-group col-md-3">
+            <div class="col-sm-12 pt-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input" formControlName="enabled" type="checkbox" id="enabled">
+                <label class="form-check-label" for="enabled">
+                  {{ 'MENU_FORM.ACTIVE' | translate }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="mode ==='edit'" class="form-group col-md-4">
+            <label>{{'MENU_FORM.ID_MENU'|translate}}</label>
+            <input class="form-control " formControlName="idMenu" matInput
+              placeholder="{{'MENU_FORM.ID_MENU'|translate}}">
+            <div class="invalid-feedback">
+              {{"MENU_FORM.ID_MENU"|translate}}
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Auditoría -->
+        <div class="col-12 row text-start">
+          <div class="col-md-3">
+            <label>{{ 'MENU_FORM.CREATE_AT' | translate }}</label>
+            <h2>
+              <span class="form-control badge bg-secondary">
+                {{ menuInfoForm.get('createAt')?.value | localizedDate:'medium' }}
+              </span>
+            </h2>
+          </div>
+
+          <div class="form-group col-md-3">
+            <label>{{ 'MENU_FORM.LAST_MODIF' | translate }}</label>
+            <h2>
+              <span class="form-control badge bg-secondary">
+                {{ menuInfoForm.get('lastModif')?.value | localizedDate:'medium' }}
+              </span>
+            </h2>
+          </div>
+
+          <div class="col-md-3">
+            <label>{{ 'MENU_FORM.CREATE_USER' | translate }}</label>
+            <h2>
+              <span class="form-control badge bg-secondary">
+                {{ menuInfoForm.get('createUser')?.value }}
+              </span>
+            </h2>
+          </div>
+
+          <div class="form-group col-md-3">
+            <label>{{ 'MENU_FORM.LAST_MODIF_USER' | translate }}</label>
+            <h2>
+              <span class="form-control badge bg-secondary">
+                {{ menuInfoForm.get('lastModifUser')?.value }}
+              </span>
+            </h2>
+          </div>
+        </div>
+
+        <hr>&nbsp;
+        &nbsp;
+        <mat-card-actions align="end">
+          <button mat-button routerLink="../" type="button"
+            style="color: white;">{{'ROLE_FORM.RETURN'|translate}}</button>
+          <button mat-button style="color: white;" type="submit">{{'ROLE_FORM.SUBMIT'|
+            translate}}</button>
+        </mat-card-actions>
+      </form>
+      <app-messages-modal type="{{type}}" messsage="{{message | translate}}"
+        (closeAction)="closeAction()"></app-messages-modal>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

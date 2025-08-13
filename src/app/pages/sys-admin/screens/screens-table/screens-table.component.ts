@@ -9,7 +9,7 @@ import { CompanyService } from 'src/app/services/helpers/company/company.service
 import { MessageService } from 'src/app/services/helpers/message/message.service';
 import { WsSysAdminScreenService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.screen.service';
 import { Utils } from 'src/app/util/utils';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 
 
 @Component({
@@ -20,7 +20,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class ScreensTableComponent {
   panelOpenState = true;
   dataSource!: MatTableDataSource<ScreenBean>;
-  displayedColumns = ['position','order','screen', 'componente','path','disabled', 'edit', 'delete'];
+  displayedColumns = ['idScreen', 'componente','path','disabled', 'edit', 'delete'];
   isOrderChanged = false;
 
 
@@ -42,7 +42,7 @@ export class ScreensTableComponent {
 
 
   borrar(screen: ScreenBean) {
-    let screenAux = screen.screen;
+    let screenAux = screen.idScreen;
     // let idCompany = this.companyService.getCompany().idCompany;
     this.wsSysAdminService.deleteScreen(this.utils, screenAux).subscribe(this.utils.subscribeHandler(this, () => {
       // Encuentra el índice del objeto.
@@ -50,9 +50,9 @@ export class ScreensTableComponent {
       if (index !== -1) {
         // Elimina el objeto en el índice encontrado.
         this.screens.splice(index, 1);
-        this.dataSource.data = this.dataSource.data.filter(item => item.screen !== screen.screen);
+        this.dataSource.data = this.dataSource.data.filter(item => item.idScreen !== screen.idScreen);
         const message = this.translate.instant('SCREENS_TABLE.DELETE_MESSAGE', {
-          screen: screen.screen
+          idScreen: screen.idScreen
         });
         this.messageService.showSuccessMessage(message);
       }
@@ -68,7 +68,7 @@ export class ScreensTableComponent {
   disable(screen: ScreenBean) {
     screen.enabled = !screen.enabled;
     // let idCompany = this.companyService.getCompany().idCompany;
-    this.wsSysAdminService.disableEnableScreen(this.utils, screen.screen, screen.enabled).subscribe(this.utils.subscribeHandler(this, () => { }));
+    this.wsSysAdminService.disableEnableScreen(this.utils, screen.idScreen, screen.enabled).subscribe(this.utils.subscribeHandler(this, () => { }));
   }
   // hide(screen: ScreenBean) {
   //   screen.hidden = !screen.hidden;
@@ -121,38 +121,38 @@ export class ScreensTableComponent {
     }
   }
 
-  drop(event: CdkDragDrop<any[]>) {
+//   drop(event: CdkDragDrop<any[]>) {
     
-  if (event.previousIndex === event.currentIndex) return;
+//   if (event.previousIndex === event.currentIndex) return;
 
-  const data = this.dataSource.data;
-  const draggedItem = data[event.previousIndex];
+//   const data = this.dataSource.data;
+//   const draggedItem = data[event.previousIndex];
 
-  moveItemInArray(data, event.previousIndex, event.currentIndex);
+//   moveItemInArray(data, event.previousIndex, event.currentIndex);
 
-  this.recalculateOrderRespectingFixed(data, draggedItem);
-  this.dataSource.data = [...data]; // Forzar renderizado
-  this.isOrderChanged = true; // Habilita el botón de guardar
-  this.screens = this.dataSource.data.map(screen => ({ ...screen }));
-  this.messageService.showWarningMessage("Dar clik en el botón guardar para guardar el orden.")
+//   this.recalculateOrderRespectingFixed(data, draggedItem);
+//   this.dataSource.data = [...data]; // Forzar renderizado
+//   this.isOrderChanged = true; // Habilita el botón de guardar
+//   this.screens = this.dataSource.data.map(screen => ({ ...screen }));
+//   this.messageService.showWarningMessage("Dar clik en el botón guardar para guardar el orden.")
 
-}
+// }
 
 
-recalculateOrderRespectingFixed(data: any[], movedItem: any): void {
-  let currentOrder = 1;
+// recalculateOrderRespectingFixed(data: any[], movedItem: any): void {
+//   let currentOrder = 1;
 
-  data.forEach(item => {
-    if (item.order < 999) {
-      // Reasignar secuencial
-      item.order = currentOrder++;
-    } else if (item === movedItem) {
-      // Fue movido manualmente: le damos el orden actual
-      item.order = currentOrder++;
-    }
-    // Si no es <999 ni fue movido, se conserva tal cual su order
-  });
-}
+//   data.forEach(item => {
+//     if (item.order < 999) {
+//       // Reasignar secuencial
+//       item.order = currentOrder++;
+//     } else if (item === movedItem) {
+//       // Fue movido manualmente: le damos el orden actual
+//       item.order = currentOrder++;
+//     }
+//     // Si no es <999 ni fue movido, se conserva tal cual su order
+//   });
+// }
 
 
 }

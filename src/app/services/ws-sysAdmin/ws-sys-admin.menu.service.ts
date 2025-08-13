@@ -105,9 +105,9 @@ export class WsSysAdminMenuService {
   
   
   
-    disableEnableMenu(utils:Utils,menu:string | any,enable:boolean): Observable<HttpResponse<ResponseBean>> {
+    disableEnableMenu(utils:Utils,idMenu:number | any,enable:boolean): Observable<HttpResponse<ResponseBean>> {
       this.loadingService.setLoading(true);
-      return this.http.post<ResponseBean>(this.disabelEnableMenuUrl,{menu,enable} , {
+      return this.http.post<ResponseBean>(this.disabelEnableMenuUrl,{idMenu,enable} , {
         headers: utils.getBearerToken(),
         observe: 'response',
       });
@@ -115,30 +115,31 @@ export class WsSysAdminMenuService {
   
   
   
-    deleteMenu(utils:Utils,menu:string | any): Observable<HttpResponse<ResponseBean>> {
+    deleteMenu(utils:Utils,idMenu:number | any): Observable<HttpResponse<ResponseBean>> {
       this.loadingService.setLoading(true);
       return this.http.delete<ResponseBean>(this.deleteMenuUrl , {
         headers: utils.getBearerToken(),
         observe: 'response',
-        body: {menu}
+        body: {idMenu}
       });
     }
   
-    existMenu(menu: string | any,utils:Utils): Observable<HttpResponse<Token>> {
+    existMenu(name: string | any,utils:Utils): Observable<HttpResponse<Token>> {
       this.loadingService.setLoading(true);
       return this.http
-        .get<Token>(this.existMenuUrl + menu,  {
+        .get<Token>(this.existMenuUrl + name,  {
           headers: utils.getBearerToken(),
           observe: 'response',
         });
     }
   
-      updateMenuSOrder(utils:Utils,menuBean:MenuBean[]): Observable<HttpResponse<ResponseBean>> {
-      this.loadingService.setLoading(true);
-      return this.http.put<ResponseBean>(this.updateMenusOrderUrl,menuBean , {
-        headers: utils.getBearerToken(),
-        observe: 'response',
-      });
-    }
+        updateMenuOrder(utils:Utils,screenBean:MenuBean[]): Observable<HttpResponse<ResponseBean>> {
+        this.loadingService.setLoading(true);
+        return this.http.put<ResponseBean>(this.updateMenusOrderUrl,screenBean , {
+          headers: utils.getBearerToken(),
+          observe: 'response',
+        });
+      }
+
 
 }

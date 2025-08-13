@@ -5,10 +5,24 @@ import { ScreenBean } from "./screenBean";
 
 export interface MenuBean  {
   idMenu?: number;
-  authority?: AuthorityBean;
+  name:string;
+  authority?: string;
   grupo: GrupoBean;
-  screen: ScreenBean;
+  idScreen: string;
   idParentMenu?: number;
   children: MenuBean[];
+   enabled?: boolean;
+
+   createAt?: Date;   
+
+   deleted?: boolean;
+
+   lastModif? :Date ;
+
+	createUser?:string;
+
+	lastModifUser?:string;
+
+  order: number;
 }
 

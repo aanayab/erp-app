@@ -27,7 +27,7 @@ export class ScreenFormComponent implements OnInit {
   panelOpenState = true;
   @Input() screen: ScreenBean | any;
   screenInfoForm = this.formBuilder.group({
-    screen: [{ value: '', disabled: false }, Validators.required],
+    idScreen: [{ value: '', disabled: false }, Validators.required],
     path: [{ value: '', disabled: false }, Validators.required],
     // redirectTo: [{ value: '', disabled: false }, Validators.required],
     // pathMatch: [{ value: '', disabled: false }, Validators.required],
@@ -41,7 +41,7 @@ export class ScreenFormComponent implements OnInit {
     lastModif: [{ value: new Date(), disabled: false }, Validators.required],
     lastModifUser: [{ value: this.userLoggedServiceService.getUserName(), disabled: false }, Validators.required],
     createUser: [{ value: this.userLoggedServiceService.getUserName(), disabled: false }, Validators.required],
-     order: [{ value: 999, disabled: false }, Validators.required]
+    //  order: [{ value: 999, disabled: false }, Validators.required]
 
   });
 
@@ -92,7 +92,7 @@ export class ScreenFormComponent implements OnInit {
         //  const file = this.base64ToFile(image.data, image.fileName, image.contentType);
         // this.screenInfoForm.get('image')?.setValue(file)
         this.screenInfoForm.patchValue({
-          screen: this.screen.screen,
+          idScreen: this.screen.idScreen,
           //  / image: this.selectedFile,
           path: this.screen.path,
           // redirectTo: this.screen.redirectTo,
@@ -106,7 +106,7 @@ export class ScreenFormComponent implements OnInit {
           lastModifUser: this.screen.lastModifUser,
           // order: this.screen.order,
           alias: this.screen.alias,
-          order: this.screen.order
+     //     order: this.screen.order
         });
         this.screenInfoForm.get('enabled')?.enable({ emitEvent: false });
         this.screenInfoForm.get('order')?.disable({ emitEvent: true });
@@ -192,10 +192,10 @@ export class ScreenFormComponent implements OnInit {
 
 
   existScreen() {
-    let screen = this.screenInfoForm.value.screen;
-    if (screen !== undefined && screen !== "") {
+    let idScreen = this.screenInfoForm.value.idScreen;
+    if (idScreen !== undefined && idScreen !== "") {
       // let idCompany = this.companyService.getCompany().idCompany;
-      this.wsSysAdminScreenService.existScreen(screen?.toUpperCase(), this.utils).subscribe(this.utils.subscribeHandler(this, this.valscreen));
+      this.wsSysAdminScreenService.existScreen(idScreen?.toUpperCase(), this.utils).subscribe(this.utils.subscribeHandler(this, this.valscreen));
 
     }
 
@@ -203,18 +203,18 @@ export class ScreenFormComponent implements OnInit {
 
   crearComponente() {
 
-    let screen = this.screenInfoForm.value.screen;
-    if (screen !== undefined && screen !== "") {
-      this.screenInfoForm.patchValue({ componente: screen + "Componente" });
+    let idScreen = this.screenInfoForm.value.idScreen;
+    if (idScreen !== undefined && idScreen !== "") {
+      this.screenInfoForm.patchValue({ componente: idScreen + "Componente" });
 
     }
 
   }
 
   crearAlias() {
-    let screen = this.screenInfoForm.value.screen;
-    if (screen !== undefined && screen !== "") {
-      this.screenInfoForm.patchValue({ alias: "BREADCRUMP." + screen?.toUpperCase() });
+    let idScreen = this.screenInfoForm.value.idScreen;
+    if (idScreen !== undefined && idScreen !== "") {
+      this.screenInfoForm.patchValue({ alias: "BREADCRUMP." + idScreen?.toUpperCase() });
 
     }
 
@@ -222,9 +222,9 @@ export class ScreenFormComponent implements OnInit {
 
   crearPath() {
 
-    let screen = this.screenInfoForm.value.screen;
-    if (screen !== undefined && screen !== "") {
-      this.screenInfoForm.patchValue({ path: screen });
+    let idScreen = this.screenInfoForm.value.idScreen;
+    if (idScreen !== undefined && idScreen !== "") {
+      this.screenInfoForm.patchValue({ path: idScreen });
 
     }
 
@@ -293,7 +293,7 @@ export class ScreenFormComponent implements OnInit {
       this.wsSysAdminScreenService.updateScreen(this.utils, screen).subscribe(this.utils.subscribeHandler(this, () => {
         this.type = 'success';
         this.message = this.translate.instant('SCREEN_FORM.EDIT_SUCCESS', {
-          screen: this.screen.screen
+          idScreen: this.screen.idScreen
         });
         let element = document.getElementById("modalSuccess") as HTMLElement;
         element.click();
@@ -304,7 +304,7 @@ export class ScreenFormComponent implements OnInit {
       this.wsSysAdminScreenService.addScreen(this.utils, screen).subscribe(this.utils.subscribeHandler(this, () => {
         this.type = 'success';
         this.message = this.translate.instant('SCREEN_FORM.ADD_SUCCESS', {
-          screen: screen.screen
+          idScreen: screen.idScreen
         });
         let element = document.getElementById("modalSuccess") as HTMLElement;
         element.click();

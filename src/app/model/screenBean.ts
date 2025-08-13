@@ -2,7 +2,7 @@ import { ScreenImageBean } from "./screenImageBean";
 
 
 export interface ScreenBean   {    
-    screen?: string;
+    idScreen?: string;
     enabled?: boolean;
     image?: ScreenImageBean ;
     path?: string;
@@ -13,7 +13,6 @@ export interface ScreenBean   {
     lastModif?: Date;
     createUser?: string;
     lastModifUser?: string;
-    order: number;
 }
 
 

@@ -27,7 +27,7 @@
         <div class="col-12 row text-start">
           <div class="form-group col-md-3">
             <label>{{'SCREEN_FORM.SCREEN'|translate}}</label>
-            <input class="form-control " formControlName="screen" (blur)="existScreen()" matInput
+            <input class="form-control " formControlName="idScreen" (blur)="existScreen()" matInput
               placeholder="{{'SCREEN_FORM.SCREEN'|translate}}">
             <div class="invalid-feedback">
               {{"SCREEN_FORM.SCREEN_REQUIRED"|translate}}
@@ -52,14 +52,14 @@
               {{"SCREEN_FORM.ALIAS_REQUIRED"|translate}}
             </div>
           </div>
-          <div *ngIf="mode ==='edit'" class="form-group col-md-3">
+          <!-- <div *ngIf="mode ==='edit'" class="form-group col-md-3">
             <label>{{'SCREEN_FORM.ORDER'|translate}}</label>
             <input class="form-control " formControlName="order" matInput
               placeholder="{{'SCREEN_FORM.ORDER'|translate}}">
             <div class="invalid-feedback">
               {{"SCREEN_FORM.ORDER"|translate}}
             </div>
-          </div>
+          </div> -->
         </div>
         <hr>
         <div class="col-12 row text-start">

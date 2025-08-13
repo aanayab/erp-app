@@ -35,9 +35,9 @@ export class WsSysAdminScreenService {
 
 
 
-  getScreen(screen: string,utils:Utils): Observable<HttpResponse<ScreenBean>> {
+  getScreen(idScreen: string,utils:Utils): Observable<HttpResponse<ScreenBean>> {
     this.loadingService.setLoading(true);
-    return this.http.get<ScreenBean>(this.screenUrl + screen , {
+    return this.http.get<ScreenBean>(this.screenUrl + idScreen , {
       headers: utils.getBearerToken(),
       observe: 'response',
     });
@@ -77,9 +77,9 @@ export class WsSysAdminScreenService {
 
 
 
-  disableEnableScreen(utils:Utils,screen:string | any,enable:boolean): Observable<HttpResponse<ResponseBean>> {
+  disableEnableScreen(utils:Utils,idScreen:string | any,enable:boolean): Observable<HttpResponse<ResponseBean>> {
     this.loadingService.setLoading(true);
-    return this.http.post<ResponseBean>(this.disabelEnableScreenUrl,{screen,enable} , {
+    return this.http.post<ResponseBean>(this.disabelEnableScreenUrl,{idScreen,enable} , {
       headers: utils.getBearerToken(),
       observe: 'response',
     });
@@ -87,19 +87,19 @@ export class WsSysAdminScreenService {
 
 
 
-  deleteScreen(utils:Utils,screen:string | any): Observable<HttpResponse<ResponseBean>> {
+  deleteScreen(utils:Utils,idScreen:string | any): Observable<HttpResponse<ResponseBean>> {
     this.loadingService.setLoading(true);
     return this.http.delete<ResponseBean>(this.deleteScreenUrl , {
       headers: utils.getBearerToken(),
       observe: 'response',
-      body: {screen}
+      body: {idScreen}
     });
   }
 
-  existScreen(screen: string | any,utils:Utils): Observable<HttpResponse<Token>> {
+  existScreen(idScreen: string | any,utils:Utils): Observable<HttpResponse<Token>> {
     this.loadingService.setLoading(true);
     return this.http
-      .get<Token>(this.existScreenUrl + screen,  {
+      .get<Token>(this.existScreenUrl + idScreen,  {
         headers: utils.getBearerToken(),
         observe: 'response',
       });

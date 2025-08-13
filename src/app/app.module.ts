@@ -58,6 +58,7 @@ import { RoleSelectorComponent } from './pages/sys-admin/roles/role-selector/rol
 import { ScreensHomeComponent } from './pages/sys-admin/screens/screens-home/screens-home.component';
 import { ScreensTableComponent } from './pages/sys-admin/screens/screens-table/screens-table.component';
 import { ScreenFormComponent } from './pages/sys-admin/screens/screen-form/screen-form.component';
+import { ScreenSelectorComponent } from './pages/sys-admin/screens/screen-selector/screen-selector.component';
 
 import { CompanyFormComponent } from './pages/sys-admin/companies/company-form/company-form.component';
 import { CompaniesHomeComponent } from './pages/sys-admin/companies/companies-home/companies-home.component';
@@ -73,6 +74,12 @@ import { ActionFormComponent } from './pages/sys-admin/actions/action-form/actio
 import { ActionsTableComponent } from './pages/sys-admin/actions/actions-table/actions-table.component';
 import { ActionsHomeComponent } from './pages/sys-admin/actions/actions-home/actions-home.component';
 import { ActionSelectorComponent } from './pages/sys-admin/actions/action-selector/action-selector.component';
+
+import { MenuFormComponent } from './pages/sys-admin/menus/menu-form/menu-form.component';
+import { MenusTableComponent } from './pages/sys-admin/menus/menus-table/menus-table.component';
+import { MenusHomeComponent } from './pages/sys-admin/menus/menus-home/menus-home.component';
+import { MenuSelectorComponent } from './pages/sys-admin/menus/menu-selector/menu-selector.component';
+
 
 
 import { MaterialModule } from './material.module';
@@ -90,7 +97,7 @@ import { WsSysAdminCompanyService } from './services/ws-sysAdmin/ws-sys-admin.co
 import { WsSysAdminMenuService } from './services/ws-sysAdmin/ws-sys-admin.menu.service';
 import { WsSysAdminPrivilegyService } from './services/ws-sysAdmin/ws-sys-admin.privilegy.service';
 import { WsSysAdminScreenService } from './services/ws-sysAdmin/ws-sys-admin.screen.service';
-import { WsSysAdminGroupService } from './services/ws-sysAdmin/ws-sys-admin.group.service';
+import { WsAuthenticateGroupService } from './services/ws-authenticate/ws-authenticate.group.service';
 import { WsSysAdminActionService } from './services/ws-sysAdmin/ws-sys-admin.action.service';
 
 
@@ -142,8 +149,8 @@ import { TipoIntegracionSelectorComponent } from './components/tipo-integracion-
 
 @NgModule({
   providers: [WsAuthenticateUserService,WsAuthenticateAuthorityService,Utils,LoadingService,WsAdministratorService,BreadcrumbService,CompanyService
-    ,PrivilegyService,WsSysAdminCompanyService,WsSysAdminMenuService,WsSysAdminPrivilegyService,WsSysAdminScreenService,WsSysAdminGroupService
-    , IdleServiceService, UserLoggedServiceService,ValidatorService,
+    ,PrivilegyService,WsSysAdminCompanyService,WsSysAdminMenuService,WsSysAdminPrivilegyService,WsSysAdminScreenService,WsAuthenticateGroupService
+    , IdleServiceService, UserLoggedServiceService,ValidatorService,WsSysAdminActionService,
     WsSmsService,MatSnackBar,UserService,AuthorityService,
     RouteService,DatePipe,{ provide: LOCALE_ID, useValue: 'en' },LocalizedDatePipe],
   imports: [MatButtonModule,MatSnackBarModule,BrowserModule, ReactiveFormsModule, BreadcrumbModule, RouterModule, MaterialModule,
@@ -165,7 +172,9 @@ import { TipoIntegracionSelectorComponent } from './components/tipo-integracion-
     BreadcrumbComponent,MainComponent, IdleModalComponent,UserFormComponent,MessagesModalComponent
     ,PasswordConfirmationComponent,SnackBarComponent,TimezoneSelectorComponent,
     ClasificacionSelectorComponent,FormasPagoSelectorComponent,RegimenFiscalSelectorComponent,TerminosPagoSelectorComponent,TipoIntegracionSelectorComponent,
-    RoleFormComponent,RolesHomeComponent,RolesTableComponent,ScreensHomeComponent, ScreensTableComponent, ScreenFormComponent,
+    RoleFormComponent,RolesHomeComponent,RolesTableComponent,
+    ScreensHomeComponent, ScreensTableComponent, ScreenFormComponent,ScreenSelectorComponent,
+    MenusHomeComponent, MenusTableComponent, MenuFormComponent,MenuSelectorComponent,
     CompaniesHomeComponent,CompaniesTableComponent,CompanyFormComponent,
     GroupFormComponent,GroupsHomeComponent,GroupsTableComponent,GroupSelectorComponent,
       ActionFormComponent,ActionsHomeComponent,ActionsTableComponent,ActionSelectorComponent,

@@ -1,0 +1,33 @@
+ <div class="form-screen">
+	<!-- <label for="dropdownScreen" class="form-label">Perfiles</label> -->
+	<div class="dropdown w-100" ngbDropdown>
+	  <button
+		class="form-select text-start"
+		id="dropdownScreen"
+		ngbDropdownToggle
+		type="button"
+	  >
+		{{ screenBean?.idScreen || ('SCREEN_SELECTOR.SELECT' | translate) }}
+	  </button>
+  
+	  <div ngbDropdownMenu class="w-100 p-2 shadow-sm dropdown-scroll">
+		<input
+		  type="search"
+		  autocomplete="off"
+		  class="form-control mb-2 no-valid-style"
+		  [placeholder]="('SCREEN_SELECTOR.SEARCH' | translate )"
+		  [(ngModel)]="searchTerm"
+		/>
+  
+		<button
+		  *ngFor="let item of filteredItems()"
+		  class="dropdown-item"
+		  type="button"
+		  (click)="selectScreen(item)"
+		  [class.active]="screenBean?.idScreen === item.idScreen"
+		>
+		  {{ item.idScreen }}
+		</button>
+	  </div>
+	</div>
+  </div>

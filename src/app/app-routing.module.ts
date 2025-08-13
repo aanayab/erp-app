@@ -39,6 +39,10 @@ import { ActionsHomeComponent } from './pages/sys-admin/actions/actions-home/act
 import { ActionFormComponent } from './pages/sys-admin/actions/action-form/action-form.component';
 import { ActionsTableComponent } from './pages/sys-admin/actions/actions-table/actions-table.component';
 
+import { MenusHomeComponent } from './pages/sys-admin/menus/menus-home/menus-home.component';
+import { MenuFormComponent } from './pages/sys-admin/menus/menu-form/menu-form.component';
+import { MenusTableComponent } from './pages/sys-admin/menus/menus-table/menus-table.component';
+
 
 
 const routes: Routes = [
@@ -120,6 +124,14 @@ const routes: Routes = [
                     //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb:  'UserMain' } }, },
                     { path: 'EditAction', component: ActionFormComponent, data: { breadcrumb: 'BREADCRUMP.EDITACTION' }, },
                     { path: 'AddAction', component: ActionFormComponent, data: { breadcrumb: 'BREADCRUMP.ADDACTION' }, },
+
+                  ]
+                },
+                 {
+                  path: 'Menus', component: MenusHomeComponent, data: { breadcrumb: 'BREADCRUMP.MENUS' }, children: [
+                    //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb:  'UserMain' } }, },
+                    { path: 'EditMenu', component: MenuFormComponent, data: { breadcrumb: 'BREADCRUMP.EDITMENU' }, },
+                    { path: 'AddMenu', component: MenuFormComponent, data: { breadcrumb: 'BREADCRUMP.ADDMENU' }, },
 
                   ]
                 }

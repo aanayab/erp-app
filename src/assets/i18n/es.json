@@ -37,7 +37,10 @@
         "EDITGROUP": "Editar grupo",
         "ACTIONS": "Acciones",
         "ADDACTION": "Agregar acción",
-        "EDITACTION": "Editar acción"
+        "EDITACTION": "Editar acción",
+        "MENUS": "Menus",
+        "ADDMENU": "Agregar menu",
+        "EDITMENU": "Editar menu"
     },
     "MENU": {
         "TOOLTIP": "Dar click."
@@ -317,8 +320,8 @@
         "SUBMIT": "Guardar",
         "CREATE_AT_SCREEN": "Usuario que dío de alta",
         "LAST_MODIF_SCREEN": "Usuario que realizó la ultima modificación",
-        "EDIT_SUCCESS": "La pantalla {{screen}} se actualizó correctamente.",
-        "ADD_SUCCESS": "La pantalla {{screen}} se dió de alta correctamente."
+        "EDIT_SUCCESS": "La pantalla {{idScreen}} se actualizó correctamente.",
+        "ADD_SUCCESS": "La pantalla {{idScreen}} se dió de alta correctamente."
     },
     "SCREENS_TABLE": {
         "SCREENINFO": "Pantallas",
@@ -340,17 +343,17 @@
         "EDIT": "Editar",
         "DELETE": " Borrar",
         "UPDATE_ORDER": "Actaulizar orden",
-        "DELETE_MESSAGE": "La pantalla {{screen}} se eliminó correctamente.",
+        "DELETE_MESSAGE": "La pantalla {{idScreen}} se eliminó correctamente.",
         "NO_DATA_MATCHING": "No se encontraron resultados",
         "ITEMS_PER_PAGE": "Filas por página",
         "NEXT_PAGE_LABEL": "Siguiente página",
         "PREVIOUS_PAGE": "Página anterior"
     },
     "SCREEN_SELECTOR": {
-        "SELECT": "Seleccionar perfíl",
-        "SEARCH": "Buscar perfíl",
-        "TOOLTIP": "Seleccionar perfíl.",
-        "TOOLTIP_SCREEN": "Perfíl."
+        "SELECT": "Seleccionar pantalla",
+        "SEARCH": "Buscar pantalla",
+        "TOOLTIP": "Seleccionar pantalla.",
+        "TOOLTIP_SCREEN": "Pantalla."
     },
     "COMPANY_FORM": {
         "ID_COMPANY": "Id",
@@ -600,5 +603,71 @@
         "SEARCH": "Buscar acción",
         "TOOLTIP": "Seleccionar acción.",
         "TOOLTIP_ACTION": "Acción."
+    },
+    "MENU_FORM": {
+        "MENUINFO": "Información del Menú",
+         "ID_MENU": "Id Menu",
+        "COMPANY": "Empresa",
+        "COMPANY_REQUIRED": "La empresa es obligatoria",
+        "NAME": "Nombre del menú",
+        "NAME_REQUIRED": "El nombre del menú es obligatorio",
+        "NAME_EXIST": "El nombre del menú ya existe",
+        "PARENT": "Menú padre",
+        "PARENT_INVALID": "Seleccione un menú padre válido",
+        "SCREEN": "Pantalla",
+        "SCREEN_INVALID": "Seleccione una pantalla válida",
+        "NONE": "Ninguno",
+        "ORDER": "Orden",
+        "ORDER_REQUIRED": "El orden es obligatorio",
+        "ACTIVE": "Activo",
+        "VISIBLE": "Visible",
+        "DELETED": "Eliminado",
+        "CREATE_AT": "Fecha de creación",
+        "LAST_MODIF": "Última modificación",
+        "CREATE_USER": "Usuario de creación",
+        "LAST_MODIF_USER": "Usuario de modificación",
+        "RETURN": "Regresar",
+        "SUBMIT": "Guardar",
+        "ADD_SUCCESS": "Menú '{{name}}' creado exitosamente",
+        "EDIT_SUCCESS": "Menú '{{name}}' actualizado exitosamente"
+    },
+    "MENUS_TABLE": {
+        "MENUINFO": "Menus",
+        "ID_MENU": "Id Menu",
+        "SCREEN": "Pantalla",
+        "NAME": "Nombre del menú",
+        "ORDER": "Orden",
+        "ID_PARENT_MENU": "Id Menu padre",
+        "FILTER": "Filtro",
+        "SEARCH_MENU": "Buscar menu",
+        "ADD_MENU": "Agregar menu",
+        "PAGINATOR": "Select page of groups",
+        "ACTIVE": "Activo",
+        "ENABLED": "Activar",
+        "DISABLED": "Desactivar",
+        "EDIT": "Editar",
+        "DELETE": " Borrar",
+        "DELETE_MESSAGE": "El menu {{idMenu}} se eliminó correctamente.",
+        "VISIBLE": "Visible",
+        "HIDE": "Ocultar",
+        "SHOW": "Mostrar",
+        "NO_DATA_MATCHING": "No se encontraron resultados",
+        "ITEMS_PER_PAGE": "Filas por página",
+        "NEXT_PAGE_LABEL": "Siguiente página",
+        "PREVIOUS_PAGE": "Página anterior",
+        "NUMBER": "No.",
+        "UPDATE_ORDER": "Actaulizar orden"
+    },
+    "MENU_SELECTOR": {
+        "SELECT": "Seleccionar menu",
+        "SEARCH": "Buscar menu",
+        "TOOLTIP": "Seleccionar menu.",
+        "TOOLTIP_SCREEN": "Menu."
+    },
+    "COMMON": {
+        "ACTIONS": "Acciones"
+    },
+    "BUTTON": {
+        "SAVE": "Guardar"
     }
 }

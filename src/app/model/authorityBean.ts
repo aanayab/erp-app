@@ -17,6 +17,6 @@ export interface AuthorityBean {
 
 	createUser?:string;
 
-	lastModifUser?:String;
+	lastModifUser?:string;
    idCompany?: number;
 }

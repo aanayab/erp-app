@@ -21,6 +21,7 @@ import { WsAuthenticateGroupService } from 'src/app/services/ws-authenticate/ws-
 // TODO quit oncahcnges
 export class GroupSelectorComponent  {
 
+  @Input() selectedGroup: number | any;
   @Input() userBean?:UserBean;
   groupBeans?: GrupoBean[];
   groupBean?: GrupoBean;
@@ -48,6 +49,10 @@ export class GroupSelectorComponent  {
   }
     setGroups(component: any, result: GrupoBean[]) {
       component.groupBeans = result;
+       if (component.selectedGroup) {
+      component.groupBean = component.groupBeans.find((item:GrupoBean) => item.idGrupo === component.selectedGroup);
+      component.groupSelected.emit(component.groupBean);
+    }
   
     }
 
