@@ -205,14 +205,14 @@ export class MenuFormComponent implements OnInit, OnDestroy {
   }
 
   onMenuSelected(menu: MenuBean): void {
-    debugger;
+     
     if (!menu) return;
     const idMenu: any = menu.idMenu;
     this.menuInfoForm.get('idParentMenu')?.setValue(idMenu);
   }
 
   onScreenSelected(screen: ScreenBean): void {
-    debugger;
+     
     if (!screen) return;
     const idScreen: any = screen.idScreen;
     this.menuInfoForm.get('idScreen')?.setValue(idScreen);

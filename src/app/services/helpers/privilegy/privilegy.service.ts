@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PrivilegyBean } from 'src/app/model/peivilegyBean';
+import { PrivilegyBean } from 'src/app/model/privilegyBean';
 
 @Injectable({
   providedIn: 'root'

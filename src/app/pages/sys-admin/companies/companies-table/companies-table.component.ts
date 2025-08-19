@@ -77,7 +77,7 @@ export class CompaniesTableComponent {
 
 
   edit(company: CompanyBean) {
-    debugger;
+     
     this.newItemEvent.emit(company);
   }
 

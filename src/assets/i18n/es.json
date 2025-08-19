@@ -40,7 +40,11 @@
         "EDITACTION": "Editar acción",
         "MENUS": "Menus",
         "ADDMENU": "Agregar menu",
-        "EDITMENU": "Editar menu"
+        "EDITMENU": "Editar menu",
+        "PRIVILEGIES": "Permisos",
+        "ADDPRIVILEGY": "Agregar permiso",
+        "EDITPRIVILEGY": "Editar permiso"
+    
     },
     "MENU": {
         "TOOLTIP": "Dar click."
@@ -606,7 +610,7 @@
     },
     "MENU_FORM": {
         "MENUINFO": "Información del Menú",
-         "ID_MENU": "Id Menu",
+        "ID_MENU": "Id Menu",
         "COMPANY": "Empresa",
         "COMPANY_REQUIRED": "La empresa es obligatoria",
         "NAME": "Nombre del menú",
@@ -669,5 +673,68 @@
     },
     "BUTTON": {
         "SAVE": "Guardar"
+    },
+    "PRIVILEGY_FORM": {
+        "PRIVILEGYINFO": "Información de permiso",
+        "COMPANY": "Empresa",
+        "COMPANY_REQUIRED": "Empresa obligatoria",
+        "ID_PRIVILEGY": "Id de permiso",
+        "ID_PRIVILEGY_REQUIRED": "Id de permiso obligatoria",
+        "ID_PRIVILEGY_EXIST": "EL id de la permiso existe.",
+        "PRIVILEGY": "Permiso",
+        "PRIVILEGY_REQUIRED": "Permiso obligatorio",
+        "PRIVILEGY_EXIST": "LA permiso existe.",
+        "AUTHORITY": "Perfíl",
+        "AUTHORITY_REQUIRED": "Perfíl obligatorio",
+        "ACTION": "Acción ",
+        "ACTION_REQUIRED": "Acción obligatorio",
+        "GRUPO": "Grupo",
+        "GRUPO_REQUIRED": "Grupo obligatorio",
+         "SCREEN": "Pantalla",
+        "SCREEN_REQUIRED": "Pantallas obligatoria",
+        "ACTIVE": "Activar",
+        "CREATE_AT": "Fecha de creación",
+        "LAST_MODIF": "Fecha de modificación",
+        "RETURN": "Regresar",
+        "SUBMIT": "Guardar",
+        "CREATE_AT_PRIVILEGY": "Usuario que dío de alta",
+        "LAST_MODIF_PRIVILEGY": "Usuario que realizó la ultima modificación",
+        "EDIT_SUCCESS": "La permiso {{idPrivilegy}} se actualizó correctamente.",
+        "ADD_SUCCESS": "La permiso {{idPrivilegy}} se dió de alta correctamente."
+    },
+    "PRIVILEGIES_TABLE": {
+        "PRIVILEGYINFO": "Permisos",
+        "FILTER": "Filtro",
+        "SEARCH_PRIVILEGY": "Buscar permisos",
+        "ADD_PRIVILEGY": "Agregar permisos",
+        "PAGINATOR": "Select page of screens",
+        "ID_PRIVILEGY": "Id",
+        "PRIVILEGY": "Permiso",
+        "AUTHORITY": "Perfíl",
+         "ID_SCREEN": "Pantalla",
+        "ID_ACTION": "Acción",
+        "ID_GRUPO": "Grupo",
+        "ACCOUNT_LOCKED": "Cuenta bloqueada",
+        "CONFIRM_PENNDING": "Este perfíl está pendiente de confirmación",
+        "COMPONENT": "Componente",
+        "NUMBER": "No.",
+        "PATH": "Path",
+        "ACTIVE": "Activo",
+        "ENABLED": "Activar",
+        "DISABLED": "Desactivar",
+        "EDIT": "Editar",
+        "DELETE": " Borrar",
+        "UPDATE_ORDER": "Actaulizar orden",
+        "DELETE_MESSAGE": "La permiso {{idPrivilegy}} se eliminó correctamente.",
+        "NO_DATA_MATCHING": "No se encontraron resultados",
+        "ITEMS_PER_PAGE": "Filas por página",
+        "NEXT_PAGE_LABEL": "Siguiente página",
+        "PREVIOUS_PAGE": "Página anterior"
+    },
+    "PRIVILEGY_SELECTOR": {
+        "SELECT": "Seleccionar permiso",
+        "SEARCH": "Buscar permiso",
+        "TOOLTIP": "Seleccionar permiso.",
+        "TOOLTIP_PRIVILEGY": "Permiso."
     }
 }

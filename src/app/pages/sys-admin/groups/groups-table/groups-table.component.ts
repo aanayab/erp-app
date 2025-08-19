@@ -39,7 +39,7 @@ export class GroupsTableComponent {
   
     borrar(group: GrupoBean) {
       let groupAux = group.idGrupo;
-      debugger;
+       
       let idCompany = this.companyService.getCompany().idCompany;
       this.wsAuthenticateGroupService.deleteGroup(this.utils, groupAux,idCompany).subscribe(this.utils.subscribeHandler(this, () => {
         // Encuentra el índice del objeto.
@@ -58,7 +58,7 @@ export class GroupsTableComponent {
   
   
     edit(group: GrupoBean) {
-      debugger;
+       
       this.newItemEvent.emit(group);
     }
   

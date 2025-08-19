@@ -66,7 +66,7 @@ export class UserRolesComponent {
   
   
     edit(authority: AuthorityBean) {
-      debugger;
+       
       this.newItemEvent.emit(authority);
     }
   

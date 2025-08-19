@@ -53,6 +53,7 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { RoleFormComponent } from './pages/sys-admin/roles/role-form/role-form.component';
 import { RolesTableComponent } from './pages/sys-admin/roles/roles-table/roles-table.component';
 import { RolesHomeComponent } from './pages/sys-admin/roles/roles-home/roles-home.component';
+import { RoleSelectorMultipleComponent } from './pages/sys-admin/roles/role-selector-multiple/role-selector-multiple.component';
 import { RoleSelectorComponent } from './pages/sys-admin/roles/role-selector/role-selector.component';
 
 import { ScreensHomeComponent } from './pages/sys-admin/screens/screens-home/screens-home.component';
@@ -79,6 +80,13 @@ import { MenuFormComponent } from './pages/sys-admin/menus/menu-form/menu-form.c
 import { MenusTableComponent } from './pages/sys-admin/menus/menus-table/menus-table.component';
 import { MenusHomeComponent } from './pages/sys-admin/menus/menus-home/menus-home.component';
 import { MenuSelectorComponent } from './pages/sys-admin/menus/menu-selector/menu-selector.component';
+
+
+
+import { PrivilegyFormComponent } from './pages/sys-admin/privilegies/privilegy-form/privilegy-form.component';
+import { PrivilegiesTableComponent } from './pages/sys-admin/privilegies/privilegies-table/privilegies-table.component';
+import { PrivilegiesHomeComponent } from './pages/sys-admin/privilegies/privilegies-home/privilegies-home.component';
+import { PrivilegySelectorComponent } from './pages/sys-admin/privilegies/privilegy-selector/privilegy-selector.component';
 
 
 
@@ -172,8 +180,9 @@ import { TipoIntegracionSelectorComponent } from './components/tipo-integracion-
     BreadcrumbComponent,MainComponent, IdleModalComponent,UserFormComponent,MessagesModalComponent
     ,PasswordConfirmationComponent,SnackBarComponent,TimezoneSelectorComponent,
     ClasificacionSelectorComponent,FormasPagoSelectorComponent,RegimenFiscalSelectorComponent,TerminosPagoSelectorComponent,TipoIntegracionSelectorComponent,
-    RoleFormComponent,RolesHomeComponent,RolesTableComponent,
+    RoleFormComponent,RolesHomeComponent,RolesTableComponent,RoleSelectorMultipleComponent,
     ScreensHomeComponent, ScreensTableComponent, ScreenFormComponent,ScreenSelectorComponent,
+     PrivilegiesHomeComponent, PrivilegiesTableComponent, PrivilegyFormComponent,PrivilegySelectorComponent,
     MenusHomeComponent, MenusTableComponent, MenuFormComponent,MenuSelectorComponent,
     CompaniesHomeComponent,CompaniesTableComponent,CompanyFormComponent,
     GroupFormComponent,GroupsHomeComponent,GroupsTableComponent,GroupSelectorComponent,

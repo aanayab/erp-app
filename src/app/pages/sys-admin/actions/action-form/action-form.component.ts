@@ -63,7 +63,7 @@ export class ActionFormComponent implements OnInit {
               this.actualizarHora();
             }, 1000);
           }
-          debugger;
+           
           if (this.action) {
             this.actionInfoForm.patchValue({
               idAction: this.action.idAction,
@@ -124,7 +124,7 @@ export class ActionFormComponent implements OnInit {
 
 
   onSubmit() {
-    debugger;
+     
     // TODO: Use EventEmitter with form value   
     if (this.existActionFlag) {
       this.messageService.showDangerMessage("ACTION_FORM.ACTION_EXIST");

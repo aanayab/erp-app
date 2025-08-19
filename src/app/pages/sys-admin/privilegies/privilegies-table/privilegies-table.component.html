@@ -1,0 +1,191 @@
+<mat-accordion>
+  <mat-expansion-panel expanded="{{panelOpenState}}" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+
+      <mat-panel-title>
+        <div class="text-center col-12 h5">
+          {{'PRIVILEGIES_TABLE.PRIVILEGYINFO' | translate}}
+        </div>
+
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="col-12">
+
+      <mat-form-field class="col-3 float-start">
+        <mat-label>{{"PRIVILEGIES_TABLE.FILTER" | translate}}</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="{{'PRIVILEGIES_TABLE.SEARCH_PRIVILEGY' | translate}}"
+          #input>
+      </mat-form-field>
+
+      <button class="col-3 float-end" routerLink="./AddPrivilegy" [queryParams]="{ mode: 'add' }"
+        ngbTooltip="{{'PRIVILEGIES_TABLE.ADD_PRIVILEGY' | translate}}" mat-icon-button
+        aria-label="Example icon button with a open in new tab icon">
+        <mat-icon>add_circle</mat-icon></button>
+
+
+
+
+      <mat-paginator [pageSizeOptions]="[25, 50, 100, 150]"
+        [attr.aria-label]="'PRIVILEGIES_TABLE.PAGINATOR' | translate"></mat-paginator>
+    </div>
+
+    <div class="mat-elevation-z8 col-12 center">
+      <table class="table table-sm table-striped table-hover" mat-table 
+        [dataSource]="dataSource" matSort>
+        <!-- Position Column
+        <ng-container matColumnDef="position" sticky>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"PRIVILEGIES_TABLE.NUMBER" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <mat-icon class="example-drag-cursor"
+              style="padding: 0; font-size: 18px;">reorder</mat-icon>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="order">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"PRIVILEGIES_TABLE.ORDER" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('PRIVILEGIES_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('PRIVILEGIES_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{ row.order }}</span>
+          </td>
+        </ng-container> -->
+        <ng-container matColumnDef="idPrivilegy">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"PRIVILEGIES_TABLE.PRIVILEGY" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('PRIVILEGIES_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('PRIVILEGIES_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{ row.idPrivilegy }}</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="authority">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"PRIVILEGIES_TABLE.AUTHORITY" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('PRIVILEGIES_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('PRIVILEGIES_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{row.authority.replace('ROLE_', '')}}
+            </span></td>
+        </ng-container>
+        <ng-container matColumnDef="idScreen">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"PRIVILEGIES_TABLE.ID_SCREEN" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('PRIVILEGIES_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('PRIVILEGIES_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{row.screen.idScreen}}
+            </span></td>
+        </ng-container>
+          <ng-container matColumnDef="idAction">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"PRIVILEGIES_TABLE.ID_ACTION" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('PRIVILEGIES_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('PRIVILEGIES_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{row.action.action}}
+            </span></td>
+        </ng-container>
+         <ng-container matColumnDef="grupo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"PRIVILEGIES_TABLE.ID_GRUPO" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('PRIVILEGIES_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('PRIVILEGIES_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{row.grupo}}
+            </span></td>
+        </ng-container>
+        <ng-container matColumnDef="disabled">
+          <th mat-header-cell *matHeaderCellDef>{{"PRIVILEGIES_TABLE.ACTIVE" | translate}}</th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row">
+            <span [class.disabled]="row.confirmationToken || row.accountLocked " *ngIf="!row.enabled"
+              (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : disable(row)"
+              class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
+              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('PRIVILEGIES_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ? ('PRIVILEGIES_TABLE.CONFIRM_PENNDING' | translate)  
+      : ('PRIVILEGIES_TABLE.ENABLED' | translate))">block</span>
+            <span [class.disabled]="row.confirmationToken || row.accountLocked" *ngIf="row.enabled"
+              (click)="row.confirmationToken || row.accountLocked ? $event.stopPropagation() : disable(row)"
+              class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled" aria-hidden="true"
+              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('PRIVILEGIES_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ?  ('PRIVILEGIES_TABLE.CONFIRM_PENNDING' | translate)  
+      : ('PRIVILEGIES_TABLE.DISABLED' | translate))">done</span>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef>{{"PRIVILEGIES_TABLE.EDIT" | translate}}</th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row">
+            <span (click)="edit(row)" class="material-icons text-dark mt-1 mx-2 text-center tooltip-enabled"
+              aria-hidden="true" aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('PRIVILEGIES_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ? ('PRIVILEGIES_TABLE.CONFIRM_PENNDING' | translate) 
+      : ('PRIVILEGIES_TABLE.EDIT' | translate))">edit</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>{{"PRIVILEGIES_TABLE.DELETE" | translate}}</th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row">
+            <span (click)="borrar(row)" class="material-icons text-dark mt-1 mx-2 text-center" aria-hidden="true"
+              aria-label="user_attributes" [ngbTooltip]="row.accountLocked 
+  ? ('PRIVILEGIES_TABLE.ACCOUNT_LOCKED' | translate)
+  : (row.confirmationToken 
+      ? ('PRIVILEGIES_TABLE.CONFIRM_PENNDING' | translate) 
+      : ('PRIVILEGIES_TABLE.DELETE' | translate))">delete</span>
+          </td>
+        </ng-container>
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="10">{{"PRIVILEGIES_TABLE.NO_DATA_MATCHING" | translate}}<br><button
+              routerLink="./AddPrivilegy" [queryParams]="{ mode: 'add' }"
+              ngbTooltip="{{'PRIVILEGIES_TABLE.ADD_PRIVILEGY' | translate}}" mat-icon-button
+              aria-label="Example icon button with a open in new tab icon">
+              <mat-icon>add_circle</mat-icon></button></td>
+        </tr>
+      </table>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,13 +1,13 @@
- <div class="form-group">
-	<!-- <label for="dropdownGroup" class="form-label">Perfiles</label> -->
+ <div class="form-privilegy">
+	<!-- <label for="dropdownPrivilegy" class="form-label">Perfiles</label> -->
 	<div class="dropdown w-100" ngbDropdown>
 	  <button
 		class="form-select text-start"
-		id="dropdownGroup"
+		id="dropdownPrivilegy"
 		ngbDropdownToggle
 		type="button"
 	  >
-		{{ groupBean?.grupo || ('GROUP_SELECTOR.SELECT' | translate) }}
+		{{ privilegyBean?.idPrivilegy || ('PRIVILEGY_SELECTOR.SELECT' | translate) }}
 	  </button>
   
 	  <div ngbDropdownMenu class="w-100 p-2 shadow-sm dropdown-scroll">
@@ -15,19 +15,19 @@
 		  type="search"
 		  autocomplete="off"
 		  class="form-control mb-2 no-valid-style"
-		  [placeholder]="('GROUP_SELECTOR.SEARCH' | translate )"
+		  [placeholder]="('PRIVILEGY_SELECTOR.SEARCH' | translate )"
 		  [(ngModel)]="searchTerm"
 		/>
   
-		<button
+		<!-- <button
 		  *ngFor="let item of filteredItems()"
 		  class="dropdown-item"
 		  type="button"
-		  (click)="selectGroup(item)"
-		  [class.active]="groupBean?.idGrupo === item.idGrupo"
+		  (click)="selectPrivilegy(item)"
+		  [class.active]="privilegyBean?.idPrivilegy === item.idPrivilegy"
 		>
-		  {{ item.grupo }}
-		</button>
+		  {{ item.idPrivilegy }}
+		</button> -->
 	  </div>
 	</div>
   </div>

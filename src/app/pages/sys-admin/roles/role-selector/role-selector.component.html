@@ -1,56 +1,5 @@
-<div class="form-group">
-  <div class="dropdown w-100" ngbDropdown>
-    <!-- <button
-      class="form-select text-start"
-      id="dropdownRole"
-      ngbDropdownToggle
-      type="button"
-    >
-      {{ selectedRolesLabel }}
-    </button> -->
-
-    <button
-  class="form-select text-start d-flex flex-wrap gap-1"
-  id="dropdownRole"
-  ngbDropdownToggle
-  type="button"
->
-  <ng-container *ngIf="selectedRoles.length; else noRoles">
-    <span
-      *ngFor="let role of selectedRoles"
-      class="badge bg-primary text-light rounded-pill"
-    >
-      {{ role.authority.replace('ROLE_', '') }}
-    </span>
-  </ng-container>
-  <ng-template #noRoles>
-    {{ 'ROLE_SELECTOR.SELECT' | translate }}
-  </ng-template>
-</button>
-    <div ngbDropdownMenu class="w-100 p-2 shadow-sm dropdown-scroll">
-      <input
-        type="search"
-        autocomplete="off"
-        class="form-control mb-2 no-valid-style"
-        [placeholder]="('ROLE_SELECTOR.SEARCH' | translate)"
-        [(ngModel)]="searchTerm"
-      />
-
-      <button
-        *ngFor="let item of filteredItems()"
-        class="dropdown-item d-flex justify-content-between align-items-center"
-        type="button"
-        (click)="toggleRole(item)"
-        [class.active]="isSelected(item)"
-      >
-        <span>{{ item.authority.replace("ROLE_", "") }}</span>
-        <span *ngIf="isSelected(item)">✔</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- <div class="form-group">
+ <div class="form-role">
+	<!-- <label for="dropdownRole" class="form-label">Perfiles</label> -->
 	<div class="dropdown w-100" ngbDropdown>
 	  <button
 		class="form-select text-start"
@@ -58,7 +7,7 @@
 		ngbDropdownToggle
 		type="button"
 	  >
-		{{ roleBean?.authority?.replace("ROLE_","") || ('ROLE_SELECTOR.SELECT' | translate) }}
+		{{ roleBean?.authority || ('ROLE_SELECTOR.SELECT' | translate) }}
 	  </button>
   
 	  <div ngbDropdownMenu class="w-100 p-2 shadow-sm dropdown-scroll">
@@ -74,11 +23,11 @@
 		  *ngFor="let item of filteredItems()"
 		  class="dropdown-item"
 		  type="button"
-		  (click)="selectRole(item)"
+		  (click)="selectAuthority(item)"
 		  [class.active]="roleBean?.authority === item.authority"
 		>
-		  {{ item.authority.replace("ROLE_","") }}
+		  {{ item.authority }}
 		</button>
 	  </div>
 	</div>
-  </div> -->
+  </div>

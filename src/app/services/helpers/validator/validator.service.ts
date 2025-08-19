@@ -79,7 +79,7 @@ export class ValidatorService {
       return (control: AbstractControl) => {
         const country = getCountryFn();
         const rfc = control.value;
-  debugger;
+   
         if (country !== '484') {
           return null; // No aplica la validación si no es México
         }

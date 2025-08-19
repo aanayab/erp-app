@@ -90,6 +90,16 @@ export const environment = {
     },
     privilegy: {
       privilegyByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy/allByRole/`,
+
+      privilegyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy/`,
+      addPrivilegyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy`,
+      updatePrivilegyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy`,
+      privilegiesUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy/all`,
+      disableEnablePrivilegyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy/disable`,
+      existPrivilegyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy/exist/`,
+      deletePrivilegyUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy`,
+      privilegiesEnabledUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy/allEnabled`,
+      updatePrivilegiesOrderUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/privilegy/all/order`,
     },
     menu: {
       menuByIdRoll: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/menu/allByRole/`,
@@ -126,7 +136,7 @@ export const environment = {
       disabelEnableActionUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/action/disable`,
       existActionUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/action/exist/`,
       deleteActionUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/action`,
-      actionsEnabledUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/action/allEnabled/`,
+      actionsEnabledUrl: `http://${params.wsSysAdmin.url}${params.wsSysAdmin.port ? `:${params.wsSysAdmin.port}` : ''}/ws-sysAdmin/api/action/allEnabled`,
     }
 
   }

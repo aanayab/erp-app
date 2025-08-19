@@ -159,7 +159,7 @@ export class CompanyFormComponent implements OnInit {
 
 
   ngOnInit() {
-    debugger;
+     
     this.companyInfoForm.get('taxId')?.setValidators([
       Validators.required,
       ValidatorService.rfcValidatorIfMexico(() => this.companyInfoForm.get('countryCodeIso3')?.value)
@@ -208,7 +208,7 @@ export class CompanyFormComponent implements OnInit {
       }
       if (this.company) {
 
-        debugger;
+         
         this.image = this.company.image;
         if (this.image) {
           this.loadFromBackend(this.image); // <<== Aquí cargas la imagen
@@ -302,7 +302,7 @@ export class CompanyFormComponent implements OnInit {
     this.companyInfoForm.get('image')?.setValue(file);
     const reader = new FileReader();
     reader.onload = () => {
-      debugger;
+       
       this.previewUrl = reader.result as string;
       // const arrayBuffer = reader.result as ArrayBuffer;
       // const uint8Array = new Uint8Array(arrayBuffer);
@@ -313,7 +313,7 @@ export class CompanyFormComponent implements OnInit {
   }
 
   onFileSelected(event: Event): void {
-    debugger;
+     
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
@@ -321,7 +321,7 @@ export class CompanyFormComponent implements OnInit {
 
       reader.onload = () => {
         const arrayBuffer = reader.result as ArrayBuffer;
-        debugger;
+         
 
         const uint8Array = new Uint8Array(arrayBuffer);
         const binary = uint8Array.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
@@ -399,7 +399,7 @@ export class CompanyFormComponent implements OnInit {
 
 
   onSubmit() {
-    debugger;
+     
     // TODO: Use EventEmitter with form value   
     if (this.existCompanyFlag) {
       this.messageService.showDangerMessage("COMPANY_FORM.COMPANY_EXIST");
@@ -415,7 +415,7 @@ export class CompanyFormComponent implements OnInit {
       this.messageService.showDangerMessage("COMPANY_FORM.COMPANY_REQUIRED");
       return;
     }
-    debugger;
+     
     if (this.selectedFile !== undefined && this.selectedFile !== null) {
       this.image = {
         ...this.image,
@@ -478,7 +478,7 @@ export class CompanyFormComponent implements OnInit {
   }
 
   onCountryChange(country: any) {
-    debugger;
+     
     this.country = country;
     this.getTimezoneFromCountry(this.country.code),
       this.companyInfoForm.patchValue({

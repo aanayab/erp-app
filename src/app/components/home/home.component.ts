@@ -6,7 +6,7 @@ import { WsAuthenticateUserService } from '../../services/ws-authenticate/ws-aut
 import { UserBean } from 'src/app/model/userBean';
 import { WsSysAdminMenuService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.menu.service';
 import { WsSysAdminPrivilegyService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.privilegy.service';
-import { PrivilegyBean } from 'src/app/model/peivilegyBean';
+import { PrivilegyBean } from 'src/app/model/privilegyBean';
 import { ScreenBean } from 'src/app/model/screenBean';
 import { PrivilegyService } from 'src/app/services/helpers/privilegy/privilegy.service';
 import { UserLoggedServiceService } from 'src/app/services/helpers/userLoggedService/user-logged-service.service';
@@ -75,7 +75,7 @@ export class HomeComponent implements AfterViewInit {
       return;
     }
 
-    debugger;  
+       
     // regresar cuando se definan los privilegios
     component.getPrivielegy(authorities![0].authority);
     component.getMenu(authorities![0].authority);
@@ -89,7 +89,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   setPrivilegy(component: any, result: any) {
-    debugger;
+     
     component.privilegy = result;
      const privilegy = component.privilegy;
     if(privilegy === undefined || privilegy === null || privilegy.length === 0){

@@ -7,7 +7,7 @@
 		ngbDropdownToggle
 		type="button"
 	  >
-		{{ actionBean?.idAction || ('ACTION_SELECTOR.SELECT' | translate) }}
+		{{ actionBean?.action || ('ACTION_SELECTOR.SELECT' | translate) }}
 	  </button>
   
 	  <div ngbDropdownMenu class="w-100 p-2 shadow-sm dropdown-scroll">
@@ -26,7 +26,7 @@
 		  (click)="selectAction(item)"
 		  [class.active]="actionBean?.idAction === item.idAction"
 		>
-		  {{ item.action.replace("ACTION_","") }}
+		  {{ item.action }}
 		</button>
 	  </div>
 	</div>

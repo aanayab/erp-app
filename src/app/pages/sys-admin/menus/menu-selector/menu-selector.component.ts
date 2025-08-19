@@ -37,7 +37,7 @@ export class MenuSelectorComponent {
     private router: Router) { }
 
   selectMenu(item: MenuBean): void {
-    debugger;
+     
     this.menuBean = item;
     this.menuSelected.emit(item); // 🔥 Enviamos el dato al padre
   }
@@ -49,7 +49,7 @@ export class MenuSelectorComponent {
     ); 
   }
   setMenus(component: any, result: MenuBean[]) {
-    debugger;
+     
         component.menuBeans =   [
     { idMenu: 0, screen: 'Menú raíz',name: 'Menú raíz' },
     ...result
@@ -73,7 +73,7 @@ export class MenuSelectorComponent {
 
   }
   ngOnInit() {
-    debugger;
+     
     this.getMenus();
     // TODO , revidsar
     // if(this.userBean?.menus){

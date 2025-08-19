@@ -66,7 +66,7 @@ export class GroupFormComponent implements OnInit {
               this.actualizarHora();
             }, 1000);
           }
-          debugger;
+           
           if (this.group) {
             this.groupInfoForm.patchValue({
               idGrupo: this.group.idGrupo,
@@ -130,7 +130,7 @@ export class GroupFormComponent implements OnInit {
 
 
   onSubmit() {
-    debugger;
+     
     // TODO: Use EventEmitter with form value   
     if (this.existGroupFlag) {
       this.messageService.showDangerMessage("GROUP_FORM.GROUP_EXIST");
@@ -194,7 +194,7 @@ export class GroupFormComponent implements OnInit {
 
    
     onRolesSelected(role: AuthorityBean[]): void {
-      debugger;
+       
       if (!role) return;
       const authorities: AuthorityBean[] = role;
       this.groupInfoForm.get('authorities')?.setValue(authorities);

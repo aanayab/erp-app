@@ -4,23 +4,23 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { ScreenBean } from 'src/app/model/screenBean';
+import { PrivilegyBean } from 'src/app/model/privilegyBean';
 import { CompanyService } from 'src/app/services/helpers/company/company.service';
 import { MessageService } from 'src/app/services/helpers/message/message.service';
-import { WsSysAdminScreenService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.screen.service';
+import { WsSysAdminPrivilegyService } from 'src/app/services/ws-sysAdmin/ws-sys-admin.privilegy.service';
 import { Utils } from 'src/app/util/utils';
 
 
 
 @Component({
-  selector: 'app-screens-table',
-  templateUrl: './screens-table.component.html',
-  styleUrls: ['./screens-table.component.css']
+  selector: 'app-privilegies-table',
+  templateUrl: './privilegies-table.component.html',
+  styleUrls: ['./privilegies-table.component.css']
 })
-export class ScreensTableComponent {
+export class PrivilegiesTableComponent {
   panelOpenState = true;
-  dataSource!: MatTableDataSource<ScreenBean>;
-  displayedColumns = ['idScreen', 'componente','path','disabled', 'edit', 'delete'];
+  dataSource!: MatTableDataSource<PrivilegyBean>;
+  displayedColumns = ['idPrivilegy', 'authority','idScreen','idAction','grupo','disabled', 'edit', 'delete'];
   isOrderChanged = false;
 
 
@@ -28,12 +28,12 @@ export class ScreensTableComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  screens: ScreenBean[] | any;
+  privilegies: PrivilegyBean[] | any;
 
-  @Output() newItemEvent = new EventEmitter<ScreenBean>();
+  @Output() newItemEvent = new EventEmitter<PrivilegyBean>();
 
 
-  constructor(private utils: Utils, private wsSysAdminService: WsSysAdminScreenService,
+  constructor(private utils: Utils, private wsSysAdminService: WsSysAdminPrivilegyService,
     private router: Router, private translate: TranslateService, private companyService: CompanyService
     , private messageService: MessageService) {
 
@@ -41,18 +41,19 @@ export class ScreensTableComponent {
   }
 
 
-  borrar(screen: ScreenBean) {
-    let screenAux = screen.idScreen;
+  borrar(privilegy: PrivilegyBean) {
+     
+    let privilegyAux = privilegy.idPrivilegy;
     // let idCompany = this.companyService.getCompany().idCompany;
-    this.wsSysAdminService.deleteScreen(this.utils, screenAux).subscribe(this.utils.subscribeHandler(this, () => {
+    this.wsSysAdminService.deletePrivilegy(this.utils, privilegyAux).subscribe(this.utils.subscribeHandler(this, () => {
       // Encuentra el índice del objeto.
-      const index = this.screens.findIndex((screen: any) => screen.screen === screenAux);
+      const index = this.privilegies.findIndex((privilegy: any) => privilegy.idPrivilegy === privilegyAux);
       if (index !== -1) {
         // Elimina el objeto en el índice encontrado.
-        this.screens.splice(index, 1);
-        this.dataSource.data = this.dataSource.data.filter(item => item.idScreen !== screen.idScreen);
-        const message = this.translate.instant('SCREENS_TABLE.DELETE_MESSAGE', {
-          idScreen: screen.idScreen
+        this.privilegies.splice(index, 1);
+        this.dataSource.data = this.dataSource.data.filter(item => item.idPrivilegy !== privilegy.idPrivilegy);
+        const message = this.translate.instant('PRIVILEGIES_TABLE.DELETE_MESSAGE', {
+          idPrivilegy: privilegy.idPrivilegy
         });
         this.messageService.showSuccessMessage(message);
       }
@@ -60,57 +61,48 @@ export class ScreensTableComponent {
   }
 
 
-  edit(screen: ScreenBean) {
+  edit(privilegy: PrivilegyBean) {
      
-    this.newItemEvent.emit(screen);
+    this.newItemEvent.emit(privilegy);
   }
 
-  disable(screen: ScreenBean) {
-    screen.enabled = !screen.enabled;
+  disable(privilegy: PrivilegyBean) {
+    privilegy.enabled = !privilegy.enabled;
     // let idCompany = this.companyService.getCompany().idCompany;
-    this.wsSysAdminService.disableEnableScreen(this.utils, screen.idScreen, screen.enabled).subscribe(this.utils.subscribeHandler(this, () => { }));
+    this.wsSysAdminService.disableEnablePrivilegy(this.utils, privilegy.idPrivilegy, privilegy.enabled).subscribe(this.utils.subscribeHandler(this, () => { }));
   }
-  // hide(screen: ScreenBean) {
-  //   screen.hidden = !screen.hidden;
+  // hide(privilegy: PrivilegyBean) {
+  //   privilegy.hidden = !privilegy.hidden;
   //   let idCompany = this.companyService.getCompany().idCompany;
-  //   this.wsSysAdminService.hideShowScreen(this.utils, screen.screen, screen.hidden,idCompany).subscribe(this.utils.subscribeHandler(this, () => { }));
+  //   this.wsSysAdminService.hideShowPrivilegy(this.utils, privilegy.privilegy, privilegy.hidden,idCompany).subscribe(this.utils.subscribeHandler(this, () => { }));
   // }
 
   ngOnInit() {
-    this.getScreens();
+    this.getPrivilegies();
   }
 
-  addScreens() {
+  addPrivilegies() {
   }
 
-  setScreens(component: any, result: ScreenBean[]) {
-    component.screens = result;
+  setPrivilegies(component: any, result: PrivilegyBean[]) {
+     
+    component.privilegies = result;
     component.dataSource = new MatTableDataSource(result);
     component.dataSource.paginator = component.paginator;
-    component.paginator._intl.itemsPerPageLabel = component.translate.instant('SCREENS_TABLE.ITEMS_PER_PAGE');
-    component.paginator._intl.nextPageLabel = component.translate.instant('SCREENS_TABLE.NEXT_PAGE_LABEL');
-    component.paginator._intl.previousPageLabel = component.translate.instant('SCREENS_TABLE.PREVIOUS_PAGE');
+    component.paginator._intl.itemsPerPageLabel = component.translate.instant('PRIVILEGIES_TABLE.ITEMS_PER_PAGE');
+    component.paginator._intl.nextPageLabel = component.translate.instant('PRIVILEGIES_TABLE.NEXT_PAGE_LABEL');
+    component.paginator._intl.previousPageLabel = component.translate.instant('PRIVILEGIES_TABLE.PREVIOUS_PAGE');
     component.dataSource.sort = component.sort;
 
   }
 
-  getScreens() {
-    this.wsSysAdminService.getScreens(this.utils)
-      .subscribe(this.utils.subscribeHandler(this, this.setScreens)
+  getPrivilegies() {
+    this.wsSysAdminService.getPrivilegies(this.utils)
+      .subscribe(this.utils.subscribeHandler(this, this.setPrivilegies)
       );
   }
 
-  saveOrder():void{
-    let screens = this.screens;
-     // let idCompany = this.companyService.getCompany().idCompany;
-    this.wsSysAdminService.updateScreenSOrder(this.utils, screens).subscribe(this.utils.subscribeHandler(this, () => {
-        const message = "Orden de las pantallas se actualizó correctamente."
-        this.isOrderChanged = false;
-        this.messageService.showSuccessMessage(message);
-      
-    }));
 
-  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -133,7 +125,7 @@ export class ScreensTableComponent {
 //   this.recalculateOrderRespectingFixed(data, draggedItem);
 //   this.dataSource.data = [...data]; // Forzar renderizado
 //   this.isOrderChanged = true; // Habilita el botón de guardar
-//   this.screens = this.dataSource.data.map(screen => ({ ...screen }));
+//   this.privilegies = this.dataSource.data.map(privilegy => ({ ...privilegy }));
 //   this.messageService.showWarningMessage("Dar clik en el botón guardar para guardar el orden.")
 
 // }

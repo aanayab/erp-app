@@ -73,9 +73,9 @@
         <div class="col-12 row text-start">
           <div  class="form-group col-md-3 ">
             <label>{{'USER_FORM.ROLE'|translate}}</label>
-            <app-role-selector (rolesSelected)="onRolesSelected($event)" [selectedAuthorities]="group.authorities" [ngClass]="mode ==='edit'?'disabled_country_selector' : ''"     matInput
+            <app-role-selector-multiple (rolesSelected)="onRolesSelected($event)" [selectedAuthorities]="group.authorities" [ngClass]="mode ==='edit'?'disabled_country_selector' : ''"     matInput
      
-              required  readonly></app-role-selector>.
+              required  readonly></app-role-selector-multiple>.
             <div class="invalid-feedback">
               {{"USER_FORM.ROLE_REQUIRED"|translate}}
             </div>

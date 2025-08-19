@@ -39,7 +39,7 @@ export class ActionsTableComponent {
   
     borrar(action: ActionBean) {
       let actionAux = action.idAction;
-      debugger;
+       
       let idCompany = this.companyService.getCompany().idCompany;
       this.wsSysAdminActionService.deleteAction(this.utils, actionAux).subscribe(this.utils.subscribeHandler(this, () => {
         // Encuentra el índice del objeto.
@@ -58,7 +58,7 @@ export class ActionsTableComponent {
   
   
     edit(action: ActionBean) {
-      debugger;
+       
       this.newItemEvent.emit(action);
     }
   

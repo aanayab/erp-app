@@ -43,6 +43,12 @@ import { MenusHomeComponent } from './pages/sys-admin/menus/menus-home/menus-hom
 import { MenuFormComponent } from './pages/sys-admin/menus/menu-form/menu-form.component';
 import { MenusTableComponent } from './pages/sys-admin/menus/menus-table/menus-table.component';
 
+import { PrivilegyFormComponent } from './pages/sys-admin/privilegies/privilegy-form/privilegy-form.component';
+import { PrivilegiesTableComponent } from './pages/sys-admin/privilegies/privilegies-table/privilegies-table.component';
+import { PrivilegiesHomeComponent } from './pages/sys-admin/privilegies/privilegies-home/privilegies-home.component';
+import { PrivilegySelectorComponent } from './pages/sys-admin/privilegies/privilegy-selector/privilegy-selector.component';
+
+
 
 
 const routes: Routes = [
@@ -134,7 +140,16 @@ const routes: Routes = [
                     { path: 'AddMenu', component: MenuFormComponent, data: { breadcrumb: 'BREADCRUMP.ADDMENU' }, },
 
                   ]
+                },
+                 {
+                  path: 'Privilegies', component: PrivilegiesHomeComponent, data: { breadcrumb: 'BREADCRUMP.PRIVILEGIES' }, children: [
+                    //  { path: 'Main', component: UsersHomeComponent, data: { breadcrumb:  'UserMain' } }, },
+                    { path: 'EditPrivilegy', component: PrivilegyFormComponent, data: { breadcrumb: 'BREADCRUMP.EDITPRIVLEGY' }, },
+                    { path: 'AddPrivilegy', component: PrivilegyFormComponent, data: { breadcrumb: 'BREADCRUMP.ADDPRIVILEGY' }, },
+
+                  ]
                 }
+
 
 
 

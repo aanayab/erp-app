@@ -64,7 +64,7 @@ export class RoleFormComponent implements OnInit {
               this.actualizarHora();
             }, 1000);
           }
-          debugger;
+           
           if (this.authority) {
             this.authorityInfoForm.patchValue({
               authority: this.authority.authority.replace('ROLE_', ''),
@@ -127,7 +127,7 @@ export class RoleFormComponent implements OnInit {
 
 
   onSubmit() {
-    debugger;
+     
     // TODO: Use EventEmitter with form value   
     if (this.existAuthorityFlag) {
       this.messageService.showDangerMessage("ROLE_FORM.AUTHORITY_EXIST");

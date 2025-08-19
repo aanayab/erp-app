@@ -21,6 +21,7 @@ import { WsSysAdminActionService } from 'src/app/services/ws-sysAdmin/ws-sys-adm
 // TODO quit oncahcnges
 export class ActionSelectorComponent  {
 
+  @Input() selectedAction: number | any;
   @Input() userBean?:UserBean;
   actionBeans?: ActionBean[];
   actionBean?: ActionBean;
@@ -35,7 +36,7 @@ export class ActionSelectorComponent  {
     private router:Router) { }
 
   selectAction(item: ActionBean): void {
-    debugger;
+     
     this.actionBean = item;
     this.actionSelected.emit(item); // 🔥 Enviamos el dato al padre
   }
@@ -47,24 +48,27 @@ export class ActionSelectorComponent  {
     );
   }
     setActions(component: any, result: ActionBean[]) {
-      component.actionBeans = result;
-  
+       component.actionBeans = result;
+             if (component.selectedAction) {
+            component.actionBean = component.actionBeans.find((item:ActionBean) => item.idAction === component.selectedAction);
+            component.actionSelected.emit(component.actionBean);
+          }
+        
     }
 
   getActions() {
-     debugger;        
-    this.companyService.getCompanyObs().subscribe(obs => {
-       if (obs) {
+              
+   
       this.wsSysAdminActionService.getActionsEnabled(this.utils)
         .subscribe(this.utils.subscribeHandler(this, this.setActions)
         );
-      }
-      });
+      
+    
  
 
   }
   ngOnInit() {
-    debugger;
+     
     this.getActions();
     // TODO , revidsar
     // if(this.userBean?.actions){

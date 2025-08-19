@@ -88,7 +88,7 @@ export class UserFormComponent {
 
 
   ngOnInit() {
-    debugger;
+     
     this.route.queryParams.subscribe(params => {
       this.mode = params['mode'] || 'add'; // Detecta si es "edit" o "add"
 
@@ -118,7 +118,7 @@ export class UserFormComponent {
           authorities: this.user.authorities
           //revisar sl split del role
         });
-        debugger;
+         
         this.country = this.countryService.getAllCountries().find(c => c.code === this.user.countryCode);
         this.userInfoForm.get('username')?.disable({ emitEvent: false });
         this.userInfoForm.get('email')?.disable({ emitEvent: false });
@@ -209,7 +209,7 @@ export class UserFormComponent {
 
 
   onSubmit() {
-    debugger;
+     
     // TODO: Use EventEmitter with form value   
 
     if (this.existEmailFlag) {
@@ -310,7 +310,7 @@ export class UserFormComponent {
   }
  
   onRolesSelected(role: AuthorityBean[]): void {
-    debugger;
+     
     if (!role) return;
     const authorities: AuthorityBean[] = role;
     this.userInfoForm.get('authorities')?.setValue(authorities);

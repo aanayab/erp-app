@@ -43,7 +43,7 @@ export class MenusTableComponent {
 
     borrar(menu: MenuBean) {
       let menuAux = menu.idMenu;
-      debugger;
+       
       let idCompany = this.companyService.getCompany().idCompany;
       this.wsSysAdminService.deleteMenu(this.utils, menuAux).subscribe(this.utils.subscribeHandler(this, () => {
         // Encuentra el índice del objeto.
@@ -62,7 +62,7 @@ export class MenusTableComponent {
 
 
   edit(menu: MenuBean) {
-    debugger;
+     
     this.newItemEvent.emit(menu);
   }
 

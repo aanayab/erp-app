@@ -54,7 +54,7 @@ export class Utils {
   subscribeHandler(component: any, functon: Function, funcErr?: Function,loading:boolean = false): any {
     return {
       next: (response: any) => {
-        debugger;
+         
         this.loadingService.setLoading(loading);
         if (response.status == 200) {
           var body = response.body;

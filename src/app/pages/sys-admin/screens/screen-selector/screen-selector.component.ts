@@ -37,7 +37,7 @@ export class ScreenSelectorComponent {
     private router: Router) { }
 
   selectScreen(item: ScreenBean): void {
-    debugger;
+     
     this.screenBean = item;
     this.screenSelected.emit(item); // 🔥 Enviamos el dato al padre
   }
@@ -71,7 +71,7 @@ export class ScreenSelectorComponent {
 
   }
   ngOnInit() {
-    debugger;
+     
     this.getScreens();
     // TODO , revidsar
     // if(this.userBean?.screens){

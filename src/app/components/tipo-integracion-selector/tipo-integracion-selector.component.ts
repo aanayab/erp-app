@@ -19,7 +19,7 @@ export class TipoIntegracionSelectorComponent {
   }
 
   onChange(item: string): void {
-    debugger;
+     
     this.selectedItem = item;
     this.selectedItemChange.emit(item);
   }

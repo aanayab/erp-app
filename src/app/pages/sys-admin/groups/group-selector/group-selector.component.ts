@@ -36,7 +36,7 @@ export class GroupSelectorComponent  {
     private router:Router) { }
 
   selectGroup(item: GrupoBean): void {
-    debugger;
+     
     this.groupBean = item;
     this.groupSelected.emit(item); // 🔥 Enviamos el dato al padre
   }
@@ -57,7 +57,7 @@ export class GroupSelectorComponent  {
     }
 
   getGroups() {
-     debugger;        
+              
     this.companyService.getCompanyObs().subscribe(obs => {
        if (obs) {
       this.wsAuthenticateGroupService.getGroupsEnabledByIdCompany(this.utils, obs.idCompany)
@@ -69,7 +69,7 @@ export class GroupSelectorComponent  {
 
   }
   ngOnInit() {
-    debugger;
+     
     this.getGroups();
     // TODO , revidsar
     // if(this.userBean?.groups){

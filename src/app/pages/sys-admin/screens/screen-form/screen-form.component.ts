@@ -83,7 +83,7 @@ export class ScreenFormComponent implements OnInit {
       }
       if (this.screen) {
 
-        debugger;
+         
         this.image = this.screen.image;
         if (this.image) {
           this.loadFromBackend(this.image); // <<== Aquí cargas la imagen
@@ -124,7 +124,7 @@ export class ScreenFormComponent implements OnInit {
     this.screenInfoForm.get('image')?.setValue(file);
     const reader = new FileReader();
     reader.onload = () => {
-      debugger;
+       
       this.previewUrl = reader.result as string;
       // const arrayBuffer = reader.result as ArrayBuffer;
       // const uint8Array = new Uint8Array(arrayBuffer);
@@ -135,7 +135,7 @@ export class ScreenFormComponent implements OnInit {
   }
 
   onFileSelected(event: Event): void {
-    debugger;
+     
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
@@ -143,7 +143,7 @@ export class ScreenFormComponent implements OnInit {
 
       reader.onload = () => {
         const arrayBuffer = reader.result as ArrayBuffer;
-        debugger;
+         
 
         const uint8Array = new Uint8Array(arrayBuffer);
         const binary = uint8Array.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
@@ -251,7 +251,7 @@ export class ScreenFormComponent implements OnInit {
 
 
   onSubmit() {
-    debugger;
+     
     // TODO: Use EventEmitter with form value   
     if (this.existScreenFlag) {
       this.messageService.showDangerMessage("SCREEN_FORM.SCREEN_EXIST");
@@ -267,7 +267,7 @@ export class ScreenFormComponent implements OnInit {
       this.messageService.showDangerMessage("SCREEN_FORM.COMPANY_REQUIRED");
       return;
     }
-    debugger;
+     
     if (this.selectedFile !== undefined && this.selectedFile !== null) {
       this.image = {
         ...this.image,
