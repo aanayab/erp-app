@@ -152,6 +152,15 @@
               {{"USER_FORM.ROLE_REQUIRED"|translate}}
             </div>
           </div>
+          <div class="form-group col-md-3">
+            <label>{{ 'USER_FORM.GRUPO' | translate }}</label>
+            <app-group-selector (groupSelected)="onGrupoSelected($event)" [selectedGroup]="user?.grupo.idGrupo"
+              [ngClass]="mode ==='edit'?'disabled_country_selector' : ''" matInput required
+              readonly></app-group-selector>
+            <div class="invalid-feedback">
+              {{ 'USER_FORM.GRUPO_INVALID' | translate }}
+            </div>
+          </div>
           <div class="col-md-3"></div>
 
          <div *ngIf="mode ==='edit'" class="form-group col-md-3 text-center pt-2">

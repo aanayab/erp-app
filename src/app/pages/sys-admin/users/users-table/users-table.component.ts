@@ -20,7 +20,7 @@ import { MessageService } from 'src/app/services/helpers/message/message.service
 export class UsersTableComponent {
 
 
-  displayedColumns: string[] = ['username', 'firstName', 'lastName', 'email', 'mobile', 'country', 'disabled', 'edit', 'delete', 'Hide'];
+  displayedColumns: string[] = ['username', 'firstName', 'lastName','group', 'email', 'mobile', 'country', 'disabled', 'edit', 'delete', 'Hide'];
   dataSource!: MatTableDataSource<UserBean>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

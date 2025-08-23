@@ -8,8 +8,8 @@ const params = {
     port: undefined
   },
   wsAuthenticate: {
-    url: "api-dev.boyertech.mx",
-    port: undefined
+    url: "localhost",
+    port: 8071
   },
   wsSms: {
     url: "api-dev.boyertech.mx",

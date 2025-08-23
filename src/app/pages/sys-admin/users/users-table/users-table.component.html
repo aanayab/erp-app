@@ -66,6 +66,20 @@
               {{row.lastName}} </span> </td>
         </ng-container>
 
+                <!-- Fruit Column -->
+        <ng-container matColumnDef="group">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"USERS_TABLE.GRUPO" | translate}} </th>
+          <td [ngClass]="{
+            'table-warning': row.confirmationToken && !row.accountLocked,
+            'table-danger': row.accountLocked
+          }" mat-cell *matCellDef="let row"> <span [ngbTooltip]="row.accountLocked 
+              ? ('USERS_TABLE.ACCOUNT_LOCKED' | translate) 
+              : (row.confirmationToken 
+                  ? ('USERS_TABLE.CONFIRM_PENNDING' | translate) 
+                  : '')">{{row.grupo.grupo}}
+            </span> </td>
+        </ng-container>
+
 
         <!-- Fruit Column -->
         <ng-container matColumnDef="email">

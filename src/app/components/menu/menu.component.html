@@ -10,7 +10,7 @@
       <span   (click)="sidevarClose()" routerLink="/Home{{node.name.split('|')[1]}}"> {{node.name.split('|')[0] | translate}}</span>
     </mat-tree-node>
     <!-- This is the tree node template for expandable nodes -->
-    <mat-tree-node [ngbTooltip]="('MENU.TOOLTIP' | translate )"   triggers="manual"
+    <mat-tree-node [ngbTooltip]="('MENU.TOOLTIP' | translate )"    triggers="manual"
     (mouseenter)="tooltip.open()"
     (mouseleave)="tooltip.close()"
     #tooltip="ngbTooltip"  *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>

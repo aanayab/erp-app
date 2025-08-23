@@ -63,7 +63,13 @@ export class MenuComponent {
      
 
     this.dataSource.data = this.foodNode;
-    this.treeControl.expandAll();
+    //this.treeControl.expandAll();
+    Promise.resolve().then(() => {
+    this.treeControl.dataNodes
+      .filter(n => n.level === 0) // 👈 solo nodos raíz
+      .forEach(n => this.treeControl.expand(n));
+  });
+    
   }
 
 

@@ -19,6 +19,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserLoggedServiceService } from 'src/app/services/helpers/userLoggedService/user-logged-service.service';
 import { AuthorityBean } from 'src/app/model/authorityBean';
 import { ValidatorService } from 'src/app/services/helpers/validator/validator.service';
+import { GrupoBean } from 'src/app/model/grupoBean';
 
 
 
@@ -56,6 +57,7 @@ export class UserFormComponent {
     enabled: [{ value: false, disabled: true }, Validators.required],
     firstName: [{ value: '', disabled: false }, Validators.required],
     lastModif: [{ value: new Date(), disabled: false }, Validators.required],
+    grupo: [{ value: null as GrupoBean | null, disabled: false }, Validators.required],
     lastName: [{ value: '', disabled: false }, Validators.required],
     email: [{ value: '', disabled: false }, [Validators.required, Validators.email]],
     mobile: [{ value: '', disabled: false }, Validators.required, ValidatorService.phoneValidator], 
@@ -112,6 +114,7 @@ export class UserFormComponent {
           lastName: this.user.lastName,
           email: this.user.email,
           mobile: this.user.mobile,
+          grupo: this.user.grupo,
           hidden: this.user.hidden,
           createUser:this.user.createUser,
           lastModifUser: this.user.lastModifUser,
@@ -315,5 +318,11 @@ export class UserFormComponent {
     const authorities: AuthorityBean[] = role;
     this.userInfoForm.get('authorities')?.setValue(authorities);
   }
+
+    onGrupoSelected(grupo: GrupoBean): void {
+       
+      if (!grupo) return;
+      this.userInfoForm.get('grupo')?.setValue(grupo);
+    }
 
 }

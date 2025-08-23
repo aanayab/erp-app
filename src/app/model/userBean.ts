@@ -1,4 +1,5 @@
 import { AuthorityBean } from './authorityBean';
+import { GrupoBean } from './grupoBean';
 export interface UserBean {   
     username?: string;
     accountVerified?: number;
@@ -10,6 +11,7 @@ export interface UserBean {
     lastModif?: Date;   
     lastName?: string;
     mfaEnabled?: number;  
+    grupo?:GrupoBean
     mobile?: string;  
     password?: string;
     secret?: string;
